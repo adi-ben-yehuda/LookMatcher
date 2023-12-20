@@ -1,5 +1,5 @@
-import { createRouter } from "expo-router";
+// import { createRouter } from "expo-router";
 
-const { Provider, Redirect, useRoutes } = createRouter();
+// const { Provider, Redirect, useRoutes } = createRouter();
 
-export { Provider, Redirect, useRoutes };
+// export { Provider, Redirect, useRoutes };
