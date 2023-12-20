@@ -1,5 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { Color, FontFamily, FontSize, Border } from "../../styles/GlobalStyles";
+
+const window = Dimensions.get("window");
+const screenHeight = window.height;
+const screenWidth = window.width;
 
 const styles = StyleSheet.create({
 
@@ -8,9 +12,11 @@ const styles = StyleSheet.create({
   // },
 
   passwordLayout: {
+    width: screenWidth * 0.7,
+    left: (screenWidth - screenWidth * 0.7) / 2,
     height: 50,
-    width: 300,
-    left: 46,
+    // width: 300,
+    // left: 46,
     position: "absolute",
   },
   passwordTypo: {
@@ -41,7 +47,7 @@ const styles = StyleSheet.create({
   userIconLayout: {
     height: 24,
     width: 24,
-    left: 304,
+    left: screenWidth * 0.7 - 20,
     position: "absolute",
   },
   registerPosition: {
@@ -53,8 +59,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   registerChild: {
-    top: 208,
-    left: -3,
+
+    top: screenHeight*0.25,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
       width: 0,
@@ -63,19 +69,19 @@ const styles = StyleSheet.create({
     shadowRadius: 50,
     elevation: 50,
     shadowOpacity: 1,
-    width: 396,
-    height: 644,
+    width: screenWidth,
+    height: screenHeight*0.75,
     opacity: 0.85,
     backgroundColor: Color.colorWhite,
     position: "absolute",
     borderRadius: Border.br_26xl,
   },
   emailChild: {
+    width: screenWidth * 0.7,
     height: "100%",
     top: "0%",
     right: "0%",
     bottom: "0%",
-    left: "0%",
     borderRadius: Border.br_3xs,
     backgroundColor: Color.colorWhite,
     position: "absolute",
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messageItem: {
-    height: "16.67%",
+    height: "10px",
     width: "66.67%",
     top: "37.5%",
     right: "16.67%",
@@ -132,12 +138,12 @@ const styles = StyleSheet.create({
     top: "34%",
   },
   lockIcon1: {
-    top: "26.53%",
+    width: "30px",
+    height: "30px",
+    top: "12px",
+    left: screenWidth * 0.7 - 40,
     bottom: "25.47%",
-    left: "86%",
     right: "6%",
-    width: "8%",
-    height: "48%",
     maxWidth: "100%",
   },
   password: {
@@ -152,12 +158,12 @@ const styles = StyleSheet.create({
     top: "34%",
   },
   chieldCheckIcon1: {
-    top: "26.3%",
-    bottom: "25.7%",
-    left: "86%",
+    width: "30px",
+    height: "30px",
+    top: "12px",
+    left: screenWidth * 0.7 - 40,
+    bottom: "25.47%",
     right: "6%",
-    width: "8%",
-    height: "48%",
     maxWidth: "100%",
   },
   password2: {
@@ -179,15 +185,15 @@ const styles = StyleSheet.create({
   fullName: {
     textAlign: "left",
   },
-  userIcon2: {
-    display: "none",
-    left: "86%",
-    right: "6%",
-    width: "8%",
-    height: "48%",
-    bottom: "26%",
-    top: "26%",
-  },
+  // userIcon2: {
+  //   display: "none",
+  //   left: "86%",
+  //   right: "6%",
+  //   width: "8%",
+  //   height: "48%",
+  //   bottom: "26%",
+  //   top: "26%",
+  // },
   lastName: {
     top: 257,
   },
