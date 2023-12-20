@@ -1,10 +1,13 @@
 import * as React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Register.style";
 
 const Register = () => {
   return (
+    //<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+
+    //<ScrollView style={styles.scrollView}>
     <LinearGradient
       style={styles.register}
       locations={[0, 0.37, 0.67, 1]}
@@ -92,9 +95,10 @@ const Register = () => {
       <Image
         style={[styles.logoIcon, styles.logoIconPosition]}
         contentFit="cover"
-        source={require("../../assets/logo.png")}
+        source={require("../../assets/logoWhite.png")}
       />
     </LinearGradient>
+ // </ScrollView>
   );
 };
 
