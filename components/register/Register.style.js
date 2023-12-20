@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import { Color, FontFamily, FontSize, Border } from "../../styles/GlobalStyles";
 
 const styles = StyleSheet.create({
+
+  // scrollView: {
+  //   marginHorizontal: 20,
+  // },
+
   passwordLayout: {
     height: 50,
     width: 300,
