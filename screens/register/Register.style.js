@@ -6,6 +6,11 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
+
+  // scrollView: {
+  //   marginHorizontal: 20,
+  // },
+
   passwordLayout: {
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
