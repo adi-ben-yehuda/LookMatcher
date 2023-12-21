@@ -38,6 +38,7 @@ const Login = () => {
           placeholder="Password"
           placeholderTextColor={Color.colorGray_100}
           theme={{ colors: { background: "#fff" } }}
+          secureTextEntry={true}
         />{" "}
         <Image
           style={[styles.lockIcon, styles.lockIconLayout]}
@@ -59,9 +60,11 @@ const Login = () => {
           />
         </View>
       </LinearGradient>
-      <Text style={styles.newMemberRegisterContainer}>
-        <Text style={styles.newMember}>New Member?</Text>
-        <Text style={styles.registerNowTypo}>Register now</Text>
+
+      
+      <Text style={styles.newMemberRegisterContainer}> 
+        <Text style={[styles.newMemberRegisterContainer, styles.newMember]}>New Member? </Text>
+        <Text style={[styles.newMemberRegisterContainer, styles.newMember]}>Register now</Text>
       </Text>
       <Text style={[styles.forgetPassword, styles.registerNowTypo]}>
         Forget password ?
@@ -69,7 +72,7 @@ const Login = () => {
       <Image
         style={styles.logoIcon}
         contentFit="cover"
-        source={require("../../assets/logo.png")}
+        source={require("../../assets/logoWhite.png")}
       />
     </LinearGradient>
   );
