@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   email: {
-    top: 374,
+    top: screenHeight * 0.25 + 150,
     height: 50,
   },
   passwordChild: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     left: screenWidth * 0.7 - 40,
   },
   password: {
-    top: 449,
+    top: screenHeight * 0.25 + 220,
     height: 51,
   },
   login2: {
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   login1: {
     marginLeft: -83.5,
-    top: 639,
+    top: screenHeight * 0.25 + 400,
     width: 167,
     height: 48,
     left: "50%",
@@ -150,11 +150,28 @@ const styles = StyleSheet.create({
     backgroundColor: Color.background,
     overflow: "hidden",
   },
+
+  alreadyAMemberContainer: {
+    top: screenHeight * 0.25 + 470,
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    width: screenWidth,
+  },
+  logoIconPosition: {
+    left: "50%",
+    marginLeft: -75.5,
+    position: "absolute",
+  },
+
   newMember: {
     color: "#252525",
   },
+  register: {
+    color: Color.colorIndigo,
+  },
   newMemberRegisterContainer: {
-    top: 712,
+    top: screenHeight * 0.25 + 150,
     fontSize: 16,
     width: screenWidth,
     height: 17,
@@ -162,7 +179,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   forgetPassword: {
-    top: 525,
+    top: screenHeight * 0.25 + 300,
     textAlign: "center",
     width: screenWidth,
     fontSize: 16,
@@ -181,7 +198,6 @@ const styles = StyleSheet.create({
     backgroundColor: Color.background,
     overflow: "hidden",
     width: "100%",
-    borderRadius: Border.br_26xl,
   },
 });
 

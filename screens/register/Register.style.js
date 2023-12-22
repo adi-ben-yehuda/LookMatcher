@@ -6,7 +6,6 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-
   // scrollView: {
   //   marginHorizontal: 20,
   // },
@@ -15,8 +14,6 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
     height: 50,
-    // width: 300,
-    // left: 46,
     position: "absolute",
   },
   passwordTypo: {
@@ -60,8 +57,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   registerChild: {
-
-    top: screenHeight*0.25,
+    top: screenHeight * 0.25,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
       width: 0,
@@ -71,7 +67,7 @@ const styles = StyleSheet.create({
     elevation: 50,
     shadowOpacity: 1,
     width: screenWidth,
-    height: screenHeight*0.75,
+    height: screenHeight * 0.75,
     opacity: 0.85,
     backgroundColor: Color.colorWhite,
     position: "absolute",
@@ -96,19 +92,6 @@ const styles = StyleSheet.create({
     left: "7.33%",
     top: "34%",
   },
-  // messageChild: {
-  //   height: "58.33%",
-  //   width: "75%",
-  //   top: "20.83%",
-  //   right: "12.5%",
-  //   bottom: "20.83%",
-  //   left: "12.5%",
-  //   borderStyle: "solid",
-  //   borderColor: Color.colorIndigo,
-  //   borderWidth: 2,
-  //   borderRadius: Border.br_11xs,
-  //   position: "absolute",
-  // },
   messageChild: {
     height: 20,
     width: "75%",
@@ -121,15 +104,6 @@ const styles = StyleSheet.create({
     borderRadius: Border.br_11xs,
     position: "absolute",
   },
-  // messageItem: {
-    // height: "10px",
-    // width: "66.67%",
-    // top: "37.5%",
-    // right: "16.67%",
-    // bottom: "45.83%",
-    // left: "16.67%",
-    // borderRadius: Border.br_11xs,
-  // },
   messageItem: {
     height: 10,
     width: "66.67%",
@@ -143,19 +117,7 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
     maxWidth: "100%",
     position: "absolute",
-    //overflow: "hidden",
   },
-  // message: {
-
-  //   position: "absolute",
-  //   width: "30px",
-  //   height: "30px",
-  //   top: "12px",
-  //   left: screenWidth * 0.7 - 30,
-  //   bottom: "25.47%",
-  //   right: "6%",
-  //   maxWidth: "100%",
-  // },
   message: {
     height: "48%",
     top: "26%",
@@ -167,7 +129,7 @@ const styles = StyleSheet.create({
     width: 40,
   },
   email: {
-    top: 389,
+    top: screenHeight * 0.25 + 160,
   },
   password1: {
     width: "24%",
@@ -187,7 +149,7 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
   },
   password: {
-    top: 455,
+    top: screenHeight * 0.25 + 225,
   },
   confirmPassword: {
     width: "45%",
@@ -207,7 +169,7 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
   },
   password2: {
-    top: 521,
+    top: screenHeight * 0.25 + 290,
   },
   alreadyAMember1: {
     color: "#252525",
@@ -216,11 +178,11 @@ const styles = StyleSheet.create({
     color: Color.colorIndigo,
   },
   alreadyAMemberContainer: {
-    top: 717,
-    fontSize: 13,
+    top: screenHeight * 0.25 + 470,
+    fontSize: 16,
     fontWeight: "600",
-    fontFamily: FontFamily.ralewaySemiBold,
-    textAlign: "left",
+    textAlign: "center",
+    width: screenWidth,
   },
   fullName: {
     textAlign: "left",
@@ -234,11 +196,11 @@ const styles = StyleSheet.create({
     right: "6%",
     maxWidth: "100%",
   },
-  lastName: {
-    top: 257,
-  },
   firstName: {
-    top: 323,
+    top: screenHeight * 0.25 + 30,
+  },
+  lastName: {
+    top: screenHeight * 0.25 + 95,
   },
   userAltIcon2: {
     top: 336,
@@ -251,7 +213,6 @@ const styles = StyleSheet.create({
     color: "#fcfcfc",
     width: 79,
     textAlign: "left",
-    fontFamily: FontFamily.textInput,
     top: "50%",
     marginLeft: -46.5,
     marginTop: -13,
@@ -268,7 +229,7 @@ const styles = StyleSheet.create({
   },
   register1: {
     marginLeft: -84.5,
-    top: 644,
+    top: screenHeight * 0.25 + 400,
     width: 167,
     height: 48,
     left: "50%",
