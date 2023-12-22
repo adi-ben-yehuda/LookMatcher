@@ -4,8 +4,12 @@ import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Login.style";
 import { Color } from "../../styles/GlobalStyles";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const navigation = useNavigation();
+
   return (
     <LinearGradient
       style={styles.login}
@@ -61,16 +65,19 @@ const Login = () => {
         </View>
       </LinearGradient>
 
-      
-      <Text style={styles.newMemberRegisterContainer}> 
-        <Text style={[styles.newMemberRegisterContainer, styles.newMember]}>New Member? </Text>
-        <Text style={[styles.newMemberRegisterContainer, styles.newMember]}>Register now</Text>
+      <Text style={[styles.alreadyAMemberContainer]}>
+        <Text style={styles.newMember}>{"New Member? "}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <Text style={styles.register}>Register now</Text>
+        </TouchableOpacity>{" "}
       </Text>
+
       <Text style={[styles.forgetPassword, styles.registerNowTypo]}>
         Forget password ?
       </Text>
+
       <Image
-        style={styles.logoIcon}
+        style={[styles.logoIcon, styles.logoIconPosition]}
         contentFit="cover"
         source={require("../../assets/logoWhite.png")}
       />
