@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   messagePosition: {
     left: screenWidth * 0.7 - 50,
-    width: "40px",
+    width: 40,
   },
   lockIconLayout: {
     maxHeight: "100%",
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   messageChild: {
-    height: "20px",
+    height: 20,
     width: "75%",
     top: "20.83%",
     bottom: "20.83%",
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messageItem: {
-    height: "10px",
+    height: 10,
     width: "66.67%",
     top: "37.5%",
     right: "16.67%",
@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   lockIcon: {
-    width: "30px",
-    height: "30px",
-    top: "12px",
+    width: 30,
+    height: 30,
+    top: 12,
     left: screenWidth * 0.7 - 40,
   },
   password: {

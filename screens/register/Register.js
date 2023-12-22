@@ -7,9 +7,9 @@ import { Color } from "../../styles/GlobalStyles";
 
 const Register = () => {
   return (
-    //<ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-    //<ScrollView style={styles.scrollView}>
+    {/* //<ScrollView style={styles.scrollView}> */}
     <LinearGradient
       style={styles.register}
       locations={[0, 0.37, 0.67, 1]}
@@ -27,6 +27,7 @@ const Register = () => {
         <Image
           style={[styles.userIcon2, styles.iconLayout]}
           contentFit="cover"
+          source={require("../../assets/user-alt.png")}
         />
       </View>
       <View style={[styles.firstName, styles.passwordLayout]}>
@@ -41,6 +42,7 @@ const Register = () => {
         <Image
           style={[styles.userIcon2, styles.iconLayout]}
           contentFit="cover"
+          source={require("../../assets/user-alt.png")}
         />
       </View>
       <View style={[styles.email, styles.passwordLayout]}>
@@ -52,10 +54,10 @@ const Register = () => {
           placeholder="Email"
           placeholderTextColor={Color.colorGray_100}
         />
-        <View style={[styles.message, styles.iconPosition]}>
+        <View style={[styles.message, styles.messagePosition]}>
           <View style={styles.messageChild} />
           <Image
-            style={[styles.messageItem, styles.iconLayout]}
+            style={[styles.messageItem, styles.lockIconLayout]}
             contentFit="cover"
             source={require("../../assets/vector-3.png")}
           />
@@ -70,6 +72,7 @@ const Register = () => {
           theme={{ colors: { background: "#fff" } }}
           placeholder="Password"
           placeholderTextColor={Color.colorGray_100}
+          secureTextEntry={true}
         />
         <Image
           style={[styles.lockIcon1, styles.iconLayout]}
@@ -86,6 +89,7 @@ const Register = () => {
           theme={{ colors: { background: "#fff" } }}
           placeholder="Confirm password"
           placeholderTextColor={Color.colorGray_100}
+          secureTextEntry={true}
         />
         <Image
           style={[styles.chieldCheckIcon1, styles.iconLayout]}
@@ -98,16 +102,6 @@ const Register = () => {
         <Text style={styles.logIn}>Log In</Text>
       </Text>
 
-      <Image
-        style={[styles.userAltIcon2, styles.userIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/user-alt.png")}
-      />
-      <Image
-        style={[styles.userAltIcon3, styles.userIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/user-alt.png")}
-      />
       <LinearGradient
         style={styles.register1}
         locations={[0, 1]}
@@ -130,7 +124,7 @@ const Register = () => {
         source={require("../../assets/logoWhite.png")}
       />
     </LinearGradient>
- // </ScrollView>
+  </ScrollView>
   );
 };
 
