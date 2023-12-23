@@ -7,8 +7,15 @@ import { Color } from "../../styles/GlobalStyles";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+
 const Login = () => {
   const navigation = useNavigation();
+  const emailInput = React.useRef(null);
+  const passwordInput = React.useRef(null);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [emailPlaceholder, setEmailPlaceholder] = React.useState("Email");
+  const [passwordPlaceholder, setPasswordPlaceholder] = React.useState("Password");
 
   return (
     <LinearGradient
@@ -18,13 +25,24 @@ const Login = () => {
     >
       <View style={styles.loginChild} />
       <View style={[styles.email, styles.emailPosition]}>
-        <TextInput
-          style={styles.childPosition}
-          mode="outlined"
-          placeholder="Email"
-          placeholderTextColor={Color.colorGray_100}
-          theme={{ colors: { background: "#fff" } }}
-        />
+      <TextInput
+        forwardedRef={emailInput}
+        label="Email"
+        placeholder={emailPlaceholder}
+        style={styles.childPosition}
+        mode="outlined"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        onFocus={() => {
+          emailInput.current && emailInput.current.handleFocus();
+          setEmailPlaceholder("");
+        }}
+        onBlur={() => {
+          emailInput.current && emailInput.current.handleBlur();
+          setEmailPlaceholder("Email");
+        }}
+      />
+
         <View style={[styles.message, styles.messagePosition]}>
           <View style={styles.messageChild} />
           <Image
@@ -35,15 +53,25 @@ const Login = () => {
         </View>
       </View>
       <View style={[styles.password, styles.emailPosition]}>
-        <View style={[styles.passwordChild, styles.childPosition]} />
+        {/* <View style={[styles.passwordChild, styles.childPosition]} /> */}
         <TextInput
-          style={styles.childPosition}
-          mode="outlined"
-          placeholder="Password"
-          placeholderTextColor={Color.colorGray_100}
-          theme={{ colors: { background: "#fff" } }}
-          secureTextEntry={true}
-        />{" "}
+        forwardedRef={passwordInput}
+        label="Password"
+        placeholder={passwordPlaceholder}
+        style={styles.childPosition}
+        mode="outlined"
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+        onFocus={() => {
+          passwordInput.current && passwordInput.current.handleFocus();
+          setPasswordPlaceholder("");
+        }}
+        onBlur={() => {
+          passwordInput.current && passwordInput.current.handleBlur();
+          setPasswordPlaceholder("Password");
+        }}
+        secureTextEntry={true}
+      />{" "}
         <Image
           style={[styles.lockIcon, styles.lockIconLayout]}
           contentFit="cover"

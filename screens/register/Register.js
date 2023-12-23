@@ -10,6 +10,23 @@ import { useNavigation } from "@react-navigation/native";
 
 const Register = () => {
   const navigation = useNavigation();
+  const emailInput = React.useRef(null);
+  const passwordInput = React.useRef(null);
+  const confirmPasswordInput = React.useRef(null);
+  const firstNameInput = React.useRef(null);
+  const lastNameInput = React.useRef(null);
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+
+  const [emailPlaceholder, setEmailPlaceholder] = React.useState("Email");
+  const [passwordPlaceholder, setPasswordPlaceholder] = React.useState("Password");
+  const [confirmPasswordPlaceholder, setConfirmPasswordPlaceholder] = React.useState("Confirm Password");
+  const [firstNamePlaceholder, setFirstNamePlaceholder] = React.useState("First Name");
+  const [lastNamePlaceholder, setLastNamePlaceholder] = React.useState("Last Name");
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -21,12 +38,24 @@ const Register = () => {
       >
         <View style={styles.registerChild} />
         <View style={[styles.firstName, styles.passwordLayout]}>
-          <View style={styles.emailChild} />
+          {/* <View style={styles.emailChild} /> */}
           <TextInput
+            forwardedRef={firstNameInput}
+            label="First Name"
+            placeholder={firstNamePlaceholder}
+            style={styles.childPosition}
             mode="outlined"
             theme={{ colors: { background: "#fff" } }}
-            placeholder="First name"
             placeholderTextColor={Color.colorGray_100}
+            onChangeText={(text) => setFirstName(text)}
+            onFocus={() => {
+              firstNameInput.current && firstNameInput.current.handleFocus();
+              setFirstNamePlaceholder("");
+            }}
+            onBlur={() => {
+              firstNameInput.current && firstNameInput.current.handleBlur();
+              setFirstNamePlaceholder("First Name");
+            }}
           />
           <Image
             style={[styles.userIcon2, styles.iconLayout]}
@@ -35,13 +64,24 @@ const Register = () => {
           />
         </View>
         <View style={[styles.lastName, styles.passwordLayout]}>
-          <View style={styles.emailChild} />
+          {/* <View style={styles.emailChild} /> */}
           <TextInput
-            style={styles.childPosition}
-            mode="outlined"
-            theme={{ colors: { background: "#fff" } }}
-            placeholder="Last name"
-            placeholderTextColor={Color.colorGray_100}
+             forwardedRef={lastNameInput}
+             label="Last Name"
+             placeholder={lastNamePlaceholder}
+             style={styles.childPosition}
+             mode="outlined"
+             theme={{ colors: { background: "#fff" } }}
+             placeholderTextColor={Color.colorGray_100}
+             onChangeText={(text) => setLastName(text)}
+             onFocus={() => {
+               lastNameInput.current && lastNameInput.current.handleFocus();
+               setLastNamePlaceholder("");
+             }}
+             onBlur={() => {
+               lastNameInput.current && lastNameInput.current.handleBlur();
+               setLastNamePlaceholder("Last Name");
+             }}
           />
           <Image
             style={[styles.userIcon2, styles.iconLayout]}
@@ -50,13 +90,24 @@ const Register = () => {
           />
         </View>
         <View style={[styles.email, styles.passwordLayout]}>
-          <View style={styles.emailChild} />
+          {/* <View style={styles.emailChild} /> */}
           <TextInput
-            style={styles.childPosition}
-            mode="outlined"
-            theme={{ colors: { background: "#fff" } }}
-            placeholder="Email"
-            placeholderTextColor={Color.colorGray_100}
+             forwardedRef={emailInput}
+             label="Email"
+             placeholder={emailPlaceholder}
+             style={styles.childPosition}
+             mode="outlined"
+             theme={{ colors: { background: "#fff" } }}
+             placeholderTextColor={Color.colorGray_100}
+             onChangeText={(text) => setEmail(text)}
+             onFocus={() => {
+               emailInput.current && emailInput.current.handleFocus();
+               setEmailPlaceholder("");
+             }}
+             onBlur={() => {
+               emailInput.current && emailInput.current.handleBlur();
+               setEmailPlaceholder("Email");
+             }}
           />
           <View style={[styles.message, styles.messagePosition]}>
             <View style={styles.messageChild} />
@@ -69,13 +120,24 @@ const Register = () => {
         </View>
 
         <View style={[styles.password, styles.passwordLayout]}>
-          <View style={styles.emailChild} />
+          {/* <View style={styles.emailChild} /> */}
           <TextInput
+            forwardedRef={passwordInput}
+            label="Password"
+            placeholder={passwordPlaceholder}
             style={styles.childPosition}
             mode="outlined"
             theme={{ colors: { background: "#fff" } }}
-            placeholder="Password"
             placeholderTextColor={Color.colorGray_100}
+            onChangeText={(text) => setPassword(text)}
+            onFocus={() => {
+              passwordInput.current && passwordInput.current.handleFocus();
+              setPasswordPlaceholder("");
+            }}
+            onBlur={() => {
+              passwordInput.current && passwordInput.current.handleBlur();
+              setPasswordPlaceholder("Password");
+            }}
             secureTextEntry={true}
           />
           <Image
@@ -86,13 +148,24 @@ const Register = () => {
         </View>
 
         <View style={[styles.password2, styles.passwordLayout]}>
-          <View style={styles.emailChild} />
+          {/* <View style={styles.emailChild} /> */}
           <TextInput
-            style={styles.childPosition}
-            mode="outlined"
-            theme={{ colors: { background: "#fff" } }}
-            placeholder="Confirm password"
-            placeholderTextColor={Color.colorGray_100}
+             forwardedRef={confirmPasswordInput}
+             label="Confirm Password"
+             placeholder={confirmPasswordPlaceholder}
+             style={styles.childPosition}
+             mode="outlined"
+             theme={{ colors: { background: "#fff" } }}
+             placeholderTextColor={Color.colorGray_100}
+             onChangeText={(text) => setConfirmPassword(text)}
+             onFocus={() => {
+               confirmPasswordInput.current && confirmPasswordInput.current.handleFocus();
+               setConfirmPasswordPlaceholder("");
+             }}
+             onBlur={() => {
+               confirmPasswordInput.current && confirmPasswordInput.current.handleBlur();
+               setConfirmPasswordPlaceholder("Confirm Password");
+             }}
             secureTextEntry={true}
           />
           <Image
