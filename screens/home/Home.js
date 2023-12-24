@@ -2,8 +2,8 @@ import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { Border, Color, FontFamily, FontSize } from "../../styles/GlobalStyles";;
-import styles from "./HomePage.style";
+import { Border, Color, FontFamily, FontSize } from "../../styles/GlobalStyles";
+import styles from "./Home.style";
 
 const HomePage = () => {
   return (
@@ -24,11 +24,11 @@ const HomePage = () => {
         source={require("../../assets/icons/favorite.png")}
       /> */}
       <Image
-        style={[ styles.image4Icon]}
+        style={[styles.image4Icon]}
         contentFit="cover"
         source={require("../../assets/images/imgClothes.png")}
       />
-      
+
       {/* //left up rec */}
       <LinearGradient
         style={[styles.recUpLeft]}
@@ -45,9 +45,9 @@ const HomePage = () => {
         />
       </LinearGradient>
 
-       {/* left down rec */}
+      {/* left down rec */}
       <LinearGradient
-        style={[ styles.recDownLeft]}
+        style={[styles.recDownLeft]}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
@@ -57,15 +57,15 @@ const HomePage = () => {
           </Text>
         </View>
         <Image
-        style={[styles.outlineShirt, styles.taskbarIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/icons/outline--shirt.png")}
-      />
+          style={[styles.outlineShirt, styles.taskbarIconLayout]}
+          contentFit="cover"
+          source={require("../../assets/icons/outline--shirt.png")}
+        />
       </LinearGradient>
 
       {/* // right down rec  */}
       <LinearGradient
-        style={[ styles.recDownRight]}
+        style={[styles.recDownRight]}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
@@ -79,9 +79,9 @@ const HomePage = () => {
         />
       </LinearGradient>
 
-     {/* // right up rec  */}
+      {/* // right up rec  */}
       <LinearGradient
-        style={[ styles.recUpRight]}
+        style={[styles.recUpRight]}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
@@ -94,9 +94,6 @@ const HomePage = () => {
           source={require("../../assets/icons/favorite.png")}
         />
       </LinearGradient>
-
-      
-     
     </View>
   );
 };

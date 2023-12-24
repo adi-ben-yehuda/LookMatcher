@@ -51,14 +51,16 @@ const styles = StyleSheet.create({
   },
   loginChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
+    boxShadow: {
+      shadowColor: "rgba(0, 0, 0, 0.25)",
+      shadowOffset: {
+        width: 0,
+        height: 4,
+      },
+      shadowRadius: 50,
+      elevation: 50,
+      shadowOpacity: 1,
     },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
@@ -199,7 +201,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
-  
 });
 
 export default styles;

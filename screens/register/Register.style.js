@@ -58,14 +58,7 @@ const styles = StyleSheet.create({
   },
   registerChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
+    boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
@@ -178,7 +171,7 @@ const styles = StyleSheet.create({
     color: Color.colorIndigo,
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 470,
+    top: screenHeight * 0.25 + 500,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
@@ -249,6 +242,14 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     overflow: "hidden",
     width: "100%",
+  },
+  errorMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    textAlign: "center",
+    width: screenWidth,
+    color: Color.colorRed,
+    fontWeight: "bold",
   },
 });
 
