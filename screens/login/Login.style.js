@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   email: {
     top: screenHeight * 0.25 + 150,
-    height: 50,
+    height: 60,
   },
   passwordChild: {
     backgroundColor: Color.colorWhite,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   password: {
     top: screenHeight * 0.25 + 220,
-    height: 51,
+    height: 60,
   },
   login2: {
     marginLeft: -35,
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
+  
 });
 
 export default styles;
