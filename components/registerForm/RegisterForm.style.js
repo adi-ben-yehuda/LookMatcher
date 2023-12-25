@@ -37,11 +37,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  logoIconPosition: {
-    left: "50%",
-    marginLeft: -75.5,
-    position: "absolute",
-  },
   userIconLayout: {
     height: 24,
     width: 24,
@@ -165,13 +160,14 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.25 + 290,
   },
   alreadyAMember1: {
-    color: "#252525",
+    color: Color.colorBlack,
   },
   logIn: {
     color: Color.colorIndigo,
+    fontWeight: "600",
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 500,
+    top: screenHeight * 0.25 + 520,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
@@ -203,7 +199,7 @@ const styles = StyleSheet.create({
   },
   register2: {
     fontSize: 20,
-    color: "#fcfcfc",
+    color: Color.colorWhite,
     width: 79,
     textAlign: "left",
     top: "50%",
@@ -231,11 +227,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     overflow: "hidden",
   },
-  logoIcon: {
-    top: 29,
-    width: 160,
-    height: 150,
-  },
+
   register: {
     flex: 1,
     height: 852,
@@ -246,10 +238,15 @@ const styles = StyleSheet.create({
   errorMessage: {
     top: screenHeight * 0.25 + 350,
     fontSize: 16,
-    textAlign: "center",
-    width: screenWidth,
-    color: Color.colorRed,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
     fontWeight: "bold",
+    color: Color.colorRed,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 });
 
