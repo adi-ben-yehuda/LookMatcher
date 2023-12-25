@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messagePosition: {
-    left: screenWidth * 0.7 - 50,
-    width: 40,
+    left: screenWidth * 0.7 - 45,
+    width: 37,
   },
   lockIconLayout: {
     maxHeight: "100%",
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   lockIcon: {
     width: 30,
     height: 30,
-    top: 12,
+    top: 17,
     left: screenWidth * 0.7 - 40,
   },
   password: {
@@ -157,19 +157,21 @@ const styles = StyleSheet.create({
 
   alreadyAMemberContainer: {
     top: screenHeight * 0.25 + 470,
-    fontSize: 16,
-    fontWeight: "600",
     textAlign: "center",
     width: screenWidth,
     position: "absolute",
+    textAlignVertical: "center",
+    fontWeight: "bold",
   },
 
   newMember: {
+    fontSize: 16,
     color: Color.colorBlack,
   },
   register: {
+    fontSize: 16,
+    fontWeight: "bold",
     color: Color.colorIndigo,
-    fontWeight: "600",
   },
   newMemberRegisterContainer: {
     top: screenHeight * 0.25 + 150,
@@ -192,6 +194,20 @@ const styles = StyleSheet.create({
     backgroundColor: Color.background,
     overflow: "hidden",
     width: "100%",
+  },
+
+  errorMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.colorRed,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 });
 

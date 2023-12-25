@@ -138,16 +138,17 @@ function RegisterForm() {
     </Text>
   ));
 
-  // Showing error message if error is true
-  const errorMessage = () => {
+  const registerButtonStyle = () => {
     if (error) {
-      return (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{renderList}</Text>
-        </View>
-      );
+      if (
+        errorList[errorList.length - 1] === " confirm password" &&
+        errorList.length >= 4
+      ) {
+        return [styles.register1, { marginTop: -40 }];
+      }
+      return [styles.register1, { marginTop: -20 }];
     }
-    return null;
+    return styles.register1;
   };
 
   return (
@@ -301,11 +302,16 @@ function RegisterForm() {
         </TouchableOpacity>
       </Text>
 
-      {errorMessage()}
+      {/* Show error message if error is true */}
+      {error && (
+        <View style={styles.errorMessage}>
+          <Text style={styles.error}>Invalid{renderList}</Text>
+        </View>
+      )}
 
       <TouchableOpacity onPress={handleRegisterPress}>
         <LinearGradient
-          style={styles.register1}
+          style={registerButtonStyle()}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >

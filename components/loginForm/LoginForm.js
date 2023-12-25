@@ -5,21 +5,90 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./LoginForm.style";
+import { useState, useRef } from "react";
 
 const LoginForm = () => {
   const navigation = useNavigation();
 
-  const emailInput = React.useRef(null);
-  const passwordInput = React.useRef(null);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [emailPlaceholder, setEmailPlaceholder] = React.useState("Email");
-  const [passwordPlaceholder, setPasswordPlaceholder] =
-    React.useState("Password");
+  const emailInput = useRef(null);
+  const passwordInput = useRef(null);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
+  const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
+
+  // States for checking the errors
+  const [error, setError] = useState(false);
+  const [errorList, setErrorList] = useState([]);
+
+  // Handling the name change
+  const handleEmail = (text) => {
+    setEmail(text);
+    setError(false);
+  };
+
+  // Handling the name change
+  const handlePassword = (text) => {
+    setPassword(text);
+    setError(false);
+  };
+
+  const checkEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === "" || emailRegex.test(email) === false) {
+      return false;
+    }
+    return true;
+  };
+
+  // Handling the password change
+  const checkPassword = () => {
+    const passwordRegex = /^[A-Za-z0-9]*$/;
+    if (
+      password === "" ||
+      password.length < 8 ||
+      passwordRegex.test(password) === false
+    ) {
+      return false;
+    }
+    return true;
+  };
 
   const handleLoginPress = () => {
-    navigation.navigate("Home");
+    setErrorList([]);
+    errorList.splice(0, errorList.length);
+
+    if (!checkEmail()) {
+      setError(true);
+      errorList.push(" email");
+    }
+    if (!checkPassword()) {
+      setError(true);
+      errorList.push(" password");
+    }
+
+    if (errorList.length > 0) {
+      setError(true);
+      setErrorList(errorList);
+    } else {
+      // All the fields are correct
+      navigation.navigate("Home");
+    }
   };
+
+  // Show all errors separated by a comma
+  const renderList = errorList.map((item, index) => (
+    <Text key={index} style={styles.error}>
+      {item}
+      {index !== errorList.length - 1 && ","}
+    </Text>
+  ));
+
+  const loginButtonStyle = error
+    ? [styles.login1, { marginTop: -20 }]
+    : styles.login1;
 
   return (
     <LinearGradient
@@ -36,7 +105,7 @@ const LoginForm = () => {
           style={styles.childPosition}
           mode="outlined"
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={handleEmail}
           onFocus={() => {
             emailInput.current && emailInput.current.handleFocus();
             setEmailPlaceholder("");
@@ -65,7 +134,7 @@ const LoginForm = () => {
           style={styles.childPosition}
           mode="outlined"
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={handlePassword}
           onFocus={() => {
             passwordInput.current && passwordInput.current.handleFocus();
             setPasswordPlaceholder("");
@@ -83,9 +152,16 @@ const LoginForm = () => {
         />
       </View>
 
+      {/* Show error message if error is true */}
+      {error && (
+        <View style={styles.errorMessage}>
+          <Text style={styles.error}>Invalid{renderList}</Text>
+        </View>
+      )}
+
       <TouchableOpacity onPress={handleLoginPress}>
         <LinearGradient
-          style={styles.login1}
+          style={loginButtonStyle}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >

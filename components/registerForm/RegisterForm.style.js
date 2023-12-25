@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messagePosition: {
-    left: screenWidth * 0.7 - 50,
-    width: 40,
+    left: screenWidth * 0.7 - 45,
+    width: 37,
   },
   email: {
     top: screenHeight * 0.25 + 160,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   lockIcon1: {
     width: 30,
     height: 30,
-    top: 12,
+    top: 17,
     left: screenWidth * 0.7 - 40,
     bottom: "25.47%",
     right: "6%",
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 520,
+    top: screenHeight * 0.25 + 550,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   register1: {
     marginLeft: -84.5,
-    top: screenHeight * 0.25 + 400,
+    top: screenHeight * 0.25 + 450,
     width: 167,
     height: 48,
     left: "50%",
