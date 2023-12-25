@@ -1,32 +1,28 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import { Image } from "expo-image";
+import { Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
+import ToolBar from "../../components/toolbar/ToolBar";
 import styles from "./Home.style";
-import { TouchableOpacity } from "react-native-web";
+import { TouchableOpacity } from "react-native";
+import LogoBlack from "../../components/logoBlack/LogoBlack";
 
 const HomePage = () => {
   return (
     <View style={styles.home}>
-      <View style={[styles.icons, styles.iconsShadowBox]}>
-        <View style={[styles.iconsChild]} />
+      <LogoBlack></LogoBlack>
+      <View style={[styles.icons, styles.iconsShadowBox, { marginBottom: 20 }]}></View>
+
+
+     
+
+      <View style={[styles.image4Icon]}>
+        <Image
+          contentFit="cover"
+          source={require("../../assets/images/imgClothes.png")}
+        />
       </View>
-      <View style={[styles.rectangle, styles.rectangleLayout]} />
-      {/* <Text style={styles.accountAndCard}>Hi, Dana</Text> */}
-      <Image
-        style={[styles.logoIcon]}
-        contentFit="cover"
-        source={require("../../assets/logoBlack.png")}
-      />
 
-      <Image
-        style={[styles.image4Icon]}
-        contentFit="cover"
-        source={require("../../assets/images/imgClothes.png")}
-      />
-
-      {/* //left up rec */}
       <TouchableOpacity>
         <LinearGradient
           style={[styles.recUpLeft]}
@@ -41,7 +37,7 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      {/* left down rec */}
+
       <TouchableOpacity>
         <LinearGradient
           style={[styles.recDownLeft]}
@@ -56,7 +52,7 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      {/* // right down rec  */}
+
       <TouchableOpacity>
         <LinearGradient
           style={styles.recDownRight}
@@ -71,7 +67,7 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      {/* // right up rec  */}
+
       <TouchableOpacity>
         <LinearGradient
           style={[styles.recUpRight]}
@@ -86,37 +82,7 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      <View style={[styles.toolbar]}>
-        <Image
-          style={[styles.shirtBar]}
-          contentFit="cover"
-          source={require("../../assets/icons/shirt-bar.png")}
-        />
-
-        <Image
-          style={[styles.searchBar]}
-          contentFit="cover"
-          source={require("../../assets/icons/search-bar.png")}
-        />
-
-        <Image
-          style={[styles.logoBar]}
-          contentFit="cover"
-          source={require("../../assets/logoBlack.png")}
-        />
-
-        <Image
-          style={[styles.heartBar]}
-          contentFit="cover"
-          source={require("../../assets/icons/heart-bar.png")}
-        />
-
-        <Image
-          style={[styles.profileBar]}
-          contentFit="cover"
-          source={require("../../assets/icons/profile-bar.png")}
-        />
-      </View>
+      <ToolBar></ToolBar>
     </View>
   );
 };
