@@ -37,11 +37,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  logoIconPosition: {
-    left: "50%",
-    marginLeft: -75.5,
-    position: "absolute",
-  },
   userIconLayout: {
     height: 24,
     width: 24,
@@ -58,14 +53,7 @@ const styles = StyleSheet.create({
   },
   registerChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
+    boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
@@ -172,13 +160,14 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.25 + 290,
   },
   alreadyAMember1: {
-    color: "#252525",
+    color: Color.colorBlack,
   },
   logIn: {
     color: Color.colorIndigo,
+    fontWeight: "600",
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 470,
+    top: screenHeight * 0.25 + 520,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
@@ -210,7 +199,7 @@ const styles = StyleSheet.create({
   },
   register2: {
     fontSize: 20,
-    color: "#fcfcfc",
+    color: Color.colorWhite,
     width: 79,
     textAlign: "left",
     top: "50%",
@@ -238,17 +227,26 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     overflow: "hidden",
   },
-  logoIcon: {
-    top: 29,
-    width: 160,
-    height: 150,
-  },
+
   register: {
     flex: 1,
     height: 852,
     backgroundColor: "transparent",
     overflow: "hidden",
     width: "100%",
+  },
+  errorMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.colorRed,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 });
 

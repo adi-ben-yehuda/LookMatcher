@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     bottom: "0%",
     right: "0%",
     top: "0%",
-    height: "100%",
+    height: 50,
     position: "absolute",
     width: "100%",
   },
@@ -51,14 +51,16 @@ const styles = StyleSheet.create({
   },
   loginChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
+    boxShadow: {
+      shadowColor: "rgba(0, 0, 0, 0.25)",
+      shadowOffset: {
+        width: 0,
+        height: 4,
+      },
+      shadowRadius: 50,
+      elevation: 50,
+      shadowOpacity: 1,
     },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
@@ -86,14 +88,14 @@ const styles = StyleSheet.create({
   messageItem: {
     height: 10,
     width: "66.67%",
-    top: "37.5%",
+    top: "30%",
     right: "16.67%",
     bottom: "45.83%",
     left: "16.67%",
     borderRadius: Border.br_11xs,
   },
   message: {
-    height: "48%",
+    height: 45,
     top: "26%",
     bottom: "26%",
     position: "absolute",
@@ -101,12 +103,13 @@ const styles = StyleSheet.create({
   email: {
     top: screenHeight * 0.25 + 150,
     height: 60,
+    position: "absolute",
   },
   passwordChild: {
     backgroundColor: Color.colorWhite,
   },
   password1: {
-    height: "37.25%",
+    height: 38,
     width: "25.25%",
     top: "33.33%",
     textAlign: "left",
@@ -120,11 +123,12 @@ const styles = StyleSheet.create({
   password: {
     top: screenHeight * 0.25 + 220,
     height: 60,
+    position: "absolute",
   },
   login2: {
     marginLeft: -35,
     fontSize: 20,
-    color: "#fcfcfc",
+    color: Color.colorWhite,
     width: 56,
     textAlign: "left",
   },
@@ -157,24 +161,20 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     width: screenWidth,
-  },
-  logoIconPosition: {
-    left: "50%",
-    marginLeft: -75.5,
     position: "absolute",
   },
 
   newMember: {
-    color: "#252525",
+    color: Color.colorBlack,
   },
   register: {
     color: Color.colorIndigo,
+    fontWeight: "600",
   },
   newMemberRegisterContainer: {
     top: screenHeight * 0.25 + 150,
     fontSize: 16,
     width: screenWidth,
-    height: 17,
     textAlign: "center",
     position: "absolute",
   },
@@ -185,13 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     position: "absolute",
   },
-  logoIcon: {
-    top: 29,
-    left: 116,
-    width: 160,
-    height: 150,
-    position: "absolute",
-  },
+
   login: {
     flex: 1,
     height: 852,
@@ -199,7 +193,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
-  
 });
 
 export default styles;

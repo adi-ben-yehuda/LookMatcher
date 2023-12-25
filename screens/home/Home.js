@@ -1,9 +1,9 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { Border, Color, FontFamily, FontSize } from "../../styles/GlobalStyles";;
-import styles from "./HomePage.style";
+
+import styles from "./Home.style";
 import { TouchableOpacity } from "react-native-web";
 
 const HomePage = () => {
@@ -28,52 +28,51 @@ const HomePage = () => {
 
       {/* //left up rec */}
       <TouchableOpacity>
-      <LinearGradient
-        style={[styles.recUpLeft]}
-        locations={[0, 1]}
-        colors={["#29085f", "#b941d7"]}
-      >
-        <Image
-          style={styles.iconsButtons}
-          source={require("../../assets/icons/search2.png")}
-        />
-        <Text style={styles.text}>Search</Text>
-      </LinearGradient>
+        <LinearGradient
+          style={[styles.recUpLeft]}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Image
+            style={styles.iconsButtons}
+            source={require("../../assets/icons/search2.png")}
+          />
+          <Text style={styles.text}>Search</Text>
+        </LinearGradient>
       </TouchableOpacity>
 
       {/* left down rec */}
       <TouchableOpacity>
-      <LinearGradient
-        style={[styles.recDownLeft]}
-        locations={[0, 1]}
-        colors={["#29085f", "#b941d7"]}
-      >
-        <Image
-          style={styles.iconsButtons}
-          source={require("../../assets/icons/outline--shirt.png")}
-        />
-        <Text style={styles.text}>Outfits</Text>
-      </LinearGradient>
+        <LinearGradient
+          style={[styles.recDownLeft]}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Image
+            style={styles.iconsButtons}
+            source={require("../../assets/icons/outline--shirt.png")}
+          />
+          <Text style={styles.text}>Outfits</Text>
+        </LinearGradient>
       </TouchableOpacity>
 
       {/* // right down rec  */}
       <TouchableOpacity>
-      <LinearGradient
-        style={styles.recDownRight}
-        locations={[0, 1]}
-        colors={["#29085f", "#b941d7"]}
-      >
-        <Image
-          style={styles.iconsButtons}
-          source={require("../../assets/icons/user.png")}
-        />
-        <Text style={styles.text}>Profile</Text>
-
-      </LinearGradient>
+        <LinearGradient
+          style={styles.recDownRight}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Image
+            style={styles.iconsButtons}
+            source={require("../../assets/icons/user.png")}
+          />
+          <Text style={styles.text}>Profile</Text>
+        </LinearGradient>
       </TouchableOpacity>
 
       {/* // right up rec  */}
-      <TouchableOpacity >
+      <TouchableOpacity>
         <LinearGradient
           style={[styles.recUpRight]}
           locations={[0, 1]}
@@ -87,9 +86,6 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-
-
-
       <View style={[styles.toolbar]}>
         <Image
           style={[styles.shirtBar]}
@@ -102,7 +98,6 @@ const HomePage = () => {
           contentFit="cover"
           source={require("../../assets/icons/search-bar.png")}
         />
-
 
         <Image
           style={[styles.logoBar]}
@@ -121,8 +116,7 @@ const HomePage = () => {
           contentFit="cover"
           source={require("../../assets/icons/profile-bar.png")}
         />
-      </View >
-
+      </View>
     </View>
   );
 };

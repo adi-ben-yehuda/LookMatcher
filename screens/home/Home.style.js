@@ -1,11 +1,9 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { Color, FontSize, Border } from "../../styles/GlobalStyles";
 
-
 import { PixelRatio } from "react-native";
 
 const density = PixelRatio.get();
-
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -14,7 +12,6 @@ const recHeight = screenHeight * 0.12;
 const recWidth = screenWidth * 0.33;
 
 const styles = StyleSheet.create({
-
   home: {
     //borderRadius: 45,
     flex: 1,
@@ -23,7 +20,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#E2DBEA",
   },
-
 
   iconsShadowBox: {
     height: screenHeight * 0.32,
@@ -47,7 +43,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  recUpLeft: { //rec up
+  recUpLeft: {
+    //rec up
     backgroundColor: "transparent",
     height: screenHeight * 0.12,
     width: screenWidth * 0.33,
@@ -60,7 +57,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  recUpRight: { //rec up
+  recUpRight: {
+    //rec up
     backgroundColor: "transparent",
     height: screenHeight * 0.12,
     width: screenWidth * 0.33,
@@ -73,9 +71,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  
-
-  recDownLeft: { //rec up
+  recDownLeft: {
+    //rec up
     backgroundColor: "transparent",
     height: screenHeight * 0.12,
     width: screenWidth * 0.33,
@@ -99,7 +96,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
-    
   },
 
   iconsButtons: {
@@ -108,44 +104,32 @@ const styles = StyleSheet.create({
     marginTop: screenHeight * 0.008,
     marginRight: screenWidth * 0.001,
   },
-  
+
   text: {
     color: Color.colorGray,
     fontSize: screenWidth * 0.05,
     //marginTop: 3, // Adjust based on your preference
   },
-  
-
-
-
-
-
-
-
-
 
   image4Icon: {
     height: screenHeight * 0.3,
     width: screenWidth * 0.85,
     bottom: screenHeight * 0.11,
-    right: (screenWidth - (screenWidth * 0.85)) / 2,
+    right: (screenWidth - screenWidth * 0.85) / 2,
     borderRadius: (screenWidth * 0.1) / 2,
-    overflow: 'hidden',
+    overflow: "hidden",
     position: "absolute",
 
-    shadowColor: '#000', // Shadow color
+    shadowColor: "#000", // Shadow color
     shadowOffset: { width: 0, height: 2 }, // Shadow offset
     shadowOpacity: 0.5, // Shadow opacity
     shadowRadius: 4, // Shadow radius
     elevation: 4, // Android specific elevation for shadow
   },
 
- 
-
-
   toolbar: {
     height: screenHeight * 0.08,
-    width:  screenWidth,
+    width: screenWidth,
     backgroundColor: "#E2DBEA",
     bottom: 0,
     position: "absolute",
@@ -159,53 +143,43 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    flexDirection: "row", 
-    alignItems: "center", 
-    
+    flexDirection: "row",
+    alignItems: "center",
   },
   shirtBar: {
-    height: "8vw", 
-    width: "8vw", 
-    left: "8vw", 
-  
-   
+    height: "8vw",
+    width: "8vw",
+    left: "8vw",
   },
 
   searchBar: {
-    height: "8vw", 
-    width: "8vw", 
-    left: "16vw", 
-   
+    height: "8vw",
+    width: "8vw",
+    left: "16vw",
   },
 
   logoBar: {
-    height: "28vw", 
-    width: "28vw", 
-    left: "19vw", 
+    height: "28vw",
+    width: "28vw",
+    left: "19vw",
   },
   heartBar: {
-    height: "8vw", 
-    width: "8vw", 
-    left: "22vw", 
+    height: "8vw",
+    width: "8vw",
+    left: "22vw",
   },
 
   profileBar: {
-    height: "8vw", 
-    width: "8vw", 
-    left: "30vw",  
+    height: "8vw",
+    width: "8vw",
+    left: "30vw",
   },
-  
-
 
   searchTypo: {
     textAlign: "left",
     color: Color.colorGray,
     fontSize: FontSize.size_5xl,
   },
- 
-
-
-
 
   createPosition: {
     width: 74,
@@ -256,7 +230,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  
   search: {
     marginLeft: -38.5,
     marginTop: -14,
@@ -292,8 +265,7 @@ const styles = StyleSheet.create({
     marginLeft: -36.8,
     height: 56,
   },
- 
-  
+
   wrapperPosition: {
     height: 28,
     top: "50%",
@@ -314,7 +286,7 @@ const styles = StyleSheet.create({
   //   right: screenWidth * 0.1,
   //   overflow: "hidden",
   // },
-  
+
   iconPosition: {
     bottom: "56.67%",
     top: "10%",
@@ -322,7 +294,7 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
     position: "absolute",
   },
- 
+
   favorites: {
     marginLeft: -50,
     marginTop: -14,
@@ -347,7 +319,6 @@ const styles = StyleSheet.create({
     bottom: "52.82%",
     left: "21.88%",
   },
-
 });
 
 export default styles;
