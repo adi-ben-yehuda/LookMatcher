@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Border, Color, FontFamily, FontSize } from "../../styles/GlobalStyles";;
 import styles from "./HomePage.style";
+import { TouchableOpacity } from "react-native-web";
 
 const HomePage = () => {
   return (
@@ -12,91 +13,116 @@ const HomePage = () => {
         <View style={[styles.iconsChild]} />
       </View>
       <View style={[styles.rectangle, styles.rectangleLayout]} />
-      <Text style={styles.accountAndCard}>Hi, Dana</Text>
+      {/* <Text style={styles.accountAndCard}>Hi, Dana</Text> */}
       <Image
         style={[styles.logoIcon]}
         contentFit="cover"
         source={require("../../assets/logoBlack.png")}
       />
-      {/* <Image
-        style={styles.favoriteIcon}
-        contentFit="cover"
-        source={require("../../assets/icons/favorite.png")}
-      /> */}
+
       <Image
-        style={[ styles.image4Icon]}
+        style={[styles.image4Icon]}
         contentFit="cover"
         source={require("../../assets/images/imgClothes.png")}
       />
-      
+
       {/* //left up rec */}
+      <TouchableOpacity>
       <LinearGradient
         style={[styles.recUpLeft]}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
-        <View style={[styles.searchWrapper, styles.wrapperPosition]}>
-          <Text style={[styles.search, styles.searchTypo]}>Search</Text>
-        </View>
         <Image
-          style={[styles.searchIcon, styles.iconPosition]}
-          contentFit="cover"
+          style={styles.iconsButtons}
           source={require("../../assets/icons/search2.png")}
         />
+        <Text style={styles.text}>Search</Text>
       </LinearGradient>
+      </TouchableOpacity>
 
-       {/* left down rec */}
+      {/* left down rec */}
+      <TouchableOpacity>
       <LinearGradient
-        style={[ styles.recDownLeft]}
+        style={[styles.recDownLeft]}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
-        <View style={[styles.createOutfitWrapper, styles.createPosition]}>
-          <Text style={[styles.createOutfit, styles.createPosition]}>
-            Create Outfit
-          </Text>
-        </View>
         <Image
-        style={[styles.outlineShirt, styles.taskbarIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/icons/outline--shirt.png")}
-      />
+          style={styles.iconsButtons}
+          source={require("../../assets/icons/outline--shirt.png")}
+        />
+        <Text style={styles.text}>Outfits</Text>
       </LinearGradient>
+      </TouchableOpacity>
 
       {/* // right down rec  */}
+      <TouchableOpacity>
       <LinearGradient
-        style={[ styles.recDownRight]}
+        style={styles.recDownRight}
         locations={[0, 1]}
         colors={["#29085f", "#b941d7"]}
       >
-        <View style={[styles.profileWrapper, styles.wrapperPosition]}>
-          <Text style={[styles.profile, styles.searchTypo]}>Profile</Text>
-        </View>
         <Image
-          style={[styles.userIcon, styles.iconPosition]}
-          contentFit="cover"
+          style={styles.iconsButtons}
           source={require("../../assets/icons/user.png")}
         />
-      </LinearGradient>
+        <Text style={styles.text}>Profile</Text>
 
-     {/* // right up rec  */}
-      <LinearGradient
-        style={[ styles.recUpRight]}
-        locations={[0, 1]}
-        colors={["#29085f", "#b941d7"]}
-      >
-        <View style={[styles.favoritesWrapper, styles.wrapperPosition]}>
-          <Text style={[styles.favorites, styles.searchTypo]}>Favorites</Text>
-        </View>
+      </LinearGradient>
+      </TouchableOpacity>
+
+      {/* // right up rec  */}
+      <TouchableOpacity >
+        <LinearGradient
+          style={[styles.recUpRight]}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Image
+            style={styles.iconsButtons}
+            source={require("../../assets/icons/favorite1.png")}
+          />
+          <Text style={styles.text}>Favorites</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+
+
+
+      <View style={[styles.toolbar]}>
         <Image
-          style={[styles.userIcon, styles.iconPosition]}
+          style={[styles.shirtBar]}
           contentFit="cover"
-          source={require("../../assets/icons/favorite.png")}
+          source={require("../../assets/icons/shirt-bar.png")}
         />
-      </LinearGradient>
 
-      
-     
+        <Image
+          style={[styles.searchBar]}
+          contentFit="cover"
+          source={require("../../assets/icons/search-bar.png")}
+        />
+
+
+        <Image
+          style={[styles.logoBar]}
+          contentFit="cover"
+          source={require("../../assets/logoBlack.png")}
+        />
+
+        <Image
+          style={[styles.heartBar]}
+          contentFit="cover"
+          source={require("../../assets/icons/heart-bar.png")}
+        />
+
+        <Image
+          style={[styles.profileBar]}
+          contentFit="cover"
+          source={require("../../assets/icons/profile-bar.png")}
+        />
+      </View >
+
     </View>
   );
 };
