@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   email1Typo: {
-    color: Color.colorGray_100,
+    color: Color.gray,
     fontSize: FontSize.textInput_size,
     left: "7.31%",
     textAlign: "left",
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   registerNowTypo: {
-    color: Color.colorIndigo,
+    color: Color.darkPurple,
     fontWeight: "600",
   },
   loginChild: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
     position: "absolute",
     borderRadius: Border.br_26xl,
   },
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     bottom: "20.83%",
     left: "12.5%",
     borderStyle: "solid",
-    borderColor: Color.colorIndigo,
+    borderColor: Color.darkPurple,
     borderWidth: 2,
     borderRadius: Border.br_11xs,
     position: "absolute",
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   passwordChild: {
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
   },
   password1: {
     height: 38,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   login2: {
     marginLeft: -35,
     fontSize: 20,
-    color: Color.colorWhite,
+    color: Color.white,
     width: 56,
     textAlign: "left",
   },
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     left: "50%",
     borderRadius: Border.br_3xs,
     position: "absolute",
-    backgroundColor: Color.background,
+    backgroundColor: Color.lightPink,
     overflow: "hidden",
   },
 
@@ -166,12 +166,12 @@ const styles = StyleSheet.create({
 
   newMember: {
     fontSize: 16,
-    color: Color.colorBlack,
+    color: Color.black,
   },
   register: {
     fontSize: 16,
     fontWeight: "bold",
-    color: Color.colorIndigo,
+    color: Color.darkPurple,
   },
   newMemberRegisterContainer: {
     top: screenHeight * 0.25 + 150,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   login: {
     flex: 1,
     height: 852,
-    backgroundColor: Color.background,
+    backgroundColor: Color.lightPink,
     overflow: "hidden",
     width: "100%",
   },
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   error: {
     fontWeight: "bold",
-    color: Color.colorRed,
+    color: Color.red,
     fontSize: 14,
     width: screenWidth * 0.7,
     textAlign: "center",

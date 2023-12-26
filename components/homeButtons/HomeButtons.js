@@ -1,28 +1,10 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import { Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import ToolBar from "../../components/toolbar/ToolBar";
-import styles from "./Home.style";
-import { TouchableOpacity } from "react-native";
-import LogoBlack from "../../components/logoBlack/LogoBlack";
+import styles from "./HomeButtons.style";
 
-const HomePage = () => {
+function HomeButtons() {
   return (
     <View style={styles.home}>
-      <LogoBlack></LogoBlack>
-      <View style={[styles.icons, styles.iconsShadowBox, { marginBottom: 20 }]}></View>
-
-
-     
-
-      <View style={[styles.image4Icon]}>
-        <Image
-          contentFit="cover"
-          source={require("../../assets/images/imgClothes.png")}
-        />
-      </View>
-
       <TouchableOpacity>
         <LinearGradient
           style={[styles.recUpLeft]}
@@ -36,7 +18,6 @@ const HomePage = () => {
           <Text style={styles.text}>Search</Text>
         </LinearGradient>
       </TouchableOpacity>
-
 
       <TouchableOpacity>
         <LinearGradient
@@ -52,7 +33,6 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-
       <TouchableOpacity>
         <LinearGradient
           style={styles.recDownRight}
@@ -66,7 +46,6 @@ const HomePage = () => {
           <Text style={styles.text}>Profile</Text>
         </LinearGradient>
       </TouchableOpacity>
-
 
       <TouchableOpacity>
         <LinearGradient
@@ -82,9 +61,11 @@ const HomePage = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      <ToolBar></ToolBar>
+      {/* <View
+        style={[styles.icons, styles.iconsShadowBox, { marginBottom: 20 }]}
+      ></View> */}
     </View>
   );
-};
+}
 
-export default HomePage;
+export default HomeButtons;

@@ -23,13 +23,11 @@ const LoginForm = () => {
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
 
-  // Handling the name change
   const handleEmail = (text) => {
     setEmail(text);
     setError(false);
   };
 
-  // Handling the name change
   const handlePassword = (text) => {
     setPassword(text);
     setError(false);
@@ -43,7 +41,6 @@ const LoginForm = () => {
     return true;
   };
 
-  // Handling the password change
   const checkPassword = () => {
     const passwordRegex = /^[A-Za-z0-9]*$/;
     if (
@@ -86,6 +83,26 @@ const LoginForm = () => {
     </Text>
   ));
 
+  const emailBlur = () => {
+    emailInput.current && emailInput.current.handleBlur();
+    setEmailPlaceholder("Email");
+  };
+
+  const emailFocus = () => {
+    emailInput.current && emailInput.current.handleFocus();
+    setEmailPlaceholder("");
+  };
+
+  const passwordBlur = () => {
+    passwordInput.current && passwordInput.current.handleBlur();
+    setPasswordPlaceholder("Password");
+  };
+
+  const passwordFocus = () => {
+    passwordInput.current && passwordInput.current.handleFocus();
+    setPasswordPlaceholder("");
+  };
+
   const loginButtonStyle = error
     ? [styles.login1, { marginTop: -20 }]
     : styles.login1;
@@ -106,16 +123,9 @@ const LoginForm = () => {
           mode="outlined"
           value={email}
           onChangeText={handleEmail}
-          onFocus={() => {
-            emailInput.current && emailInput.current.handleFocus();
-            setEmailPlaceholder("");
-          }}
-          onBlur={() => {
-            emailInput.current && emailInput.current.handleBlur();
-            setEmailPlaceholder("Email");
-          }}
+          onFocus={emailFocus}
+          onBlur={emailBlur}
         />
-
         <View style={[styles.message, styles.messagePosition]}>
           <View style={styles.messageChild} />
           <Image
@@ -135,14 +145,8 @@ const LoginForm = () => {
           mode="outlined"
           value={password}
           onChangeText={handlePassword}
-          onFocus={() => {
-            passwordInput.current && passwordInput.current.handleFocus();
-            setPasswordPlaceholder("");
-          }}
-          onBlur={() => {
-            passwordInput.current && passwordInput.current.handleBlur();
-            setPasswordPlaceholder("Password");
-          }}
+          onFocus={passwordFocus}
+          onBlur={passwordBlur}
           secureTextEntry={true}
         />
         <Image
