@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import RegisterForm from "../../components/registerForm/RegisterForm";
-import LogoWhite from "../../components/logoWhite/LogoWhite";
+import RegisterForm from "../components/registerForm/RegisterForm";
+import LogoWhite from "../components/logoWhite/LogoWhite";
 
 const Register = () => {
   return (
