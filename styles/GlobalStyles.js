@@ -10,11 +10,12 @@ export const FontSize = {
 };
 /* Colors */
 export const Color = {
-  colorGray_100: "rgba(0, 0, 0, 0.5)",
-  colorWhite: "#fff",
-  colorIndigo: "#43118c",
-  colorRed: "#FF0000",
-  colorBlack: "#252525",
+  gray: "rgba(0, 0, 0, 0.5)",
+  white: "#fff",
+  darkPurple: "#43118c",
+  red: "#FF0000",
+  black: "#252525",
+  lightPink: "#E2DBEA",
 };
 /* border radiuses */
 export const Border = {

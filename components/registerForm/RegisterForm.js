@@ -1,13 +1,11 @@
 import * as React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-paper";
 import styles from "./RegisterForm.style";
 import { Color } from "../../styles/GlobalStyles";
-import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useRef } from "react";
-// import { Tooltip } from "react-native-elements";
 
 function RegisterForm() {
   const navigation = useNavigation();
@@ -36,31 +34,26 @@ function RegisterForm() {
     useState("First Name");
   const [lastNamePlaceholder, setLastNamePlaceholder] = useState("Last Name");
 
-  // Handling the name change
   const handleFirstName = (text) => {
     setFirstName(text);
     setError(false);
   };
 
-  // Handling the name change
   const handleLastName = (text) => {
     setLastName(text);
     setError(false);
   };
 
-  // Handling the name change
   const handleEmail = (text) => {
     setEmail(text);
     setError(false);
   };
 
-  // Handling the name change
   const handlePassword = (text) => {
     setPassword(text);
     setError(false);
   };
 
-  // Handling the confirm password
   const handleConfirmPassword = (text) => {
     setConfirmPassword(text);
     setError(false);
@@ -74,7 +67,6 @@ function RegisterForm() {
     return true;
   };
 
-  // Handling the password change
   const checkPassword = () => {
     const passwordRegex = /^[A-Za-z0-9]*$/;
     if (
@@ -87,7 +79,6 @@ function RegisterForm() {
     return true;
   };
 
-  // Handling the password change
   const CheckConfirmPassword = () => {
     if (password === confirmPassword) {
       return true;
@@ -95,7 +86,6 @@ function RegisterForm() {
     return false;
   };
 
-  // Handling the form submission
   const handleRegisterPress = () => {
     setErrorList([]);
     errorList.splice(0, errorList.length);
@@ -151,6 +141,56 @@ function RegisterForm() {
     return styles.register1;
   };
 
+  const firsrtNameBlur = () => {
+    firstNameInput.current && firstNameInput.current.handleBlur();
+    setFirstNamePlaceholder("First Name");
+  };
+
+  const firsrtNameFocus = () => {
+    firstNameInput.current && firstNameInput.current.handleFocus();
+    setFirstNamePlaceholder("");
+  };
+
+  const lastNameBlur = () => {
+    lastNameInput.current && lastNameInput.current.handleBlur();
+    setLastNamePlaceholder("Last Name");
+  };
+
+  const lastNameFocus = () => {
+    lastNameInput.current && lastNameInput.current.handleFocus();
+    setLastNamePlaceholder("");
+  };
+
+  const emailBlur = () => {
+    emailInput.current && emailInput.current.handleBlur();
+    setEmailPlaceholder("Email");
+  };
+
+  const emailFocus = () => {
+    emailInput.current && emailInput.current.handleFocus();
+    setEmailPlaceholder("");
+  };
+
+  const passwordBlur = () => {
+    passwordInput.current && passwordInput.current.handleBlur();
+    setPasswordPlaceholder("Password");
+  };
+
+  const passwordFocus = () => {
+    passwordInput.current && passwordInput.current.handleFocus();
+    setPasswordPlaceholder("");
+  };
+
+  const confirmPasswordBlur = () => {
+    confirmPasswordInput.current && confirmPasswordInput.current.handleBlur();
+    setConfirmPasswordPlaceholder("Confirm Password");
+  };
+
+  const confirmPasswordFocus = () => {
+    confirmPasswordInput.current && confirmPasswordInput.current.handleFocus();
+    setConfirmPasswordPlaceholder("");
+  };
+
   return (
     <LinearGradient
       style={styles.register}
@@ -165,17 +205,11 @@ function RegisterForm() {
           placeholder={firstNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          theme={{ colors: { background: Color.colorWhite } }}
-          placeholderTextColor={Color.colorGray_100}
+          theme={{ colors: { background: Color.white } }}
+          placeholderTextColor={Color.gray}
           onChangeText={handleFirstName}
-          onFocus={() => {
-            firstNameInput.current && firstNameInput.current.handleFocus();
-            setFirstNamePlaceholder("");
-          }}
-          onBlur={() => {
-            firstNameInput.current && firstNameInput.current.handleBlur();
-            setFirstNamePlaceholder("First Name");
-          }}
+          onFocus={firsrtNameFocus}
+          onBlur={firsrtNameBlur}
         />
         <Image
           style={[styles.userIcon2, styles.iconLayout]}
@@ -191,17 +225,11 @@ function RegisterForm() {
           placeholder={lastNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          theme={{ colors: { background: Color.colorWhite } }}
-          placeholderTextColor={Color.colorGray_100}
+          theme={{ colors: { background: Color.white } }}
+          placeholderTextColor={Color.gray}
           onChangeText={handleLastName}
-          onFocus={() => {
-            lastNameInput.current && lastNameInput.current.handleFocus();
-            setLastNamePlaceholder("");
-          }}
-          onBlur={() => {
-            lastNameInput.current && lastNameInput.current.handleBlur();
-            setLastNamePlaceholder("Last Name");
-          }}
+          onFocus={lastNameFocus}
+          onBlur={lastNameBlur}
         />
         <Image
           style={[styles.userIcon2, styles.iconLayout]}
@@ -217,17 +245,11 @@ function RegisterForm() {
           placeholder={emailPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          theme={{ colors: { background: Color.colorWhite } }}
-          placeholderTextColor={Color.colorGray_100}
+          theme={{ colors: { background: Color.white } }}
+          placeholderTextColor={Color.gray}
           onChangeText={handleEmail}
-          onFocus={() => {
-            emailInput.current && emailInput.current.handleFocus();
-            setEmailPlaceholder("");
-          }}
-          onBlur={() => {
-            emailInput.current && emailInput.current.handleBlur();
-            setEmailPlaceholder("Email");
-          }}
+          onFocus={emailFocus}
+          onBlur={emailBlur}
         />
         <View style={[styles.message, styles.messagePosition]}>
           <View style={styles.messageChild} />
@@ -246,17 +268,11 @@ function RegisterForm() {
           placeholder={passwordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          theme={{ colors: { background: Color.colorWhite } }}
-          placeholderTextColor={Color.colorGray_100}
+          theme={{ colors: { background: Color.white } }}
+          placeholderTextColor={Color.gray}
           onChangeText={handlePassword}
-          onFocus={() => {
-            passwordInput.current && passwordInput.current.handleFocus();
-            setPasswordPlaceholder("");
-          }}
-          onBlur={() => {
-            passwordInput.current && passwordInput.current.handleBlur();
-            setPasswordPlaceholder("Password");
-          }}
+          onFocus={passwordFocus}
+          onBlur={passwordBlur}
           secureTextEntry={true}
         />
         <Image
@@ -273,19 +289,11 @@ function RegisterForm() {
           placeholder={confirmPasswordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          theme={{ colors: { background: Color.colorWhite } }}
-          placeholderTextColor={Color.colorGray_100}
+          theme={{ colors: { background: Color.white } }}
+          placeholderTextColor={Color.gray}
           onChangeText={handleConfirmPassword}
-          onFocus={() => {
-            confirmPasswordInput.current &&
-              confirmPasswordInput.current.handleFocus();
-            setConfirmPasswordPlaceholder("");
-          }}
-          onBlur={() => {
-            confirmPasswordInput.current &&
-              confirmPasswordInput.current.handleBlur();
-            setConfirmPasswordPlaceholder("Confirm Password");
-          }}
+          onFocus={confirmPasswordFocus}
+          onBlur={confirmPasswordBlur}
           secureTextEntry={true}
         />
         <Image

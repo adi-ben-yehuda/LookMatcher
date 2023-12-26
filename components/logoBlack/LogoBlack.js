@@ -1,14 +1,14 @@
 import styles from "./LogoBlack.style";
 import { Image } from "react-native";
 
-const LogoWhite = () => {
+const LogoBlack = () => {
   return (
     <Image
-      style={[styles.logoIcon, styles.logoIconPosition]}
+      style={styles.logoIcon}
       contentFit="cover"
       source={require("../../assets/logoBlack.png")}
     />
   );
 };
 
-export default LogoWhite;
+export default LogoBlack;

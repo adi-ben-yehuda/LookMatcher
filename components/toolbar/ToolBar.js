@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styles from "./ToolBar.style";
 import { Image, View, TouchableOpacity } from "react-native";
 
