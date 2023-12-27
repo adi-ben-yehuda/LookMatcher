@@ -54,25 +54,27 @@ const LoginForm = () => {
   };
 
   const handleLoginPress = () => {
-    setErrorList([]);
-    errorList.splice(0, errorList.length);
+    // DON'T DELETE THIS CODE !!!!!!!
 
-    if (!checkEmail()) {
-      setError(true);
-      errorList.push(" email");
-    }
-    if (!checkPassword()) {
-      setError(true);
-      errorList.push(" password");
-    }
+    // setErrorList([]);
+    // errorList.splice(0, errorList.length);
 
-    if (errorList.length > 0) {
-      setError(true);
-      setErrorList(errorList);
-    } else {
-      // All the fields are correct
-      navigation.navigate("Home");
-    }
+    // if (!checkEmail()) {
+    //   setError(true);
+    //   errorList.push(" email");
+    // }
+    // if (!checkPassword()) {
+    //   setError(true);
+    //   errorList.push(" password");
+    // }
+
+    // if (errorList.length > 0) {
+    //   setError(true);
+    //   setErrorList(errorList);
+    // } else {
+    // All the fields are correct
+    navigation.navigate("Home");
+    // }
   };
 
   // Show all errors separated by a comma
