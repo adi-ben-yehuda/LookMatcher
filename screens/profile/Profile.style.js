@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { Color, FontSize, Border } from "../../styles/GlobalStyles";
+
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -11,11 +13,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     backgroundColor: "#E2DBEA",
-    alignItems: "flex-start", 
-    justifyContent: "flex-start", 
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
-
-
 
 });
 

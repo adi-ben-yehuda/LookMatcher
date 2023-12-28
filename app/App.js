@@ -4,10 +4,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Register from "../screens/Register";
 import Login from "../screens/Login";
+
+import Profile from "../screens/profile/ProfilePage";
+import search from "../screens/SearchByFoto";
+
+
+import { createStackNavigator } from "@react-navigation/stack";
+
 import Home from "../screens/Home";
 import ItemPage from "../screens/Item/ItemPage";
 import Search from "../screens/Search";
 import ManualSearch from "../screens/ManualSearch";
+
 
 const Stack = createStackNavigator();
 
@@ -15,6 +23,7 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
