@@ -2,9 +2,11 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import Register from "../screens/Register";
 import Login from "../screens/Login";
+import Profile from "../screens/profile/ProfilePage";
 
-import Home from "../screens/home/Home";
+import Home from "../screens/Home";
 import ItemPage from "../screens/Item/ItemPage";
+import search from "../screens/SearchByFoto";
 
 
 import { createStackNavigator } from "@react-navigation/stack";
@@ -16,7 +18,7 @@ function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Login" component={ItemPage} />
+        <Stack.Screen name="Profile" component={Profile} />
 
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
