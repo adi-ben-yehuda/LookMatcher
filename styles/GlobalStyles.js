@@ -16,6 +16,7 @@ export const Color = {
   red: "#FF0000",
   black: "#252525",
   lightPink: "#E2DBEA",
+  fontDark: "#0f0f0f",
 };
 /* border radiuses */
 export const Border = {

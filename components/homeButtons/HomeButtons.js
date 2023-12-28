@@ -1,11 +1,18 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./HomeButtons.style";
 
 function HomeButtons() {
+  const navigation = useNavigation();
+
+  const handleSearchPress = () => {
+    navigation.navigate("Search");
+  };
+
   return (
     <View style={styles.home}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleSearchPress}>
         <LinearGradient
           style={[styles.recUpLeft]}
           locations={[0, 1]}
