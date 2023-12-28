@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: Color.lightPink,
     flex: 1,
-    height: screenHeight,
+    // height: screenHeight,
     overflow: "hidden",
     width: "100%",
   },

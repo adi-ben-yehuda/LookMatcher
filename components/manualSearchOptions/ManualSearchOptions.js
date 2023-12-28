@@ -1,13 +1,61 @@
 import * as React from "react";
 import styles from "./ManualSearchOptions.style";
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Image,
+  ScrollView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+// import { ScrollView } from "react-native-virtualized-view";
+
+const DropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
+  <View style={isVisible ? styles.listContainer : { display: "none" }}>
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={[
+            styles.option,
+            selectedItem === item && styles.selectedOption,
+          ]}
+          onPress={() => onSelect(item)}
+        >
+          <Text>{item}</Text>
+        </TouchableOpacity>
+      )}
+    />
+  </View>
+);
+
+const MultipleDropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
+  <View style={isVisible ? styles.listContainer : { display: "none" }}>
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={[
+            styles.option,
+            selectedItem.includes(item) && styles.selectedOption,
+          ]}
+          onPress={() => onSelect(item)}
+        >
+          <Text>{item}</Text>
+        </TouchableOpacity>
+      )}
+    />
+  </View>
+);
 
 const ManualSearch = () => {
   const navigation = useNavigation();
 
+  // Category
   const [isCategoryListVisible, setCategoryListVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = [
@@ -29,6 +77,7 @@ const ManualSearch = () => {
     toggleCategoryListVisibility();
   };
 
+  // Style
   const [isStyleListVisible, setStyleListVisible] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(null);
   const shirtStyles = [
@@ -49,6 +98,43 @@ const ManualSearch = () => {
     toggleStyleListVisibility();
   };
 
+  // Sizes
+  const [isSizesListVisible, setSizesListVisible] = useState(false);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const sizes = [
+    "ONE SIZE",
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+  ];
+
+  const toggleSizesListVisibility = () => {
+    setSizesListVisible(!isSizesListVisible);
+  };
+
+  const handleSizesSelect = (size) => {
+    const isSelected = selectedSizes.includes(size);
+
+    if (isSelected) {
+      // If the size is already selected, remove it from the list
+      setSelectedSizes(
+        selectedSizes.filter((selectedSizes) => selectedSizes !== size)
+      );
+    } else {
+      // If the size is not selected, add it to the list
+      setSelectedSizes([...selectedSizes, size]);
+    }
+  };
+
+  // Stores
   const [isStoresListVisible, setStoresListVisible] = useState(false);
   const [selectedStores, setSelectedStores] = useState([]);
   const stores = ["Renuar", "Castro", "Zara", "H&M"];
@@ -61,12 +147,12 @@ const ManualSearch = () => {
     const isSelected = selectedStores.includes(store);
 
     if (isSelected) {
-      // If the style is already selected, remove it from the list
+      // If the store is already selected, remove it from the list
       setSelectedStores(
         selectedStores.filter((selectedStores) => selectedStores !== store)
       );
     } else {
-      // If the style is not selected, add it to the list
+      // If the store is not selected, add it to the list
       setSelectedStores([...selectedStores, store]);
     }
   };
@@ -75,15 +161,14 @@ const ManualSearch = () => {
     <View style={styles.page}>
       <Text style={styles.title}>{"Search for an item you want"}</Text>
 
+      {/* Category */}
       <View style={styles.container}>
         <TouchableOpacity
           onPress={toggleCategoryListVisibility}
           style={styles.button}
         >
           <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>
-              {selectedCategory || "Category"}
-            </Text>
+            <Text style={styles.buttonText}>{"Category"}</Text>
             <Image
               style={styles.buttonIcon}
               contentFit="cover"
@@ -95,34 +180,22 @@ const ManualSearch = () => {
             />
           </View>
         </TouchableOpacity>
-        {isCategoryListVisible && (
-          <View style={styles.listContainer}>
-            <FlatList
-              data={categories}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.option,
-                    selectedCategory === item && styles.selectedOption,
-                  ]}
-                  onPress={() => handleCategorySelect(item)}
-                >
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        )}
+        <DropdownList
+          data={categories}
+          selectedItem={selectedCategory}
+          onSelect={handleCategorySelect}
+          isVisible={isCategoryListVisible}
+        />
       </View>
 
+      {/* Style */}
       <View style={styles.container}>
         <TouchableOpacity
           onPress={toggleStyleListVisibility}
           style={styles.button}
         >
           <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{selectedStyle || "Style"}</Text>
+            <Text style={styles.buttonText}>{"Style"}</Text>
             <Image
               style={styles.buttonIcon}
               contentFit="cover"
@@ -134,27 +207,42 @@ const ManualSearch = () => {
             />
           </View>
         </TouchableOpacity>
-        {isStyleListVisible && (
-          <View style={styles.listContainer}>
-            <FlatList
-              data={shirtStyles}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.option,
-                    selectedStyle === item && styles.selectedOption,
-                  ]}
-                  onPress={() => handleStyleSelect(item)}
-                >
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        )}
+        <DropdownList
+          data={shirtStyles}
+          selectedItem={selectedStyle}
+          onSelect={handleStyleSelect}
+          isVisible={isStyleListVisible}
+        />
       </View>
 
+      {/* Sizes */}
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={toggleSizesListVisibility}
+          style={styles.button}
+        >
+          <View style={styles.buttonContent}>
+            <Text style={styles.buttonText}>{"Sizes"}</Text>
+            <Image
+              style={styles.buttonIcon}
+              contentFit="cover"
+              source={
+                isSizesListVisible
+                  ? require("../../assets/expand-up.png")
+                  : require("../../assets/expand-down.png")
+              }
+            />
+          </View>
+        </TouchableOpacity>
+        <MultipleDropdownList
+          data={sizes}
+          selectedItem={selectedSizes}
+          onSelect={handleSizesSelect}
+          isVisible={isSizesListVisible}
+        />
+      </View>
+
+      {/* Stores */}
       <View style={styles.container}>
         <TouchableOpacity
           onPress={toggleStoresListVisibility}
@@ -173,25 +261,12 @@ const ManualSearch = () => {
             />
           </View>
         </TouchableOpacity>
-        {isStoresListVisible && (
-          <View style={styles.listContainer}>
-            <FlatList
-              data={stores}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={[
-                    styles.option,
-                    selectedStores === item && styles.selectedOption,
-                  ]}
-                  onPress={() => handleStoresSelect(item)}
-                >
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        )}
+        <MultipleDropdownList
+          data={stores}
+          selectedItem={selectedStores}
+          onSelect={handleStoresSelect}
+          isVisible={isStoresListVisible}
+        />
       </View>
     </View>
   );
