@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-// import { ScrollView } from "react-native-virtualized-view";
 
 const DropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
   <View style={isVisible ? styles.listContainer : { display: "none" }}>
@@ -52,8 +51,75 @@ const MultipleDropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
   </View>
 );
 
+const TitleDropdown = ({ title, isVisible, toggleVisibility }) => (
+  <TouchableOpacity onPress={toggleVisibility} style={styles.button}>
+    <View style={styles.buttonContent}>
+      <Text style={styles.buttonText}>{title}</Text>
+      <Image
+        style={styles.buttonIcon}
+        contentFit="cover"
+        source={
+          isVisible
+            ? require("../../assets/expand-up.png")
+            : require("../../assets/expand-down.png")
+        }
+      />
+    </View>
+  </TouchableOpacity>
+);
+
+const DropdownSelector = ({
+  title,
+  data,
+  selectedItem,
+  onSelect,
+  isVisible,
+  toggleVisibility,
+}) => (
+  <View style={styles.container}>
+    <TitleDropdown
+      title={title}
+      isVisible={isVisible}
+      toggleVisibility={toggleVisibility}
+    ></TitleDropdown>
+    <DropdownList
+      data={data}
+      selectedItem={selectedItem}
+      onSelect={onSelect}
+      isVisible={isVisible}
+    />
+  </View>
+);
+
+const MultipleDropdownSelector = ({
+  title,
+  data,
+  selectedItem,
+  onSelect,
+  isVisible,
+  toggleVisibility,
+}) => (
+  <View style={styles.container}>
+    <TitleDropdown
+      title={title}
+      isVisible={isVisible}
+      toggleVisibility={toggleVisibility}
+    ></TitleDropdown>
+    <MultipleDropdownList
+      data={data}
+      selectedItem={selectedItem}
+      onSelect={onSelect}
+      isVisible={isVisible}
+    />
+  </View>
+);
+
 const ManualSearch = () => {
   const navigation = useNavigation();
+
+  const createToggleFunction = (setState) => () => {
+    setState((prev) => !prev);
+  };
 
   // Category
   const [isCategoryListVisible, setCategoryListVisible] = useState(false);
@@ -68,15 +134,6 @@ const ManualSearch = () => {
     "Shoes",
   ];
 
-  const toggleCategoryListVisibility = () => {
-    setCategoryListVisible(!isCategoryListVisible);
-  };
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
-    toggleCategoryListVisibility();
-  };
-
   // Style
   const [isStyleListVisible, setStyleListVisible] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState(null);
@@ -88,15 +145,6 @@ const ManualSearch = () => {
     "Sports shirts",
     "Bodysuits",
   ];
-
-  const toggleStyleListVisibility = () => {
-    setStyleListVisible(!isStyleListVisible);
-  };
-
-  const handleStyleSelect = (style) => {
-    setSelectedStyle(style);
-    toggleStyleListVisibility();
-  };
 
   // Sizes
   const [isSizesListVisible, setSizesListVisible] = useState(false);
@@ -115,10 +163,6 @@ const ManualSearch = () => {
     "42",
     "44",
   ];
-
-  const toggleSizesListVisibility = () => {
-    setSizesListVisible(!isSizesListVisible);
-  };
 
   const handleSizesSelect = (size) => {
     const isSelected = selectedSizes.includes(size);
@@ -139,10 +183,6 @@ const ManualSearch = () => {
   const [selectedStores, setSelectedStores] = useState([]);
   const stores = ["Renuar", "Castro", "Zara", "H&M"];
 
-  const toggleStoresListVisibility = () => {
-    setStoresListVisible(!isStoresListVisible);
-  };
-
   const handleStoresSelect = (store) => {
     const isSelected = selectedStores.includes(store);
 
@@ -157,117 +197,53 @@ const ManualSearch = () => {
     }
   };
 
+  // Colors
+  const [isColorsListVisible, setColorsListVisible] = useState(false);
+  const [selectedColors, setSelectedColors] = useState([]);
+
   return (
     <View style={styles.page}>
       <Text style={styles.title}>{"Search for an item you want"}</Text>
 
       {/* Category */}
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={toggleCategoryListVisibility}
-          style={styles.button}
-        >
-          <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{"Category"}</Text>
-            <Image
-              style={styles.buttonIcon}
-              contentFit="cover"
-              source={
-                isCategoryListVisible
-                  ? require("../../assets/expand-up.png")
-                  : require("../../assets/expand-down.png")
-              }
-            />
-          </View>
-        </TouchableOpacity>
-        <DropdownList
-          data={categories}
-          selectedItem={selectedCategory}
-          onSelect={handleCategorySelect}
-          isVisible={isCategoryListVisible}
-        />
-      </View>
+      <DropdownSelector
+        title="Category"
+        data={categories}
+        selectedItem={selectedCategory}
+        onSelect={setSelectedCategory}
+        isVisible={isCategoryListVisible}
+        toggleVisibility={createToggleFunction(setCategoryListVisible)}
+      />
 
       {/* Style */}
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={toggleStyleListVisibility}
-          style={styles.button}
-        >
-          <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{"Style"}</Text>
-            <Image
-              style={styles.buttonIcon}
-              contentFit="cover"
-              source={
-                isStyleListVisible
-                  ? require("../../assets/expand-up.png")
-                  : require("../../assets/expand-down.png")
-              }
-            />
-          </View>
-        </TouchableOpacity>
-        <DropdownList
-          data={shirtStyles}
-          selectedItem={selectedStyle}
-          onSelect={handleStyleSelect}
-          isVisible={isStyleListVisible}
-        />
-      </View>
+      <DropdownSelector
+        title="Style"
+        data={shirtStyles}
+        selectedItem={selectedStyle}
+        onSelect={setSelectedStyle}
+        isVisible={isStyleListVisible}
+        toggleVisibility={createToggleFunction(setStyleListVisible)}
+      />
 
       {/* Sizes */}
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={toggleSizesListVisibility}
-          style={styles.button}
-        >
-          <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{"Sizes"}</Text>
-            <Image
-              style={styles.buttonIcon}
-              contentFit="cover"
-              source={
-                isSizesListVisible
-                  ? require("../../assets/expand-up.png")
-                  : require("../../assets/expand-down.png")
-              }
-            />
-          </View>
-        </TouchableOpacity>
-        <MultipleDropdownList
-          data={sizes}
-          selectedItem={selectedSizes}
-          onSelect={handleSizesSelect}
-          isVisible={isSizesListVisible}
-        />
-      </View>
+      <MultipleDropdownSelector
+        title="Sizes"
+        data={sizes}
+        selectedItem={selectedSizes}
+        onSelect={(size) => handleSizesSelect(size)}
+        isVisible={isSizesListVisible}
+        toggleVisibility={createToggleFunction(setSizesListVisible)}
+      />
 
       {/* Stores */}
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={toggleStoresListVisibility}
-          style={styles.button}
-        >
-          <View style={styles.buttonContent}>
-            <Text style={styles.buttonText}>{"Stores"}</Text>
-            <Image
-              style={styles.buttonIcon}
-              contentFit="cover"
-              source={
-                isStoresListVisible
-                  ? require("../../assets/expand-up.png")
-                  : require("../../assets/expand-down.png")
-              }
-            />
-          </View>
-        </TouchableOpacity>
-        <MultipleDropdownList
-          data={stores}
-          selectedItem={selectedStores}
-          onSelect={handleStoresSelect}
-          isVisible={isStoresListVisible}
-        />
-      </View>
+      <MultipleDropdownSelector
+        title="Stores"
+        data={stores}
+        selectedItem={selectedStores}
+        onSelect={(store) => handleStoresSelect(store)}
+        isVisible={isStoresListVisible}
+        toggleVisibility={createToggleFunction(setStoresListVisible)}
+      />
     </View>
   );
 };
