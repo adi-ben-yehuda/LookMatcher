@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ToolBar.style";
-import { Image, View, TouchableOpacity } from "react-native";
+import { Image, View, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const ToolBar = () => {
@@ -11,6 +11,7 @@ const ToolBar = () => {
   };
 
   return (
+    <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.2 }}>
     <View style={[styles.toolbar]}>
       <TouchableOpacity>
         <Image
@@ -52,6 +53,7 @@ const ToolBar = () => {
         />
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 };
 
