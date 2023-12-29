@@ -7,9 +7,10 @@ import Login from "../screens/Login";
 
 import Profile from "../screens/profile/ProfilePage";
 import search from "../screens/SearchByFoto";
+import Tool from "../components/toolbar/tool";
 
 
-import { createStackNavigator } from "@react-navigation/stack";
+
 
 import Home from "../screens/Home";
 import ItemPage from "../screens/Item/ItemPage";
@@ -24,7 +25,7 @@ function App() {
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Tool} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Search" component={Search} />
