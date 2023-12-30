@@ -34,62 +34,67 @@ center: {
     position: "absolute",
     width: screenWidth,
     left: 0,
-    top: screenHeight-70,
-     alignItems: "center",
-     justifyContent: "center",
-  },
-
-  ProfileIcon: {
-    width: 35,
-    height: 35,
-    left: screenWidth * 0.3,
+    //top: screenHeight-70,
     // alignItems: "center",
-    // justifyContent: "center",
-    // position:"absolute"
+     justifyContent: "center",
+     bottom: 0,
   },
 
-  heartIcon: {
+
+
+  ProfileIcon1: {
     width: 35,
     height: 35,
-    left: screenWidth * 0.12,
+    left: screenWidth * 0.85,
     alignItems: "center",
     justifyContent: "center",
     position:"absolute"
   },
+
+  heartIcon1: {
+    width: 35,
+    height: 35,
+    left: screenWidth * 0.65,
+    alignItems: "center",
+    justifyContent: "center",
+    position:"absolute"
+  },
+
 
   homeIcon: {
     width: 35,
     height: 35,
-    right: screenWidth * 0.1 - 55,
+    left: screenWidth * 0.45,
     alignItems: "center",
     justifyContent: "center",
     position:"absolute"
   },
 
+
+ 
+
   searchIcon: {
     width: 35,
     height: 35,
-    right: screenWidth * 0.13,
+    right: screenWidth * 0.65,
     alignItems: "center",
     justifyContent: "center",
+    position:"absolute"
   },
 
 
   shirtIcon: {
     width: 35,
     height: 35,
-    right: screenWidth * 0.3,
-   // right:0,
+    right: screenWidth * 0.85,
     alignItems: "center",
     justifyContent: "center",
+    position:"absolute"
   },
 
   newData: {
     borderRadius: Border.br_11xs,
-    //left: "0%",
     bottom: 0,
-    //right: "0%",
-    //top: "0%",
     height: 70,
     position: "absolute",
     backgroundColor: "#E2DBEA",

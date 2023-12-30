@@ -11,7 +11,7 @@ const ToolBar = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.2 }}>
+   
     <View style={[styles.toolbar]}>
       <TouchableOpacity>
         <Image
@@ -53,7 +53,7 @@ const ToolBar = () => {
         />
       </TouchableOpacity>
     </View>
-    </ScrollView>
+   
   );
 };
 
