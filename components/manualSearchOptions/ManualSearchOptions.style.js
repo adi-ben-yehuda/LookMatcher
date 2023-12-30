@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: Color.lightPink,
     flex: 1,
-    // height: screenHeight,
     overflow: "hidden",
     width: "100%",
   },
@@ -63,6 +62,30 @@ const styles = StyleSheet.create({
   },
   selectedOption: {
     backgroundColor: Color.lightGray,
+  },
+
+  searchButtonContainer: {
+    position: "absolute",
+    bottom: screenHeight * 0.05 + 60,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+  },
+  searchButton: {
+    width: 180,
+    borderRadius: Border.br_3xs,
+    overflow: "hidden",
+  },
+  searchText: {
+    color: Color.white,
+    fontSize: 36,
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
+
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingBottom: screenHeight * 0.05 + 140,
   },
 });
 

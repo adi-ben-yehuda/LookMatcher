@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 const DropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
   <View style={isVisible ? styles.listContainer : { display: "none" }}>
@@ -201,49 +202,69 @@ const ManualSearch = () => {
   const [isColorsListVisible, setColorsListVisible] = useState(false);
   const [selectedColors, setSelectedColors] = useState([]);
 
+  const searchPress = () => {
+    navigation.navigate("ItemPage");
+  };
+
   return (
     <View style={styles.page}>
-      <Text style={styles.title}>{"Search for an item you want"}</Text>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <Text style={styles.title}>{"Search for an item you want"}</Text>
+        <ScrollView>
+          {/* Category */}
+          <DropdownSelector
+            title="Category"
+            data={categories}
+            selectedItem={selectedCategory}
+            onSelect={setSelectedCategory}
+            isVisible={isCategoryListVisible}
+            toggleVisibility={createToggleFunction(setCategoryListVisible)}
+          />
 
-      {/* Category */}
-      <DropdownSelector
-        title="Category"
-        data={categories}
-        selectedItem={selectedCategory}
-        onSelect={setSelectedCategory}
-        isVisible={isCategoryListVisible}
-        toggleVisibility={createToggleFunction(setCategoryListVisible)}
-      />
+          {/* Style */}
+          <DropdownSelector
+            title="Style"
+            data={shirtStyles}
+            selectedItem={selectedStyle}
+            onSelect={setSelectedStyle}
+            isVisible={isStyleListVisible}
+            toggleVisibility={createToggleFunction(setStyleListVisible)}
+          />
 
-      {/* Style */}
-      <DropdownSelector
-        title="Style"
-        data={shirtStyles}
-        selectedItem={selectedStyle}
-        onSelect={setSelectedStyle}
-        isVisible={isStyleListVisible}
-        toggleVisibility={createToggleFunction(setStyleListVisible)}
-      />
+          {/* Sizes */}
+          <MultipleDropdownSelector
+            title="Sizes"
+            data={sizes}
+            selectedItem={selectedSizes}
+            onSelect={(size) => handleSizesSelect(size)}
+            isVisible={isSizesListVisible}
+            toggleVisibility={createToggleFunction(setSizesListVisible)}
+          />
 
-      {/* Sizes */}
-      <MultipleDropdownSelector
-        title="Sizes"
-        data={sizes}
-        selectedItem={selectedSizes}
-        onSelect={(size) => handleSizesSelect(size)}
-        isVisible={isSizesListVisible}
-        toggleVisibility={createToggleFunction(setSizesListVisible)}
-      />
+          {/* Stores */}
+          <MultipleDropdownSelector
+            title="Stores"
+            data={stores}
+            selectedItem={selectedStores}
+            onSelect={(store) => handleStoresSelect(store)}
+            isVisible={isStoresListVisible}
+            toggleVisibility={createToggleFunction(setStoresListVisible)}
+          />
+        </ScrollView>
 
-      {/* Stores */}
-      <MultipleDropdownSelector
-        title="Stores"
-        data={stores}
-        selectedItem={selectedStores}
-        onSelect={(store) => handleStoresSelect(store)}
-        isVisible={isStoresListVisible}
-        toggleVisibility={createToggleFunction(setStoresListVisible)}
-      />
+        <TouchableOpacity
+          onPress={searchPress}
+          style={styles.searchButtonContainer}
+        >
+          <LinearGradient
+            style={styles.searchButton}
+            locations={[0, 1]}
+            colors={["#29085f", "#b941d7"]}
+          >
+            <Text style={styles.searchText}>{"Search"}</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
