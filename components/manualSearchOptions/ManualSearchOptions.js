@@ -111,6 +111,49 @@ const MultipleDropdownSelector = ({
   </View>
 );
 
+const ColorDropdownSelector = ({
+  title,
+  data,
+  selectedItem,
+  onSelect,
+  isVisible,
+  toggleVisibility,
+}) => (
+  <View style={styles.container}>
+    <TitleDropdown
+      title={title}
+      isVisible={isVisible}
+      toggleVisibility={toggleVisibility}
+    ></TitleDropdown>
+    <ColorList
+      data={data}
+      onSelect={onSelect}
+      selectedColors={selectedItem}
+      isVisible={isVisible}
+    />
+  </View>
+);
+
+const ColorList = ({ data, selectedColors, onSelect, isVisible }) => (
+  <View style={isVisible ? styles.listContainer : { display: "none" }}>
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={[
+            styles.colorOption,
+            selectedColors.includes(item) && styles.selectedColorOption,
+          ]}
+          onPress={() => onSelect(item)}
+        >
+          <View style={[styles.colorCircle, { backgroundColor: item }]} />
+        </TouchableOpacity>
+      )}
+    />
+  </View>
+);
+
 const ManualSearch = () => {
   const navigation = useNavigation();
 
@@ -201,6 +244,7 @@ const ManualSearch = () => {
   // Colors
   const [isColorsListVisible, setColorsListVisible] = useState(false);
   const [selectedColors, setSelectedColors] = useState([]);
+  const colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF"];
 
   const searchPress = () => {
     navigation.navigate("ItemPage");
@@ -235,6 +279,32 @@ const ManualSearch = () => {
             setCategoryListVisible,
             setSizesListVisible,
             setStoresListVisible,
+          ])}
+        />
+
+        {/* Colors */}
+        <ColorDropdownSelector
+          title="Colors"
+          data={colors}
+          selectedItem={selectedColors}
+          isVisible={isColorsListVisible}
+          onSelect={(color) => {
+            const isSelected = selectedColors.includes(color);
+
+            if (isSelected) {
+              setSelectedColors(
+                selectedColors.filter(
+                  (selectedColor) => selectedColor !== color
+                )
+              );
+            } else {
+              setSelectedColors([...selectedColors, color]);
+            }
+          }}
+          toggleVisibility={createToggleFunction(setColorsListVisible, [
+            setCategoryListVisible,
+            setStyleListVisible,
+            setSizesListVisible,
           ])}
         />
 

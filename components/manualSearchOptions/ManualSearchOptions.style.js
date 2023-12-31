@@ -60,8 +60,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Color.gray,
   },
-  selectedOption: {
+  selectedColorOption: {
     backgroundColor: Color.lightGray,
+    borderWidth: 2,
+    borderColor: Color.black,
+  },
+
+  colorCircle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15, // to make it a circle
+    marginRight: 10,
+  },
+  colorText: {
+    fontSize: 16,
+  },
+  selectedColorCircle: {
+    borderWidth: 2,
+    borderColor: Color.black,
   },
 
   searchButtonContainer: {
