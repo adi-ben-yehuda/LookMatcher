@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    top: screenHeight * 0.15,
+    top: screenHeight * 0.19,
   },
   button: {
     padding: 10,
@@ -81,11 +81,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     textAlign: "center",
     textAlignVertical: "center",
-  },
-
-  scrollViewContent: {
-    flexGrow: 1,
-    paddingBottom: screenHeight * 0.05 + 140,
   },
 });
 

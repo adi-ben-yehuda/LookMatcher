@@ -1,13 +1,6 @@
 import * as React from "react";
 import styles from "./ManualSearchOptions.style";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -86,7 +79,10 @@ const DropdownSelector = ({
     <DropdownList
       data={data}
       selectedItem={selectedItem}
-      onSelect={onSelect}
+      onSelect={(item) => {
+        onSelect(item);
+        toggleVisibility();
+      }}
       isVisible={isVisible}
     />
   </View>
@@ -118,7 +114,11 @@ const MultipleDropdownSelector = ({
 const ManualSearch = () => {
   const navigation = useNavigation();
 
-  const createToggleFunction = (setState) => () => {
+  const createToggleFunction = (setState, otherSetStates) => () => {
+    // Close other lists
+    otherSetStates.forEach((setOtherState) => setOtherState(false));
+
+    // Toggle the visibility of the current list
     setState((prev) => !prev);
   };
 
@@ -208,63 +208,77 @@ const ManualSearch = () => {
 
   return (
     <View style={styles.page}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Text style={styles.title}>{"Search for an item you want"}</Text>
-        <ScrollView>
-          {/* Category */}
-          <DropdownSelector
-            title="Category"
-            data={categories}
-            selectedItem={selectedCategory}
-            onSelect={setSelectedCategory}
-            isVisible={isCategoryListVisible}
-            toggleVisibility={createToggleFunction(setCategoryListVisible)}
-          />
+      <Text style={styles.title}>{"Search for an item you want"}</Text>
+      <View>
+        {/* Category */}
+        <DropdownSelector
+          title={selectedCategory || "Category"}
+          data={categories}
+          selectedItem={selectedCategory}
+          onSelect={setSelectedCategory}
+          isVisible={isCategoryListVisible}
+          toggleVisibility={createToggleFunction(setCategoryListVisible, [
+            setStyleListVisible,
+            setSizesListVisible,
+            setStoresListVisible,
+          ])}
+        />
 
-          {/* Style */}
-          <DropdownSelector
-            title="Style"
-            data={shirtStyles}
-            selectedItem={selectedStyle}
-            onSelect={setSelectedStyle}
-            isVisible={isStyleListVisible}
-            toggleVisibility={createToggleFunction(setStyleListVisible)}
-          />
+        {/* Style */}
+        <DropdownSelector
+          title={selectedStyle || "Style"}
+          data={shirtStyles}
+          selectedItem={selectedStyle}
+          onSelect={setSelectedStyle}
+          isVisible={isStyleListVisible}
+          toggleVisibility={createToggleFunction(setStyleListVisible, [
+            setCategoryListVisible,
+            setSizesListVisible,
+            setStoresListVisible,
+          ])}
+        />
 
-          {/* Sizes */}
-          <MultipleDropdownSelector
-            title="Sizes"
-            data={sizes}
-            selectedItem={selectedSizes}
-            onSelect={(size) => handleSizesSelect(size)}
-            isVisible={isSizesListVisible}
-            toggleVisibility={createToggleFunction(setSizesListVisible)}
-          />
+        {/* Sizes */}
+        <MultipleDropdownSelector
+          title="Sizes"
+          data={sizes}
+          selectedItem={selectedSizes}
+          onSelect={(size) => handleSizesSelect(size)}
+          isVisible={isSizesListVisible}
+          toggleVisibility={createToggleFunction(setSizesListVisible, [
+            setCategoryListVisible,
+            setStyleListVisible,
+            setStoresListVisible,
+          ])}
+        />
 
-          {/* Stores */}
-          <MultipleDropdownSelector
-            title="Stores"
-            data={stores}
-            selectedItem={selectedStores}
-            onSelect={(store) => handleStoresSelect(store)}
-            isVisible={isStoresListVisible}
-            toggleVisibility={createToggleFunction(setStoresListVisible)}
-          />
-        </ScrollView>
+        {/* Stores */}
+        <MultipleDropdownSelector
+          title="Stores"
+          data={stores}
+          selectedItem={selectedStores}
+          onSelect={(store) => handleStoresSelect(store)}
+          isVisible={isStoresListVisible}
+          toggleVisibility={createToggleFunction(setStoresListVisible, [
+            setCategoryListVisible,
+            setStyleListVisible,
+            setSizesListVisible,
+          ])}
+        />
+      </View>
 
-        <TouchableOpacity
-          onPress={searchPress}
-          style={styles.searchButtonContainer}
+      <TouchableOpacity
+        onPress={searchPress}
+        style={styles.searchButtonContainer}
+      >
+        <LinearGradient
+          style={styles.searchButton}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
         >
-          <LinearGradient
-            style={styles.searchButton}
-            locations={[0, 1]}
-            colors={["#29085f", "#b941d7"]}
-          >
-            <Text style={styles.searchText}>{"Search"}</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </ScrollView>
+          <Text style={styles.searchText}>{"Search"}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 };
