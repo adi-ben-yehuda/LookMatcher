@@ -61,16 +61,18 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.gray,
   },
   selectedColorOption: {
-    backgroundColor: Color.lightGray,
-    borderWidth: 2,
     borderColor: Color.black,
+    borderWidth: 3.5,
+    borderRadius: 50,
+    overflow: "hidden",
+    margin: 15,
   },
 
   colorCircle: {
-    width: 30,
-    height: 30,
-    borderRadius: 15, // to make it a circle
-    marginRight: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 20, // to make it a circle
+    margin: 15,
   },
   colorText: {
     fontSize: 16,
@@ -78,6 +80,17 @@ const styles = StyleSheet.create({
   selectedColorCircle: {
     borderWidth: 2,
     borderColor: Color.black,
+  },
+  colorListContainer: {
+    borderWidth: 1,
+    borderColor: Color.gray,
+    zIndex: 1,
+    backgroundColor: Color.lightPink,
+    width: screenWidth * 0.9,
+    alignSelf: "center",
+    fontSize: 16,
+    flexDirection: "row", // Arrange colors horizontally
+    flexWrap: "wrap", // Wrap to a new row when there's not enough space
   },
 
   searchButtonContainer: {
