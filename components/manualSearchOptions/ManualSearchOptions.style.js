@@ -60,8 +60,37 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Color.gray,
   },
-  selectedOption: {
-    backgroundColor: Color.lightGray,
+  selectedColorOption: {
+    borderColor: Color.black,
+    borderWidth: 3.5,
+    borderRadius: 50,
+    overflow: "hidden",
+    margin: 15,
+  },
+
+  colorCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20, // to make it a circle
+    margin: 15,
+  },
+  colorText: {
+    fontSize: 16,
+  },
+  selectedColorCircle: {
+    borderWidth: 2,
+    borderColor: Color.black,
+  },
+  colorListContainer: {
+    borderWidth: 1,
+    borderColor: Color.gray,
+    zIndex: 1,
+    backgroundColor: Color.lightPink,
+    width: screenWidth * 0.9,
+    alignSelf: "center",
+    fontSize: 16,
+    flexDirection: "row", // Arrange colors horizontally
+    flexWrap: "wrap", // Wrap to a new row when there's not enough space
   },
 
   searchButtonContainer: {
