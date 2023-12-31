@@ -29,8 +29,8 @@ function App() {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Search" component={Search} />
-        <Stack.Screen name="ManualSearch" component={ManualSearch} />
         <Stack.Screen name="ItemPage" component={ItemPage} />
+        <Stack.Screen name="ManualSearch" component={ManualSearch} />
       </Stack.Navigator>
     </NavigationContainer>
   );
