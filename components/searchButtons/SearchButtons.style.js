@@ -23,15 +23,15 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   register: {
-    top: 158,
+    top: screenHeight * 0.2,
   },
   register1: {
-    top: 325,
+    top: screenHeight * 0.4,
   },
   search: {
     top: 65,
     color: Color.black,
-    fontSize: 30,
+    fontSize: screenHeight * 0.04,
     width: screenWidth,
     textAlign: "center",
     position: "absolute",

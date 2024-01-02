@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Color.gray,
   },
+  selectedOption: {
+    backgroundColor: Color.lightGray,
+  },
   selectedColorOption: {
     borderColor: Color.black,
     borderWidth: 3.5,
