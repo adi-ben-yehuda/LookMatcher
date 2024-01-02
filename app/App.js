@@ -1,22 +1,37 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Register from "../screens/register/Register";
-import Login from "../screens/login/Login";
-import Home from "../screens/home/HomePage";
+
 import Results from "../screens/results/Results";
+
 import { createStackNavigator } from "@react-navigation/stack";
 
+import Register from "../screens/Register";
+import Login from "../screens/Login";
+
+import Profile from "../screens/profile/ProfilePage";
+import search from "../screens/SearchByFoto";
+import Tool from "../components/toolbar/tool";
+
+import Home from "../screens/Home";
+import ItemPage from "../screens/Item/ItemPage";
+import Search from "../screens/Search";
+import ManualSearch from "../screens/ManualSearch";
+
 const Stack = createStackNavigator();
-// const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+        <Stack.Screen name="Login" component={Home} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="ItemPage" component={ItemPage} />
         <Stack.Screen name="Results" component={Results} />
-        {/* <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} /> */}
+        <Stack.Screen name="ManualSearch" component={ManualSearch} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,10 +6,6 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-  // scrollView: {
-  //   marginHorizontal: 20,
-  // },
-
   passwordLayout: {
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
@@ -37,11 +33,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  logoIconPosition: {
-    left: "50%",
-    marginLeft: -75.5,
-    position: "absolute",
-  },
   userIconLayout: {
     height: 24,
     width: 24,
@@ -58,18 +49,11 @@ const styles = StyleSheet.create({
   },
   registerChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
+    boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
     position: "absolute",
     borderRadius: Border.br_26xl,
   },
@@ -80,7 +64,7 @@ const styles = StyleSheet.create({
     right: "0%",
     bottom: "0%",
     borderRadius: Border.br_3xs,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
     position: "absolute",
     width: "100%",
   },
@@ -99,7 +83,7 @@ const styles = StyleSheet.create({
     bottom: "20.83%",
     left: "12.5%",
     borderStyle: "solid",
-    borderColor: Color.colorIndigo,
+    borderColor: Color.darkPurple,
     borderWidth: 2,
     borderRadius: Border.br_11xs,
     position: "absolute",
@@ -125,8 +109,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messagePosition: {
-    left: screenWidth * 0.7 - 50,
-    width: 40,
+    left: screenWidth * 0.7 - 45,
+    width: 37,
   },
   email: {
     top: screenHeight * 0.25 + 160,
@@ -142,7 +126,7 @@ const styles = StyleSheet.create({
   lockIcon1: {
     width: 30,
     height: 30,
-    top: 12,
+    top: 17,
     left: screenWidth * 0.7 - 40,
     bottom: "25.47%",
     right: "6%",
@@ -172,13 +156,14 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.25 + 290,
   },
   alreadyAMember1: {
-    color: "#252525",
+    color: Color.black,
   },
   logIn: {
-    color: Color.colorIndigo,
+    color: Color.darkPurple,
+    fontWeight: "600",
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 470,
+    top: screenHeight * 0.25 + 550,
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
@@ -210,7 +195,7 @@ const styles = StyleSheet.create({
   },
   register2: {
     fontSize: 20,
-    color: "#fcfcfc",
+    color: Color.white,
     width: 79,
     textAlign: "left",
     top: "50%",
@@ -229,7 +214,7 @@ const styles = StyleSheet.create({
   },
   register1: {
     marginLeft: -84.5,
-    top: screenHeight * 0.25 + 400,
+    top: screenHeight * 0.25 + 450,
     width: 167,
     height: 48,
     left: "50%",
@@ -238,17 +223,26 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     overflow: "hidden",
   },
-  logoIcon: {
-    top: 29,
-    width: 160,
-    height: 150,
-  },
+
   register: {
     flex: 1,
     height: 852,
     backgroundColor: "transparent",
     overflow: "hidden",
     width: "100%",
+  },
+  errorMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.red,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 });
 

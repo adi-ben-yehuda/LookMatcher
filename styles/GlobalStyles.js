@@ -41,6 +41,14 @@ export const Color = {
   primary: "#242424",
   m3SysDarkSurface: "#1c1b1f",
   black3: "#606060",
+  gray: "rgba(0, 0, 0, 0.5)",
+  white: "#fff",
+  darkPurple: "#43118c",
+  red: "#FF0000",
+  black: "#252525",
+  lightPink: "#E2DBEA",
+  fontDark: "#0f0f0f",
+  lightGray: "#b7b3b3",
 };
 /* border radiuses */
 export const Border = {

@@ -12,15 +12,15 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   email1Typo: {
-    color: Color.colorGray_100,
+    color: Color.gray,
     fontSize: FontSize.textInput_size,
     left: "7.31%",
     textAlign: "left",
     position: "absolute",
   },
   messagePosition: {
-    left: screenWidth * 0.7 - 50,
-    width: 40,
+    left: screenWidth * 0.7 - 45,
+    width: 37,
   },
   lockIconLayout: {
     maxHeight: "100%",
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     bottom: "0%",
     right: "0%",
     top: "0%",
-    height: "100%",
+    height: 50,
     position: "absolute",
     width: "100%",
   },
@@ -46,23 +46,25 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   registerNowTypo: {
-    color: Color.colorIndigo,
+    color: Color.darkPurple,
     fontWeight: "600",
   },
   loginChild: {
     top: screenHeight * 0.25,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
+    boxShadow: {
+      shadowColor: "rgba(0, 0, 0, 0.25)",
+      shadowOffset: {
+        width: 0,
+        height: 4,
+      },
+      shadowRadius: 50,
+      elevation: 50,
+      shadowOpacity: 1,
     },
-    shadowRadius: 50,
-    elevation: 50,
-    shadowOpacity: 1,
     width: screenWidth,
     height: screenHeight * 0.75,
     opacity: 0.85,
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
     position: "absolute",
     borderRadius: Border.br_26xl,
   },
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     bottom: "20.83%",
     left: "12.5%",
     borderStyle: "solid",
-    borderColor: Color.colorIndigo,
+    borderColor: Color.darkPurple,
     borderWidth: 2,
     borderRadius: Border.br_11xs,
     position: "absolute",
@@ -86,14 +88,14 @@ const styles = StyleSheet.create({
   messageItem: {
     height: 10,
     width: "66.67%",
-    top: "37.5%",
+    top: "30%",
     right: "16.67%",
     bottom: "45.83%",
     left: "16.67%",
     borderRadius: Border.br_11xs,
   },
   message: {
-    height: "48%",
+    height: 45,
     top: "26%",
     bottom: "26%",
     position: "absolute",
@@ -101,12 +103,13 @@ const styles = StyleSheet.create({
   email: {
     top: screenHeight * 0.25 + 150,
     height: 60,
+    position: "absolute",
   },
   passwordChild: {
-    backgroundColor: Color.colorWhite,
+    backgroundColor: Color.white,
   },
   password1: {
-    height: "37.25%",
+    height: 38,
     width: "25.25%",
     top: "33.33%",
     textAlign: "left",
@@ -114,17 +117,18 @@ const styles = StyleSheet.create({
   lockIcon: {
     width: 30,
     height: 30,
-    top: 12,
+    top: 17,
     left: screenWidth * 0.7 - 40,
   },
   password: {
     top: screenHeight * 0.25 + 220,
     height: 60,
+    position: "absolute",
   },
   login2: {
     marginLeft: -35,
     fontSize: 20,
-    color: "#fcfcfc",
+    color: Color.white,
     width: 56,
     textAlign: "left",
   },
@@ -147,34 +151,32 @@ const styles = StyleSheet.create({
     left: "50%",
     borderRadius: Border.br_3xs,
     position: "absolute",
-    backgroundColor: Color.background,
+    backgroundColor: Color.lightPink,
     overflow: "hidden",
   },
 
   alreadyAMemberContainer: {
     top: screenHeight * 0.25 + 470,
-    fontSize: 16,
-    fontWeight: "600",
     textAlign: "center",
     width: screenWidth,
-  },
-  logoIconPosition: {
-    left: "50%",
-    marginLeft: -75.5,
     position: "absolute",
+    textAlignVertical: "center",
+    fontWeight: "bold",
   },
 
   newMember: {
-    color: "#252525",
+    fontSize: 16,
+    color: Color.black,
   },
   register: {
-    color: Color.colorIndigo,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: Color.darkPurple,
   },
   newMemberRegisterContainer: {
     top: screenHeight * 0.25 + 150,
     fontSize: 16,
     width: screenWidth,
-    height: 17,
     textAlign: "center",
     position: "absolute",
   },
@@ -185,21 +187,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     position: "absolute",
   },
-  logoIcon: {
-    top: 29,
-    left: 116,
-    width: 160,
-    height: 150,
-    position: "absolute",
-  },
+
   login: {
     flex: 1,
     height: 852,
-    backgroundColor: Color.background,
+    backgroundColor: Color.lightPink,
     overflow: "hidden",
     width: "100%",
   },
-  
+
+  errorMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.red,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
 });
 
 export default styles;
