@@ -8,27 +8,34 @@ import { Image } from "expo-image";
 const Results = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [iconSource, setIconSource] = useState(require('../../assets/component-1661.png'));
-
-
+  // Maintain individual icon sources for each item
+  const [iconSources, setIconSources] = useState({
+    "Price: low to high": require("../../assets/component-1661.png"),
+    "Price: High To Low": require("../../assets/component-1661.png"),
+    "Distance: near to far": require("../../assets/component-1661.png"),
+    "Distance: far to near": require("../../assets/component-1661.png"),
+  });
 
   const handleSortByClick = () => {
-    // Toggle dropdown visibility
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleDropdownItemClick = (item) => {
     setSelectedItem(item);
-    // Close the dropdown after clicking an item
+    
+    // Update the selected item's icon and reset others to the default
+    setIconSources((prevIconSources) => {
+      const updatedIconSources = {};
+      for (const key in prevIconSources) {
+        updatedIconSources[key] =
+          key === item
+            ? require("../../assets/component-166.png")
+            : require("../../assets/component-1661.png"); 
+      }
+      return updatedIconSources;
+    });
 
-    // Change the icon source based on the selected item
-    if (iconSource === '../../assets/component-1661.png') {
-      setIconSource(require('../../assets/component-166.png'));
-    } else {
-      setIconSource(require('../../assets/component-1661.png'));
-    }
-
-    //setIsDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
 
 
@@ -91,12 +98,13 @@ const Results = () => {
           source={require("../../assets/image-8.png")}
         />
         <Image style={[styles.icon1, styles.iconPosition]} contentFit="cover" />
-        {/* <Image
+        <Image
           style={styles.favoriteLightIcon5}
           contentFit="cover"
           source={require("../../assets/favorite-light1.png")}
-        /> */}
+        />
       </View>
+      
       {/* <Image
         style={[styles.favoriteLightIcon8, styles.favoriteIconLayout]}
         contentFit="cover"
@@ -107,24 +115,13 @@ const Results = () => {
         contentFit="cover"
         source={require("../../assets/favorite-light2.png")}
       /> */}
-      <Image
-        style={[styles.taskbarIcon, styles.resultsLayout]}
-        contentFit="cover"
-        source={require("../../assets/taskbar.png")}
-      />
-      <Image
-        style={[styles.taskbarIcon, styles.resultsLayout]}
-        contentFit="cover"
-        source={require("../../assets/taskbar.png")}
-      />
-      <Image
-        style={[styles.taskbarIcon, styles.resultsLayout]}
-        contentFit="cover"
-        source={require("../../assets/taskbar.png")}
-      />
+
+{/* toolbar */}
+
+
       <View style={[styles.component156, styles.stateLayerFlexBox]}onTouchEnd={handleSortByClick}>
         <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
-          <Text style={styles.labelText1}>{ selectedItem|| "Sort By"}</Text>
+        <Text style={styles.labelText1}>{selectedItem || "Sort By"}</Text>
           <Image
             style={styles.icon3}
             contentFit="cover"
@@ -173,10 +170,10 @@ const Results = () => {
               <Image
                 style={styles.iconLayout}
                 contentFit="cover"
-                source={iconSource}
+                source={iconSources["Price: low to high"]}
               />
               <View style={[styles.content, styles.contentFlexBox]}>
-                <Text style={[styles.headline4, styles.headlineTypo]}>  Price: from low to high  </Text>
+                <Text style={[styles.headline4, styles.headlineTypo]}> Price: from low to high  </Text>
               </View>
             </View>
             <View style={styles.horizontalFlexBox}>
@@ -195,7 +192,7 @@ const Results = () => {
               <Image
                 style={styles.iconLayout}
                 contentFit="cover"
-                source={require("../../assets/component-1661.png")}
+                source={iconSources["Price: High To Low"]}
               />
               <View style={[styles.content, styles.contentFlexBox]}>
                 <Text style={[styles.headline4, styles.headlineTypo]}> Price: from high to low </Text>
@@ -215,8 +212,7 @@ const Results = () => {
             </View>
             <View style={[styles.stateLayer1, styles.contentFlexBox]}>
               <Image style={styles.iconLayout} contentFit="cover"
-                source={require("../../assets/component-1661.png")}
-              />
+                     source={iconSources["Distance: near to far"]}              />
               <View style={[styles.content, styles.contentFlexBox]}>
                 <Text style={[styles.headline4, styles.headlineTypo]}> Distance: from near to far </Text>
               </View>
@@ -237,8 +233,8 @@ const Results = () => {
               <Image
                 style={styles.iconLayout}
                 contentFit="cover"
-                source={require("../../assets/component-1661.png")}
-              />
+                source={iconSources["Distance: far to near"]}              
+                />
               <View style={[styles.content, styles.contentFlexBox]}>
                 <Text style={[styles.headline4, styles.headlineTypo]}> Distance: from far to near </Text>
               </View>

@@ -1,4 +1,4 @@
-import { Color, FontFamily, FontSize, Border, Padding } from "../../styles/GlobalStyles";
+import { Color, FontSize, Border, Padding } from "../../styles/GlobalStyles";
 import { StyleSheet, Dimensions } from "react-native";
 
 const window = Dimensions.get("window");
@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     shirtTypo: {
         textAlign: "left",
         color: Color.black3,
-        fontFamily: FontFamily.clotheDescription,
         fontWeight: "500",
         fontSize: screenWidth * 0.03,
     },
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     renuarTypo: {
         left: 3,
         top: screenHeight * 0.295,
-        fontFamily: FontFamily.ralewayRegular,
         color: Color.blackFont,
         fontSize: FontSize.priceClothe_size,
         textAlign: "left",
@@ -54,14 +52,13 @@ const styles = StyleSheet.create({
     headline: {
         marginLeft: "auto",
         marginRight: "auto",
-        top: screenHeight * 0.04, // Adjust the percentage as needed
-        fontSize: screenWidth * 0.05, // Adjust the percentage as needed
-        lineHeight: screenWidth * 0.05, // Adjust the percentage as needed
+        top: screenHeight * 0.04, 
+        fontSize: screenWidth * 0.05, 
+        lineHeight: screenWidth * 0.05, 
         marginLeft: "auto",
         marginRight: "auto",
         textTransform: "capitalize",
         fontWeight: "700",
-        fontFamily: FontFamily.ralewayBold,
         color: Color.primary,
         textAlign: "center",
         justifyContent: "center",
@@ -86,14 +83,12 @@ const styles = StyleSheet.create({
         top: screenHeight * 0.64,
         textAlign: "left",
         color: Color.black3,
-        fontFamily: FontFamily.clotheDescription,
         fontWeight: "500",
         fontSize: screenWidth * 0.035,
     },
     price4: {
         top: screenHeight * 0.65,
         color: Color.blackFont,
-        fontFamily: FontFamily.priceClothe,
         fontWeight: "600",
         fontSize: screenWidth * 0.03,
         textAlign: "left",
@@ -101,7 +96,6 @@ const styles = StyleSheet.create({
     },
     store4: {
         top: screenHeight * 0.66,
-        fontFamily: FontFamily.ralewayRegular,
         color: Color.blackFont,
         fontSize: screenWidth * 0.03,
         textAlign: "left",
@@ -127,7 +121,6 @@ const styles = StyleSheet.create({
     },
     text4: {
         color: Color.blackFont,
-        fontFamily: FontFamily.priceClothe,
         fontWeight: "600",
         fontSize: FontSize.priceClothe_size,
         textAlign: "left",
@@ -137,7 +130,6 @@ const styles = StyleSheet.create({
     oxfordShirt1: {
         textAlign: "left",
         color: Color.black3,
-        fontFamily: FontFamily.clotheDescription,
         fontWeight: "500",
         fontSize: screenWidth * 0.035,
         top: screenHeight * 0.22,
@@ -164,7 +156,6 @@ const styles = StyleSheet.create({
     item1: {
         textAlign: "left",
         color: Color.black3,
-        fontFamily: FontFamily.clotheDescription,
         fontWeight: "500",
         fontSize: screenWidth * 0.035,
         width: screenWidth * 0.2,
@@ -173,14 +164,12 @@ const styles = StyleSheet.create({
     price1: {
         top: screenHeight * 0.27,
         color: Color.blackFont,
-        fontFamily: FontFamily.priceClothe,
         fontWeight: "600",
         fontSize: screenWidth * 0.03,
         textAlign: "left",
     },
     store1: {
         top: screenHeight * 0.28,
-        fontFamily: FontFamily.ralewayRegular,
         color: Color.blackFont,
         fontSize: screenWidth * 0.03,
         textAlign: "left",
@@ -209,10 +198,11 @@ const styles = StyleSheet.create({
         letterSpacing: 0,
         lineHeight: 20,
         color: "#1b1616",
-        fontFamily: FontFamily.priceClothe,
-        fontWeight: "600",
-        fontSize: screenWidth * 0.026,
+        fontWeight: "500",
+        fontSize: screenWidth * 0.03,
         textAlign: "center",
+        left:5,
+        bottom:1
     },
     icon3: {
         width: 18,
@@ -220,10 +210,11 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
     stateLayer: {
-        paddingHorizontal: screenWidth * 0.01,
-        paddingVertical: screenHeight * 0.05,
+        paddingVertical: screenHeight * 0.005,
+        
     },
     component156: {
+        zIndex: 2, 
         top: screenHeight*0.08,
         left: 20,
         borderRadius: 36,
@@ -243,7 +234,7 @@ const styles = StyleSheet.create({
 
 //sort
     dropDownList: {
-        top: screenHeight*0.109,
+        top: screenHeight*0.12,
         right: screenWidth*0.2,
         borderRadius: 8,
         shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -269,9 +260,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         left: 0,
-        height: screenHeight * 0.05,
-        flex: 1, // Allow the item to grow/shrink as needed
-
     },
     listItemlistItem2Densit5: {
         top: screenHeight*0.261,
@@ -297,20 +285,10 @@ const styles = StyleSheet.create({
         height: screenHeight*0.04,
         position: "absolute",
     },
-    // buildingPosition: {
-    //     top: "0%",
-    //     height: "107%",
-    //     left: "0%",
-    //     bottom: "0%",
-    //     right: "0%",
-    //     position: "absolute",
-    //     width: "100%",
-    // },
     contentFlexBox: {
         alignSelf: "stretch",
         justifyContent: "center",
     },
-    
     stateLayer1: {
         height: screenHeight*0.05,
         paddingLeft: Padding.p_base,
@@ -356,7 +334,6 @@ const styles = StyleSheet.create({
         backgroundColor: Color.colorWhitesmoke,
     },
     headline4: {
-        fontFamily: FontFamily.priceClothe,
         fontWeight: "500",
         fontSize: screenWidth * 0.04,
     },
