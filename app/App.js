@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Register from "../screens/Register";
 import Login from "../screens/Login";
 
-import Profile from "../screens/profile/ProfilePage";
+import Profile from "../screens/ProfilePage";
 import search from "../screens/SearchByFoto";
 import Tool from "../components/toolbar/tool";
 
@@ -13,7 +13,7 @@ import Tool from "../components/toolbar/tool";
 
 
 import Home from "../screens/Home";
-import ItemPage from "../screens/Item/ItemPage";
+import ItemPage from "../screens/ItemPage";
 import Search from "../screens/Search";
 import ManualSearch from "../screens/ManualSearch";
 
@@ -24,8 +24,7 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-
-        <Stack.Screen name="Login" component={Home} />
+        <Stack.Screen name="Login" component={Profile} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Search" component={Search} />
