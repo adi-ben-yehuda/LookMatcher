@@ -12,12 +12,12 @@ const SearchButtons = () => {
   };
 
   const imageSearchPress = () => {
-    navigation.navigate("ManualSearch");
+    navigation.navigate("SearchByPhoto");
   };
 
   return (
     <View style={[styles.searchPage]}>
-      <Text style={styles.search}>Search</Text>
+      <Text style={styles.search}>Search for a garment</Text>
 
       <TouchableOpacity onPress={manualSearchPress}>
         <LinearGradient
