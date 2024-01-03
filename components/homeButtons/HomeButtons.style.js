@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: Color.colorGray,
+    color: Color.white,
     fontSize: screenWidth * 0.05,
   },
 

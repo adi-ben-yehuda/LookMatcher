@@ -12,7 +12,7 @@ const HomePage = () => {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <LogoBlack />
       <HomeButtons />
-      <ImageHome />
+      {/* <ImageHome /> */}
       <Tool></Tool>
     </ScrollView>
   );

@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   searchPage: {
     backgroundColor: Color.lightPink,
     flex: 1,
-    height: 852,
     overflow: "hidden",
     width: "100%",
   },
