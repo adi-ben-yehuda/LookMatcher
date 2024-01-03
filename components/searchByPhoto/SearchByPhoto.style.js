@@ -8,7 +8,6 @@ const screenWidth = window.width;
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    height: 852,
     overflow: "hidden",
     width: "100%",
     backgroundColor: "#E2DBEA",

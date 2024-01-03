@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ScrollView, View, Image, TouchableOpacity } from "react-native";
+import {  View, Image, TouchableOpacity } from "react-native";
 import styles from "./tool.style";
 
 
@@ -8,11 +8,7 @@ import styles from "./tool.style";
 const ToolBar2 = () => {
 
 
-
     return (
-
-
-        
             <View style={[styles.password]}>
                 <View
 
