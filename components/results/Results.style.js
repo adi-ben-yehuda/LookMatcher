@@ -194,6 +194,22 @@ const styles = StyleSheet.create({
         position: "absolute",
         overflow: "hidden",
     },
+
+    results: {
+        backgroundColor: Color.ll,
+        flex: 1,
+        height: 852,
+        overflow: "hidden",
+    },
+    
+    //sort
+    stateLayerFlexBox: {
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        height: 32,
+    },
+    
     labelText1: {
         letterSpacing: 0,
         lineHeight: 20,
@@ -223,16 +239,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         position: "absolute",
         overflow: "hidden",
+        flexDirection: "row",
     },
-    results: {
-        backgroundColor: Color.ll,
-        flex: 1,
-        height: 852,
-        overflow: "hidden",
-    },
-
-
-//sort
+    
     dropDownList: {
         top: screenHeight*0.12,
         right: screenWidth*0.2,
