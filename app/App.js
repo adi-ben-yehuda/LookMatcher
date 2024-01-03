@@ -17,6 +17,7 @@ import Home from "../screens/Home";
 import ItemPage from "../screens/ItemPage";
 import Search from "../screens/Search";
 import ManualSearch from "../screens/ManualSearch";
+import Wishlist from "../screens/WishlistPage";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
@@ -34,7 +36,10 @@ function App() {
         <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
 
         <Stack.Screen name="Results" component={Results} />
-        <Stack.Screen name="ItemPage" component={ItemPage} />
+        <Stack.Screen name="Wishlist" component={Wishlist} />
+
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );

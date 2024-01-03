@@ -1,4 +1,4 @@
-import { Color, FontSize, Border, Padding } from "../../styles/GlobalStyles";
+import { Color, FontSize, Border } from "../../styles/GlobalStyles";
 import { StyleSheet, Dimensions } from "react-native";
 
 const window = Dimensions.get("window");
@@ -50,11 +50,9 @@ const styles = StyleSheet.create({
         height: 32,
     },
     headline: {
-        marginLeft: "auto",
-        marginRight: "auto",
-        top: screenHeight * 0.04, 
-        fontSize: screenWidth * 0.05, 
-        lineHeight: screenWidth * 0.05, 
+        marginTop: 30,
+        fontSize: screenWidth * 0.07,
+        lineHeight: screenWidth * 0.08,
         marginLeft: "auto",
         marginRight: "auto",
         textTransform: "capitalize",
@@ -63,7 +61,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         justifyContent: "center",
         alignItems: "center",
-
     },
     addSquareLightIcon1: {
         top: 346,
@@ -73,29 +70,27 @@ const styles = StyleSheet.create({
         borderRadius: Border.br_8xs,
         position: "absolute",
     },
-
     image7Icon: {
-        top: screenHeight * 0.28,
+        top: "60%",
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
     },
     item4: {
-        top: screenHeight * 0.64,
+        top: screenHeight * 0.55,
         textAlign: "left",
         color: Color.black3,
-        fontWeight: "500",
+        fontWeight: "600",
         fontSize: screenWidth * 0.035,
     },
     price4: {
-        top: screenHeight * 0.65,
+        top: screenHeight * 0.55,
         color: Color.blackFont,
         fontWeight: "600",
         fontSize: screenWidth * 0.03,
         textAlign: "left",
-
     },
     store4: {
-        top: screenHeight * 0.66,
+        top: screenHeight * 0.55,
         color: Color.blackFont,
         fontSize: screenWidth * 0.03,
         textAlign: "left",
@@ -124,8 +119,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: FontSize.priceClothe_size,
         textAlign: "left",
-        top: screenHeight * 0.26,
-
+        top: screenHeight * 0.6,
     },
     oxfordShirt1: {
         textAlign: "left",
@@ -183,180 +177,44 @@ const styles = StyleSheet.create({
     favoriteLightIcon9: {
         left: 155,
     },
-    taskbarIcon: {
-        height: "8.69%",
-        top: "91.31%",
-        right: "0%",
-        bottom: "0%",
-        left: "0%",
-        maxWidth: "100%",
-        maxHeight: "100%",
-        position: "absolute",
-        overflow: "hidden",
-    },
-
     results: {
         backgroundColor: Color.ll,
         flex: 1,
         height: 852,
         overflow: "hidden",
     },
-    
-    //sort
-    stateLayerFlexBox: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    height: 32,
-},
 
-labelText1: {
-    letterSpacing: 0,
-    lineHeight: 20,
-    color: "#1b1616",
-    fontWeight: "500",
-    fontSize: screenWidth * 0.03,
-    textAlign: "center",
-    left:5,
-    bottom:1
-},
-icon3: {
-    width: 18,
-    height: 18,
-    marginLeft: 5,
-},
-stateLayer: {
-    paddingVertical: screenHeight * 0.005,
-    
-},
-component156: {
-    zIndex: 2, 
-    top: screenHeight*0.08,
-    left: 20,
-    borderRadius: 36,
-    borderStyle: "solid",
-    borderColor: "#2f085f",
-    borderWidth: 1,
-    position: "absolute",
-    overflow: "hidden",
-    flexDirection: "row",
-},
-
-dropDownList: {
-    top: screenHeight*0.12,
-    right: screenWidth*0.2,
-    borderRadius: 8,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-        width: 11,
-        height: 13,
+    //buttons
+    makeLayout: {
+        backgroundColor: "transparent",
+        height: screenHeight * 0.085,
+        width: screenWidth * 0.4,
+        borderRadius: Border.br_3xs,
+        top: screenHeight * 0.75,
+        position: "absolute",
+        overflow: "hidden",
+        alignItems: "center",
+        justifyContent: "center",
     },
-    shadowRadius: 5,
-    elevation: 5,
-    shadowOpacity: 1,
-    width: screenWidth*0.67,
-    height: screenHeight*0.2,
-    backgroundColor: Color.colorCardBackground,
-    position: "absolute",
-    overflow: "hidden",
-},
-list2DensityDark: {
-    bottom:screenHeight*0.37,
-    left: 1,
-},
-listItemlistItem2Densit4: {
-    top: screenHeight*0.21,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 0,
-},
-listItemlistItem2Densit5: {
-    top: screenHeight*0.261,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 0,
-    height: screenHeight*0.05,
-},
-listItemlistItem2Densit6: {
-    top: screenHeight*0.313,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 0,
-},
-listItemlistItem2Densit7: {
-    top: screenHeight*0.364,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 0,
-},
-listLayout: {
-    width: screenWidth*0.7,
-    height: screenHeight*0.04,
-    position: "absolute",
-},
-contentFlexBox: {
-    alignSelf: "stretch",
-    justifyContent: "center",
-},
-stateLayer1: {
-    height: screenHeight*0.05,
-    paddingLeft: Padding.p_base,
-    paddingRight: Padding.p_5xl,
-    zIndex: 1,
-    alignItems: "center",
-    alignSelf: "stretch",
-    flexDirection: "row",
-},
-divider: {
-    borderColor: Color.colorGainsboro_100,
-},
-iconLayout: {
-    height: 24,
-    width: 24,
-},
-content: {
-    marginLeft: 5,
-    overflow: "hidden",
-    alignSelf: "stretch",
-    flex: 1,
-},
-headlineTypo: {
-    color: Color.colorDarkslategray_100,
-    lineHeight: 24,
-    letterSpacing: 0.7,
-    alignSelf: "stretch",
-    textAlign: "left",
-},
-dividerLayout: {
-    height: 1,
-    borderTopWidth: 2,
-    alignSelf: "stretch",
-    borderStyle: "solid",
-},
-listItemlistItem2Densit3: {
-    top: 144,
-    justifyContent: "center",
-    alignItems: "center",
-    left: 0,
-},
-buildingBlocksstateLayerDaChild: {
-    backgroundColor: Color.colorWhitesmoke,
-},
-headline4: {
-    fontWeight: "500",
-    fontSize: screenWidth * 0.04,
-},
-buildingBlocksstateLayerDaItem: {
-    backgroundColor: Color.colorCardBackground,
-},
-buildingBlocksstateLayerDaChild: {
-    backgroundColor: Color.colorWhitesmoke,
-},
-horizontalFlexBox: {
-    zIndex: 2,
-    alignSelf: "stretch",
-    justifyContent: "center",
-},
+    makeAnContainer: {
+        fontSize: screenHeight * 0.022,
+        color: Color.white,
+        textAlign: "center",
+    },
+    makeAnOutfitWrapper: {
+        width: screenWidth * 0.3,
+        height: screenWidth * 0.08,
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: "auto",
+        marginRight: "auto",
+    },
+    makeMe: {
+        right: screenWidth * 0.07,
+    },
+    makeYourself: {
+        left: screenWidth * 0.07,
+    },
 });
 
 export default styles;
