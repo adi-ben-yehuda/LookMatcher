@@ -8,12 +8,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Register from "../screens/Register";
 import Login from "../screens/Login";
 
+
 import Profile from "../screens/profile/ProfilePage";
 import SearchByPhoto from "../screens/SearchByPhoto";
+
 import Tool from "../components/toolbar/tool";
 
 import Home from "../screens/Home";
-import ItemPage from "../screens/Item/ItemPage";
+import ItemPage from "../screens/ItemPage";
 import Search from "../screens/Search";
 import ManualSearch from "../screens/ManualSearch";
 

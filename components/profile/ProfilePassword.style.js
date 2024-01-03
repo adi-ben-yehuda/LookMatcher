@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Border } from "../../styles/GlobalStyles";
+import { Border, Color } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -81,6 +81,32 @@ const styles = StyleSheet.create({
       saveDetailsText: {
         fontSize: screenHeight * 0.02,
         color: '#fff',
+      },
+
+      errorMessage: {
+        top: screenHeight * 0.83,
+        left: screenWidth * 0.15,
+        width: screenWidth,
+        fontSize: 16,
+      },
+      error: {
+        fontWeight: "bold",
+        color: Color.red,
+        fontSize: 16,
+        width: screenWidth * 0.7,
+        textAlign: "center",
+      },
+
+      register1: {
+        marginLeft: -84.5,
+        top: screenHeight * 0.25 + 450,
+        width: 167,
+        height: 48,
+        left: "50%",
+        borderRadius: Border.br_3xs,
+        position: "absolute",
+        backgroundColor: "transparent",
+        overflow: "hidden",
       },
 
 });
