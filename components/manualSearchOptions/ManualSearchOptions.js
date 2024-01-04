@@ -262,7 +262,7 @@ const ManualSearch = () => {
   ];
 
   const searchPress = () => {
-    navigation.navigate("ItemPage");
+    navigation.navigate("Results");
   };
 
   return (

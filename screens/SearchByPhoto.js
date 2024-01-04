@@ -6,7 +6,7 @@ import SearchByPhoto from "../components/searchByPhoto/SearchByPhoto";
 const SearchPhoto = () => {
   return (
     <>
-      <SearchByPhoto></SearchByPhoto>
+      <SearchByPhoto />
       <ToolBar />
     </>
   );

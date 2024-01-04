@@ -5,12 +5,12 @@ import Wishlist from "../components/wishlist/Wishlist";
 import ToolBar from "../components/toolbar/ToolBar";
 
 const WishlistPage = () => {
-    return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <Wishlist></Wishlist>
-            <ToolBar></ToolBar>
-        </ScrollView>
-    );
+  return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <Wishlist />
+      <ToolBar />
+    </ScrollView>
+  );
 };
 
-export default WishlistPage; 
+export default WishlistPage;

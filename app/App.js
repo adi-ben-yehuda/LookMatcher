@@ -1,22 +1,17 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-
-import Results from "../screens/ResultsPage";
-
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Register from "../screens/Register";
 import Login from "../screens/Login";
-
-import Profile from "../screens/ProfilePage";
-import SearchByPhoto from "../screens/SearchByPhoto";
-
-import Tool from "../components/toolbar/tool";
-
 import Home from "../screens/Home";
-import ItemPage from "../screens/ItemPage";
+import Profile from "../screens/ProfilePage";
+
 import Search from "../screens/Search";
+import SearchByPhoto from "../screens/SearchByPhoto";
 import ManualSearch from "../screens/ManualSearch";
+import Results from "../screens/ResultsPage";
+import ItemPage from "../screens/ItemPage";
 import Wishlist from "../screens/WishlistPage";
 
 const Stack = createStackNavigator();
@@ -25,7 +20,6 @@ function App() {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
@@ -37,9 +31,6 @@ function App() {
 
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Wishlist" component={Wishlist} />
-
-        
-
       </Stack.Navigator>
     </NavigationContainer>
   );

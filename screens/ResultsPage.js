@@ -6,8 +6,8 @@ import ToolBar from "../components/toolbar/ToolBar";
 const ResultsPage = () => {
   return (
     <>
-      <Results></Results>
-      <ToolBar></ToolBar>
+      <Results />
+      <ToolBar />
     </>
   );
 };

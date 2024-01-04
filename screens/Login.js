@@ -7,8 +7,8 @@ import LogoWhite from "../components/logoWhite/LogoWhite";
 const Login = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <LoginForm></LoginForm>
-      <LogoWhite></LogoWhite>
+      <LoginForm />
+      <LogoWhite />
     </ScrollView>
   );
 };

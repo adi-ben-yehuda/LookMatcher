@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ScrollView, Dimensions, StyleSheet } from "react-native";
-import ToolBar from "../components/toolbar/tool";
+import ToolBar from "../components/toolbar/ToolBar";
 import ProfileDetails from "../components/profile/ProfileDetails";
 import ProfilePassword from "../components/profile/ProfilePassword";
 
