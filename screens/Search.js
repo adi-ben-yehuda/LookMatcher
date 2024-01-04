@@ -7,8 +7,8 @@ import ToolBar from "../components/toolbar/ToolBar";
 const Search = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <SearchButtons></SearchButtons>
-      <ToolBar></ToolBar>
+      <SearchButtons />
+      <ToolBar />
     </ScrollView>
   );
 };

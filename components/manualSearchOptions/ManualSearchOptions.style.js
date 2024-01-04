@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
   },
 
   searchButtonContainer: {
-    position: "absolute",
     bottom: screenHeight * 0.05 + 60,
+    position: "absolute",
     left: 0,
     right: 0,
     alignItems: "center",

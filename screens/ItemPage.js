@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ScrollView } from "react-native";
-import ToolBar from "../components/toolbar/tool";
+import ToolBar from "../components/toolbar/ToolBar";
 import ItemText from "../components/itemPage/ItemText";
 import ItemImg from "../components/itemPage/ItemImg";
 import { StyleSheet, Dimensions } from "react-native";

@@ -30,58 +30,36 @@ const styles = StyleSheet.create({
   },
   rectangleLayout: {
     opacity: 0.85,
-    borderRadius: Border.br_xs,
     position: "absolute",
+  },
+
+  buttonsUp: {
+    backgroundColor: "transparent",
+    height: screenHeight * 0.15,
+    width: screenWidth * 0.37,
+    borderRadius: Border.br_3xs,
+    position: "absolute",
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   recUpLeft: {
-    backgroundColor: "transparent",
-    height: screenHeight * 0.12,
-    width: screenWidth * 0.33,
-    borderRadius: Border.br_3xs,
     left: screenWidth * 0.09,
-    position: "absolute",
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   recUpRight: {
-    backgroundColor: "transparent",
-    height: screenHeight * 0.12,
-    width: screenWidth * 0.33,
-    borderRadius: Border.br_3xs,
     right: screenWidth * 0.09,
-    position: "absolute",
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
+  buttonsDown: { top: screenHeight * 0.18 },
+
   recDownLeft: {
-    backgroundColor: "transparent",
-    height: screenHeight * 0.12,
-    width: screenWidth * 0.33,
-    borderRadius: Border.br_3xs,
     left: screenWidth * 0.09,
-    position: "absolute",
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
-    top: screenHeight * 0.15,
   },
 
   recDownRight: {
-    backgroundColor: "transparent",
-    height: screenHeight * 0.12,
-    width: screenWidth * 0.33,
-    borderRadius: Border.br_3xs,
-    position: "absolute",
     right: screenWidth * 0.09,
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
-    top: screenHeight * 0.15,
   },
 
   iconsButtons: {
@@ -93,8 +71,9 @@ const styles = StyleSheet.create({
   },
 
   text: {
+    marginTop: screenHeight * 0.01,
     color: Color.white,
-    fontSize: screenWidth * 0.05,
+    fontSize: screenWidth * 0.07,
   },
 
   image4Icon: {

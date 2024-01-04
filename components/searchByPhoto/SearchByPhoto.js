@@ -2,6 +2,7 @@ import styles from "./SearchByPhoto.style";
 import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const MultipleDropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
   <View style={isVisible ? styles.listContainer : { display: "none" }}>
@@ -123,11 +124,16 @@ const SearchByPhoto = () => {
     }
   };
 
+  const navigation = useNavigation();
+  const searchPress = () => {
+    navigation.navigate("Results");
+  };
+
   return (
     <View style={styles.home}>
-      <Text style={styles.title}>Did You Saw An Item You Want?</Text>
+      <Text style={styles.title}>Did you saw an item you want?</Text>
       <Text style={styles.title2}>
-        Take A Picture To Search For Something Similar
+        Take a picture to search for something similar
       </Text>
 
       <TouchableOpacity>
@@ -185,6 +191,19 @@ const SearchByPhoto = () => {
           ])}
         />
       </View>
+
+      <TouchableOpacity
+        onPress={searchPress}
+        style={styles.searchButtonContainer}
+      >
+        <LinearGradient
+          style={styles.searchButton}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Text style={styles.searchText}>{"Search"}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 };

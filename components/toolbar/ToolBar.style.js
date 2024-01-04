@@ -1,16 +1,97 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { Border } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-  toolbar: {
-    height: screenHeight * 0.08,
-    width: screenWidth,
+  home: {
+    flex: 1,
+    height: 852,
+    overflow: "hidden",
+    width: "100%",
     backgroundColor: "#E2DBEA",
-    bottom: 0,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
+
+  center: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  lockIconLayout: {
+    maxHeight: "100%",
+    maxWidth: "100%",
     position: "absolute",
+    overflow: "hidden",
+  },
+
+  password: {
+    height: 70,
+    position: "absolute",
+    width: screenWidth,
+    left: 0,
+    justifyContent: "center",
+    bottom: 0,
+  },
+
+  ProfileIcon1: {
+    width: 35,
+    height: 35,
+    left: screenWidth * 0.85,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+
+  heartIcon1: {
+    width: 35,
+    height: 35,
+    left: screenWidth * 0.65,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+
+  homeIcon: {
+    width: 35,
+    height: 35,
+    left: screenWidth * 0.45,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+
+  searchIcon: {
+    width: 35,
+    height: 35,
+    right: screenWidth * 0.65,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+
+  shirtIcon: {
+    width: 35,
+    height: 35,
+    right: screenWidth * 0.85,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+  },
+
+  newData: {
+    borderRadius: Border.br_11xs,
+    bottom: 0,
+    height: 70,
+    position: "absolute",
+    backgroundColor: "#E2DBEA",
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center",
+
     borderRadius: 50,
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.1)",
@@ -22,40 +103,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
     flexDirection: "row",
-    alignItems: "center",
-  },
-  shirtBar: {
-    height: screenHeight * 0.05,
-    width: screenWidth * 0.1,
-    left: screenWidth * 0.1,
-    position: "relative",
   },
 
-  searchBar: {
-    height: screenHeight * 0.05,
-    width: screenWidth * 0.1,
-    left: screenWidth * 0.17,
-    position: "relative",
-  },
-
-  logoBar: {
-    height: screenHeight * 0.15,
-    width: screenWidth * 0.15,
-    left: screenWidth * 0.22,
-    position: "relative",
-  },
-  heartBar: {
-    height: screenHeight * 0.05,
-    width: screenWidth * 0.1,
-    left: screenWidth * 0.28,
-    position: "relative",
-  },
-
-  profileBar: {
-    height: screenHeight * 0.05,
-    width: screenWidth * 0.1,
-    left: screenWidth * 0.35,
-    position: "relative",
+  position: {
+    width: screenWidth,
+    left: 0,
+    buttom: 0,
+    position: "absolute",
   },
 });
 

@@ -8,17 +8,15 @@ const screenWidth = window.width;
 const styles = StyleSheet.create({
   registerLayout: {
     backgroundColor: "transparent",
-    height: 113,
-    width: 275,
+    width: screenWidth * 0.6,
     borderRadius: Border.br_3xs,
-    marginLeft: -137.5,
+    marginLeft: screenWidth * -0.3,
     left: "50%",
     position: "absolute",
-    overflow: "hidden",
   },
   buttonSearch: {
     color: Color.white,
-    fontSize: 40,
+    fontSize: screenHeight * 0.05,
     textAlign: "center",
     textAlignVertical: "center",
   },
@@ -29,7 +27,7 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.4,
   },
   search: {
-    top: 65,
+    top: screenHeight * 0.08,
     color: Color.black,
     fontSize: screenHeight * 0.04,
     width: screenWidth,
