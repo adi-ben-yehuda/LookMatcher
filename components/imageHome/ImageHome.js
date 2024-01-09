@@ -5,10 +5,10 @@ import styles from "./ImageHome.style";
 const ImageHome = () => {
   return (
     <View style={styles.image}>
-      <Image
+      {/* <Image
         contentFit="cover"
         source={require("../../assets/images/imgClothes.png")}
-      />
+      /> */}
     </View>
   );
 };

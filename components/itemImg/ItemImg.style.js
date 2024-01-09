@@ -7,45 +7,25 @@ const screenWidth = window.width;
 
 const styles = StyleSheet.create({
   container: {
-
     width: screenWidth,
     height: screenHeight * 0.7,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: "#fff",
     top: 0,
   },
 
   itemImg: {
-    width: '30%',
-    height: '30%',
-    // height: screenHeight * 0.7,
-    // width: screenWidth,
+    width: "30%",
+    height: "30%",
     resizeMode: "contain",
     position: "absolute",
     top: 0,
-
   },
 
-  // container: {
-  //   flex: 1,
-  // },
-  // itemImg: {
-  //   flex: 1,
-  //   width: screenWidth,
-  //   height: screenHeight * 0.6,
-  //   resizeMode: 'cover',
-  // },
-
   itemImg: {
-    //flex: 1,
     top: 0,
     width: "100%",
     height: "100%",
-    //resizeMode: 'contain',
   },
-
-
 
   back: {
     left: screenWidth * 0.02,
@@ -54,7 +34,6 @@ const styles = StyleSheet.create({
     height: "10%",
     position: "absolute",
     resizeMode: "contain",
-
   },
 
   heart: {
@@ -64,7 +43,6 @@ const styles = StyleSheet.create({
     height: "10%",
     position: "absolute",
     resizeMode: "contain",
-
   },
 
   prev: {
@@ -74,7 +52,6 @@ const styles = StyleSheet.create({
     height: "10%",
     position: "absolute",
     resizeMode: "contain",
-
   },
 
   next: {
@@ -84,7 +61,6 @@ const styles = StyleSheet.create({
     height: "10%",
     position: "absolute",
     resizeMode: "contain",
-
   },
 
   buttonPrev: {
@@ -94,7 +70,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: "30%",
     height: "30%",
-
   },
 
   buttonNext: {
@@ -104,9 +79,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     width: "30%",
     height: "30%",
-  
   },
-
 
   iconPrev: {
     right: screenWidth * 0.02,
@@ -114,8 +87,6 @@ const styles = StyleSheet.create({
     width: "30%",
     height: "30%",
     resizeMode: "contain",
-
-
   },
 
   iconNext: {
@@ -123,10 +94,7 @@ const styles = StyleSheet.create({
     top: screenWidth * 0.4,
     width: "30%",
     height: "30%",
-    //position: "absolute",
     resizeMode: "contain",
-
-
   },
 });
 

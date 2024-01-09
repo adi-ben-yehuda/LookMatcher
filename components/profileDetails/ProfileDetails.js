@@ -7,7 +7,6 @@ import { useState } from "react";
 import styles from "./ProfileDetails.style";
 
 const ProfileDetails = () => {
-
   const [firstName, setFirstName] = useState("Dana");
   const [lastName, setLastName] = useState("Danilenko");
   const [email, setEmail] = useState("aa@gmail.com");
@@ -15,7 +14,6 @@ const ProfileDetails = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
-
 
   const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,9 +36,7 @@ const ProfileDetails = () => {
     setError(false);
   };
 
-
   const handleSavePress = () => {
-  
     setErrorList([]);
     errorList.splice(0, errorList.length);
 
@@ -66,7 +62,6 @@ const ProfileDetails = () => {
     }
   };
 
-
   // Show all errors separated by a comma
   const renderList = errorList.map((item, index) => (
     <Text key={index} style={styles.error}>
@@ -74,7 +69,6 @@ const ProfileDetails = () => {
       {index !== errorList.length - 1 && ","}
     </Text>
   ));
-
 
   return (
     <View>
@@ -96,7 +90,6 @@ const ProfileDetails = () => {
           source={require("../../assets/user-alt.png")}
         />
       </View>
-
 
       <View style={[styles.password, styles.lastNamePosition]}>
         <TextInput
@@ -128,16 +121,13 @@ const ProfileDetails = () => {
         />
       </View>
 
-
-
       {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid{renderList}</Text>
         </View>
       )}
 
-      
-<TouchableOpacity onPress={handleSavePress} >
+      <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient
           style={styles.register1}
           locations={[0, 1]}
@@ -150,8 +140,6 @@ const ProfileDetails = () => {
       </TouchableOpacity>
     </View>
   );
-
 };
-
 
 export default ProfileDetails;

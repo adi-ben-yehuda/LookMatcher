@@ -7,8 +7,6 @@ import { useState } from "react";
 import styles from "./ProfilePassword.style";
 
 const ProfilePassword = () => {
-
-
   const [currPassword, setCurrPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -84,22 +82,17 @@ const ProfilePassword = () => {
       setError(true);
       setErrorList(errorList);
     }
-    // } else {
-    //   // All the fields are correct
-    //   navigation.navigate("Login");
-    // }
   };
 
   // Show all errors separated by a comma
   const renderList = errorList.map((item, index) => (
-    <Text key={index} style={styles.error}>
+    <Text key={index}>
       {item}
       {index !== errorList.length - 1 && ","}
     </Text>
   ));
 
   return (
-
     <View>
       <View style={[styles.password, styles.currPass]}>
         <TextInput
@@ -158,7 +151,7 @@ const ProfilePassword = () => {
         </View>
       )}
 
-      <TouchableOpacity onPress={handleSavePress} >
+      <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient
           style={styles.register1}
           locations={[0, 1]}
@@ -170,10 +163,7 @@ const ProfilePassword = () => {
         </LinearGradient>
       </TouchableOpacity>
     </View>
-
   );
 };
-
-
 
 export default ProfilePassword;
