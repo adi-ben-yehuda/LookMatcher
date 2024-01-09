@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         position: "absolute",
     },
 
-    image7Icon: {
+    image4Icon: {
         top: screenHeight * 0.28,
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         fontSize: screenWidth * 0.035,
         top: screenHeight * 0.22,
     },
-    image6Icon: {
+    image2Icon: {
         bottom: screenHeight * 0.1,
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     result2: {
         left: screenWidth * 0.51,
     },
-    image8Icon: {
+    image1Icon: {
         bottom: screenHeight * 0.1,
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     height: 32,
 },
 
-labelText1: {
+sortText: {
     letterSpacing: 0,
     lineHeight: 20,
     color: "#1b1616",
@@ -220,7 +220,7 @@ labelText1: {
     left:5,
     bottom:1
 },
-icon3: {
+arrow: {
     width: 18,
     height: 18,
     marginLeft: 5,
@@ -229,7 +229,7 @@ stateLayer: {
     paddingVertical: screenHeight * 0.005,
     
 },
-component156: {
+sort: {
     zIndex: 2, 
     top: screenHeight*0.08,
     left: 20,

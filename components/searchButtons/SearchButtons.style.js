@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   buttonSearch: {
     color: Color.white,
-    fontSize: screenHeight * 0.05,
+    fontSize: screenHeight * 0.038,
     textAlign: "center",
     textAlignVertical: "center",
   },

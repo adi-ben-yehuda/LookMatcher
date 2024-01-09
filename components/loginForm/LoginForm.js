@@ -74,7 +74,7 @@ const LoginForm = () => {
     // } else {
     // All the fields are correct
     navigation.navigate("Home");
-    // }
+    //}
   };
 
   // Show all errors separated by a comma
