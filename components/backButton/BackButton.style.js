@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     padding: 10,
+    zIndex: 1,
   },
   icon: {
     height: screenHeight * 0.045,

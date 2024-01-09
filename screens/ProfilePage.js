@@ -3,6 +3,7 @@ import { View, ScrollView, Dimensions, StyleSheet } from "react-native";
 import ToolBar from "../components/toolbar/ToolBar";
 import ProfileDetails from "../components/profileDetails/ProfileDetails";
 import ProfilePassword from "../components/profilePassword/ProfilePassword";
+import BackButton from "../components/backButton/BackButton";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -10,7 +11,6 @@ const screenHeight = window.height;
 const styles = StyleSheet.create({
   home: {
     flex: 1,
-    height: 852,
     overflow: "hidden",
     width: "100%",
     backgroundColor: "#E2DBEA",
@@ -22,15 +22,14 @@ const styles = StyleSheet.create({
 const Profile = () => {
   return (
     <View>
-      <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.3 }}>
+      <BackButton />
+      <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.15 }}>
         <View style={styles.home}>
           <ProfileDetails />
           <ProfilePassword />
         </View>
       </ScrollView>
-      <View>
-        <ToolBar />
-      </View>
+      <ToolBar />
     </View>
   );
 };
