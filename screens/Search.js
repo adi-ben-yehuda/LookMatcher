@@ -1,14 +1,18 @@
 import * as React from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import SearchButtons from "../components/searchButtons/SearchButtons";
 import ToolBar from "../components/toolbar/ToolBar";
+import BackButton from "../components/backButton/BackButton";
 
 const Search = () => {
   return (
     <View style={{ flex: 1 }}>
-      <SearchButtons />
-      <ToolBar />
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <SearchButtons />
+        <ToolBar />
+      </ScrollView>
+      <BackButton />
     </View>
   );
 };

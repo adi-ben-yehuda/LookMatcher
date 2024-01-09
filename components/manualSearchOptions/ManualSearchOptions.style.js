@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
-    top: 65,
+    top: screenHeight * 0.08,
     color: Color.black,
     fontSize: 28,
     width: screenWidth,

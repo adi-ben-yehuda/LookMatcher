@@ -9,7 +9,6 @@ import styles from "./ProfilePassword.style";
 const ProfilePassword = () => {
 
 
-
   const [currPassword, setCurrPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -18,6 +17,20 @@ const ProfilePassword = () => {
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
 
+  const handleCurr = (text) => {
+    setCurrPassword(text);
+    setError(false);
+  };
+
+  const handleNew = (text) => {
+    setNewPassword(text);
+    setError(false);
+  };
+
+  const handleConfirm = (text) => {
+    setConfirmPassword(text);
+    setError(false);
+  };
 
   const checkCurrPassword = () => {
     //add if curr == data
@@ -49,10 +62,9 @@ const ProfilePassword = () => {
     return false;
   };
 
-  const handleRegisterPress = () => {
+  const handleSavePress = () => {
     setErrorList([]);
     errorList.splice(0, errorList.length);
-
 
     if (!checkCurrPassword()) {
       setError(true);
@@ -86,17 +98,16 @@ const ProfilePassword = () => {
     </Text>
   ));
 
-
   return (
 
     <View>
       <View style={[styles.password, styles.currPass]}>
         <TextInput
           placeholder="Current Password"
-          style={styles.newData}
+          style={styles.newData2}
           mode="outlined"
           value={currPassword}
-          onChangeText={(text) => setCurrPassword(text)}
+          onChangeText={handleCurr}
           secureTextEntry={true}
         />
 
@@ -107,14 +118,13 @@ const ProfilePassword = () => {
         />
       </View>
 
-
       <View style={[styles.password, styles.newPass]}>
         <TextInput
           placeholder="New Password"
-          style={styles.newData}
+          style={styles.newData2}
           mode="outlined"
           value={newPassword}
-          onChangeText={(text) => setNewPassword(text)}
+          onChangeText={handleNew}
           secureTextEntry={true}
         />
 
@@ -128,10 +138,10 @@ const ProfilePassword = () => {
       <View style={[styles.password, styles.confirmPass]}>
         <TextInput
           placeholder="Confirm New Password"
-          style={styles.newData}
+          style={styles.newData2}
           mode="outlined"
           value={confirmPassword}
-          onChangeText={(text) => setConfirmPassword(text)}
+          onChangeText={handleConfirm}
           secureTextEntry={true}
         />
 
@@ -142,29 +152,28 @@ const ProfilePassword = () => {
         />
       </View>
 
-
       {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{renderList}</Text>
+        <View style={styles.errorMessage1}>
+          <Text style={styles.error1}>Invalid{renderList}</Text>
         </View>
       )}
 
-
-      <TouchableOpacity onPress={handleRegisterPress}>
+      <TouchableOpacity onPress={handleSavePress} >
         <LinearGradient
-          style={styles.savePass}
+          style={styles.register1}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >
-          <View >
-            <Text style={styles.saveDetailsText}> Change{'\n'}Password</Text>
+          <View style={[styles.registerParent, styles.registerPosition]}>
+            <Text style={styles.register2}>Change Password</Text>
           </View>
         </LinearGradient>
       </TouchableOpacity>
-
     </View>
+
   );
 };
+
 
 
 export default ProfilePassword;
