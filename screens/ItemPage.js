@@ -4,6 +4,7 @@ import ToolBar from "../components/toolbar/ToolBar";
 import ItemText from "../components/itemText/ItemText";
 import ItemImg from "../components/itemImg/ItemImg";
 import { StyleSheet, Dimensions } from "react-native";
+import BackButton from "../components/backButton/BackButton";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -23,13 +24,16 @@ const styles = StyleSheet.create({
 
 const ItemPage = () => {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={styles.home}>
-        <ItemImg />
-        <ItemText />
-        <ToolBar />
-      </View>
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.home}>
+          <ItemImg />
+          <ItemText />
+          <ToolBar />
+        </View>
+      </ScrollView>
+      <BackButton />
+    </View>
   );
 };
 
