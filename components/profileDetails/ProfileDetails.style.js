@@ -63,27 +63,12 @@ const styles = StyleSheet.create({
         position: "absolute",
       },
     
-      saveDetails: {
-        width: screenWidth * 0.32,
-        height: screenHeight * 0.06,
-        left: screenWidth * 0.35,
-        top: screenHeight * 0.42,
-        position: "relative",
-        borderRadius: Border.br_11xs,
-        alignItems: "center",
-        justifyContent: "center",
-      },
-    
-    
-      saveDetailsText: {
-        fontSize: screenHeight * 0.02,
-        color: '#fff',
-      },
+      
 
       title: {
         top: screenHeight * 0.05,
         width: screenWidth,
-        height: screenHeight * 0.08,
+        height: screenHeight * 0.07,
         justifyContent: "center",
         alignItems: "center",
     
@@ -109,16 +94,55 @@ const styles = StyleSheet.create({
         textAlign: "center",
       },
 
-      register1: {
-        marginLeft: -84.5,
-        top: screenHeight * 0.25 + 450,
+      registerParent: {
         width: 167,
         height: 48,
-        left: "50%",
-        borderRadius: Border.br_3xs,
+        borderRadius: Border.br_11xs,
         position: "absolute",
         backgroundColor: "transparent",
         overflow: "hidden",
+        justifyContent: "center", // Center the text vertically
+      },
+      
+     
+      registerPosition: {
+        height: 48,
+        top: 0,
+        marginLeft: -47,
+        left: "50%",
+        position: "absolute",
+      },
+
+      registerChild: {
+        top: screenHeight * 0.65,
+        boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
+        width: screenWidth,
+        height: screenHeight * 0.75,
+        opacity: 0.85,
+        backgroundColor: Color.white,
+        position: "absolute",
+        borderRadius: Border.br_26xl,
+      },
+
+      register2: {
+        fontSize: 16,
+        color: Color.white,
+        width: 100,
+        textAlign: "center", // Center the text horizontally
+        textAlignVertical: "center", // Center the text vertically
+      },
+
+      register1: {
+        top: screenHeight * 0.45 ,
+        width: 167,
+        height: 48,
+        left: screenWidth * 0.35,
+        borderRadius: Border.br_11xs,
+        position: "absolute",
+        backgroundColor: "transparent",
+        overflow: "hidden",
+        alignItems: "flex-start", 
+        justifyContent: "center", 
       },
     
 
