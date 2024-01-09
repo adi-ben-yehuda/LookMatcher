@@ -8,18 +8,14 @@ import styles from "./ProfileDetails.style";
 
 const ProfileDetails = () => {
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("Dana");
+  const [lastName, setLastName] = useState("Danilenko");
+  const [email, setEmail] = useState("aa@gmail.com");
 
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
 
-
-  const handleEmail = (text) => {
-    setError(false);
-  };
 
   const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,25 +25,46 @@ const ProfileDetails = () => {
     return true;
   };
 
-  const handleRegisterPress = () => {
-    // setErrorList([]);
+  const handleEmail = (text) => {
+    setEmail(text);
     setError(false);
-    // errorList.splice(0, errorList.length);
+  };
+  const handleFirstName = (text) => {
+    setFirstName(text);
+    setError(false);
+  };
+  const handleSecondName = (text) => {
+    setLastName(text);
+    setError(false);
+  };
 
+
+  const handleSavePress = () => {
+  
+    setErrorList([]);
+    errorList.splice(0, errorList.length);
+
+    if (firstName === "") {
+      setError(true);
+      errorList.push(" first name");
+    }
+
+    if (lastName === "") {
+      setError(true);
+      errorList.push(" last name");
+    }
 
     if (!checkEmail()) {
       setError(true);
-      //errorList.push(" email");
+      //console.log("Email 1:", email);
+      errorList.push(" email");
     }
 
-    // if (errorList.length > 0) {
-    //   setError(true);
-    // setErrorList(errorList);
-    // } else {
-    //   // All the fields are correct
-    //   navigation.navigate("Login");
-    // }
-  }
+    if (errorList.length > 0) {
+      setError(true);
+      setErrorList(errorList);
+    }
+  };
 
 
   // Show all errors separated by a comma
@@ -58,30 +75,19 @@ const ProfileDetails = () => {
     </Text>
   ));
 
-  // const registerButtonStyle = () => {
-  //   if (error) {
-  //     return {
-  //       ...styles.register1,
-  //       marginTop: -10,
-  //     };
-  //   }
-  //   return 0;
-  // };
- 
- 
 
   return (
     <View>
       <View style={styles.title}>
         <Text style={styles.titelText}>My Details</Text>
       </View>
+
       <View style={[styles.password, styles.firstNamePosition]}>
         <TextInput
-          placeholder="Dana"
           style={styles.newData}
           mode="outlined"
           value={firstName}
-          onChangeText={(text) => setFirstName(text)}
+          onChangeText={handleFirstName}
         />
 
         <Image
@@ -94,11 +100,10 @@ const ProfileDetails = () => {
 
       <View style={[styles.password, styles.lastNamePosition]}>
         <TextInput
-          placeholder="Danilenko"
           style={styles.newData}
           mode="outlined"
           value={lastName}
-          onChangeText={(text) => setLastName(text)}
+          onChangeText={handleSecondName}
         />
 
         <Image
@@ -110,11 +115,10 @@ const ProfileDetails = () => {
 
       <View style={[styles.password, styles.emailPosition]}>
         <TextInput
-          placeholder="a@gmail.com"
           style={styles.newData}
           mode="outlined"
           value={email}
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={handleEmail}
         />
 
         <Image
@@ -128,21 +132,19 @@ const ProfileDetails = () => {
 
       {error && (
         <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid email</Text>
+          <Text style={styles.error}>Invalid{renderList}</Text>
         </View>
       )}
 
-      <TouchableOpacity onPress={handleRegisterPress}>
+      
+<TouchableOpacity onPress={handleSavePress} >
         <LinearGradient
-         style={
-          styles.saveDetails
-          
-        }
+          style={styles.register1}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >
-          <View >
-            <Text style={styles.saveDetailsText}>Change{'\n'} Details</Text>
+          <View style={[styles.registerParent, styles.registerPosition]}>
+            <Text style={styles.register2}>Change Details</Text>
           </View>
         </LinearGradient>
       </TouchableOpacity>
