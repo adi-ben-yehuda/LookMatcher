@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    top: screenHeight * 0.05,
+    top: screenHeight * 0.08,
     color: Color.black,
     width: screenWidth,
     textAlign: "center",
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     fontWeight: "bold",
     color: "#333",
-    top: screenHeight * 0.12,
+    top: screenHeight * 0.15,
     width: screenWidth - screenWidth * 0.05,
     height: screenHeight * 0.06,
     left: screenWidth * 0.05,
