@@ -44,7 +44,7 @@ const Results = () => {
         <Text style={styles.price4}>$ 70.00</Text>
         <Text style={styles.store4}>Zara</Text>
         <Image
-          style={styles.image7Icon}
+          style={styles.image4Icon}
           contentFit="cover"
           source={require("../../assets/image-7.png")}
         />
@@ -71,7 +71,7 @@ const Results = () => {
           Oxford shirt
         </Text> */}
         {/* <Image
-          style={[styles.image6Icon, styles.text5Position]}
+          style={[styles.image2Icon, styles.text5Position]}
           contentFit="cover"
           source={require("../../assets/image-6.png")}
         /> */}
@@ -87,7 +87,7 @@ const Results = () => {
         <Text style={[styles.price1]}>$ 50.00</Text>
         <Text style={[styles.store1]}>Castro</Text>
         {/* <Image
-          style={[styles.image8Icon]}
+          style={[styles.image1Icon]}
           contentFit="cover"
           source={require("../../assets/image-8.png")}
         /> */}
@@ -110,13 +110,13 @@ const Results = () => {
       /> */}
 
       <View
-        style={[styles.component156, styles.stateLayerFlexBox]}
+        style={[styles.sort, styles.stateLayerFlexBox]}
         onTouchEnd={handleSortByClick}
       >
         <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
-          <Text style={styles.labelText1}>{selectedItem || "Sort By"}</Text>
+          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
           <Image
-            style={styles.icon3}
+            style={styles.arrow}
             contentFit="cover"
             source={require("../../assets/icon.png")}
           />

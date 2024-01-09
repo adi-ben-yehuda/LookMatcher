@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   email1Typo: {
     color: Color.gray,
-    fontSize: FontSize.textInput_size,
+    fontSize: screenHeight*0.018,
     left: "7.31%",
     textAlign: "left",
     position: "absolute",
@@ -165,17 +165,17 @@ const styles = StyleSheet.create({
   },
 
   newMember: {
-    fontSize: 16,
+    fontSize: screenHeight*0.018,
     color: Color.black,
   },
   register: {
-    fontSize: 16,
+    fontSize: screenHeight*0.018,
     fontWeight: "bold",
     color: Color.darkPurple,
   },
   newMemberRegisterContainer: {
     top: screenHeight * 0.25 + 150,
-    fontSize: 16,
+    fontSize: screenHeight*0.018,
     width: screenWidth,
     textAlign: "center",
     position: "absolute",
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.25 + 300,
     textAlign: "center",
     width: screenWidth,
-    fontSize: 16,
+    fontSize: screenHeight*0.018,
     position: "absolute",
   },
 
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   error: {
     fontWeight: "bold",
     color: Color.red,
-    fontSize: 14,
+    fontSize: screenHeight * 0.02,
     width: screenWidth * 0.7,
     textAlign: "center",
   },

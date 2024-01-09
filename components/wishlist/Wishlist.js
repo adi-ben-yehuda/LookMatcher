@@ -16,7 +16,7 @@ const Results = () => {
         <Text style={styles.price4}>$ 70.00</Text>
         <Text style={styles.store4}>Zara</Text>
         <Image
-          style={styles.image7Icon}
+          style={styles.image4Icon}
           contentFit="cover"
           source={require("../../assets/image-7.png")}
         />
@@ -43,7 +43,7 @@ const Results = () => {
           Oxford shirt
         </Text> */}
         {/* <Image
-          style={[styles.image6Icon, styles.text5Position]}
+          style={[styles.image2Icon, styles.text5Position]}
           contentFit="cover"
           source={require("../../assets/image-6.png")}
         /> */}
@@ -59,7 +59,7 @@ const Results = () => {
         <Text style={[styles.price1]}>$ 50.00</Text>
         <Text style={[styles.store1]}>Castro</Text>
         {/* <Image
-          style={[styles.image8Icon]}
+          style={[styles.image1Icon]}
           contentFit="cover"
           source={require("../../assets/image-8.png")}
         /> */}

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderRadius: Border.br_8xs,
         position: "absolute",
     },
-    image7Icon: {
+    image4Icon: {
         top: "60%",
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         fontSize: screenWidth * 0.035,
         top: screenHeight * 0.22,
     },
-    image6Icon: {
+    image2Icon: {
         bottom: screenHeight * 0.1,
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     result2: {
         left: screenWidth * 0.51,
     },
-    image8Icon: {
+    image1Icon: {
         bottom: screenHeight * 0.1,
         height: screenHeight * 0.3,
         width: screenWidth * 0.45,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         height: screenHeight * 0.085,
         width: screenWidth * 0.4,
         borderRadius: Border.br_3xs,
-        top: screenHeight * 0.75,
+        //top: screenHeight * 0.75,
         position: "absolute",
         overflow: "hidden",
         alignItems: "center",
@@ -208,12 +208,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginLeft: "auto",
         marginRight: "auto",
+        
     },
     makeMe: {
         right: screenWidth * 0.07,
+        position: "absolute",
+        top:screenHeight*1.03
     },
     makeYourself: {
         left: screenWidth * 0.07,
+        position: "absolute",
+        top:screenHeight*1.03
     },
 });
 
