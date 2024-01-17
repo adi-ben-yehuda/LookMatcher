@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import { Image } from "react-native";
 
 const UsersContext = createContext({
   addUser: () => {},
@@ -10,7 +9,6 @@ const UsersContext = createContext({
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const [currentTime, setCurrentTime] = useState("");
   const [profile, setProfile] = useState({
     email: "",
     password: "",
@@ -18,13 +16,13 @@ export const UsersProvider = ({ children }) => {
     firstName: "",
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const date = new Date();
-      setCurrentTime(date.toLocaleString());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const date = new Date();
+  //     setCurrentTime(date.toLocaleString());
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const addUser = (user) => {
     setUsers([...users, user]);

@@ -5,9 +5,12 @@ import { TextInput } from "react-native-paper";
 import styles from "./RegisterForm.style";
 import { Color } from "../../styles/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+// import { UsersContext } from "../../context/userContext.js";
 
 function RegisterForm() {
+  // const { addUser } = useContext(UsersContext);
+
   const navigation = useNavigation();
 
   const emailInput = useRef(null);
@@ -25,6 +28,7 @@ function RegisterForm() {
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
@@ -86,45 +90,79 @@ function RegisterForm() {
     return false;
   };
 
-  const handleRegisterPress = () => {
-    setErrorList([]);
-    errorList.splice(0, errorList.length);
+  // const handleRegisterPress = () => {
+  //   setErrorList([]);
+  //   errorList.splice(0, errorList.length);
 
-    if (firstName === "") {
-      setError(true);
-      errorList.push(" first name");
-    }
-    if (lastName === "") {
-      setError(true);
-      errorList.push(" last name");
-    }
-    if (!checkEmail()) {
-      setError(true);
-      errorList.push(" email");
-    }
-    if (!checkPassword()) {
-      setError(true);
-      errorList.push(" password");
-    }
-    if (!CheckConfirmPassword()) {
-      setError(true);
-      errorList.push(" confirm password");
-    }
+  //   if (firstName === "") {
+  //     setError(true);
+  //     errorList.push(" first name");
+  //   }
+  //   if (lastName === "") {
+  //     setError(true);
+  //     errorList.push(" last name");
+  //   }
+  //   if (!checkEmail()) {
+  //     setError(true);
+  //     errorList.push(" email");
+  //   }
+  //   if (!checkPassword()) {
+  //     setError(true);
+  //     errorList.push(" password");
+  //   }
+  //   if (!CheckConfirmPassword()) {
+  //     setError(true);
+  //     errorList.push(" confirm password");
+  //   }
 
-    if (errorList.length > 0) {
-      setError(true);
-      setErrorList(errorList);
-    } else {
-      const user = {
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-      };
+  //   if (errorList.length > 0) {
+  //     setError(true);
+  //     setErrorList(errorList);
+  //   } else {
 
-      addUser(user);
-      // All the fields are correct
-      navigation.navigate("Login");
+  //     // All the fields are correct
+  //     navigation.navigate("Login");
+  //   }
+  // };
+
+  const handleRegisterPress = async () => {
+    setErrorMsg("");
+    // setErrorIsExist(false);
+
+    const user = {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+    };
+
+    try {
+      console.log("B FETCH");
+
+      const res = await fetch("http://192.168.56.1:4000/api/Users", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      console.log("FETCH");
+
+      if (res.ok) {
+        console.log("User added successfully");
+      } else if (res.status === 409) {
+        setError(true);
+      } else if (res.status === 400) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else {
+        throw new Error("Failed to add user");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
