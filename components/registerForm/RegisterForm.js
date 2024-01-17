@@ -115,6 +115,14 @@ function RegisterForm() {
       setError(true);
       setErrorList(errorList);
     } else {
+      const user = {
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+      };
+
+      addUser(user);
       // All the fields are correct
       navigation.navigate("Login");
     }
