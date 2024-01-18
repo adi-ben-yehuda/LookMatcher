@@ -83,75 +83,33 @@ function RegisterForm() {
     return true;
   };
 
-  const CheckConfirmPassword = () => {
-    if (password === confirmPassword) {
-      return true;
-    }
-    return false;
-  };
-
-  // const handleRegisterPress = () => {
-  //   setErrorList([]);
-  //   errorList.splice(0, errorList.length);
-
-  //   if (firstName === "") {
-  //     setError(true);
-  //     errorList.push(" first name");
-  //   }
-  //   if (lastName === "") {
-  //     setError(true);
-  //     errorList.push(" last name");
-  //   }
-  //   if (!checkEmail()) {
-  //     setError(true);
-  //     errorList.push(" email");
-  //   }
-  //   if (!checkPassword()) {
-  //     setError(true);
-  //     errorList.push(" password");
-  //   }
-  //   if (!CheckConfirmPassword()) {
-  //     setError(true);
-  //     errorList.push(" confirm password");
-  //   }
-
-  //   if (errorList.length > 0) {
-  //     setError(true);
-  //     setErrorList(errorList);
-  //   } else {
-
-  //     // All the fields are correct
-  //     navigation.navigate("Login");
-  //   }
-  // };
-
   const handleRegisterPress = async () => {
     setErrorMsg("");
-    // setErrorIsExist(false);
 
     const user = {
       email: email,
       password: password,
       firstName: firstName,
       lastName: lastName,
+      confirmPassword: confirmPassword
     };
 
     try {
-      console.log("B FETCH");
-
-      const res = await fetch("http://192.168.56.1:4000/api/Users", {
-        method: "post",
+      const res = await fetch("http://172.20.10.11:3000/api/Users", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(user),
       });
 
-      console.log("FETCH");
-
       if (res.ok) {
         console.log("User added successfully");
       } else if (res.status === 409) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
         setError(true);
       } else if (res.status === 400) {
         const body = await res.json();
@@ -165,14 +123,6 @@ function RegisterForm() {
       console.error(error);
     }
   };
-
-  // Show all errors separated by a comma
-  const renderList = errorList.map((item, index) => (
-    <Text key={index} style={styles.error}>
-      {item}
-      {index !== errorList.length - 1 && ","}
-    </Text>
-  ));
 
   const registerButtonStyle = () => {
     if (error) {
@@ -359,7 +309,7 @@ function RegisterForm() {
       {/* Show error message if error is true */}
       {error && (
         <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{renderList}</Text>
+          <Text style={styles.error}>Invalid: {errorMsg}</Text>
         </View>
       )}
 
