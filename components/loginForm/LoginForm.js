@@ -15,6 +15,7 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
@@ -22,6 +23,7 @@ const LoginForm = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleEmail = (text) => {
     setEmail(text);
@@ -33,57 +35,43 @@ const LoginForm = () => {
     setError(false);
   };
 
-  const checkEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === "" || emailRegex.test(email) === false) {
-      return false;
+  const handleLoginPress = async () => {
+    setErrorMsg("");
+
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const res = await fetch("http://172.20.10.11:3000/api/Tokens", {
+        method: "POST",
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        const token = body.token;
+        setToken(token);
+        setEmail("");
+        setPassword("");
+        navigation.navigate("Home");
+      } else if (res.status === 404) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else {
+        throw new Error("Failed to login");
+      }
+    } catch (error) {
+      console.error(error);
     }
-    return true;
   };
-
-  const checkPassword = () => {
-    const passwordRegex = /^[A-Za-z0-9]*$/;
-    if (
-      password === "" ||
-      password.length < 8 ||
-      passwordRegex.test(password) === false
-    ) {
-      return false;
-    }
-    return true;
-  };
-
-  const handleLoginPress = () => {
-    // DON'T DELETE THIS CODE !!!!!!!
-
-    // setErrorList([]);
-    // errorList.splice(0, errorList.length);
-
-    // if (!checkEmail()) {
-    //   setError(true);
-    //   errorList.push(" email");
-    // }
-    // if (!checkPassword()) {
-    //   setError(true);
-    //   errorList.push(" password");
-    // }
-
-    // if (errorList.length > 0) {
-    //   setError(true);
-    //   setErrorList(errorList);
-    // } else {
-    // All the fields are correct
-    navigation.navigate("Home");
-    //}
-  };
-
-  // Show all errors separated by a comma
-  const renderList = errorList.map((item, index) => (
-    <Text key={index} style={styles.error}>
-      {item}
-      {index !== errorList.length - 1 && ","}
-    </Text>
-  ));
 
   const emailBlur = () => {
     emailInput.current && emailInput.current.handleBlur();
@@ -161,7 +149,7 @@ const LoginForm = () => {
       {/* Show error message if error is true */}
       {error && (
         <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{renderList}</Text>
+          <Text style={styles.error}>Invalid{errorMsg}</Text>
         </View>
       )}
 
