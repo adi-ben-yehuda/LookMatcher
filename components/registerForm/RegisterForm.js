@@ -63,26 +63,6 @@ function RegisterForm() {
     setError(false);
   };
 
-  const checkEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === "" || emailRegex.test(email) === false) {
-      return false;
-    }
-    return true;
-  };
-
-  const checkPassword = () => {
-    const passwordRegex = /^[A-Za-z0-9]*$/;
-    if (
-      password === "" ||
-      password.length < 8 ||
-      passwordRegex.test(password) === false
-    ) {
-      return false;
-    }
-    return true;
-  };
-
   const handleRegisterPress = async () => {
     setErrorMsg("");
 
@@ -105,7 +85,12 @@ function RegisterForm() {
       });
 
       if (res.ok) {
-        console.log("User added successfully");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setFirstName("");
+        setLastName("");
+        navigation.navigate("Home");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
