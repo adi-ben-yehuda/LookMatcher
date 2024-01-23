@@ -15,6 +15,44 @@ const ProfileDetails = () => {
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
 
+
+
+
+  // useEffect(() => {
+  //   const fetchUserDetails = async () => {
+  //     try {
+  //       const response = await fetch("http://192.168.56.1:3000/api/Users/:email", {
+  //         method: "GET",
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json',
+  //         },
+  //       });
+
+  //       if (response.ok) {
+  //         const userDetails = await response.json();
+  //         setFirstName(userDetails.firstName);
+  //         setLastName(userDetails.lastName);
+  //         setEmail(userDetails.email);
+
+  //         console.log("Last Name:", userDetails.lastName);
+  //         console.log("first Name:", userDetails.firstName);
+  //         console.log("email:", userDetails.email);
+
+  //       } else {
+  //         console.error("Failed to fetch user details");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user details:", error);
+  //     }
+  //   };
+
+  //   fetchUserDetails();
+  // }, []);  // Empty dependency array ensures that this effect runs only once on component mount
+
+
+
+
   const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email) === false) {
