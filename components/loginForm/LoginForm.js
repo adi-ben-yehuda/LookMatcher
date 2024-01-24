@@ -5,17 +5,18 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./LoginForm.style";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import UsersContext from '../../context/userContext';
 
 const LoginForm = () => {
   const navigation = useNavigation();
-
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  //const [token, setToken] = useState("");
+  const { setToken, setUser } = useContext(UsersContext);
 
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
@@ -44,7 +45,7 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await fetch("http://172.20.10.11:3000/api/Tokens", {
+      const res = await fetch("http://192.168.56.1:3000/api/Tokens", {
         method: "POST",
         headers: {
           Accept: 'application/json',
@@ -57,6 +58,7 @@ const LoginForm = () => {
         const body = await res.json();
         const token = body.token;
         setToken(token);
+        console.log("TOKEN LOGIN", token);
         setEmail("");
         setPassword("");
         navigation.navigate("Home");

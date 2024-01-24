@@ -3,53 +3,50 @@ import { View, Text, Dimensions } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./ProfileDetails.style";
+import UsersContext from "../../context/userContext";
 
 const ProfileDetails = () => {
-  const [firstName, setFirstName] = useState("Dana");
-  const [lastName, setLastName] = useState("Danilenko");
-  const [email, setEmail] = useState("aa@gmail.com");
-
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
+  const [detailsFetched, setDetailsFetched] = useState(false);
+  const { token, user } = useContext(UsersContext);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
+  const getDetails = async () => {
+    try {
+      const res = await fetch("http://192.168.56.1:3000/api/Users/:email", {
+        method: "get",
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      });
+     
+      if (res.ok) {
+        const result = await res.json();
+        setFirstName(result.firstName);
+        setLastName(result.lastName);
+        setEmail(result.email);
+        return result;
 
+      } else {
+        throw new Error("Failed to get details");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-  // useEffect(() => {
-  //   const fetchUserDetails = async () => {
-  //     try {
-  //       const response = await fetch("http://192.168.56.1:3000/api/Users/:email", {
-  //         method: "GET",
-  //         headers: {
-  //           Accept: 'application/json',
-  //           'Content-Type': 'application/json',
-  //         },
-  //       });
-
-  //       if (response.ok) {
-  //         const userDetails = await response.json();
-  //         setFirstName(userDetails.firstName);
-  //         setLastName(userDetails.lastName);
-  //         setEmail(userDetails.email);
-
-  //         console.log("Last Name:", userDetails.lastName);
-  //         console.log("first Name:", userDetails.firstName);
-  //         console.log("email:", userDetails.email);
-
-  //       } else {
-  //         console.error("Failed to fetch user details");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user details:", error);
-  //     }
-  //   };
-
-  //   fetchUserDetails();
-  // }, []);  // Empty dependency array ensures that this effect runs only once on component mount
-
+  useEffect(() => {
+    if (!detailsFetched) {
+      getDetails();
+      setDetailsFetched(true);
+    }
+  }, [detailsFetched]);
 
 
 

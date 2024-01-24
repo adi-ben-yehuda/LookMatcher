@@ -5,10 +5,16 @@ const UsersContext = createContext({
   userExists: () => {},
   myProfile: () => {},
   profile: {},
+  token: '',
+  getToken: () => { },
+  setToken: () => { },
+ 
+
 });
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [token, setToken] = useState('');
   const [profile, setProfile] = useState({
     email: "",
     password: "",
@@ -23,6 +29,11 @@ export const UsersProvider = ({ children }) => {
   //   }, 1000);
   //   return () => clearInterval(interval);
   // }, []);
+
+  const getToken = (email) => {
+    const user = users.find((item) => item.email === email);
+    return user.token;
+}
 
   const addUser = (user) => {
     setUsers([...users, user]);
@@ -45,10 +56,15 @@ export const UsersProvider = ({ children }) => {
   return (
     <UsersContext.Provider
       value={{
+       
+        token,
         addUser,
         userExists,
         myProfile,
         profile,
+        getToken,
+        setToken,
+     
       }}
     >
       {children}
