@@ -11,11 +11,13 @@ const ProfileDetails = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
   const [detailsFetched, setDetailsFetched] = useState(false);
   const { token, user } = useContext(UsersContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [oldEmail, setOldEmail] = useState("");
 
   const getDetails = async () => {
     try {
@@ -25,14 +27,14 @@ const ProfileDetails = () => {
           authorization: "Bearer " + token,
         },
       });
-     
+
       if (res.ok) {
         const result = await res.json();
+        setOldEmail(result.email);
         setFirstName(result.firstName);
         setLastName(result.lastName);
         setEmail(result.email);
         return result;
-
       } else {
         throw new Error("Failed to get details");
       }
@@ -47,8 +49,6 @@ const ProfileDetails = () => {
       setDetailsFetched(true);
     }
   }, [detailsFetched]);
-
-
 
   const checkEmail = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -71,29 +71,76 @@ const ProfileDetails = () => {
     setError(false);
   };
 
-  const handleSavePress = () => {
-    setErrorList([]);
-    errorList.splice(0, errorList.length);
+  // const handleSavePress = () => {
+  //   setErrorList([]);
+  //   errorList.splice(0, errorList.length);
 
-    if (firstName === "") {
-      setError(true);
-      errorList.push(" first name");
-    }
+  //   if (firstName === "") {
+  //     setError(true);
+  //     errorList.push(" first name");
+  //   }
 
-    if (lastName === "") {
-      setError(true);
-      errorList.push(" last name");
-    }
+  //   if (lastName === "") {
+  //     setError(true);
+  //     errorList.push(" last name");
+  //   }
 
-    if (!checkEmail()) {
-      setError(true);
-      //console.log("Email 1:", email);
-      errorList.push(" email");
-    }
+  //   if (!checkEmail()) {
+  //     setError(true);
+  //     //console.log("Email 1:", email);
+  //     errorList.push(" email");
+  //   }
 
-    if (errorList.length > 0) {
-      setError(true);
-      setErrorList(errorList);
+  //   if (errorList.length > 0) {
+  //     setError(true);
+  //     setErrorList(errorList);
+  //   }
+  // };
+
+  const handleSavePress = async () => {
+    setErrorMsg("");
+
+    const user = {
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      oldEmail: oldEmail,
+
+    };
+
+    try {
+      const res = await fetch(`http://192.168.56.1:3000/api/Users/details`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (res.ok) {
+        console.log("okkk");
+        // setEmail("");
+        // setPassword("");
+        // setConfirmPassword("");
+        // setFirstName("");
+        // setLastName("");
+      } else if (res.status === 409) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else if (res.status === 400) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else {
+        throw new Error("Failed to update user");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
