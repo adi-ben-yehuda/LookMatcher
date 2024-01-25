@@ -121,7 +121,6 @@ const ProfileDetails = () => {
 
       if (res.ok) {
         setOldEmail(email);
-        console.log("okkk");
         // setEmail("");
         // setPassword("");
         // setConfirmPassword("");
