@@ -5,7 +5,6 @@ import styles from "./HelloHome.style";
 function HelloHome() {
     const route = useRoute();
     const { name } = route.params;
-    console.log(name);
 
     return (
         <View style={styles.home}>
