@@ -120,7 +120,7 @@ const ProfileDetails = () => {
       });
 
       if (res.ok) {
-        console.log("okkk");
+        setOldEmail(email);
         // setEmail("");
         // setPassword("");
         // setConfirmPassword("");
