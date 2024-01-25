@@ -55,11 +55,12 @@ const LoginForm = () => {
 
       if (res.ok) {
         const body = await res.json();
+        console.log(body);
         const token = body.token;
         setToken(token);
         setEmail("");
         setPassword("");
-        navigation.navigate("Home");
+        navigation.navigate("Home", { name: body.name });
       } else if (res.status === 404) {
         const body = await res.json();
         const errorMsg = body.error;

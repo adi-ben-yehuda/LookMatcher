@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.lightPink,
   },
 
+
   iconsShadowBox: {
     height: screenHeight * 0.32,
     width: screenWidth,
