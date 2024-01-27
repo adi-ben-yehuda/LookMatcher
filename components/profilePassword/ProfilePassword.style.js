@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 
   errorMessage1: {
-    top: screenHeight * 0.82,
+    top: screenHeight * 0.8,
     left: screenWidth * 0.15,
     width: screenWidth,
     fontSize: 16,

@@ -3,17 +3,19 @@ import { View, Text } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./ProfilePassword.style";
+import UsersContext from "../../context/userContext";
 
 const ProfilePassword = () => {
   const [currPassword, setCurrPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const { token, user } = useContext(UsersContext);
 
   // States for checking the errors
   const [error, setError] = useState(false);
-  const [errorList, setErrorList] = useState([]);
 
   const handleCurr = (text) => {
     setCurrPassword(text);
@@ -30,67 +32,46 @@ const ProfilePassword = () => {
     setError(false);
   };
 
-  const checkCurrPassword = () => {
-    //add if curr == data
-    if (currPassword === "") {
-      return false;
-    }
-    return true;
-  };
+  const handleSavePress = async () => {
+    setErrorMsg("");
+    const user = {
+      currPassword: currPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    };
 
-  const checkPassword = () => {
-    const passwordRegex = /^[A-Za-z0-9]*$/;
-    if (
-      newPassword === "" ||
-      newPassword.length < 8 ||
-      passwordRegex.test(newPassword) === false
-    ) {
-      return false;
-    }
-    return true;
-  };
+    try {
+      const res = await fetch(`http://192.168.56.1:3000/api/Users/password`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(user),
+      });
 
-  const CheckConfirmPassword = () => {
-    if (confirmPassword == "") {
-      return false;
-    }
-    if (newPassword === confirmPassword) {
-      return true;
-    }
-    return false;
-  };
-
-  const handleSavePress = () => {
-    setErrorList([]);
-    errorList.splice(0, errorList.length);
-
-    if (!checkCurrPassword()) {
-      setError(true);
-      errorList.push(" currrent password");
-    }
-
-    if (!checkPassword()) {
-      setError(true);
-      errorList.push(" new password");
-    }
-    if (!CheckConfirmPassword()) {
-      setError(true);
-      errorList.push(" confirm password");
-    }
-
-    if (errorList.length > 0) {
-      setError(true);
-      setErrorList(errorList);
+      if (res.ok) {
+        setCurrPassword(currPassword);
+        setNewPassword("");
+        setConfirmPassword("");
+      } else if (res.status === 409) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else if (res.status === 400) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else {
+        throw new Error("Failed to change password");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
-
-  // Show all errors separated by a comma
-  const renderList = errorList.map((item, index) => (
-    <Text key={index}>
-      {item}
-      {index !== errorList.length - 1 && ","}
-    </Text>
-  ));
 
   return (
     <View>
@@ -147,7 +128,8 @@ const ProfilePassword = () => {
 
       {error && (
         <View style={styles.errorMessage1}>
-          <Text style={styles.error1}>Invalid{renderList}</Text>
+          {console.log("errorMsg:", errorMsg)}
+          <Text style={styles.error1}>Invalid: {errorMsg}</Text>
         </View>
       )}
 
