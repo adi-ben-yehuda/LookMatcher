@@ -244,6 +244,20 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     textAlign: "center",
   },
+
+  successMessage: {
+    top: screenHeight * 0.25 + 350,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  success: {
+    fontWeight: "bold",
+    color: Color.darkPurple,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
 });
 
 export default styles;

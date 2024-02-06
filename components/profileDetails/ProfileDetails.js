@@ -10,7 +10,6 @@ import UsersContext from "../../context/userContext";
 const ProfileDetails = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
-  const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const [detailsFetched, setDetailsFetched] = useState(false);
   const { token, user } = useContext(UsersContext);
@@ -50,13 +49,7 @@ const ProfileDetails = () => {
     }
   }, [detailsFetched]);
 
-  const checkEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email) === false) {
-      return false;
-    }
-    return true;
-  };
+
 
   const handleEmail = (text) => {
     setEmail(text);
@@ -145,12 +138,12 @@ const ProfileDetails = () => {
   };
 
   // Show all errors separated by a comma
-  const renderList = errorList.map((item, index) => (
-    <Text key={index} style={styles.error}>
-      {item}
-      {index !== errorList.length - 1 && ","}
-    </Text>
-  ));
+  // const renderList = errorList.map((item, index) => (
+  //   <Text key={index} style={styles.error}>
+  //     {item}
+  //     {index !== errorList.length - 1 && ","}
+  //   </Text>
+  // ));
 
   return (
     <View>
@@ -205,7 +198,7 @@ const ProfileDetails = () => {
 
       {error && (
         <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{renderList}</Text>
+          <Text style={styles.error}>Invalid {errorMsg}</Text>
         </View>
       )}
 

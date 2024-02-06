@@ -71,15 +71,15 @@ function RegisterForm() {
       password: password,
       firstName: firstName,
       lastName: lastName,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
     };
 
     try {
       const res = await fetch("http://192.168.56.1:3000/api/Users", {
         method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
@@ -186,7 +186,7 @@ function RegisterForm() {
           placeholder={firstNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={firstName}  // Set the value prop
+          value={firstName} // Set the value prop
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleFirstName}
@@ -207,7 +207,7 @@ function RegisterForm() {
           placeholder={lastNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={lastName}  // Set the value prop
+          value={lastName} // Set the value prop
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleLastName}
@@ -228,7 +228,7 @@ function RegisterForm() {
           placeholder={emailPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={email}  // Set the value prop
+          value={email} // Set the value prop
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleEmail}
@@ -252,7 +252,7 @@ function RegisterForm() {
           placeholder={passwordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={password}  // Set the value prop
+          value={password} // Set the value prop
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handlePassword}
@@ -274,7 +274,7 @@ function RegisterForm() {
           placeholder={confirmPasswordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={confirmPassword}  // Set the value prop
+          value={confirmPassword} // Set the value prop
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleConfirmPassword}
@@ -296,12 +296,17 @@ function RegisterForm() {
         </TouchableOpacity>
       </Text>
 
-      {/* Show error message if error is true */}
       {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid: {errorMsg}</Text>
         </View>
       )}
+      {/* {console.log('error', error)} */}
+      {/* {!error && (
+        <View style={styles.errorMessage}>
+          <Text style={styles.error}>Details updated successfuly</Text>
+        </View>
+      )} */}
 
       <TouchableOpacity onPress={handleRegisterPress}>
         <LinearGradient
