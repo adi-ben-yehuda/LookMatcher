@@ -24,12 +24,15 @@ const styles = StyleSheet.create({
 
   container: {
     top: screenHeight * 0.19,
+   
   },
   button: {
     padding: 10,
     borderWidth: 1,
     width: screenWidth * 0.9,
     alignSelf: "center",
+    backgroundColor: "#D6C5E6",
+    borderRadius: Border.br_8xs,
   },
   buttonIcon: {
     width: 20,
