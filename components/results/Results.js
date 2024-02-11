@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Text, StyleSheet, FlatList, View } from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
 
 const Results = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [results, setResults] = useState([]);
+
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
     "Price: low to high": require("../../assets/component-1661.png"),
@@ -13,6 +15,15 @@ const Results = () => {
     "Distance: near to far": require("../../assets/component-1661.png"),
     "Distance: far to near": require("../../assets/component-1661.png"),
   });
+
+  const ItemCard = ({ item }) => (
+    <View style={styles.cardContainer}>
+      <Image source={{ uri: item.image }} style={styles.itemImage} />
+      <Text style={styles.itemName}>{item.name}</Text>
+      <Text style={styles.itemPrice}>{`Price: $${item.price}`}</Text>
+      <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
+    </View>
+  );
 
   const handleSortByClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -36,78 +47,70 @@ const Results = () => {
     setIsDropdownOpen(false);
   };
 
+  const getResults = async () => {
+
+    try {
+      const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        setResults(body);
+        console.log(body);
+      }
+      // else if (res.status === 409) {
+      //   const body = await res.json();
+      //   const errorMsg = body.error;
+      //   setErrorMsg(errorMsg);
+      //   setError(true);
+      // } else if (res.status === 400) {
+      //   const body = await res.json();
+      //   const errorMsg = body.error;
+      //   setErrorMsg(errorMsg);
+      //   setError(true);
+      // } 
+      else {
+        throw new Error("Failed to add user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getResults();
+  }, []);
+
   return (
     <View style={[styles.results, styles.resultsLayout]}>
       <Text style={styles.headline}>Button-down shirts</Text>
-      <View style={[styles.result4, styles.resultLayout]}>
-        <Text style={[styles.item4, styles.shirtTypo]}>Oxford shirt</Text>
-        <Text style={styles.price4}>$ 70.00</Text>
-        <Text style={styles.store4}>Zara</Text>
-        <Image
-          style={styles.image4Icon}
-          contentFit="cover"
-          source={require("../../assets/image-7.png")}
-        />
-        {/* <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light.png")}
-        /> */}
-      </View>
-      {/* <Image
-        style={styles.result3Icon}
-        contentFit="cover"
-        source={require("../../assets/result-3.png")}
-      /> */}
-      {/* <Image
-        style={styles.favoriteLightIcon5}
-        contentFit="cover"
-        source={require("../../assets/favorite-light.png")}
-      /> */}
-      <View style={[styles.result2, styles.resultLayout]}>
-        {/* <Text style={[styles.text4, styles.text4Position]}>$ 55.00</Text>
-        <Text style={[styles.renuar, styles.renuarTypo]}>Renuar</Text>
-        <Text style={[styles.oxfordShirt1, styles.text4Position]}>
-          Oxford shirt
-        </Text> */}
-        {/* <Image
-          style={[styles.image2Icon, styles.text5Position]}
-          contentFit="cover"
-          source={require("../../assets/image-6.png")}
-        /> */}
-        <Image style={[styles.icon1, styles.iconPosition]} contentFit="cover" />
-        {/* <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light1.png")}
-        /> */}
-      </View>
-      <View style={[styles.result1, styles.resultLayout]}>
-        <Text style={[styles.item1]}>Satin shirt</Text>
-        <Text style={[styles.price1]}>$ 50.00</Text>
-        <Text style={[styles.store1]}>Castro</Text>
-        {/* <Image
-          style={[styles.image1Icon]}
-          contentFit="cover"
-          source={require("../../assets/image-8.png")}
-        /> */}
-        <Image style={[styles.icon1, styles.iconPosition]} contentFit="cover" />
-        <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light1.png")}
+
+      <View style={styles.container}>
+        <FlatList
+          data={results}
+          renderItem={({ item }) => <ItemCard item={item} />}
+          keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+          numColumns={2}
         />
       </View>
-      {/* <Image
-        style={[styles.favoriteLightIcon8, styles.favoriteIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/favorite-light2.png")}
-      /> */}
-      {/* <Image
-        style={[styles.favoriteLightIcon9, styles.favoriteIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/favorite-light2.png")}
-      /> */}
+
+      {/* {results.map((result, index) => (
+        <View key={index} style={[styles.result4, styles.resultLayout]}>
+          <Text style={styles.item4}>{result.name}</Text>
+          <Text style={styles.price4}>{result.price} ₪</Text>
+          <Text style={styles.store4}>{result.company}</Text>
+          <Image
+            style={styles.image4Icon}
+            contentFit="cover"
+            source={{ uri: result.image }}
+          />
+        </View>
+      ))} */}
 
       <View
         style={[styles.sort, styles.stateLayerFlexBox]}
@@ -153,7 +156,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -187,7 +190,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -216,7 +219,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
