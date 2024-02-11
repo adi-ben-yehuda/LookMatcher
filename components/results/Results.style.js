@@ -357,6 +357,43 @@ horizontalFlexBox: {
     alignSelf: "stretch",
     justifyContent: "center",
 },
+
+
+
+
+container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#f0f0f0',
+  },
+  cardContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 8,
+    padding: 16,
+    borderRadius: 8,
+    elevation: 2,
+  },
+  itemImage: {
+    height: 100,
+    resizeMode: 'cover',
+    borderRadius: 4,
+    marginBottom: 8,
+  },
+  itemName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  itemPrice: {
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 4,
+  },
+  itemCompany: {
+    fontSize: 14,
+    color: '#777',
+  },
 });
 
 export default styles;

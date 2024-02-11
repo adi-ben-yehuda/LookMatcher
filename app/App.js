@@ -22,6 +22,8 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Results" component={Results} />
+
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Home" component={Home} />
@@ -31,8 +33,8 @@ function App() {
           <Stack.Screen name="ManualSearch" component={ManualSearch} />
           <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
 
-          <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Wishlist" component={Wishlist} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </UsersProvider>
