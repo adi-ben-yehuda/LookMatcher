@@ -5,6 +5,171 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
+const categorySizesMap = {
+  Shirts: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Pants: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Jeans: ["32", "34", "36", "38", "40", "42", "44", "46", "48"],
+  Shorts: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Dresses: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Skirts: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Sweaters: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Jackets_and_coats: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Sweatshirts: [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "32",
+    "34",
+    "36",
+    "38",
+    "40",
+    "42",
+    "44",
+    "46",
+    "48",
+  ],
+  Shoes: [
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+  ],
+};
+
 const DropdownList = ({ data, selectedItem, onSelect, isVisible }) => (
   <View style={isVisible ? styles.listContainer : { display: "none" }}>
     <FlatList
@@ -158,6 +323,15 @@ const ColorList = ({ data, selectedColors, onSelect, isVisible }) => (
 const ManualSearch = () => {
   const navigation = useNavigation();
 
+  //handele selected choices
+  const [selectedChoices, setSelectedChoices] = useState({
+    gender: null,
+    category: null,
+    sizes: [],
+    stores: [],
+    colors: [],
+  });
+
   const createToggleFunction = (setState, otherSetStates) => () => {
     // Close other lists
     otherSetStates.forEach((setOtherState) => setOtherState(false));
@@ -172,24 +346,30 @@ const ManualSearch = () => {
   const categories = [
     "Shirts",
     "Pants",
+    "Jeans",
+    "Shorts",
     "Dresses",
     "Skirts",
     "Sweaters",
     "Jackets and coats",
+    "Sweatshirts",
     "Shoes",
   ];
 
-  // Style
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setSelectedChoices((prev) => ({ ...prev, category }));
+  };
+
+  // gender
   const [isStyleListVisible, setStyleListVisible] = useState(false);
-  const [selectedStyle, setSelectedStyle] = useState(null);
-  const shirtStyles = [
-    "Tops",
-    "T-shirts",
-    "Button-down shirts",
-    "Tank tops",
-    "Sports shirts",
-    "Bodysuits",
-  ];
+  const [selectedGender, setSelectedGender] = useState(null);
+  const gender = ["men", "women"];
+
+  const handleGenderSelect = (gender) => {
+    setSelectedGender(gender);
+    setSelectedChoices((prev) => ({ ...prev, gender }));
+  };
 
   // Sizes
   const [isSizesListVisible, setSizesListVisible] = useState(false);
@@ -211,35 +391,39 @@ const ManualSearch = () => {
 
   const handleSizesSelect = (size) => {
     const isSelected = selectedSizes.includes(size);
-
-    if (isSelected) {
-      // If the size is already selected, remove it from the list
-      setSelectedSizes(
-        selectedSizes.filter((selectedSizes) => selectedSizes !== size)
-      );
-    } else {
-      // If the size is not selected, add it to the list
-      setSelectedSizes([...selectedSizes, size]);
-    }
+    setSelectedSizes((prevSizes) =>
+      isSelected
+        ? prevSizes.filter((selectedSize) => selectedSize !== size)
+        : [...prevSizes, size]
+    );
+    setSelectedChoices((prev) => ({ ...prev, sizes: [...prev.sizes, size] }));
   };
 
   // Stores
   const [isStoresListVisible, setStoresListVisible] = useState(false);
   const [selectedStores, setSelectedStores] = useState([]);
-  const stores = ["Renuar", "Castro", "Zara", "H&M"];
+  const stores = [
+    "Castro",
+    "FashionClub",
+    "Golf",
+    "H&O",
+    "Hoodies",
+    "Tamnoon",
+    "Renuar",
+    "Urbanica",
+  ];
 
   const handleStoresSelect = (store) => {
     const isSelected = selectedStores.includes(store);
-
-    if (isSelected) {
-      // If the store is already selected, remove it from the list
-      setSelectedStores(
-        selectedStores.filter((selectedStores) => selectedStores !== store)
-      );
-    } else {
-      // If the store is not selected, add it to the list
-      setSelectedStores([...selectedStores, store]);
-    }
+    setSelectedStores((prevStores) =>
+      isSelected
+        ? prevStores.filter((selectedStore) => selectedStore !== store)
+        : [...prevStores, store]
+    );
+    setSelectedChoices((prev) => ({
+      ...prev,
+      stores: [...prev.stores, store],
+    }));
   };
 
   // Colors
@@ -261,35 +445,86 @@ const ManualSearch = () => {
     "#4a8157", // green
   ];
 
-  const searchPress = () => {
-    navigation.navigate("Results");
+  const handleColorsSelect = (color) => {
+    const isSelected = selectedColors.includes(color);
+    setSelectedColors((prevColors) =>
+      isSelected
+        ? prevColors.filter((selectedColor) => selectedColor !== color)
+        : [...prevColors, color]
+    );
+    setSelectedChoices((prev) => ({
+      ...prev,
+      colors: isSelected
+        ? prev.colors.filter((selectedColor) => selectedColor !== color)
+        : [...prev.colors, color],
+    }));
   };
+
+
+    
+  const searchPress = async () => {
+
+    const selectedSizes = selectedChoices.sizes;
+    const selectedStores = selectedChoices.stores;
+    const selectedColors = selectedChoices.colors;
+    const selectedGender = selectedChoices.gender;
+    const selectedCategory = selectedChoices.category;
+
+    console.log(
+      "Selected Sizes for Current Category:",
+      selectedSizes
+    );
+    console.log("Selected Stores:", selectedStores);
+    console.log("Selected Colors:", selectedColors);
+    console.log("Selected Gender:", selectedGender);
+    console.log("Selected Category:", selectedCategory);
+
+    const search = {
+      gender: selectedGender,
+      category: selectedCategory,
+      color: selectedColors,
+      size: selectedSizes,
+      store: selectedStores,
+    };
+  
+    try {
+      const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(search),
+      });
+
+      if (res.ok) {
+        navigation.navigate("Results", { selectedChoices });
+      } else if (res.status === 409) {
+        
+      } else if (res.status === 400) {
+       
+      } else {
+        //throw new Error("Failed to add user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+   
+
+    
+  
 
   return (
     <View style={styles.page}>
       <Text style={styles.title}>{"Search for an item you want"}</Text>
       <View>
-        {/* Category */}
+        {/* gender */}
         <DropdownSelector
-          title={selectedCategory || "Category"}
-          data={categories}
-          selectedItem={selectedCategory}
-          onSelect={setSelectedCategory}
-          isVisible={isCategoryListVisible}
-          toggleVisibility={createToggleFunction(setCategoryListVisible, [
-            setStyleListVisible,
-            setSizesListVisible,
-            setStoresListVisible,
-            setColorsListVisible,
-          ])}
-        />
-
-        {/* Style */}
-        <DropdownSelector
-          title={selectedStyle || "Style"}
-          data={shirtStyles}
-          selectedItem={selectedStyle}
-          onSelect={setSelectedStyle}
+          title={selectedGender || "Gender"}
+          data={gender}
+          selectedItem={selectedGender}
+          onSelect={handleGenderSelect}
           isVisible={isStyleListVisible}
           toggleVisibility={createToggleFunction(setStyleListVisible, [
             setCategoryListVisible,
@@ -299,37 +534,43 @@ const ManualSearch = () => {
           ])}
         />
 
-        {/* Colors */}
-        <ColorDropdownSelector
-          title="Colors"
-          data={colors}
-          selectedItem={selectedColors}
-          isVisible={isColorsListVisible}
-          onSelect={(color) => {
-            const isSelected = selectedColors.includes(color);
-
-            if (isSelected) {
-              setSelectedColors(
-                selectedColors.filter(
-                  (selectedColor) => selectedColor !== color
-                )
-              );
-            } else {
-              setSelectedColors([...selectedColors, color]);
-            }
+        {/* Category */}
+        <DropdownSelector
+          title={selectedCategory || "Category"}
+          data={categories}
+          selectedItem={selectedCategory}
+          onSelect={(category) => {
+            handleCategorySelect(category);
+            setSizesListVisible(true);
           }}
-          toggleVisibility={createToggleFunction(setColorsListVisible, [
-            setCategoryListVisible,
+          isVisible={isCategoryListVisible}
+          toggleVisibility={createToggleFunction(setCategoryListVisible, [
             setStyleListVisible,
             setSizesListVisible,
             setStoresListVisible,
+            setColorsListVisible,
           ])}
         />
+
+        {/* Color */}
+        <ColorDropdownSelector
+  title="Colors"
+  data={colors}
+  selectedItem={selectedColors}
+  isVisible={isColorsListVisible}
+  onSelect={(color) => handleColorsSelect(color)} // Use handleColorsSelect here
+  toggleVisibility={createToggleFunction(setColorsListVisible, [
+    setCategoryListVisible,
+    setStyleListVisible,
+    setSizesListVisible,
+    setStoresListVisible,
+  ])}
+/>
 
         {/* Sizes */}
         <MultipleDropdownSelector
           title="Sizes"
-          data={sizes}
+          data={categorySizesMap[selectedCategory] || []}
           selectedItem={selectedSizes}
           onSelect={(size) => handleSizesSelect(size)}
           isVisible={isSizesListVisible}

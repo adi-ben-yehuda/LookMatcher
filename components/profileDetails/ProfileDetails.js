@@ -64,31 +64,6 @@ const ProfileDetails = () => {
     setError(false);
   };
 
-  // const handleSavePress = () => {
-  //   setErrorList([]);
-  //   errorList.splice(0, errorList.length);
-
-  //   if (firstName === "") {
-  //     setError(true);
-  //     errorList.push(" first name");
-  //   }
-
-  //   if (lastName === "") {
-  //     setError(true);
-  //     errorList.push(" last name");
-  //   }
-
-  //   if (!checkEmail()) {
-  //     setError(true);
-  //     //console.log("Email 1:", email);
-  //     errorList.push(" email");
-  //   }
-
-  //   if (errorList.length > 0) {
-  //     setError(true);
-  //     setErrorList(errorList);
-  //   }
-  // };
 
   const handleSavePress = async () => {
     setErrorMsg("");
@@ -114,11 +89,7 @@ const ProfileDetails = () => {
 
       if (res.ok) {
         setOldEmail(email);
-        // setEmail("");
-        // setPassword("");
-        // setConfirmPassword("");
-        // setFirstName("");
-        // setLastName("");
+      
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
