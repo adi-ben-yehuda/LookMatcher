@@ -60,7 +60,19 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
   },
-
+  successMessage: {
+    top: screenHeight * 0.8,
+    left: screenWidth * 0.15,
+    width: screenWidth,
+    fontSize: 16,
+  },
+  success: {
+    fontWeight: "bold",
+    color: Color.black,
+    fontSize: 14,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
   errorMessage1: {
     top: screenHeight * 0.8,
     left: screenWidth * 0.15,

@@ -74,6 +74,20 @@ const styles = StyleSheet.create({
     color: "#333",
   },
 
+  successMessage: {
+    top: screenHeight * 0.38,
+    fontSize: screenHeight * 0.02,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  success: {
+    fontWeight: "bold",
+    color: Color.black,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
+
   errorMessage: {
     top: screenHeight * 0.38,
     fontSize: screenHeight * 0.02,
