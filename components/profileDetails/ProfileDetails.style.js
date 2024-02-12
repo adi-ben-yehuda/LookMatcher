@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   success: {
     fontWeight: "bold",
-    color: Color.black,
+    color: Color.darkPurple,
     fontSize: screenHeight * 0.02,
     width: screenWidth * 0.7,
     textAlign: "center",
