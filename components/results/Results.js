@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, FlatList, View } from "react-native";
+import { Text, StyleSheet, FlatList, View, TouchableOpacity} from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
 
@@ -7,6 +7,11 @@ const Results = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [results, setResults] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
@@ -16,14 +21,32 @@ const Results = () => {
     "Distance: far to near": require("../../assets/component-1661.png"),
   });
 
-  const ItemCard = ({ item }) => (
-    <View style={styles.cardContainer}>
-      <Image source={{ uri: item.image }} style={styles.itemImage} />
-      <Text style={styles.itemName}>{item.name}</Text>
-      <Text style={styles.itemPrice}>{`Price: $${item.price}`}</Text>
-      <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
-    </View>
-  );
+  const ItemCard = ({ item }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
+  
+    const toggleFavorite = () => {
+      setIsFavorite(!isFavorite);
+    };
+  
+    return (
+      <View style={styles.cardContainer}>
+        <Image source={{ uri: item.image }} style={styles.itemImage} />
+        <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteIcon}>
+          <Image
+            source={
+              isFavorite
+                ? require("../../assets/favorite-light1.png")
+                : require("../../assets/favorite-light2.png")
+            }
+            style={styles.favoriteImage}
+          />
+        </TouchableOpacity>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
+        <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
+      </View>
+    );
+  };
 
   const handleSortByClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -98,19 +121,6 @@ const Results = () => {
           numColumns={2}
         />
       </View>
-
-      {/* {results.map((result, index) => (
-        <View key={index} style={[styles.result4, styles.resultLayout]}>
-          <Text style={styles.item4}>{result.name}</Text>
-          <Text style={styles.price4}>{result.price} ₪</Text>
-          <Text style={styles.store4}>{result.company}</Text>
-          <Image
-            style={styles.image4Icon}
-            contentFit="cover"
-            source={{ uri: result.image }}
-          />
-        </View>
-      ))} */}
 
       <View
         style={[styles.sort, styles.stateLayerFlexBox]}
