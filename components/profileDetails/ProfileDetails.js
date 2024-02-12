@@ -11,6 +11,7 @@ const ProfileDetails = () => {
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [detailsFetched, setDetailsFetched] = useState(false);
   const { token, user } = useContext(UsersContext);
   const [firstName, setFirstName] = useState("");
@@ -67,6 +68,7 @@ const ProfileDetails = () => {
 
   const handleSavePress = async () => {
     setErrorMsg("");
+    setSuccessMessage("");
 
     const user = {
       email: email,
@@ -89,7 +91,7 @@ const ProfileDetails = () => {
 
       if (res.ok) {
         setOldEmail(email);
-      
+        setSuccessMessage("Details updated successfully!");      
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
@@ -167,6 +169,12 @@ const ProfileDetails = () => {
         />
       </View>
 
+      {successMessage && (
+        <View style={styles.successMessage}>
+          <Text style={styles.success}>{successMessage}</Text>
+        </View>
+      )}
+      
       {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid {errorMsg}</Text>
