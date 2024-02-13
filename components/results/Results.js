@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, FlatList, View, TouchableOpacity} from "react-native";
+import { Text, StyleSheet, FlatList, View, TouchableOpacity } from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
 
@@ -23,11 +23,11 @@ const Results = () => {
 
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(false);
-  
+
     const toggleFavorite = () => {
       setIsFavorite(!isFavorite);
     };
-  
+
     return (
       <View style={styles.cardContainer}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
@@ -68,13 +68,21 @@ const Results = () => {
     });
 
     setIsDropdownOpen(false);
+
+
+    // Sort the results based on the selected item
+    if (item === "Price: low to high") {
+      setResults([...results].sort((a, b) => a.price - b.price));
+    } else if (item === "Price: High To Low") {
+      setResults([...results].sort((a, b) => b.price - a.price));
+    }
   };
 
   const getResults = async () => {
 
     try {
       const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
-        method: "GET",
+        method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -98,7 +106,7 @@ const Results = () => {
       //   setError(true);
       // } 
       else {
-        throw new Error("Failed to add user");
+        throw new Error("error");
       }
     } catch (error) {
       console.error(error);

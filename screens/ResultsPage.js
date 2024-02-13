@@ -9,13 +9,11 @@ const screenHeight = window.height;
 
 const ResultsPage = () => {
   return (
-    <View>
-      <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.3 }}>
+    <View style={{ flex: 1}}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Results />
-      </ScrollView>
-      <View>
         <ToolBar />
-      </View>
+      </ScrollView>
     </View>
   );
 };

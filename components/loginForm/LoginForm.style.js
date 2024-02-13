@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 1,
     },
     width: screenWidth,
-    height: screenHeight * 0.75,
+    height: screenHeight,
     opacity: 0.85,
     backgroundColor: Color.white,
     position: "absolute",
