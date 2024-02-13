@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     top: screenHeight * 0.25,
     boxShadow: "0px 4px 50px rgba(0, 0, 0, 0.25)",
     width: screenWidth,
-    height: screenHeight * 0.75,
+    height: screenHeight,
     opacity: 0.85,
     backgroundColor: Color.white,
     position: "absolute",
