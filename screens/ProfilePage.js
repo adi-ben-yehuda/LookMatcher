@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: "hidden",
     width: "100%",
-    backgroundColor: "#E2DBEA",
+    backgroundColor: "#FBF9FC",
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },

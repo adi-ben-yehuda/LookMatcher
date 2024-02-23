@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
     overflow: "hidden",
     width: "100%",
-    backgroundColor: Color.lightPink,
+    backgroundColor: "#FBF9FC",
   },
 
 
