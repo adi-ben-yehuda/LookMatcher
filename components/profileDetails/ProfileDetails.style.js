@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   titelText: {
     fontSize: screenHeight * 0.06,
     fontWeight: "bold",
-    color: "#333",
+    color: Color.darkPurple,
   },
 
   errorMessage: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
 
   register2: {
-    fontSize: screenHeight * 0.02,
+    fontSize: 11,
     color: Color.white,
     width: 100,
     textAlign: "center", // Center the text horizontally

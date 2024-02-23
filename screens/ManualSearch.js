@@ -8,11 +8,10 @@ import BackButton from "../components/backButton/BackButton";
 const ManualSearch = () => {
   return (
     <View style={{ flex: 1 }}>
-      <>
+    
         <ManualSearchOptions />
         <Tool />
-      </>
-      <BackButton />
+     
     </View>
   );
 };

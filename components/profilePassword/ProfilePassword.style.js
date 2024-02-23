@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
 
   register2: {
-    fontSize: 16,
+    fontSize: 11,
     color: Color.white,
     width: 100,
     textAlign: "center", // Center the text horizontally

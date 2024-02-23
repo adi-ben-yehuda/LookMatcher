@@ -179,10 +179,12 @@ const LoginForm = () => {
           <Text style={styles.register}>Register now</Text>
         </TouchableOpacity>
       </Text>
-
+     
+      <TouchableOpacity onPress={() => navigation.navigate("ChangePass1")}>
       <Text style={[styles.forgetPassword, styles.registerNowTypo]}>
         Forget password ?
       </Text>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };

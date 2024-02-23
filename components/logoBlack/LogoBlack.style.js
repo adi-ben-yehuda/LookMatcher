@@ -8,9 +8,13 @@ const styles = StyleSheet.create({
   logoIcon: {
     height: screenHeight * 0.35,
     width: screenWidth,
-    backgroundColor: "#E2DBEA",
+    backgroundColor: "#FBF9FC",
     alignSelf: "center",
     alignItems: "center",
+  },
+  cover:{
+    backgroundColor: "#FBF9FC",
+    width: screenWidth,
   },
 });
 

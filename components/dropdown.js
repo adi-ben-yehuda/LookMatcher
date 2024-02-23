@@ -7,11 +7,12 @@ import {
   ScrollView,
 } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
-import styles from "./ManualSearchOptions.style";
+import styles from "./dropdown.style";
 import { Dropdown } from "react-native-element-dropdown";
 // import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-import BackButton from "../backButton/BackButton";
+import Tool from "../components/toolbar/ToolBar";
+import BackButton from "./backButton/BackButton";
 
 const colors = [
   { label: "Pink", value: "1", color: "#ff9ccc" },
@@ -98,24 +99,6 @@ const sizes = [
   { label: "48", value: "17" },
 ];
 
-const genderMapping = {
-  1: "Men",
-  2: "Women",
-};
-
-const categoryMapping = {
-  1: "Shirts",
-  2: "Pants",
-  3: "Jeans",
-  4: "Shorts",
-  5: "Dresses",
-  6: "Skirts",
-  7: "Sweaters",
-  8: "Jackets and coats",
-  9: "Sweatshirts",
-  10: "Shoes",
-};
-
 const shoesSizesMapping = {
   1: "35",
   2: "36",
@@ -183,7 +166,7 @@ const colorMapping = {
   13: "Green",
 };
 
-const Search = () => {
+const MultiSelectComponent = () => {
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSize, setSelectedSize] = useState([]);
@@ -194,6 +177,7 @@ const Search = () => {
   const [isShoes, setIsShoes] = useState(false);
   const window = Dimensions.get("window");
   const screenHeight = window.height;
+
 
   const renderItemColor = (item) => {
     return (
@@ -213,6 +197,14 @@ const Search = () => {
     );
   };
 
+  const renderSelectedColor = (item) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.selectedTextStyle}>{item.label}</Text>
+      </View>
+    );
+  };
+
   const searchPress = async () => {
     const selectedMapping = isShoes ? shoesSizesMapping : sizesMapping;
 
@@ -223,8 +215,8 @@ const Search = () => {
     );
     const colors = selectedColor.map((colorValue) => colorMapping[colorValue]);
 
-    const gender = genderMapping[selectedGender];
-    const category = categoryMapping[selectedCategory];
+    const gender = selectedGender;
+    const category = selectedCategory;
 
     console.log("shoes:", isShoes);
     console.log("Selected Sizes for Current Category:", sizes);
@@ -278,7 +270,6 @@ const Search = () => {
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
               data={gender}
               search
               maxHeight={300}
@@ -290,7 +281,8 @@ const Search = () => {
               onFocus={() => setIsFocus1(true)}
               onBlur={() => setIsFocus1(false)}
               onChange={(item) => {
-                setSelectedGender(item.value);
+                setSelectedGender(item.label);
+                console.log(" Gender:", selectedGender);
                 setIsFocus1(false);
               }}
             />
@@ -304,7 +296,6 @@ const Search = () => {
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
               data={category}
               search
               maxHeight={300}
@@ -316,8 +307,10 @@ const Search = () => {
               onFocus={() => setIsFocus2(true)}
               onBlur={() => setIsFocus2(false)}
               onChange={(item) => {
-                setSelectedCategory(item.value);
                 setIsFocus2(false);
+                setSelectedCategory(item.label);
+                console.log(" category:", selectedCategory);
+                setSelectedSize([]);
               }}
             />
           </View>
@@ -339,6 +332,7 @@ const Search = () => {
               searchPlaceholder="Search..."
               onChange={(item) => {
                 setSelectedColor(item);
+                console.log(" color:", selectedColor);
               }}
               renderItem={renderItemColor}
               renderSelectedItem={(item, unSelect) => (
@@ -353,7 +347,10 @@ const Search = () => {
                       style={[
                         styles.textSelectedStyle,
                         {
-                          color: item.label === "White" ? "black" : item.color,
+                          color:
+                            item.label === "White"
+                              ? "black"
+                              : item.color,
                         },
                       ]}
                     >
@@ -380,10 +377,12 @@ const Search = () => {
               search
               searchPlaceholder="Search..."
               onChange={(item) => {
+                //setSelectedSize(item);
                 setSelectedSize(item);
                 if (selectedCategory === "Shoes") {
                   setIsShoes(true);
                 }
+                console.log(" sizes:", selectedSize);
               }}
               renderItem={renderItem}
               renderSelectedItem={(item, unSelect) => (
@@ -413,6 +412,7 @@ const Search = () => {
               searchPlaceholder="Search..."
               onChange={(item) => {
                 setSelectedStores(item);
+                console.log(" storesssss:", item);
               }}
               renderItem={renderItem}
               renderSelectedItem={(item, unSelect) => (
@@ -443,8 +443,12 @@ const Search = () => {
       </ScrollView>
 
       {/* </View> */}
+
+      <View>
+        <Tool />
+      </View>
     </View>
   );
 };
 
-export default Search;
+export default MultiSelectComponent;
