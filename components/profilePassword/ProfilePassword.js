@@ -12,6 +12,7 @@ const ProfilePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const { token, user } = useContext(UsersContext);
 
   // States for checking the errors
@@ -34,6 +35,8 @@ const ProfilePassword = () => {
 
   const handleSavePress = async () => {
     setErrorMsg("");
+    setSuccessMessage("");
+
     const user = {
       currPassword: currPassword,
       newPassword: newPassword,
@@ -55,6 +58,7 @@ const ProfilePassword = () => {
         setCurrPassword(currPassword);
         setNewPassword("");
         setConfirmPassword("");
+        setSuccessMessage("Password changed successfully!");      
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
@@ -125,6 +129,12 @@ const ProfilePassword = () => {
           source={require("../../assets/chield-check.png")}
         />
       </View>
+
+      {successMessage && (
+        <View style={styles.successMessage}>
+          <Text style={styles.success}>{successMessage}</Text>
+        </View>
+      )}
 
       {error && (
         <View style={styles.errorMessage1}>
