@@ -6,9 +6,12 @@ import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./reset2.style";
 import { useState, useRef, useContext } from "react";
-
+import { useRoute } from "@react-navigation/native";
 
 const Reset2 = () => {
+  const route = useRoute();
+  const { email } = route.params;
+
   const navigation = useNavigation();
   const passInput = useRef(null);
   const newPasswordInput = useRef(null);
@@ -24,7 +27,8 @@ const Reset2 = () => {
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
-
+  const [successMessage, setSuccessMessage] = useState("");
+  
   const handlePass = (text) => {
     setPass(text);
     setError(false);
@@ -35,7 +39,39 @@ const Reset2 = () => {
     setError(false);
   };
 
-  const handleLoginPress = async () => {
+  const handleResetPress = async () => {
+    setErrorMsg("");
+    setSuccessMessage("");
+  
+    const reset = {
+      email: email,
+      token: pass,
+      newPassword: newPassword,
+    };
+  
+    try {
+      const res = await fetch("http://192.168.1.112:3000/api/resetPass", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reset),
+      });
+  
+      if (res.ok) {
+        setSuccessMessage("Password reset successfully!");
+      } else if (res.status === 409) {
+        const body = await res.json();
+        const errorMsg = body.error;
+        setErrorMsg(errorMsg);
+        setError(true);
+      } else {
+        throw new Error("Failed to reset password");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const loginButtonStyle = error
@@ -115,14 +151,12 @@ const Reset2 = () => {
         />
       </View>
 
-      {/* Show error message if error is true */}
-      {/* {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{errorMsg}</Text>
-        </View>
-      )} */}
+      <View style={styles.errorMessage}>
+        {error && <Text style={styles.error}>{errorMsg}</Text>}
+        {successMessage && <Text style={styles.success}>{successMessage}</Text>}
+      </View>
 
-      <TouchableOpacity >
+      <TouchableOpacity onPress={handleResetPress} >
         <LinearGradient
           style={loginButtonStyle}
           locations={[0, 1]}
@@ -139,6 +173,11 @@ const Reset2 = () => {
         </LinearGradient>
       </TouchableOpacity>
 
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <View style={styles.backlogin}>
+        <Text style={styles.backlogin2}>Back to login {'>'}</Text>
+      </View>
+    </TouchableOpacity>
       
     </LinearGradient>
   );

@@ -178,9 +178,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
-
   errorMessage: {
-    top: screenHeight * 0.25 + 350,
+    top: screenHeight * 0.465 ,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -188,6 +187,26 @@ const styles = StyleSheet.create({
   error: {
     fontWeight: "bold",
     color: Color.red,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
+  success: {
+    fontWeight: "bold",
+    color: Color.darkPurple,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
+  },
+  backlogin: {
+    top: screenHeight * 0.6 ,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  backlogin2: {
+    fontWeight: "bold",
+    color: Color.darkPurple,
     fontSize: screenHeight * 0.02,
     width: screenWidth * 0.7,
     textAlign: "center",

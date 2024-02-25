@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   registerLayout: {
     backgroundColor: "transparent",
     width: screenWidth * 0.6,
+    height: screenHeight * 0.1,
     borderRadius: Border.br_3xs,
     marginLeft: screenWidth * -0.3,
     left: "50%",
@@ -16,19 +17,19 @@ const styles = StyleSheet.create({
   },
   buttonSearch: {
     color: Color.white,
-    fontSize: screenHeight * 0.038,
+    fontSize: screenHeight * 0.033,
     textAlign: "center",
     textAlignVertical: "center",
   },
   register: {
-    top: screenHeight * 0.2,
+    top: screenHeight * 0.3,
   },
   register1: {
-    top: screenHeight * 0.4,
+    top: screenHeight * 0.5,
   },
   search: {
-    top: screenHeight * 0.08,
-    color: Color.black,
+    top: screenHeight * 0.1,
+    color: Color.darkPurple,
     fontSize: screenHeight * 0.04,
     width: screenWidth,
     textAlign: "center",
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   searchPage: {
-    backgroundColor: Color.lightPink,
+    backgroundColor: "#FBF9FC",
     flex: 1,
     overflow: "hidden",
     width: "100%",

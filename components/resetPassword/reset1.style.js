@@ -7,16 +7,17 @@ const screenWidth = window.width;
 
 const styles = StyleSheet.create({
   title: {
-    top: screenHeight * 0.08,
-    width: screenWidth,
+    //flex: 1,
+    top: screenHeight * 0.1,
     justifyContent: "center",
     alignItems: "center",
   },
-
+  
   titelText: {
     fontSize: screenHeight * 0.06,
     fontWeight: "bold",
     color: Color.white,
+    textAlign: "center", // Align the text in the center
   },
 
   title2: {
@@ -170,32 +171,13 @@ const styles = StyleSheet.create({
     backgroundColor: Color.lightPink,
     overflow: "hidden",
   },
-
-  alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 470,
-    textAlign: "center",
-    width: screenWidth,
-    position: "absolute",
-    textAlignVertical: "center",
-    fontWeight: "bold",
-  },
-
-  newMember: {
-    fontSize: screenHeight * 0.018,
-    color: Color.black,
-  },
+  
   register: {
     fontSize: screenHeight * 0.018,
     fontWeight: "bold",
     color: Color.darkPurple,
   },
-  newMemberRegisterContainer: {
-    top: screenHeight * 0.25 + 150,
-    fontSize: screenHeight * 0.018,
-    width: screenWidth,
-    textAlign: "center",
-    position: "absolute",
-  },
+ 
 
   login: {
     flex: 1,
@@ -205,8 +187,9 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
+  
   errorMessage: {
-    top: screenHeight * 0.25 + 350,
+    top: screenHeight * 0.42 ,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -218,15 +201,10 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     textAlign: "center",
   },
-  errorMessage: {
-    top: screenHeight * 0.42 ,
-    fontSize: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  error: {
+
+  success: {
     fontWeight: "bold",
-    color: Color.red,
+    color: Color.darkPurple,
     fontSize: screenHeight * 0.02,
     width: screenWidth * 0.7,
     textAlign: "center",
