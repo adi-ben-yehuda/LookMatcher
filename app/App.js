@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { UsersProvider } from "../context/userContext.js";
+import { Linking } from 'react-native';
 
 import Register from "../screens/Register";
 import Login from "../screens/Login";
@@ -20,13 +21,12 @@ import ChangePass1 from "../screens/Reset1.js";
 const Stack = createStackNavigator();
 
 function App() {
+  
+
   return (
     <UsersProvider>
       <NavigationContainer independent={true}>
-
-
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Register" component={Register} />
@@ -36,12 +36,8 @@ function App() {
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="ManualSearch" component={ManualSearch} />
           <Stack.Screen name="Search" component={Search} />
-          
           <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
-          
-          <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Wishlist" component={Wishlist} />
-
         </Stack.Navigator>
       </NavigationContainer>
     </UsersProvider>
