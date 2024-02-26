@@ -66,6 +66,17 @@ const category = [
   { label: "Shoes", value: "10" },
 ];
 
+const categoryMan = [
+  { label: "Shirts", value: "1" },
+  { label: "Pants", value: "2" },
+  { label: "Jeans", value: "3" },
+  { label: "Shorts", value: "4" },
+  { label: "Sweaters", value: "5" },
+  { label: "Jackets and coats", value: "6" },
+  { label: "Sweatshirts", value: "7" },
+  { label: "Shoes", value: "8" },
+];
+
 const stores = [
   { label: "Castro", value: "1" },
   { label: "Renuar", value: "2" },
@@ -79,23 +90,22 @@ const stores = [
 ];
 
 const sizes = [
-  { label: "XXS", value: "1" },
-  { label: "XS", value: "2" },
-  { label: "S", value: "3" },
-  { label: "M", value: "4" },
-  { label: "L", value: "5" },
-  { label: "XL", value: "6" },
-  { label: "XXL", value: "7" },
-  { label: "XXXL", value: "8" },
-  { label: "32", value: "9" },
-  { label: "34", value: "10" },
-  { label: "36", value: "11" },
-  { label: "38", value: "12" },
-  { label: "40", value: "13" },
-  { label: "42", value: "14" },
-  { label: "44", value: "15" },
-  { label: "46", value: "16" },
-  { label: "48", value: "17" },
+  { label: "XS", value: "1" },
+  { label: "S", value: "2" },
+  { label: "M", value: "3" },
+  { label: "L", value: "4" },
+  { label: "XL", value: "5" },
+  { label: "XXL", value: "6" },
+  { label: "XXXL", value: "7" },
+  { label: "32", value: "8" },
+  { label: "34", value: "9" },
+  { label: "36", value: "10" },
+  { label: "38", value: "11" },
+  { label: "40", value: "12" },
+  { label: "42", value: "13" },
+  { label: "44", value: "14" },
+  { label: "46", value: "15" },
+  { label: "48", value: "16" },
 ];
 
 const genderMapping = {
@@ -114,6 +124,17 @@ const categoryMapping = {
   8: "Jackets and coats",
   9: "Sweatshirts",
   10: "Shoes",
+};
+
+const categoryMappingMan = {
+  1: "Shirts",
+  2: "Pants",
+  3: "Jeans",
+  4: "Shorts",
+  5: "Sweaters",
+  6: "Jackets and coats",
+  7: "Sweatshirts",
+  8: "Shoes",
 };
 
 const shoesSizesMapping = {
@@ -148,23 +169,22 @@ const storesMapping = {
 };
 
 const sizesMapping = {
-  1: "XXS",
-  2: "XS",
-  3: "S",
-  4: "M",
-  5: "L",
-  6: "XL",
-  7: "XXL",
-  8: "XXXL",
-  9: "32",
-  10: "34",
-  11: "36",
-  12: "38",
-  13: "40",
-  14: "42",
-  15: "44",
-  16: "46",
-  17: "48",
+  1: "XS",
+  2: "S",
+  3: "M",
+  4: "L",
+  5: "XL",
+  6: "XXL",
+  7: "XXXL",
+  8: "32",
+  9: "34",
+  10: "36",
+  11: "38",
+  12: "40",
+  13: "42",
+  14: "44",
+  15: "46",
+  16: "48",
 };
 
 const colorMapping = {
@@ -192,8 +212,42 @@ const Search = () => {
   const [isFocus1, setIsFocus1] = useState(false);
   const [isFocus2, setIsFocus2] = useState(false);
   const [isShoes, setIsShoes] = useState(false);
+  const [isMen, setIsMen] = useState(false);
+  const [isStoreSelected, setIsStoreSelected] = useState(false);
+
   const window = Dimensions.get("window");
   const screenHeight = window.height;
+
+  useEffect(() => {
+    if (selectedCategory === "10" && selectedGender === "2") {
+      console.log("women");
+      setSelectedSize([]);
+      setIsShoes(true);
+    } else if (selectedCategory === "8" && selectedGender === "1") {
+      console.log("men");
+      setSelectedSize([]);
+      setIsShoes(true);
+    } else {
+      setSelectedSize([]);
+      setIsShoes(false);
+    }
+  }, [selectedCategory, selectedGender]);
+
+  useEffect(() => {
+    // Update category options based on the selected gender
+    if (selectedGender === "1") {
+      setSelectedCategory(null);
+      setIsMen(true);
+    } else {
+      setSelectedCategory(null);
+      setIsMen(false);
+    }
+  }, [selectedGender]);
+
+  useEffect(() => {
+    // Check if at least one store is selected
+    setIsStoreSelected(selectedStores.length > 0);
+  }, [selectedStores]);
 
   const renderItemColor = (item) => {
     return (
@@ -269,180 +323,189 @@ const Search = () => {
     <View style={styles.page}>
       {/* <View style={{ flex: 1 }}> */}
       {/* <ScrollView contentContainerStyle={{ flexGrow: 1 }}> */}
-      <ScrollView>
-        <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
-        <View style={styles.container1}>
-          <View style={styles.container}>
-            <Dropdown
-              style={[styles.dropdown, isFocus1 && { borderColor: "#43118C" }]}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={gender}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              placeholder={!isFocus1 ? "Gender" : "..."}
-              searchPlaceholder="Search..."
-              value={selectedGender}
-              onFocus={() => setIsFocus1(true)}
-              onBlur={() => setIsFocus1(false)}
-              onChange={(item) => {
-                setSelectedGender(item.value);
-                setIsFocus1(false);
-              }}
-            />
-          </View>
-        </View>
 
-        <View style={styles.container2}>
-          <View style={styles.container}>
-            <Dropdown
-              style={[styles.dropdown, isFocus2 && { borderColor: "#43118C" }]}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={category}
-              search
-              maxHeight={300}
-              labelField="label"
-              valueField="value"
-              placeholder={!isFocus2 ? "Category" : "..."}
-              searchPlaceholder="Search..."
-              value={selectedCategory}
-              onFocus={() => setIsFocus2(true)}
-              onBlur={() => setIsFocus2(false)}
-              onChange={(item) => {
-                setSelectedCategory(item.value);
-                setIsFocus2(false);
-              }}
-            />
-          </View>
+      <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
+      <View style={styles.container1}>
+        <View style={styles.container}>
+          <Dropdown
+            style={[styles.dropdown, isFocus1 && { borderColor: "#43118C" }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={gender}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus1 ? "Gender" : "..."}
+            searchPlaceholder="Search..."
+            value={selectedGender}
+            onFocus={() => setIsFocus1(true)}
+            onBlur={() => setIsFocus1(false)}
+            onChange={(item) => {
+              setSelectedGender(item.value);
+              setIsFocus1(false);
+            }}
+          />
         </View>
+      </View>
 
-        <View style={styles.container3}>
-          <View style={styles.container}>
-            <MultiSelect
-              style={styles.dropdown}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              data={colors}
-              labelField="label"
-              valueField="value"
-              placeholder="Color"
-              value={selectedColor}
-              search
-              searchPlaceholder="Search..."
-              onChange={(item) => {
-                setSelectedColor(item);
-              }}
-              renderItem={renderItemColor}
-              renderSelectedItem={(item, unSelect) => (
-                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                  <View
+      <View style={styles.container2}>
+        <View style={styles.container}>
+          <Dropdown
+            style={[styles.dropdown, isFocus2 && { borderColor: "#43118C" }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={isMen ? categoryMan : category}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus2 ? "Category" : "..."}
+            searchPlaceholder="Search..."
+            value={selectedCategory}
+            onFocus={() => setIsFocus2(true)}
+            onBlur={() => setIsFocus2(false)}
+            onChange={(item) => {
+              setSelectedCategory(item.value);
+              setIsFocus2(false);
+            }}
+          />
+        </View>
+      </View>
+
+      <View style={styles.container3}>
+        <View style={styles.container}>
+          <MultiSelect
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            data={colors}
+            labelField="label"
+            valueField="value"
+            placeholder="Color"
+            value={selectedColor}
+            search
+            searchPlaceholder="Search..."
+            onChange={(selectedItems) => {
+              // Check if the selected sizes do not exceed the limit
+              if (selectedItems.length <= 3) {
+                setSelectedColor(selectedItems);
+              }
+            }}
+            renderItem={renderItemColor}
+            renderSelectedItem={(item, unSelect) => (
+              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                <View
+                  style={[
+                    styles.selectedStyle,
+                    { borderColor: item.color, borderWidth: 1.8 },
+                  ]}
+                >
+                  <Text
                     style={[
-                      styles.selectedStyle,
-                      { borderColor: item.color, borderWidth: 1.8 },
+                      styles.textSelectedStyle,
+                      {
+                        color: item.label === "White" ? "black" : item.color,
+                      },
                     ]}
                   >
-                    <Text
-                      style={[
-                        styles.textSelectedStyle,
-                        {
-                          color: item.label === "White" ? "black" : item.color,
-                        },
-                      ]}
-                    >
-                      {item.label}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
+                    {item.label}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
         </View>
-        <View style={styles.container4}>
-          <View style={styles.container}>
-            <MultiSelect
-              style={styles.dropdown}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              data={selectedCategory === "Shoes" ? shoesSize : sizes}
-              labelField="label"
-              valueField="value"
-              placeholder="Size"
-              value={selectedSize}
-              search
-              searchPlaceholder="Search..."
-              onChange={(item) => {
-                setSelectedSize(item);
-                if (selectedCategory === "Shoes") {
-                  setIsShoes(true);
-                }
-              }}
-              renderItem={renderItem}
-              renderSelectedItem={(item, unSelect) => (
-                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                  <View style={styles.selectedStyle}>
-                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
+      </View>
+      <View style={styles.container4}>
+        <View style={styles.container}>
+          <MultiSelect
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            data={isShoes ? shoesSize : sizes}
+            labelField="label"
+            valueField="value"
+            placeholder="Size"
+            value={selectedSize}
+            search
+            searchPlaceholder="Search..."
+            onChange={(selectedItems) => {
+              // Check if the selected sizes do not exceed the limit
+              if (selectedItems.length <= 3) {
+                setSelectedSize(selectedItems);
+              }
+            }}
+            renderItem={renderItem}
+            renderSelectedItem={(item, unSelect) => (
+              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                <View style={styles.selectedStyle}>
+                  <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
         </View>
+      </View>
 
-        <View style={styles.container5}>
-          <View style={styles.container}>
-            <MultiSelect
-              style={styles.dropdown}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              data={stores}
-              labelField="label"
-              valueField="value"
-              placeholder="Store"
-              value={selectedStores}
-              search
-              searchPlaceholder="Search..."
-              onChange={(item) => {
-                setSelectedStores(item);
-              }}
-              renderItem={renderItem}
-              renderSelectedItem={(item, unSelect) => (
-                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                  <View style={styles.selectedStyle}>
-                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
+      <View style={styles.container5}>
+        <View style={styles.container}>
+          <MultiSelect
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            data={stores}
+            labelField="label"
+            valueField="value"
+            placeholder="Store"
+            value={selectedStores}
+            search
+            searchPlaceholder="Search..."
+            onChange={(selectedItems) => {
+              // Check if the selected sizes do not exceed the limit
+              if (selectedItems.length <= 3) {
+                setSelectedStores(selectedItems);
+              }
+            }}
+            renderItem={renderItem}
+            renderSelectedItem={(item, unSelect) => (
+              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                <View style={styles.selectedStyle}>
+                  <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
         </View>
+      </View>
 
-        <TouchableOpacity
-          onPress={searchPress}
-          style={styles.searchButtonContainer}
-        >
-          <LinearGradient
-            style={styles.searchButton}
-            locations={[0, 1]}
-            colors={["#29085f", "#b941d7"]}
-          >
-            <Text style={styles.searchText}>{"Search"}</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+    <TouchableOpacity
+  onPress={searchPress}
+  style={[
+    styles.searchButtonContainer,
+    isStoreSelected && styles.searchButtonContainerSelected,
+  ]}
+>
+  <LinearGradient
+    style={[
+      styles.searchButton,
+      isStoreSelected && styles.searchButtonSelected,
+    ]}
+    locations={[0, 1]}
+    colors={["#29085f", "#b941d7"]}
+  >
+    <Text style={styles.searchText}>{"Search"}</Text>
+  </LinearGradient>
+</TouchableOpacity>
 
-        <BackButton />
-      </ScrollView>
-
-      {/* </View> */}
+      <BackButton />
     </View>
   );
 };
