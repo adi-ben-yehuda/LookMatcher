@@ -214,6 +214,8 @@ const Search = () => {
   const [isShoes, setIsShoes] = useState(false);
   const [isMen, setIsMen] = useState(false);
   const [isStoreSelected, setIsStoreSelected] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [error, setError] = useState(false);
 
   const window = Dimensions.get("window");
   const screenHeight = window.height;
@@ -268,62 +270,78 @@ const Search = () => {
   };
 
   const searchPress = async () => {
-    const selectedMapping = isShoes ? shoesSizesMapping : sizesMapping;
+    setErrorMsg("");
+    // Check if all required choices are selected
+    if (
+      selectedGender &&
+      selectedCategory &&
+      selectedColor.length > 0 &&
+      selectedSize.length > 0 &&
+      selectedStores.length > 0
+    ) {
+      const selectedMapping = isShoes ? shoesSizesMapping : sizesMapping;
 
-    const sizes = selectedSize.map((sizeValue) => selectedMapping[sizeValue]);
+      const sizes = selectedSize.map((sizeValue) => selectedMapping[sizeValue]);
 
-    const stores = selectedStores.map(
-      (storeValue) => storesMapping[storeValue]
-    );
-    const colors = selectedColor.map((colorValue) => colorMapping[colorValue]);
+      const stores = selectedStores.map(
+        (storeValue) => storesMapping[storeValue]
+      );
+      const colors = selectedColor.map(
+        (colorValue) => colorMapping[colorValue]
+      );
 
-    const gender = genderMapping[selectedGender];
-    const category = categoryMapping[selectedCategory];
+      const gender = genderMapping[selectedGender];
+      const category = categoryMapping[selectedCategory];
 
-    console.log("shoes:", isShoes);
-    console.log("Selected Sizes for Current Category:", sizes);
-    console.log("Selected Stores:", stores);
-    console.log("Selected Colorssss:", colors);
-    console.log("Selected ggg:", gender);
-    console.log("Selected Category:", category);
+      console.log("shoes:", isShoes);
+      console.log("Selected Sizes for Current Category:", sizes);
+      console.log("Selected Stores:", stores);
+      console.log("Selected Colorssss:", colors);
+      console.log("Selected ggg:", gender);
+      console.log("Selected Category:", category);
 
-    const search = {
-      gender: gender,
-      category: category,
-      color: colors,
-      size: sizes,
-      store: stores,
-    };
+      const search = {
+        gender: gender,
+        category: category,
+        color: colors,
+        size: sizes,
+        store: stores,
+      };
 
-    try {
-      const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(search),
-      });
+      try {
+        const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(search),
+        });
 
-      if (res.ok) {
-        //navigation.navigate("Results", { selectedChoices });
-      } else if (res.status === 409) {
-        // Handle conflict
-      } else if (res.status === 400) {
-        // Handle bad request
-      } else {
-        // Handle other errors
+        if (res.ok) {
+          //navigation.navigate("Results", { selectedChoices });
+        } else if (res.status === 409) {
+          // Handle conflict
+        } else if (res.status === 400) {
+          // Handle bad request
+        } else {
+          // Handle other errors
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      const errorMsg = "Please select all choices";
+      setErrorMsg(errorMsg);
+      setError(true);
+      console.log("Please select all choices before searching.");
+      console.log(error);
+      console.log(errorMsg);
     }
   };
 
   return (
     <View style={styles.page}>
-      {/* <View style={{ flex: 1 }}> */}
-      {/* <ScrollView contentContainerStyle={{ flexGrow: 1 }}> */}
-
       <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
       <View style={styles.container1}>
         <View style={styles.container}>
@@ -486,24 +504,30 @@ const Search = () => {
         </View>
       </View>
 
-    <TouchableOpacity
-  onPress={searchPress}
-  style={[
-    styles.searchButtonContainer,
-    isStoreSelected && styles.searchButtonContainerSelected,
-  ]}
->
-  <LinearGradient
-    style={[
-      styles.searchButton,
-      isStoreSelected && styles.searchButtonSelected,
-    ]}
-    locations={[0, 1]}
-    colors={["#29085f", "#b941d7"]}
-  >
-    <Text style={styles.searchText}>{"Search"}</Text>
-  </LinearGradient>
-</TouchableOpacity>
+      {error && (
+        <View style={styles.errorMessage}>
+          <Text style={styles.error}>{errorMsg}</Text>
+        </View>
+      )}
+
+      <TouchableOpacity
+        onPress={searchPress}
+        style={[
+          styles.searchButtonContainer,
+          isStoreSelected && styles.searchButtonContainerSelected,
+        ]}
+      >
+        <LinearGradient
+          style={[
+            styles.searchButton,
+            isStoreSelected && styles.searchButtonSelected,
+          ]}
+          locations={[0, 1]}
+          colors={["#29085f", "#b941d7"]}
+        >
+          <Text style={styles.searchText}>{"Search"}</Text>
+        </LinearGradient>
+      </TouchableOpacity>
 
       <BackButton />
     </View>

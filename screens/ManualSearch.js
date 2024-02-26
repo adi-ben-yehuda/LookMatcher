@@ -24,7 +24,7 @@ const ManualSearch = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{ height: scrollViewHeight * 1.1 }}>
+      <ScrollView contentContainerStyle={{ height: scrollViewHeight * 1.12 }}>
         <ManualSearchOptions />
       </ScrollView>
       <View style={styles.toolContainer}>

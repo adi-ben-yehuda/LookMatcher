@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   searchButtonContainerSelected: {
-    top: screenHeight * 0.93, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.99, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   searchButtonContainer: {
-    top: screenHeight * 0.84, // Default value when isStoreSelected is false
+    top: screenHeight * 0.88, // Default value when isStoreSelected is false
     position: "absolute",
     left: 0,
     right: 0,
@@ -168,6 +168,20 @@ const styles = StyleSheet.create({
     height:42,
     borderRadius: Border.br_3xs,
     overflow: "hidden",
+  },
+
+  errorMessage: {
+    top: screenHeight * 0.26,
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.red,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 
 });
