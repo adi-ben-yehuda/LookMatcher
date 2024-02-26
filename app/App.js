@@ -27,6 +27,8 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+          
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Register" component={Register} />

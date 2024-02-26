@@ -127,14 +127,7 @@ const styles = StyleSheet.create({
     color: Color.white,
   },
   
-  searchButtonContainer: {
-    top: screenHeight * 0.8,
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center"
-  },
+  
   searchButton: {
     width: 140,
     height:42,
@@ -148,6 +141,35 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
+  searchButtonContainerSelected: {
+    top: screenHeight * 0.93, // Updated value when isStoreSelected is true
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  searchButtonSelected: {
+    width: 140,
+    height:42,
+    borderRadius: Border.br_3xs,
+    overflow: "hidden",
+  },
+  searchButtonContainer: {
+    top: screenHeight * 0.84, // Default value when isStoreSelected is false
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  searchButton: {
+    width: 140,
+    height:42,
+    borderRadius: Border.br_3xs,
+    overflow: "hidden",
+  },
+
 });
 
 export default styles;
