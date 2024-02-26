@@ -28,7 +28,7 @@ function App() {
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-          
+        <Stack.Screen name="ManualSearch" component={ManualSearch} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Register" component={Register} />
@@ -36,7 +36,7 @@ function App() {
           <Stack.Screen name="ChangePass2" component={ChangePass2} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="ManualSearch" component={ManualSearch} />
+          
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
           <Stack.Screen name="Wishlist" component={Wishlist} />
