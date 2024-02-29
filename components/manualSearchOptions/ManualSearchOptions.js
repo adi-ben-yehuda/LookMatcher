@@ -214,6 +214,8 @@ const Search = () => {
   const [isShoes, setIsShoes] = useState(false);
   const [isMen, setIsMen] = useState(false);
   const [isStoreSelected, setIsStoreSelected] = useState(false);
+  const [isSizeSelected, setIsSizeSelected] = useState(false);
+  const [isColorSelected, setIsColorSelected] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
 
@@ -249,7 +251,10 @@ const Search = () => {
   useEffect(() => {
     // Check if at least one store is selected
     setIsStoreSelected(selectedStores.length > 0);
-  }, [selectedStores]);
+    setIsSizeSelected(selectedSize.length > 0);
+    setIsColorSelected(selectedColor.length > 0);
+    
+  }, [selectedStores, selectedSize, selectedColor]);
 
   const renderItemColor = (item) => {
     return (
@@ -513,14 +518,25 @@ const Search = () => {
       <TouchableOpacity
         onPress={searchPress}
         style={[
-          styles.searchButtonContainer,
-          isStoreSelected && styles.searchButtonContainerSelected,
+          styles.buttonContainer,
+          (isStoreSelected ||  isSizeSelected || isColorSelected) && styles.buttonContainerSelected2,
+          (isColorSelected &&  isSizeSelected ) && styles.buttonContainerSelected3,
+          (isStoreSelected &&  isSizeSelected ) && styles.buttonContainerSelected3,
+          (isStoreSelected &&  isColorSelected ) && styles.buttonContainerSelected3,
+          (isStoreSelected &&  isColorSelected && isSizeSelected ) && styles.buttonContainerSelected4,
+          
         ]}
       >
         <LinearGradient
           style={[
             styles.searchButton,
-            isStoreSelected && styles.searchButtonSelected,
+            (isStoreSelected ||  isSizeSelected || isColorSelected) && styles.searchButton,
+            (isColorSelected && isSizeSelected ) && styles.searchButton,
+            (isStoreSelected && isSizeSelected ) && styles.searchButton,
+            (isStoreSelected && isColorSelected ) && styles.searchButton,
+            (isStoreSelected && isColorSelected && isSizeSelected) && styles.searchButton,
+            
+            
           ]}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}

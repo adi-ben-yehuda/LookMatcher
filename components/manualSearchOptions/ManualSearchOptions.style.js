@@ -127,13 +127,7 @@ const styles = StyleSheet.create({
     color: Color.white,
   },
   
-  
-  searchButton: {
-    width: 140,
-    height:42,
-    borderRadius: Border.br_3xs,
-    overflow: "hidden",
-  },
+ 
   searchText: {
     color: Color.white,
     fontSize: 25,
@@ -141,28 +135,61 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
-  searchButtonContainerSelected: {
-    top: screenHeight * 0.99, // Updated value when isStoreSelected is true
+ 
+
+ buttonContainerSelected2: {
+    top: screenHeight * 0.87, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
     alignItems: "center",
     justifyContent: "center"
   },
-  searchButtonSelected: {
-    width: 140,
-    height:42,
-    borderRadius: Border.br_3xs,
-    overflow: "hidden",
-  },
-  searchButtonContainer: {
-    top: screenHeight * 0.88, // Default value when isStoreSelected is false
+
+ 
+  buttonContainerSelected3: {
+    top: screenHeight * 0.92, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
     alignItems: "center",
     justifyContent: "center"
   },
+
+
+ 
+  buttonContainerSelected4: {
+    top: screenHeight * 0.94, // Updated value when isStoreSelected is true
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+ 
+
+ 
+  buttonContainerSelected5: {
+    top: screenHeight * 0.98, // Updated value when isStoreSelected is true
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+//1
+  buttonContainer: {
+    top: screenHeight * 0.8, // Default value when isStoreSelected is false
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  
   searchButton: {
     width: 140,
     height:42,
@@ -170,8 +197,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 
+
   errorMessage: {
-    top: screenHeight * 0.26,
+    top: screenHeight * 0.248,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",
