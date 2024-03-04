@@ -296,7 +296,8 @@ const Search = () => {
       );
 
       const gender = genderMapping[selectedGender];
-      const category = categoryMapping[selectedCategory];
+      const selectedMap = isMen ? categoryMappingMan : categoryMapping;
+      const category = selectedMap[selectedCategory];
 
       console.log("shoes:", isShoes);
       console.log("Selected Sizes for Current Category:", sizes);

@@ -17,6 +17,7 @@ import ItemPage from "../screens/ItemPage";
 import Wishlist from "../screens/WishlistPage";
 import ChangePass2 from "../screens/Reset2.js";
 import ChangePass1 from "../screens/Reset1.js";
+import TakePhoto from "../components/uploadPhoto/takePhoto.js";
 
 const Stack = createStackNavigator();
 
@@ -27,18 +28,21 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ManualSearch" component={ManualSearch} />
-          <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
+        <Stack.Screen name="TakePhoto" component={TakePhoto} />
+         
           <Stack.Screen name="Results" component={Results} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="ChangePass1" component={ChangePass1} />
           <Stack.Screen name="ChangePass2" component={ChangePass2} />
           <Stack.Screen name="Home" component={Home} />
+         
           <Stack.Screen name="Profile" component={Profile} />
-          
+
+
           <Stack.Screen name="Search" component={Search} />
-          <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
           <Stack.Screen name="Wishlist" component={Wishlist} />
         </Stack.Navigator>
       </NavigationContainer>

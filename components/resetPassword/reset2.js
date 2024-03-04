@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./reset2.style";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import { useRoute } from "@react-navigation/native";
 
 const Reset2 = () => {
