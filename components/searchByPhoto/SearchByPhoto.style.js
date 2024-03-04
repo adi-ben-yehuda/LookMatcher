@@ -6,32 +6,28 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-  home: {
+  page: {
+    backgroundColor: "#FBF9FC",
     flex: 1,
     overflow: "hidden",
-    width: "100%",
-    backgroundColor: "#E2DBEA",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
   },
 
   title: {
     top: screenHeight * 0.08,
-    color: Color.black,
+    color: Color.darkPurple,
     width: screenWidth,
     textAlign: "center",
     position: "absolute",
     fontWeight: "bold",
-    fontSize: screenHeight * 0.03,
+    fontSize: screenHeight * 0.033,
     fontWeight: "bold",
-    color: "#333",
   },
 
   title2: {
-    fontSize: screenHeight * 0.02,
+    fontSize: screenHeight * 0.019,
     fontWeight: "bold",
     color: "#333",
-    top: screenHeight * 0.15,
+    top: screenHeight * 0.17,
     width: screenWidth - screenWidth * 0.05,
     height: screenHeight * 0.06,
     left: screenWidth * 0.05,
@@ -39,10 +35,10 @@ const styles = StyleSheet.create({
   },
 
   title3: {
-    fontSize: screenHeight * 0.02,
+    fontSize: screenHeight * 0.019,
     fontWeight: "bold",
     color: "#333",
-    top: screenHeight * 0.35,
+    top: screenHeight * 0.33,
     width: screenWidth - screenWidth * 0.05,
     height: screenHeight * 0.06,
     left: screenWidth * 0.05,
@@ -84,12 +80,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+    
   },
 
-  container: {
-    top: screenHeight * 0.35,
-    left: screenWidth * 0.05,
-  },
+
   button: {
     padding: 10,
     borderWidth: 1,
@@ -110,43 +104,136 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  listContainer: {
-    borderWidth: 1,
-    borderColor: Color.gray,
-    maxHeight: 150,
-    zIndex: 1,
-    backgroundColor: Color.lightPink,
-    width: screenWidth * 0.9,
-    alignSelf: "center",
-    fontSize: 16,
-  },
-  option: {
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: Color.gray,
-  },
-  selectedOption: {
-    backgroundColor: Color.lightGray,
-  },
+
+
 
   searchButtonContainer: {
     position: "absolute",
-    bottom: screenHeight * 0.05 + 60,
+    top: screenHeight * 0.83 ,
     left: 0,
     right: 0,
     alignItems: "center",
   },
   searchButton: {
-    width: 180,
+    width: 140,
+    height: 50,
     borderRadius: Border.br_3xs,
     overflow: "hidden",
+    
   },
   searchText: {
     color: Color.white,
-    fontSize: 36,
+    fontSize: 21,
+    top: 11,
     textAlign: "center",
     textAlignVertical: "center",
   },
+
+
+  imageContainer: {
+    width: 70,
+    height: 70,
+    top: screenHeight * 0.3,
+    left: screenWidth * 0.39,
+    borderRadius: 8,
+    marginBottom: 5,
+    backgroundColor: "#FBF9FC", // Set a background color
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 8,
+    backgroundColor: "#FBF9FC", 
+  },
+  errorText: {
+    color: "red",
+    marginTop: 16,
+  },
+
+
+
+  container4: {
+    top: screenHeight * 0.29,
+  },
+  container5: {
+    top: screenHeight * 0.28,
+  },
+
+  container: { padding: 16 },
+
+  dropdown: {
+    borderColor: Color.darkPurple,
+    borderWidth: 1.5,
+    height: 50,
+    //backgroundColor: "#f0f0f0",
+    backgroundColor: Color.white,
+    borderRadius: 12,
+    padding: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+  },
+
+  placeholderStyle: {
+    fontSize: 16,
+    color: Color.darkPurple,
+  },
+
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+    color: Color.darkPurple,
+    
+  },
+
+  item: {
+    padding: 17,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  selectedStyle: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 14,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    marginTop: 8,
+    marginRight: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+    borderColor: Color.darkPurple,
+    borderWidth: 1.5,
+  },
+  textSelectedStyle: {
+    marginRight: 5,
+    fontSize: 16,
+    //fontWeight: "bold",
+    color: Color.darkPurple,
+  },
+  selectedTextStyle: {
+    fontSize: 14,
+    color: Color.darkPurple,
+  },
+
 });
 
 export default styles;
