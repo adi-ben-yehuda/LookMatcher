@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         justifyContent: "center",
         alignItems: "center",
-
     },
     results: {
         backgroundColor: "#fff",
@@ -194,7 +193,6 @@ const styles = StyleSheet.create({
         alignSelf: "stretch",
         justifyContent: "center",
     },
-
 
 
 

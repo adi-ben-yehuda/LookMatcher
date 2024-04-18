@@ -10,175 +10,14 @@ const styles = StyleSheet.create({
         width: "100%",
         overflow: "hidden",
     },
-    shirtTypo: {
-        textAlign: "left",
-        color: Color.black3,
-        fontWeight: "500",
-        fontSize: screenWidth * 0.03,
-    },
     resultLayout: {
         height: 270,
         top: 178,
         width: 157,
         position: "absolute",
     },
-    text4Position: {
-        left: 3,
-    },
-    renuarTypo: {
-        left: 3,
-        top: screenHeight * 0.295,
-        color: Color.blackFont,
-        fontSize: FontSize.priceClothe_size,
-        textAlign: "left",
-    },
-    iconPosition: {
-        top: 0,
-        height: 200,
-    },
-    favoriteIconLayout: {
-        top: 348,
-        height: 24,
-        width: 24,
-        borderRadius: Border.br_8xs,
-        position: "absolute",
-    },
-    stateLayerFlexBox: {
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        height: 32,
-    },
-    headline: {
-        marginTop: 30,
-        fontSize: screenWidth * 0.07,
-        lineHeight: screenWidth * 0.08,
-        marginLeft: "auto",
-        marginRight: "auto",
-        textTransform: "capitalize",
-        fontWeight: "700",
-        color: Color.primary,
-        textAlign: "center",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    addSquareLightIcon1: {
-        top: 346,
-        left: 334,
-        width: 28,
-        height: 28,
-        borderRadius: Border.br_8xs,
-        position: "absolute",
-    },
-    image4Icon: {
-        top: "60%",
-        height: screenHeight * 0.3,
-        width: screenWidth * 0.45,
-    },
-    item4: {
-        top: screenHeight * 0.55,
-        textAlign: "left",
-        color: Color.black3,
-        fontWeight: "600",
-        fontSize: screenWidth * 0.035,
-    },
-    price4: {
-        top: screenHeight * 0.55,
-        color: Color.blackFont,
-        fontWeight: "600",
-        fontSize: screenWidth * 0.03,
-        textAlign: "left",
-    },
-    store4: {
-        top: screenHeight * 0.55,
-        color: Color.blackFont,
-        fontSize: screenWidth * 0.03,
-        textAlign: "left",
-    },
-    favoriteLightIcon5: {
-        top: 170,
-        left: 126,
-        height: 24,
-        width: 24,
-        borderRadius: Border.br_8xs,
-        position: "absolute",
-    },
-    result4: {
-        left: screenWidth * 0.51,
-        position: "absolute",
-    },
-    result3Icon: {
-        left: screenWidth * 0.04,
-        height: screenHeight * 0.35,
-        width: screenWidth * 0.45,
-        top: screenHeight * 0.55,
-        position: "absolute",
-    },
-    text4: {
-        color: Color.blackFont,
-        fontWeight: "600",
-        fontSize: FontSize.priceClothe_size,
-        textAlign: "left",
-        top: screenHeight * 0.6,
-    },
-    oxfordShirt1: {
-        textAlign: "left",
-        color: Color.black3,
-        fontWeight: "500",
-        fontSize: screenWidth * 0.035,
-        top: screenHeight * 0.22,
-    },
-    image2Icon: {
-        bottom: screenHeight * 0.1,
-        height: screenHeight * 0.3,
-        width: screenWidth * 0.45,
-    },
-    icon1: {
-        left: -38,
-        width: 222,
-        display: "none",
-        position: "absolute",
-    },
-    result2: {
-        left: screenWidth * 0.51,
-    },
-    image1Icon: {
-        bottom: screenHeight * 0.1,
-        height: screenHeight * 0.3,
-        width: screenWidth * 0.45,
-    },
-    item1: {
-        textAlign: "left",
-        color: Color.black3,
-        fontWeight: "500",
-        fontSize: screenWidth * 0.035,
-        width: screenWidth * 0.2,
-        top: screenHeight * 0.26,
-    },
-    price1: {
-        top: screenHeight * 0.27,
-        color: Color.blackFont,
-        fontWeight: "600",
-        fontSize: screenWidth * 0.03,
-        textAlign: "left",
-    },
-    store1: {
-        top: screenHeight * 0.28,
-        color: Color.blackFont,
-        fontSize: screenWidth * 0.03,
-        textAlign: "left",
-    },
-    result1: {
-        left: screenWidth * 0.04,
-    },
-    favoriteLightIcon8: {
-        left: 333,
-    },
-    favoriteLightIcon9: {
-        left: 155,
-    },
     results: {
-        backgroundColor: Color.ll,
+        backgroundColor: "#fff",
         flex: 1,
         height: 852,
         overflow: "hidden",
@@ -213,12 +52,83 @@ const styles = StyleSheet.create({
     makeMe: {
         right: screenWidth * 0.07,
         position: "absolute",
-        top:screenHeight*1.03
+        bottom: screenHeight* 0.1,
+        //top:screenHeight*1.03
     },
     makeYourself: {
         left: screenWidth * 0.07,
         position: "absolute",
-        top:screenHeight*1.03
+        bottom: screenHeight* 0.1,
+    },
+
+    headline: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        top: screenHeight * 0.02,
+        fontSize: screenWidth * 0.05,
+        lineHeight: screenWidth * 0.05,
+        marginLeft: "auto",
+        marginRight: "auto",
+        textTransform: "capitalize",
+        fontWeight: "700",
+        color: Color.primary,
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+
+    container: {
+        flex: 1,
+        padding: 16,
+        backgroundColor: '#fff',
+        marginTop: screenHeight * 0.035,
+    },
+    cardContainer: {
+        flex: 1,
+        backgroundColor: '#f0f0f0', //#fff
+        marginTop: 10,
+        margin: 12,
+        padding: 16,
+        borderRadius: 8,
+        elevation: 2,
+        position: 'relative',
+    },
+    itemImage: {
+        height: screenHeight * 0.2 + screenWidth * 0.18,
+        resizeMode: 'cover',
+        borderRadius: 4,
+        marginBottom: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.25,
+        shadowRadius: 8,
+        elevation: 5, // For Android
+
+    },
+    favoriteIcon: {
+        position: 'absolute',
+        bottom: -5,
+        right: -2,
+        zIndex: 1,
+    },
+    favoriteImage: {
+        width: 30,
+        height: 30,
+    },
+    itemName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 4,
+    },
+    itemPrice: {
+        fontSize: 14,
+        color: '#555',
+        marginBottom: 4,
+    },
+    itemCompany: {
+        fontSize: 14,
+        color: '#666',
     },
 });
 

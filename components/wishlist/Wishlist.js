@@ -1,85 +1,126 @@
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
+import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Wishlist.style";
 import { Image } from "expo-image";
+import UsersContext from "../../context/userContext";
 
-const Results = () => {
+
+const Wishlist = () => {
+  const [results, setResults] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
+  const { token, user } = useContext(UsersContext);
+
   const handleMakeMePress = () => {};
   const handleMakeYourselfPress = () => {};
 
+  const ItemCard = ({ item }) => {
+    const [isFavorite, setIsFavorite] = useState(true);
+
+    const toggleFavorite = async (itemId) => {
+      const isCurrentlyFavorite = isFavorite;
+      setIsFavorite(!isFavorite);
+      try {
+        const action = isCurrentlyFavorite ? 'remove' : 'add';
+
+        const res = await fetch('http://192.168.56.1:3000/api/updateWishlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ itemId, action }),
+        });
+
+        if (res.ok) {
+        } else {
+          throw new Error('Failed to update wishlist');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    console.log("item", item);
+    console.log("item", item.price);
+    console.log("item", item.company);
+    console.log("item", item.image);
+
+    return (
+      <View style={styles.cardContainer}>
+        <Image source={{ uri: item.image }} style={styles.itemImage} />
+        <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.favoriteIcon}>
+          <Image
+            source={
+              isFavorite
+                ? require("../../assets/favorite-light1.png")
+                : require("../../assets/favorite-light2.png")
+            }
+            style={styles.favoriteImage}
+          />
+        </TouchableOpacity>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
+        <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
+      </View>
+    );
+  };
+
+  const getResults = async () => {
+
+    try {
+      const res = await fetch("http://192.168.56.1:3000/api/wishlistPage", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        setResults(body.items);
+
+        console.log("in wish list page ", results);
+      }
+      // else if (res.status === 409) {
+      //   const body = await res.json();
+      //   const errorMsg = body.error;
+      //   setErrorMsg(errorMsg);
+      //   setError(true);
+      // } else if (res.status === 400) {
+      //   const body = await res.json();
+      //   const errorMsg = body.error;
+      //   setErrorMsg(errorMsg);
+      //   setError(true);
+      // } 
+      else {
+        throw new Error("error");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getResults();
+  }, []);
+
+
   return (
-    <View style={[styles.results, styles.resultsLayout]}>
+      <View style={[styles.results, styles.resultsLayout]}>
       <Text style={styles.headline}>Wishlist</Text>
-      <View style={[styles.result4, styles.resultLayout]}>
-        <Text style={[styles.item4, styles.shirtTypo]}>Oxford shirt</Text>
-        <Text style={styles.price4}>$ 70.00</Text>
-        <Text style={styles.store4}>Zara</Text>
-        <Image
-          style={styles.image4Icon}
-          contentFit="cover"
-          source={require("../../assets/image-7.png")}
-        />
-        {/* <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light.png")}
-        /> */}
-      </View>
-      {/* <Image
-        style={styles.result3Icon}
-        contentFit="cover"
-        source={require("../../assets/result-3.png")}
-      /> */}
-      {/* <Image
-        style={styles.favoriteLightIcon5}
-        contentFit="cover"
-        source={require("../../assets/favorite-light.png")}
-      /> */}
-      <View style={[styles.result2, styles.resultLayout]}>
-        {/* <Text style={[styles.text4, styles.text4Position]}>$ 55.00</Text>
-        <Text style={[styles.renuar, styles.renuarTypo]}>Renuar</Text>
-        <Text style={[styles.oxfordShirt1, styles.text4Position]}>
-          Oxford shirt
-        </Text> */}
-        {/* <Image
-          style={[styles.image2Icon, styles.text5Position]}
-          contentFit="cover"
-          source={require("../../assets/image-6.png")}
-        /> */}
-        <Image style={[styles.icon1, styles.iconPosition]} contentFit="cover" />
-        {/* <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light1.png")}
-        /> */}
-      </View>
-      <View style={[styles.result1, styles.resultLayout]}>
-        <Text style={[styles.item1]}>Satin shirt</Text>
-        <Text style={[styles.price1]}>$ 50.00</Text>
-        <Text style={[styles.store1]}>Castro</Text>
-        {/* <Image
-          style={[styles.image1Icon]}
-          contentFit="cover"
-          source={require("../../assets/image-8.png")}
-        /> */}
-        <Image style={[styles.icon1, styles.iconPosition]} contentFit="cover" />
-        <Image
-          style={styles.favoriteLightIcon5}
-          contentFit="cover"
-          source={require("../../assets/favorite-light1.png")}
+
+      <View style={styles.container}>
+        <FlatList
+          data={Array.isArray(results) ? results : [results]}
+          renderItem={({ item }) => <ItemCard item={item} />}
+          keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+          numColumns={2}
         />
       </View>
-      {/* <Image
-        style={[styles.favoriteLightIcon8, styles.favoriteIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/favorite-light2.png")}
-      /> */}
-      {/* <Image
-        style={[styles.favoriteLightIcon9, styles.favoriteIconLayout]}
-        contentFit="cover"
-        source={require("../../assets/favorite-light2.png")}
-      /> */}
+      
       <View style={styles.buttons}>
         <TouchableOpacity onPress={handleMakeMePress}>
           <LinearGradient
@@ -112,4 +153,4 @@ const Results = () => {
   );
 };
 
-export default Results;
+export default Wishlist;
