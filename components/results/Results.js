@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, FlatList, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { Text, FlatList, View, TouchableOpacity } from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
+import UsersContext from "../../context/userContext";
+
 
 const Results = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [results, setResults] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [wishlist, setWishlist] = useState([]);
+  const { token, user } = useContext(UsersContext);
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
@@ -22,16 +22,36 @@ const Results = () => {
   });
 
   const ItemCard = ({ item }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(wishlist.includes(item.id));
 
-    const toggleFavorite = () => {
+    const toggleFavorite = async (itemId) => {
+      const isCurrentlyFavorite = isFavorite;
       setIsFavorite(!isFavorite);
+      try {
+        const action = isCurrentlyFavorite ? 'remove' : 'add';
+
+        const res = await fetch('http://192.168.56.1:3000/api/updateWishlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ itemId, action }),
+        });
+
+        if (res.ok) {
+        } else {
+          throw new Error('Failed to update wishlist');
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     return (
       <View style={styles.cardContainer}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
-        <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteIcon}>
+        <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.favoriteIcon}>
           <Image
             source={
               isFavorite
@@ -92,7 +112,21 @@ const Results = () => {
       if (res.ok) {
         const body = await res.json();
         setResults(body);
-        console.log(body);
+        console.log(results);
+        const resWishlist = await fetch("http://192.168.56.1:3000/api/getWishlist", {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+        });
+        if (resWishlist.ok) {
+          console.log("resWishlist.ok")
+          const bodyWishlist = await resWishlist.json();
+          setWishlist(bodyWishlist.wishlist);
+          console.log(wishlist)
+        }
       }
       // else if (res.status === 409) {
       //   const body = await res.json();
@@ -123,7 +157,7 @@ const Results = () => {
 
       <View style={styles.container}>
         <FlatList
-          data={results}
+          data={Array.isArray(results) ? results : [results]}
           renderItem={({ item }) => <ItemCard item={item} />}
           keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
           numColumns={2}

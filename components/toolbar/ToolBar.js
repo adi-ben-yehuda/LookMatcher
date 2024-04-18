@@ -7,7 +7,7 @@ const ToolBar = () => {
   const navigation = useNavigation();
 
   const handleSearchPress = () => {
-    navigation.navigate("Search");
+    navigation.navigate("Results");
   };
 
   const handleHomePress = () => {
