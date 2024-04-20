@@ -8,77 +8,36 @@ const screenWidth = window.width;
 const styles = StyleSheet.create({
   container: {
     width: screenWidth,
-    height: screenHeight * 0.7,
-    backgroundColor: "#fff",
-    top: 0,
+    height: screenHeight ,
+    backgroundColor: "#FBF9FC",
+    
   },
-
-  itemImg: {
-    width: "30%",
-    height: "30%",
-    resizeMode: "contain",
-    position: "absolute",
-    top: 0,
+  card: {
+    elevation: 3, 
+    backgroundColor: "#FBF9FC",  
+    shadowOffset: { width: 1, height: 1 },  
+    shadowColor: "#333",  
+    shadowOpacity: 0.3,  
+    shadowRadius: 2,  
+    marginVertical: 6,  
+    marginHorizontal: 12,  
+    overflow: "hidden",  
+    borderRadius: 8,  
+    alignItems: "center",  
+    justifyContent: "center" 
   },
-
-  itemImg: {
-    top: 0,
-    width: "100%",
-    height: "100%",
-  },
-
-  back: {
-    left: screenWidth * 0.02,
-    top: screenWidth * 0.02,
-    width: "10%",
-    height: "10%",
-    position: "absolute",
-    resizeMode: "contain",
-  },
-
-  heart: {
-    right: screenWidth * 0.02,
-    top: screenWidth * 0.02,
-    width: "10%",
-    height: "10%",
-    position: "absolute",
-    resizeMode: "contain",
-  },
-
-  prev: {
-    left: screenWidth * 0.02,
-    top: screenWidth * 0.7,
-    width: "10%",
-    height: "10%",
-    position: "absolute",
-    resizeMode: "contain",
-  },
-
-  next: {
-    right: screenWidth * 0.02,
-    top: screenWidth * 0.7,
-    width: "10%",
-    height: "10%",
-    position: "absolute",
-    resizeMode: "contain",
+  image: {
+    width: "100%", 
+    height: screenHeight* 0.6, 
   },
 
   buttonPrev: {
-    left: screenWidth * 0.02,
+    left: screenWidth * 0.09,
     top: screenHeight * 0.1,
     position: "absolute",
     resizeMode: "contain",
-    width: "30%",
-    height: "30%",
-  },
-
-  buttonNext: {
-    left: screenWidth * 0.88,
-    top: screenHeight * 0.1,
-    position: "absolute",
-    resizeMode: "contain",
-    width: "30%",
-    height: "30%",
+    width: "20%",
+    height: "20%",
   },
 
   iconPrev: {
@@ -88,13 +47,99 @@ const styles = StyleSheet.create({
     height: "30%",
     resizeMode: "contain",
   },
-
   iconNext: {
     left: screenWidth * 0.02,
     top: screenWidth * 0.4,
     width: "30%",
     height: "30%",
     resizeMode: "contain",
+  },
+  buttonNext: {
+    left: screenWidth * 0.85,
+    top: screenHeight * 0.1,
+    position: "absolute",
+    resizeMode: "contain",
+    width: "20%",
+    height: "20%",
+  },
+
+  back: {
+    left: screenWidth * 0.07,
+    top: screenWidth * 0.02,
+    width: "30%",
+    height: "30%",
+    resizeMode: "contain",
+  },
+  back2: {
+    left: screenWidth * 0.01,
+    top: screenHeight * 0.01,
+    position: "absolute",
+    resizeMode: "contain",
+    width: "35%",
+    height: "35%",
+  },
+
+  heart: {
+    right: screenWidth * 0.04,
+    top: screenWidth * 0.03,
+    width: "30%",
+    height: "30%",
+    position: "absolute",
+    resizeMode: "contain",
+  },
+
+  itemName: {
+    marginTop: screenHeight * 0.02,
+    marginLeft: screenHeight * 0.03,
+    width: screenWidth * 0.96,
+    height: screenHeight * 0.05,
+   
+  },
+
+  itemNameText: {
+    fontSize: screenHeight * 0.04,
+    fontWeight: "bold",
+    color: "#333",
+  },
+
+  itemNameText: {
+    fontSize: screenHeight * 0.04,
+    fontWeight: "bold",
+    color: "#333",
+  },
+
+  itemPrice: {
+    marginTop: screenHeight * 0.02,
+    marginLeft: screenHeight * 0.03,
+    width: screenWidth * 0.96,
+    height: screenHeight * 0.032,
+  },
+
+  itemPriceText: {
+    fontSize: screenHeight * 0.02,
+    color: "#626161",
+  },
+
+  itemColor: {
+    marginLeft: screenHeight * 0.03,
+    width: screenWidth * 0.96,
+    height: screenHeight * 0.032,
+  },
+
+  itemColorText: {
+    fontSize: screenHeight * 0.02,
+    color: "#626161",
+  },
+
+  itemSize: {
+    marginLeft: screenHeight * 0.03,
+    width: screenWidth * 0.96,
+    height: screenHeight * 0.032,
+  },
+
+  itemSizeText: {
+    fontSize: screenHeight * 0.02,
+    color: "#626161",
   },
 });
 

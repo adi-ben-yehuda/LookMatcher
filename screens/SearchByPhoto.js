@@ -10,7 +10,7 @@ const SearchPhoto = () => {
   const screenHeight = window.height;
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ height: screenHeight }}>
+      <ScrollView contentContainerStyle={{ height: screenHeight * 1.1 }}>
         <SearchByPhoto />
       </ScrollView>
       <ToolBar />

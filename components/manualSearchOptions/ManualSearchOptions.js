@@ -253,15 +253,17 @@ const Search = () => {
     setIsStoreSelected(selectedStores.length > 0);
     setIsSizeSelected(selectedSize.length > 0);
     setIsColorSelected(selectedColor.length > 0);
-    
   }, [selectedStores, selectedSize, selectedColor]);
 
   const renderItemColor = (item) => {
+    
     return (
       <View style={styles.item}>
+        
         <View
           style={[styles.colorRectangle, { backgroundColor: item.color }]}
         />
+        <Text style={styles.textStyle}>{colorMapping[item.value]}</Text>
       </View>
     );
   };
@@ -441,6 +443,7 @@ const Search = () => {
                     {item.label}
                   </Text>
                 </View>
+                
               </TouchableOpacity>
             )}
           />
@@ -520,24 +523,29 @@ const Search = () => {
         onPress={searchPress}
         style={[
           styles.buttonContainer,
-          (isStoreSelected ||  isSizeSelected || isColorSelected) && styles.buttonContainerSelected2,
-          (isColorSelected &&  isSizeSelected ) && styles.buttonContainerSelected3,
-          (isStoreSelected &&  isSizeSelected ) && styles.buttonContainerSelected3,
-          (isStoreSelected &&  isColorSelected ) && styles.buttonContainerSelected3,
-          (isStoreSelected &&  isColorSelected && isSizeSelected ) && styles.buttonContainerSelected4,
-          
+          (isStoreSelected || isSizeSelected || isColorSelected) &&
+            styles.buttonContainerSelected2,
+          isColorSelected && isSizeSelected && styles.buttonContainerSelected3,
+          isStoreSelected && isSizeSelected && styles.buttonContainerSelected3,
+          isStoreSelected && isColorSelected && styles.buttonContainerSelected3,
+          isStoreSelected &&
+            isColorSelected &&
+            isSizeSelected &&
+            styles.buttonContainerSelected4,
         ]}
       >
         <LinearGradient
           style={[
             styles.searchButton,
-            (isStoreSelected ||  isSizeSelected || isColorSelected) && styles.searchButton,
-            (isColorSelected && isSizeSelected ) && styles.searchButton,
-            (isStoreSelected && isSizeSelected ) && styles.searchButton,
-            (isStoreSelected && isColorSelected ) && styles.searchButton,
-            (isStoreSelected && isColorSelected && isSizeSelected) && styles.searchButton,
-            
-            
+            (isStoreSelected || isSizeSelected || isColorSelected) &&
+              styles.searchButton,
+            isColorSelected && isSizeSelected && styles.searchButton,
+            isStoreSelected && isSizeSelected && styles.searchButton,
+            isStoreSelected && isColorSelected && styles.searchButton,
+            isStoreSelected &&
+              isColorSelected &&
+              isSizeSelected &&
+              styles.searchButton,
           ]}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
