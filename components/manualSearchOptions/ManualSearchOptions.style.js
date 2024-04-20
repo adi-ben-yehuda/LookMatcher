@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
 
   colorRectangle: {
+    marginRight: 'auto',  // Pushes the text to the right
     width: 30,
     height: 30,
     marginRight: 10, 
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 17,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",  // Aligns children (text and rectangle) to the right
     alignItems: "center",
   },
   selectedStyle: {
@@ -118,6 +119,12 @@ const styles = StyleSheet.create({
     //fontWeight: "bold",
     color: Color.darkPurple,
   },
+
+  textStyle: {
+    fontSize: 16,
+    color: Color.darkPurple,
+    marginRight: 'auto',
+},
  
   searchText: {
     color: Color.white,

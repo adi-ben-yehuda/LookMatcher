@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions, View, TouchableOpacity, Text, Image } from "react-native";
-
 import { MultiSelect } from "react-native-element-dropdown";
+import { Dropdown } from "react-native-element-dropdown";
 import styles from "./SearchByPhoto.style";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -56,6 +56,16 @@ const sizes = [
   { label: "shoes 50", value: "32" },
 ];
 
+const gender = [
+  { label: "Men", value: "1" },
+  { label: "Women", value: "2" },
+];
+
+const genderMapping = {
+  1: "Men",
+  2: "Women",
+};
+
 const sizesAndShoesMapping = {
   1: "XS",
   2: "S",
@@ -103,19 +113,24 @@ const storesMapping = {
   9: "FashionClub",
 };
 
+
 const SearchByPhoto = () => {
   const [selectedSize, setSelectedSize] = useState([]);
-
+  const [selectedGender, setSelectedGender] = useState(null);
   const [selectedStores, setSelectedStores] = useState([]);
+  const [isStoreSelected, setIsStoreSelected] = useState(false);
+  const [isSizeSelected, setIsSizeSelected] = useState(false);
+  const [isFocus1, setIsFocus1] = useState(false);
   const navigation = useNavigation();
   const route = useRoute();
+  const [errorMsg, setErrorMsg] = useState("");
+  const [error2, setError2] = useState(false);
+
   const window = Dimensions.get("window");
   const screenHeight = window.height;
 
   // Stores the selected image URI
   const [file, setFile] = useState(null);
-
-  // Stores any error message
   const [error, setError] = useState(null);
 
   // Function to pick an image from
@@ -144,9 +159,10 @@ const SearchByPhoto = () => {
         // If an image is selected (not cancelled),
         // update the file state variable
         setFile(result.assets[0].uri);
-
+       
         // Clear any previous errors
         setError(null);
+        navigation.setParams({ photo: null });
       }
     }
   };
@@ -158,6 +174,13 @@ const SearchByPhoto = () => {
     }
   }, [route.params]);
 
+  useEffect(() => {
+    // Check if at least one store is selected
+    setIsStoreSelected(selectedStores.length > 0);
+    setIsSizeSelected(selectedSize.length > 0);
+  }, [selectedStores, selectedSize]);
+
+
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
@@ -166,7 +189,50 @@ const SearchByPhoto = () => {
     );
   };
 
-  const searchPress = async () => {};
+  const clearImage = () => {
+    setFile(null);
+      };
+
+  const searchPress = () => {
+    setErrorMsg("");
+    // Check if all required choices are selected
+    if (
+      file &&
+      selectedGender &&
+      selectedSize.length > 0 &&
+      selectedStores.length > 0
+    ) {
+
+      const stores = selectedStores.map(
+        (storeValue) => storesMapping[storeValue]
+      );
+      
+      const sizes = selectedSize.map(
+        (sizeValue) => sizesAndShoesMapping[sizeValue]
+      );
+      const gender = genderMapping[selectedGender];
+    
+    
+      console.log("Selected Sizes for Current Category:", sizes);
+      console.log("Selected Stores:", stores);
+      console.log("Selected ggg:", gender);
+      
+
+      const search = {
+        gender: gender,
+        size: sizes,
+        store: stores,
+      };
+
+    } else {
+      const errorMsg = "Please select all choices";
+      setErrorMsg(errorMsg);
+      setError2(true);
+      console.log("Please select all choices before searching.");
+      console.log(error);
+      console.log(errorMsg);
+    }
+  };
 
   return (
     <View style={styles.page}>
@@ -207,8 +273,11 @@ const SearchByPhoto = () => {
         {file ? (
           // Display the selected image
           <View style={styles.imageContainer}>
-            <Image source={{ uri: file }} style={styles.image} />
-          </View>
+          <Image source={{ uri: file }} style={styles.image} />
+          <TouchableOpacity style={styles.closeIcon} onPress={clearImage}>
+            <Image style={styles.closeIcon} source={require("../../assets/icons/X.png")}/>
+          </TouchableOpacity>
+        </View>
         ) : (
           // Display an error message if there's
           // an error or no image selected
@@ -216,6 +285,32 @@ const SearchByPhoto = () => {
         )}
       </View>
       <Text style={styles.title3}>And select the following details:</Text>
+
+      <View style={styles.container3}>
+        <View style={styles.container}>
+          <Dropdown
+            style={[styles.dropdown, isFocus1 && { borderColor: "#43118C" }]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={gender}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus1 ? "Gender" : "..."}
+            searchPlaceholder="Search..."
+            value={selectedGender}
+            onFocus={() => setIsFocus1(true)}
+            onBlur={() => setIsFocus1(false)}
+            onChange={(item) => {
+              setSelectedGender(item.value);
+              setIsFocus1(false);
+            }}
+          />
+        </View>
+      </View>
 
       <View style={styles.container4}>
         <View style={styles.container}>
@@ -281,12 +376,29 @@ const SearchByPhoto = () => {
         </View>
       </View>
 
-      <TouchableOpacity
+      {error2 && (
+        <View style={styles.errorMessage}>
+          <Text style={styles.error}>{errorMsg}</Text>
+        </View>
+      )}
+
+<TouchableOpacity
         onPress={searchPress}
-        style={styles.searchButtonContainer}
+        style={[
+          styles.buttonContainer,
+          (isStoreSelected ||  isSizeSelected) && styles.buttonContainerSelected1,
+          (isStoreSelected &&  isSizeSelected ) && styles.buttonContainerSelected2,
+          (isStoreSelected &&  isSizeSelected && file ) && styles.buttonContainerSelected3,
+          
+        ]}
       >
         <LinearGradient
-          style={styles.searchButton}
+          style={[
+            styles.searchButton,
+            (isStoreSelected ||  isSizeSelected) && styles.searchButton,
+            (isStoreSelected && isSizeSelected ) && styles.searchButton,
+            (isStoreSelected &&  isSizeSelected && file ) && styles.searchButton,
+          ]}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >

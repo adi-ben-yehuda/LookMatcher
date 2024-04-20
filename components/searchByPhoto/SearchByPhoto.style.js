@@ -137,13 +137,22 @@ const styles = StyleSheet.create({
     left: screenWidth * 0.39,
     borderRadius: 8,
     marginBottom: 5,
-    backgroundColor: "#FBF9FC", // Set a background color
+    backgroundColor: "#FBF9FC",
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 4,
     elevation: 5,
+    //position: 'relative',  // Added to position the close icon absolutely within the container
   },
+  closeIcon: {
+    position: 'absolute',
+    top: -3,
+    right: -3,
+    height:"50%",
+    width:"50%"
+  },
+
   image: {
     width: 70,
     height: 70,
@@ -156,12 +165,29 @@ const styles = StyleSheet.create({
   },
 
 
+  container3: {
+    top: screenHeight * 0.285,
+  },
 
   container4: {
     top: screenHeight * 0.29,
   },
   container5: {
-    top: screenHeight * 0.28,
+    top: screenHeight * 0.305,
+  },
+
+  errorMessage: {
+    top: screenHeight * 0.3,
+    fontSize: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  error: {
+    fontWeight: "bold",
+    color: Color.red,
+    fontSize: screenHeight * 0.02,
+    width: screenWidth * 0.7,
+    textAlign: "center",
   },
 
   container: { padding: 16 },
@@ -234,6 +260,48 @@ const styles = StyleSheet.create({
     color: Color.darkPurple,
   },
 
+
+
+  searchButton: {
+    width: 140,
+    height:42,
+    borderRadius: Border.br_3xs,
+    overflow: "hidden",
+  },
+
+  buttonContainerSelected1: {
+    top: screenHeight * 0.94, // Updated value 
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  buttonContainerSelected2: {
+    top: screenHeight * 0.96, // Updated value 
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  buttonContainerSelected3: {
+    top: screenHeight * 0.99, // Updated value 
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  buttonContainer: {
+    top: screenHeight * 0.83, // Default value 
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center"
+  },
 });
 
 export default styles;

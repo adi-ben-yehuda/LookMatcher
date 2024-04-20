@@ -1,10 +1,8 @@
 import * as React from "react";
 import { View, ScrollView } from "react-native";
 import ToolBar from "../components/toolbar/ToolBar";
-import ItemText from "../components/itemText/ItemText";
 import ItemImg from "../components/itemImg/ItemImg";
 import { StyleSheet, Dimensions } from "react-native";
-import BackButton from "../components/backButton/BackButton";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -24,15 +22,15 @@ const styles = StyleSheet.create({
 
 const ItemPage = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={styles.home}>
+    <View style={styles.home}>
+      <View>
+        <ScrollView contentContainerStyle={styles.scrollviewContainer}>
           <ItemImg />
-          <ItemText />
-          <ToolBar />
-        </View>
-      </ScrollView>
-      <BackButton />
+        </ScrollView>
+      </View>
+      <View style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+        <ToolBar />
+      </View>
     </View>
   );
 };
