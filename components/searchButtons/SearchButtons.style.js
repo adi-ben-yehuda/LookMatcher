@@ -8,12 +8,15 @@ const screenWidth = window.width;
 const styles = StyleSheet.create({
   registerLayout: {
     backgroundColor: "transparent",
-    width: screenWidth * 0.6,
+    width: screenWidth * 0.55,
     height: screenHeight * 0.1,
     borderRadius: Border.br_3xs,
     marginLeft: screenWidth * -0.3,
     left: "50%",
     position: "absolute",
+    justifyContent: 'center',
+    alignItems: 'center', 
+   
   },
   buttonSearch: {
     color: Color.white,

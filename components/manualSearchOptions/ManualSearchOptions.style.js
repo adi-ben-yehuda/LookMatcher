@@ -72,8 +72,10 @@ const styles = StyleSheet.create({
     color: Color.darkPurple,
   },
   selectedTextStyle: {
+
     fontSize: 14,
     color: Color.darkPurple,
+    marginRight: 'auto', 
   },
   iconStyle: {
     width: 20,
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
  
 
  buttonContainerSelected2: {
-    top: screenHeight * 0.97, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.88, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
 
  
   buttonContainerSelected3: {
-    top: screenHeight * 0.97, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.93, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -157,18 +159,6 @@ const styles = StyleSheet.create({
 
  
   buttonContainerSelected4: {
-    top: screenHeight * 0.97, // Updated value when isStoreSelected is true
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-
- 
-
- 
-  buttonContainerSelected5: {
     top: screenHeight * 0.98, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
@@ -177,9 +167,11 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
 
+ 
+
 //1
   buttonContainer: {
-    top: screenHeight * 0.97, // Default value when isStoreSelected is false
+    top: screenHeight * 0.8, // Default value when isStoreSelected is false
     position: "absolute",
     left: 0,
     right: 0,

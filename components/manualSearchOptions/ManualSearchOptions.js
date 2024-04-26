@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
-  Dimensions,
   View,
   TouchableOpacity,
   Text,
-  ScrollView,
 } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
 import styles from "./ManualSearchOptions.style";
@@ -42,10 +40,6 @@ const shoesSize = [
   { label: "44", value: "10" },
   { label: "45", value: "11" },
   { label: "46", value: "12" },
-  { label: "47", value: "13" },
-  { label: "48", value: "14" },
-  { label: "49", value: "15" },
-  { label: "50", value: "16" },
 ];
 
 const gender = [
@@ -96,16 +90,20 @@ const sizes = [
   { label: "L", value: "4" },
   { label: "XL", value: "5" },
   { label: "XXL", value: "6" },
-  { label: "XXXL", value: "7" },
-  { label: "32", value: "8" },
-  { label: "34", value: "9" },
-  { label: "36", value: "10" },
-  { label: "38", value: "11" },
-  { label: "40", value: "12" },
-  { label: "42", value: "13" },
-  { label: "44", value: "14" },
-  { label: "46", value: "15" },
-  { label: "48", value: "16" },
+  { label: "26", value: "7" },
+  { label: "28", value: "8" },
+  { label: "30", value: "9" },
+  { label: "31", value: "10" },
+  { label: "32", value: "11" },
+  { label: "33", value: "12" },
+  { label: "34", value: "13" },
+  { label: "36", value: "14" },
+  { label: "38", value: "15" },
+  { label: "40", value: "16" },
+  { label: "42", value: "17" },
+  { label: "44", value: "18" },
+  { label: "46", value: "19" },
+  { label: "48", value: "20" },
 ];
 
 const genderMapping = {
@@ -150,10 +148,6 @@ const shoesSizesMapping = {
   10: "44",
   11: "45",
   12: "46",
-  13: "47",
-  14: "48",
-  15: "49",
-  16: "50",
 };
 
 const storesMapping = {
@@ -175,16 +169,20 @@ const sizesMapping = {
   4: "L",
   5: "XL",
   6: "XXL",
-  7: "XXXL",
-  8: "32",
-  9: "34",
-  10: "36",
-  11: "38",
-  12: "40",
-  13: "42",
-  14: "44",
-  15: "46",
-  16: "48",
+  7: "26",
+  8: "28",
+  9: "30",
+  10: "31",
+  11: "32",
+  12: "33",
+  13: "34",
+  14: "36",
+  15: "38",
+  16: "40",
+  17: "42",
+  18: "44",
+  19: "46",
+  20: "48",
 };
 
 const colorMapping = {
@@ -219,8 +217,6 @@ const Search = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
 
-  const window = Dimensions.get("window");
-  const screenHeight = window.height;
 
   useEffect(() => {
     if (selectedCategory === "10" && selectedGender === "2") {
@@ -349,7 +345,7 @@ const Search = () => {
   };
 
   return (
-    <View style={styles.page}>
+    <View >
       <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
       <View style={styles.container1}>
         <View style={styles.container}>
