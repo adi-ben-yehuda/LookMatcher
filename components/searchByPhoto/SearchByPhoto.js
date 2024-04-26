@@ -28,43 +28,27 @@ const sizes = [
   { label: "L", value: "4" },
   { label: "XL", value: "5" },
   { label: "XXL", value: "6" },
-  { label: "XXXL", value: "7" },
-  { label: "32", value: "8" },
-  { label: "34", value: "9" },
-  { label: "36", value: "10" },
-  { label: "38", value: "11" },
-  { label: "40", value: "12" },
-  { label: "42", value: "13" },
-  { label: "44", value: "14" },
-  { label: "46", value: "15" },
-  { label: "48", value: "16" },
-  { label: "shoes 35", value: "17" },
-  { label: "shoes 36", value: "18" },
-  { label: "shoes 37", value: "19" },
-  { label: "shoes 38", value: "20" },
-  { label: "shoes 39", value: "21" },
-  { label: "shoes 40", value: "22" },
-  { label: "shoes 41", value: "23" },
-  { label: "shoes 42", value: "24" },
-  { label: "shoes 43", value: "25" },
-  { label: "shoes 44", value: "26" },
-  { label: "shoes 45", value: "27" },
-  { label: "shoes 46", value: "28" },
-  { label: "shoes 47", value: "29" },
-  { label: "shoes 48", value: "30" },
-  { label: "shoes 49", value: "31" },
-  { label: "shoes 50", value: "32" },
+  { label: "26", value: "7" },
+  { label: "28", value: "8" },
+  { label: "30", value: "9" },
+  { label: "31", value: "10" },
+  { label: "32", value: "11" },
+  { label: "33", value: "12" },
+  { label: "34", value: "13" },
+  { label: "35", value: "14" },
+  { label: "36", value: "15" },
+  { label: "37", value: "16" },
+  { label: "38", value: "17" },
+  { label: "39", value: "18" },
+  { label: "40", value: "19" },
+  { label: "41", value: "20" },
+  { label: "42", value: "21" },
+  { label: "43", value: "22" },
+  { label: "44", value: "23" },
+  { label: "45", value: "24" },
+  { label: "46", value: "25" },
+  { label: "48", value: "26" },
 ];
-
-const gender = [
-  { label: "Men", value: "1" },
-  { label: "Women", value: "2" },
-];
-
-const genderMapping = {
-  1: "Men",
-  2: "Women",
-};
 
 const sizesAndShoesMapping = {
   1: "XS",
@@ -73,32 +57,26 @@ const sizesAndShoesMapping = {
   4: "L",
   5: "XL",
   6: "XXL",
-  7: "XXXL",
-  8: "32",
-  9: "34",
-  10: "36",
-  11: "38",
-  12: "40",
-  13: "42",
-  14: "44",
-  15: "46",
-  16: "48",
-  17: "shoes 35",
-  18: "shoes 36",
-  19: "shoes 37",
-  20: "shoes 38",
-  21: "shoes 39",
-  22: "shoes 40",
-  23: "shoes 41",
-  24: "shoes 42",
-  25: "shoes 43",
-  26: "shoes 44",
-  27: "shoes 45",
-  28: "shoes 46",
-  29: "shoes 47",
-  30: "shoes 48",
-  31: "shoes 49",
-  32: "shoes 50",
+  7: "26",
+  8: "28",
+  9: "30",
+  10: "31",
+  11: "32",
+  12: "33",
+  13: "34",
+  14: "35",
+  15: "36",
+  16: "37",
+  17: "38",
+  18: "39",
+  19: "40",
+  20: "41",
+  21: "42",
+  22: "43",
+  23: "44",
+  24: "45",
+  25: "46",
+  26: "48",
 };
 
 const storesMapping = {
@@ -112,6 +90,18 @@ const storesMapping = {
   8: "Golf",
   9: "FashionClub",
 };
+
+
+const gender = [
+  { label: "Men", value: "1" },
+  { label: "Women", value: "2" },
+];
+
+const genderMapping = {
+  1: "Men",
+  2: "Women",
+};
+
 
 const SearchByPhoto = () => {
   const [selectedSize, setSelectedSize] = useState([]);

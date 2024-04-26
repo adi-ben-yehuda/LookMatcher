@@ -7,6 +7,8 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./LoginForm.style";
 import { useState, useRef, useContext } from "react";
 import UsersContext from "../../context/userContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const LoginForm = () => {
   const navigation = useNavigation();
@@ -62,6 +64,8 @@ const LoginForm = () => {
         console.log("TOKEN LOGIN", token);
         setEmail("");
         setPassword("");
+        await AsyncStorage.setItem("userName", body.name); // Save user name locally
+        //await AsyncStorage.setItem("userToken", token); // Save token locally
         navigation.navigate("Home", { name: body.name });
       } else if (res.status === 404) {
         const body = await res.json();

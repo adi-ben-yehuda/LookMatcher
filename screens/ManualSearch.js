@@ -6,27 +6,10 @@ import Tool from "../components/toolbar/ToolBar";
 import BackButton from "../components/backButton/BackButton";
 
 const ManualSearch = () => {
-  const [scrollViewHeight, setScrollViewHeight] = useState(
-    Dimensions.get("window").height
-  );
-
-  useEffect(() => {
-    const handleDimensionsChange = ({ window }) => {
-      setScrollViewHeight(window.height);
-    };
-
-    // Subscribe to the event when component mounts
-    Dimensions.addEventListener("change", handleDimensionsChange);
-
-    // Clean up the event listener when component unmounts
-    return () => {
-      Dimensions.removeEventListener("change", handleDimensionsChange);
-    };
-  }, []); // Empty dependency array means this effect runs once when the component mounts
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={{ height: scrollViewHeight * 1.12 }}>
+      <ScrollView contentContainerStyle={styles.scrollviewContainer}>
         <ManualSearchOptions />
       </ScrollView>
       <View style={styles.toolContainer}>
@@ -35,10 +18,17 @@ const ManualSearch = () => {
     </View>
   );
 };
+const window = Dimensions.get("window");
+  const screenHeight = window.height;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollviewContainer: {
+    height: screenHeight+35,
+    //paddingBottom: 150,
+    flexGrow: 2
   },
   toolContainer: {
     position: "absolute",
