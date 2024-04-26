@@ -3,16 +3,24 @@ import { Text, FlatList, View, TouchableOpacity } from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
+import { useRoute } from '@react-navigation/native';
 
 
 const Results = () => {
+  const route = useRoute();
+  const { body } = route.params || { body: {} };
+  
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
 
-
+  useEffect(() => {
+    setResults(body);
+  }, [body]);
+  
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
     "Price: low to high": require("../../assets/component-1661.png"),
@@ -63,7 +71,7 @@ const Results = () => {
         </TouchableOpacity>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
-        <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
+        <Text style={styles.itemCompany}>{`Store: ${item.company}`}</Text>
       </View>
     );
   };
@@ -98,35 +106,22 @@ const Results = () => {
     }
   };
 
-  const getResults = async () => {
+  const getWishlist= async () => {
 
     try {
-      const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
-        method: "POST",
+      const resWishlist = await fetch("http://192.168.56.1:3000/api/getWishlist", {
+        method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          authorization: "Bearer " + token,
         },
       });
-
-      if (res.ok) {
-        const body = await res.json();
-        setResults(body);
-        console.log(results);
-        const resWishlist = await fetch("http://192.168.56.1:3000/api/getWishlist", {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-        });
-        if (resWishlist.ok) {
-          console.log("resWishlist.ok")
-          const bodyWishlist = await resWishlist.json();
-          setWishlist(bodyWishlist.wishlist);
-          console.log(wishlist)
-        }
+      if (resWishlist.ok) {
+        console.log("resWishlist.ok")
+        const bodyWishlist = await resWishlist.json();
+        setWishlist(bodyWishlist.wishlist);
+        console.log(wishlist)
       }
       // else if (res.status === 409) {
       //   const body = await res.json();
@@ -146,10 +141,10 @@ const Results = () => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    getResults();
-  }, []);
+  //  getWishlist();
+  // useEffect(() => {
+  //   getWishlist();
+  // }, []);
 
   return (
     <View style={[styles.results, styles.resultsLayout]}>
