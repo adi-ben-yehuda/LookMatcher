@@ -6,7 +6,6 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-
   title: {
     top: screenHeight * 0.08,
     width: screenWidth,
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
   },
   email1Typo: {
     color: Color.gray,
-    fontSize: screenHeight*0.018,
+    fontSize: screenHeight * 0.018,
     left: "7.31%",
     textAlign: "left",
     position: "absolute",
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
   },
   login1: {
     marginLeft: -83.5,
-    top: screenHeight * 0.5 ,
+    top: screenHeight * 0.5,
     width: 167,
     height: 48,
     left: "50%",
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   errorMessage: {
-    top: screenHeight * 0.465 ,
+    top: screenHeight * 0.465,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   backlogin: {
-    top: screenHeight * 0.6 ,
+    top: screenHeight * 0.6,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",

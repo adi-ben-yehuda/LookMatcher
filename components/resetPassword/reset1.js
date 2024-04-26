@@ -20,7 +20,6 @@ const Reset = () => {
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
-  
 
   const handleEmail = (text) => {
     setEmail(text);
@@ -43,7 +42,7 @@ const Reset = () => {
 
   const handleEmailPress = async () => {
     setErrorMsg("");
-   
+
     const user = {
       email: email,
     };

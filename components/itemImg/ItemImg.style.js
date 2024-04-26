@@ -8,27 +8,26 @@ const screenWidth = window.width;
 const styles = StyleSheet.create({
   container: {
     width: screenWidth,
-    height: screenHeight ,
+    height: screenHeight,
     backgroundColor: "#FBF9FC",
-    
   },
   card: {
-    elevation: 3, 
-    backgroundColor: "#FBF9FC",  
-    shadowOffset: { width: 1, height: 1 },  
-    shadowColor: "#333",  
-    shadowOpacity: 0.3,  
-    shadowRadius: 2,  
-    marginVertical: 6,  
-    marginHorizontal: 12,  
-    overflow: "hidden",  
-    borderRadius: 8,  
-    alignItems: "center",  
-    justifyContent: "center" 
+    elevation: 3,
+    backgroundColor: "#FBF9FC",
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginVertical: 6,
+    marginHorizontal: 12,
+    overflow: "hidden",
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
-    width: "100%", 
-    height: screenHeight* 0.6, 
+    width: "100%",
+    height: screenHeight * 0.6,
   },
 
   buttonPrev: {
@@ -93,7 +92,6 @@ const styles = StyleSheet.create({
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.05,
-   
   },
 
   itemNameText: {

@@ -50,8 +50,6 @@ const ProfileDetails = () => {
     }
   }, [detailsFetched]);
 
-
-
   const handleEmail = (text) => {
     setEmail(text);
     setError(false);
@@ -65,7 +63,6 @@ const ProfileDetails = () => {
     setError(false);
   };
 
-
   const handleSavePress = async () => {
     setErrorMsg("");
     setSuccessMessage("");
@@ -75,7 +72,6 @@ const ProfileDetails = () => {
       firstName: firstName,
       lastName: lastName,
       oldEmail: oldEmail,
-
     };
 
     try {
@@ -91,7 +87,7 @@ const ProfileDetails = () => {
 
       if (res.ok) {
         setOldEmail(email);
-        setSuccessMessage("Details updated successfully!");      
+        setSuccessMessage("Details updated successfully!");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
@@ -174,7 +170,7 @@ const ProfileDetails = () => {
           <Text style={styles.success}>{successMessage}</Text>
         </View>
       )}
-      
+
       {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid {errorMsg}</Text>

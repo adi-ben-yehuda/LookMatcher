@@ -18,17 +18,17 @@ const Reset2 = () => {
 
   const [pass, setPass] = useState("");
   const [newPassword, setNewPassword] = useState("");
- 
 
   const [passPlaceholder, setpassPlaceholder] = useState("token");
-  const [newPasswordPlaceholder, setnewPasswordPlaceholder] = useState("New Password");
+  const [newPasswordPlaceholder, setnewPasswordPlaceholder] =
+    useState("New Password");
 
   // States for checking the errors
   const [error, setError] = useState(false);
   const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  
+
   const handlePass = (text) => {
     setPass(text);
     setError(false);
@@ -42,13 +42,13 @@ const Reset2 = () => {
   const handleResetPress = async () => {
     setErrorMsg("");
     setSuccessMessage("");
-  
+
     const reset = {
       email: email,
       token: pass,
       newPassword: newPassword,
     };
-  
+
     try {
       const res = await fetch("http://192.168.1.112:3000/api/resetPass", {
         method: "POST",
@@ -58,7 +58,7 @@ const Reset2 = () => {
         },
         body: JSON.stringify(reset),
       });
-  
+
       if (res.ok) {
         setSuccessMessage("Password reset successfully!");
       } else if (res.status === 409) {
@@ -78,26 +78,25 @@ const Reset2 = () => {
     ? [styles.login1, { marginTop: -20 }]
     : styles.login1;
 
+  const passBlur = () => {
+    passInput.current && passInput.current.handleBlur();
+    setpassPlaceholder("Token");
+  };
 
-    const passBlur = () => {
-      passInput.current && passInput.current.handleBlur();
-      setpassPlaceholder("Token");
-    };
-  
-    const passFocus = () => {
-      passInput.current && passInput.current.handleFocus();
-      setpassPlaceholder("");
-    };
-  
-    const newPasswordBlur = () => {
-      newPasswordInput.current && newPasswordInput.current.handleBlur();
-      setnewPasswordPlaceholder("Password");
-    };
-  
-    const newPasswordFocus = () => {
-      newPasswordFocus.current && newPasswordInput.current.handleFocus();
-      setnewPasswordPlaceholder("");
-    };
+  const passFocus = () => {
+    passInput.current && passInput.current.handleFocus();
+    setpassPlaceholder("");
+  };
+
+  const newPasswordBlur = () => {
+    newPasswordInput.current && newPasswordInput.current.handleBlur();
+    setnewPasswordPlaceholder("Password");
+  };
+
+  const newPasswordFocus = () => {
+    newPasswordFocus.current && newPasswordInput.current.handleFocus();
+    setnewPasswordPlaceholder("");
+  };
   return (
     <LinearGradient
       style={styles.login}
@@ -105,8 +104,8 @@ const Reset2 = () => {
       colors={["#2f085f", "#5b1c89", "#e069eb", "#ecc9f1"]}
     >
       <View style={styles.title}>
-        <Text style={styles.titelText}>    New{'\n'}Password</Text>
-      </View> 
+        <Text style={styles.titelText}> New{"\n"}Password</Text>
+      </View>
 
       <View style={styles.loginChild} />
       <View style={[styles.email, styles.emailPosition]}>
@@ -156,7 +155,7 @@ const Reset2 = () => {
         {successMessage && <Text style={styles.success}>{successMessage}</Text>}
       </View>
 
-      <TouchableOpacity onPress={handleResetPress} >
+      <TouchableOpacity onPress={handleResetPress}>
         <LinearGradient
           style={loginButtonStyle}
           locations={[0, 1]}
@@ -174,11 +173,10 @@ const Reset2 = () => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-      <View style={styles.backlogin}>
-        <Text style={styles.backlogin2}>Back to login {'>'}</Text>
-      </View>
-    </TouchableOpacity>
-      
+        <View style={styles.backlogin}>
+          <Text style={styles.backlogin2}>Back to login {">"}</Text>
+        </View>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };

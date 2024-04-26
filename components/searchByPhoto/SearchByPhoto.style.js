@@ -80,9 +80,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    
   },
-
 
   button: {
     padding: 10,
@@ -104,12 +102,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-
-
-
   searchButtonContainer: {
     position: "absolute",
-    top: screenHeight * 0.83 ,
+    top: screenHeight * 0.83,
     left: 0,
     right: 0,
     alignItems: "center",
@@ -119,7 +114,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: Border.br_3xs,
     overflow: "hidden",
-    
   },
   searchText: {
     color: Color.white,
@@ -128,7 +122,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
   },
-
 
   imageContainer: {
     width: 70,
@@ -146,24 +139,23 @@ const styles = StyleSheet.create({
     //position: 'relative',  // Added to position the close icon absolutely within the container
   },
   closeIcon: {
-    position: 'absolute',
+    position: "absolute",
     top: -3,
     right: -3,
-    height:"50%",
-    width:"50%"
+    height: "50%",
+    width: "50%",
   },
 
   image: {
     width: 70,
     height: 70,
     borderRadius: 8,
-    backgroundColor: "#FBF9FC", 
+    backgroundColor: "#FBF9FC",
   },
   errorText: {
     color: "red",
     marginTop: 16,
   },
-
 
   container3: {
     top: screenHeight * 0.285,
@@ -219,7 +211,6 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 16,
     color: Color.darkPurple,
-    
   },
 
   item: {
@@ -260,47 +251,45 @@ const styles = StyleSheet.create({
     color: Color.darkPurple,
   },
 
-
-
   searchButton: {
     width: 140,
-    height:42,
+    height: 42,
     borderRadius: Border.br_3xs,
     overflow: "hidden",
   },
 
   buttonContainerSelected1: {
-    top: screenHeight * 0.94, // Updated value 
+    top: screenHeight * 0.94, // Updated value
     position: "absolute",
     left: 0,
     right: 0,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 
   buttonContainerSelected2: {
-    top: screenHeight * 0.96, // Updated value 
+    top: screenHeight * 0.96, // Updated value
     left: 0,
     right: 0,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 
   buttonContainerSelected3: {
-    top: screenHeight * 0.99, // Updated value 
+    top: screenHeight * 0.99, // Updated value
     left: 0,
     right: 0,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 
   buttonContainer: {
-    top: screenHeight * 0.83, // Default value 
+    top: screenHeight * 0.83, // Default value
     position: "absolute",
     left: 0,
     right: 0,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
 });
 

@@ -5,20 +5,17 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-
-userGreeting: {
+  userGreeting: {
     backgroundColor: "#FBF9FC",
     top: 0,
     padding: 20,
-    
-  }, 
+  },
 
   userGreetingText: {
-    
     fontSize: screenWidth * 0.05,
     left: screenWidth * 0.05,
     fontWeight: "bold",
-    color: "#59358C"
+    color: "#59358C",
   },
 });
 

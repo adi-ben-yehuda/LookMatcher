@@ -3,13 +3,11 @@ import { Text, FlatList, View, TouchableOpacity } from "react-native";
 import styles from "./Results.style";
 import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
-import { useRoute } from '@react-navigation/native';
-
+import { useRoute } from "@react-navigation/native";
 
 const Results = () => {
   const route = useRoute();
   const { body } = route.params || { body: {} };
-  
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -20,7 +18,7 @@ const Results = () => {
   useEffect(() => {
     setResults(body);
   }, [body]);
-  
+
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
     "Price: low to high": require("../../assets/component-1661.png"),
@@ -36,12 +34,12 @@ const Results = () => {
       const isCurrentlyFavorite = isFavorite;
       setIsFavorite(!isFavorite);
       try {
-        const action = isCurrentlyFavorite ? 'remove' : 'add';
+        const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch('http://192.168.56.1:3000/api/updateWishlist', {
-          method: 'POST',
+        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             authorization: "Bearer " + token,
           },
           body: JSON.stringify({ itemId, action }),
@@ -49,7 +47,7 @@ const Results = () => {
 
         if (res.ok) {
         } else {
-          throw new Error('Failed to update wishlist');
+          throw new Error("Failed to update wishlist");
         }
       } catch (error) {
         console.error(error);
@@ -59,7 +57,10 @@ const Results = () => {
     return (
       <View style={styles.cardContainer}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
-        <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.favoriteIcon}>
+        <TouchableOpacity
+          onPress={() => toggleFavorite(item.id)}
+          style={styles.favoriteIcon}
+        >
           <Image
             source={
               isFavorite
@@ -97,7 +98,6 @@ const Results = () => {
 
     setIsDropdownOpen(false);
 
-
     // Sort the results based on the selected item
     if (item === "Price: low to high") {
       setResults([...results].sort((a, b) => a.price - b.price));
@@ -106,22 +106,24 @@ const Results = () => {
     }
   };
 
-  const getWishlist= async () => {
-
+  const getWishlist = async () => {
     try {
-      const resWishlist = await fetch("http://192.168.56.1:3000/api/getWishlist", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      });
+      const resWishlist = await fetch(
+        "http://192.168.56.1:3000/api/getWishlist",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+        }
+      );
       if (resWishlist.ok) {
-        console.log("resWishlist.ok")
+        console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
         setWishlist(bodyWishlist.wishlist);
-        console.log(wishlist)
+        console.log(wishlist);
       }
       // else if (res.status === 409) {
       //   const body = await res.json();
@@ -133,7 +135,7 @@ const Results = () => {
       //   const errorMsg = body.error;
       //   setErrorMsg(errorMsg);
       //   setError(true);
-      // } 
+      // }
       else {
         throw new Error("error");
       }
@@ -154,7 +156,9 @@ const Results = () => {
         <FlatList
           data={Array.isArray(results) ? results : [results]}
           renderItem={({ item }) => <ItemCard item={item} />}
-          keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+          keyExtractor={(item) =>
+            item.id ? item.id.toString() : Math.random().toString()
+          }
           numColumns={2}
         />
       </View>
@@ -203,7 +207,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -237,7 +241,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -266,7 +270,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
