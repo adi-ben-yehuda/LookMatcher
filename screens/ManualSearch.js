@@ -6,7 +6,9 @@ import Tool from "../components/toolbar/ToolBar";
 import BackButton from "../components/backButton/BackButton";
 
 const ManualSearch = () => {
-  const [scrollViewHeight, setScrollViewHeight] = useState(Dimensions.get("window").height);
+  const [scrollViewHeight, setScrollViewHeight] = useState(
+    Dimensions.get("window").height
+  );
 
   useEffect(() => {
     const handleDimensionsChange = ({ window }) => {

@@ -3,7 +3,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./HomeButtons.style";
 
-
 function HomeButtons() {
   const navigation = useNavigation();
 
@@ -25,7 +24,6 @@ function HomeButtons() {
 
   return (
     <View style={styles.home}>
-
       <TouchableOpacity onPress={handleSearchPress}>
         <LinearGradient
           style={[styles.recUpLeft, styles.buttonsUp]}

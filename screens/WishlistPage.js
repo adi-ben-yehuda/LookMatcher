@@ -11,7 +11,7 @@ const screenHeight = window.height;
 const WishlistPage = () => {
   return (
     <View>
-      <ScrollView  contentContainerStyle={{ minHeight: screenHeight * 1.3 }}>
+      <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.3 }}>
         <Wishlist />
         <BackButton />
       </ScrollView>

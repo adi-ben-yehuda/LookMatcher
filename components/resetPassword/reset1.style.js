@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  
+
   titelText: {
     fontSize: screenHeight * 0.06,
     fontWeight: "bold",
@@ -130,11 +130,11 @@ const styles = StyleSheet.create({
   },
 
   email: {
-    top: screenHeight * 0.5 ,
+    top: screenHeight * 0.5,
     height: 60,
     position: "absolute",
   },
- 
+
   lockIcon: {
     width: 30,
     height: 30,
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   },
   login1: {
     marginLeft: -83.5,
-    top: screenHeight * 0.5 ,
+    top: screenHeight * 0.5,
     width: 167,
     height: 48,
     left: "50%",
@@ -171,13 +171,12 @@ const styles = StyleSheet.create({
     backgroundColor: Color.lightPink,
     overflow: "hidden",
   },
-  
+
   register: {
     fontSize: screenHeight * 0.018,
     fontWeight: "bold",
     color: Color.darkPurple,
   },
- 
 
   login: {
     flex: 1,
@@ -187,9 +186,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  
   errorMessage: {
-    top: screenHeight * 0.42 ,
+    top: screenHeight * 0.42,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",

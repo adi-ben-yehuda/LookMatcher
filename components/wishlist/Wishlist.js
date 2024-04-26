@@ -5,7 +5,6 @@ import styles from "./Wishlist.style";
 import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
 
-
 const Wishlist = () => {
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -21,12 +20,12 @@ const Wishlist = () => {
       const isCurrentlyFavorite = isFavorite;
       setIsFavorite(!isFavorite);
       try {
-        const action = isCurrentlyFavorite ? 'remove' : 'add';
+        const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch('http://192.168.56.1:3000/api/updateWishlist', {
-          method: 'POST',
+        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             authorization: "Bearer " + token,
           },
           body: JSON.stringify({ itemId, action }),
@@ -34,7 +33,7 @@ const Wishlist = () => {
 
         if (res.ok) {
         } else {
-          throw new Error('Failed to update wishlist');
+          throw new Error("Failed to update wishlist");
         }
       } catch (error) {
         console.error(error);
@@ -49,7 +48,10 @@ const Wishlist = () => {
     return (
       <View style={styles.cardContainer}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
-        <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={styles.favoriteIcon}>
+        <TouchableOpacity
+          onPress={() => toggleFavorite(item.id)}
+          style={styles.favoriteIcon}
+        >
           <Image
             source={
               isFavorite
@@ -67,7 +69,6 @@ const Wishlist = () => {
   };
 
   const getResults = async () => {
-
     try {
       const res = await fetch("http://192.168.56.1:3000/api/wishlistPage", {
         method: "GET",
@@ -94,7 +95,7 @@ const Wishlist = () => {
       //   const errorMsg = body.error;
       //   setErrorMsg(errorMsg);
       //   setError(true);
-      // } 
+      // }
       else {
         throw new Error("error");
       }
@@ -107,20 +108,21 @@ const Wishlist = () => {
     getResults();
   }, []);
 
-
   return (
-      <View style={[styles.results, styles.resultsLayout]}>
+    <View style={[styles.results, styles.resultsLayout]}>
       <Text style={styles.headline}>Wishlist</Text>
 
       <View style={styles.container}>
         <FlatList
           data={Array.isArray(results) ? results : [results]}
           renderItem={({ item }) => <ItemCard item={item} />}
-          keyExtractor={(item) => (item.id ? item.id.toString() : Math.random().toString())}
+          keyExtractor={(item) =>
+            item.id ? item.id.toString() : Math.random().toString()
+          }
           numColumns={2}
         />
       </View>
-      
+
       <View style={styles.buttons}>
         <TouchableOpacity onPress={handleMakeMePress}>
           <LinearGradient
