@@ -6,7 +6,7 @@ import Tool from "../components/toolbar/ToolBar";
 import BackButton from "../components/backButton/BackButton";
 
 const ManualSearch = () => {
-  
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>

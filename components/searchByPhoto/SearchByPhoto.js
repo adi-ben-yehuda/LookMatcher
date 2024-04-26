@@ -91,6 +91,7 @@ const storesMapping = {
   9: "FashionClub",
 };
 
+
 const gender = [
   { label: "Men", value: "1" },
   { label: "Women", value: "2" },
@@ -100,6 +101,7 @@ const genderMapping = {
   1: "Men",
   2: "Women",
 };
+
 
 const SearchByPhoto = () => {
   const [selectedSize, setSelectedSize] = useState([]);
@@ -146,7 +148,7 @@ const SearchByPhoto = () => {
         // If an image is selected (not cancelled),
         // update the file state variable
         setFile(result.assets[0].uri);
-       
+
         // Clear any previous errors
         setError(null);
         navigation.setParams({ photo: null });
@@ -167,7 +169,6 @@ const SearchByPhoto = () => {
     setIsSizeSelected(selectedSize.length > 0);
   }, [selectedStores, selectedSize]);
 
-
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
@@ -178,7 +179,7 @@ const SearchByPhoto = () => {
 
   const clearImage = () => {
     setFile(null);
-      };
+  };
 
   const searchPress = () => {
     setErrorMsg("");
@@ -189,28 +190,24 @@ const SearchByPhoto = () => {
       selectedSize.length > 0 &&
       selectedStores.length > 0
     ) {
-
       const stores = selectedStores.map(
         (storeValue) => storesMapping[storeValue]
       );
-      
+
       const sizes = selectedSize.map(
         (sizeValue) => sizesAndShoesMapping[sizeValue]
       );
       const gender = genderMapping[selectedGender];
-    
-    
+
       console.log("Selected Sizes for Current Category:", sizes);
       console.log("Selected Stores:", stores);
       console.log("Selected ggg:", gender);
-      
 
       const search = {
         gender: gender,
         size: sizes,
         store: stores,
       };
-
     } else {
       const errorMsg = "Please select all choices";
       setErrorMsg(errorMsg);
@@ -260,11 +257,14 @@ const SearchByPhoto = () => {
         {file ? (
           // Display the selected image
           <View style={styles.imageContainer}>
-          <Image source={{ uri: file }} style={styles.image} />
-          <TouchableOpacity style={styles.closeIcon} onPress={clearImage}>
-            <Image style={styles.closeIcon} source={require("../../assets/icons/X.png")}/>
-          </TouchableOpacity>
-        </View>
+            <Image source={{ uri: file }} style={styles.image} />
+            <TouchableOpacity style={styles.closeIcon} onPress={clearImage}>
+              <Image
+                style={styles.closeIcon}
+                source={require("../../assets/icons/X.png")}
+              />
+            </TouchableOpacity>
+          </View>
         ) : (
           // Display an error message if there's
           // an error or no image selected
@@ -369,22 +369,25 @@ const SearchByPhoto = () => {
         </View>
       )}
 
-<TouchableOpacity
+      <TouchableOpacity
         onPress={searchPress}
         style={[
           styles.buttonContainer,
-          (isStoreSelected ||  isSizeSelected) && styles.buttonContainerSelected1,
-          (isStoreSelected &&  isSizeSelected ) && styles.buttonContainerSelected2,
-          (isStoreSelected &&  isSizeSelected && file ) && styles.buttonContainerSelected3,
-          
+          (isStoreSelected || isSizeSelected) &&
+            styles.buttonContainerSelected1,
+          isStoreSelected && isSizeSelected && styles.buttonContainerSelected2,
+          isStoreSelected &&
+            isSizeSelected &&
+            file &&
+            styles.buttonContainerSelected3,
         ]}
       >
         <LinearGradient
           style={[
             styles.searchButton,
-            (isStoreSelected ||  isSizeSelected) && styles.searchButton,
-            (isStoreSelected && isSizeSelected ) && styles.searchButton,
-            (isStoreSelected &&  isSizeSelected && file ) && styles.searchButton,
+            (isStoreSelected || isSizeSelected) && styles.searchButton,
+            isStoreSelected && isSizeSelected && styles.searchButton,
+            isStoreSelected && isSizeSelected && file && styles.searchButton,
           ]}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}

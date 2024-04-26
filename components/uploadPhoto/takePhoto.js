@@ -11,7 +11,6 @@ import { Camera } from "expo-camera";
 import styles from "./takePhoto.style";
 import { useNavigation } from "@react-navigation/native";
 
-
 let camera;
 
 export default function App() {
@@ -43,10 +42,9 @@ export default function App() {
 
   const __savePhoto = () => {
     if (capturedImage) {
-      navigation.navigate('SearchByPhoto', { photo: capturedImage });
+      navigation.navigate("SearchByPhoto", { photo: capturedImage });
     }
   };
-
 
   const __retakePicture = () => {
     setCapturedImage(null);

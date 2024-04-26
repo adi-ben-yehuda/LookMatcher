@@ -10,6 +10,23 @@ import { Dropdown } from "react-native-element-dropdown";
 // import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import BackButton from "../backButton/BackButton";
+import { useNavigation } from "@react-navigation/native";
+import {
+  colors,
+  gender,
+  sizesMapping,
+  colorMapping,
+  storesMapping,
+  shoesSizesMapping,
+  categoryMappingMan,
+  categoryMapping,
+  genderMapping,
+  sizes,
+  stores,
+  categoryMan,
+  category,
+  shoesSize,
+} from "./data";
 
 const colors = [
   { label: "Pink", value: "1", color: "#ff9ccc" },
@@ -201,6 +218,9 @@ const colorMapping = {
   13: "Green",
 };
 
+
+
+
 const Search = () => {
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -218,13 +238,16 @@ const Search = () => {
   const [error, setError] = useState(false);
 
 
+  const window = Dimensions.get("window");
+  const screenHeight = window.height;
+  const navigation = useNavigation();
+
+
   useEffect(() => {
     if (selectedCategory === "10" && selectedGender === "2") {
-      console.log("women");
       setSelectedSize([]);
       setIsShoes(true);
     } else if (selectedCategory === "8" && selectedGender === "1") {
-      console.log("men");
       setSelectedSize([]);
       setIsShoes(true);
     } else {
@@ -252,10 +275,8 @@ const Search = () => {
   }, [selectedStores, selectedSize, selectedColor]);
 
   const renderItemColor = (item) => {
-    
     return (
       <View style={styles.item}>
-        
         <View
           style={[styles.colorRectangle, { backgroundColor: item.color }]}
         />
@@ -305,11 +326,15 @@ const Search = () => {
       console.log("Selected Category:", category);
 
       const search = {
-        gender: gender,
-        category: category,
-        color: colors,
-        size: sizes,
-        store: stores,
+        gender: genderMapping[selectedGender],
+        category: isMen
+          ? categoryMappingMan[selectedCategory]
+          : categoryMapping[selectedCategory],
+        colors: selectedColor.map((color) => colorMapping[color]),
+        sizes: selectedSize.map((size) =>
+          isShoes ? shoesSizesMapping[size] : sizesMapping[size]
+        ),
+        stores: selectedStores.map((store) => storesMapping[store]),
       };
 
       try {
@@ -323,7 +348,8 @@ const Search = () => {
         });
 
         if (res.ok) {
-          //navigation.navigate("Results", { selectedChoices });
+          const body = await res.json();
+          navigation.navigate("Results", { body });
         } else if (res.status === 409) {
           // Handle conflict
         } else if (res.status === 400) {
@@ -439,7 +465,6 @@ const Search = () => {
                     {item.label}
                   </Text>
                 </View>
-                
               </TouchableOpacity>
             )}
           />

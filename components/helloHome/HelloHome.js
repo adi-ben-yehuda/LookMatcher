@@ -4,6 +4,7 @@ import styles from "./HelloHome.style";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+
 function HelloHome() {
     const [name, setName] = useState('');
   
@@ -26,5 +27,6 @@ function HelloHome() {
       </View>
     );
   }
+
 
 export default HelloHome;
