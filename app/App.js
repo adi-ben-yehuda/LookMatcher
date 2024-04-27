@@ -27,7 +27,7 @@ function App() {
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={Login} />
-
+          <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="Results" component={Results} />
 
           <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />

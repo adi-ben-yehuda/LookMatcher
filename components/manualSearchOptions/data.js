@@ -1,9 +1,4 @@
-export const gender = [
-  { label: "Men", value: "1" },
-  { label: "Women", value: "2" },
-];
-
-export const colors = [
+const colors = [
   { label: "Pink", value: "1", color: "#ff9ccc" },
   { label: "Red", value: "2", color: "#FF0000" },
   { label: "Burgundy", value: "3", color: "#940202" },
@@ -19,7 +14,7 @@ export const colors = [
   { label: "Green", value: "13", color: "#4a8157" },
 ];
 
-export const shoesSize = [
+const shoesSize = [
   { label: "35", value: "1" },
   { label: "36", value: "2" },
   { label: "37", value: "3" },
@@ -32,13 +27,14 @@ export const shoesSize = [
   { label: "44", value: "10" },
   { label: "45", value: "11" },
   { label: "46", value: "12" },
-  { label: "47", value: "13" },
-  { label: "48", value: "14" },
-  { label: "49", value: "15" },
-  { label: "50", value: "16" },
 ];
 
-export const category = [
+const gender = [
+  { label: "Men", value: "1" },
+  { label: "Women", value: "2" },
+];
+
+const category = [
   { label: "Shirts", value: "1" },
   { label: "Pants", value: "2" },
   { label: "Jeans", value: "3" },
@@ -51,7 +47,7 @@ export const category = [
   { label: "Shoes", value: "10" },
 ];
 
-export const categoryMan = [
+const categoryMan = [
   { label: "Shirts", value: "1" },
   { label: "Pants", value: "2" },
   { label: "Jeans", value: "3" },
@@ -62,41 +58,47 @@ export const categoryMan = [
   { label: "Shoes", value: "8" },
 ];
 
-export const stores = [
+const stores = [
   { label: "Castro", value: "1" },
   { label: "Renuar", value: "2" },
-  { label: "Twentyfourseven", value: "3" },
+  { label: "TwentyForSeven", value: "3" },
   { label: "Hoodies", value: "4" },
   { label: "Urbanica", value: "5" },
-  { label: "Studiopasha", value: "6" },
-  { label: "Golf", value: "7" },
+  { label: "H&O", value: "6" },
+  { label: "Tamnoon", value: "7" },
+  { label: "Golf", value: "8" },
+  { label: "FashionClub", value: "9" },
 ];
 
-export const sizes = [
+const sizes = [
   { label: "XS", value: "1" },
   { label: "S", value: "2" },
   { label: "M", value: "3" },
   { label: "L", value: "4" },
   { label: "XL", value: "5" },
   { label: "XXL", value: "6" },
-  { label: "XXXL", value: "7" },
-  { label: "32", value: "8" },
-  { label: "34", value: "9" },
-  { label: "36", value: "10" },
-  { label: "38", value: "11" },
-  { label: "40", value: "12" },
-  { label: "42", value: "13" },
-  { label: "44", value: "14" },
-  { label: "46", value: "15" },
-  { label: "48", value: "16" },
+  { label: "26", value: "7" },
+  { label: "28", value: "8" },
+  { label: "30", value: "9" },
+  { label: "31", value: "10" },
+  { label: "32", value: "11" },
+  { label: "33", value: "12" },
+  { label: "34", value: "13" },
+  { label: "36", value: "14" },
+  { label: "38", value: "15" },
+  { label: "40", value: "16" },
+  { label: "42", value: "17" },
+  { label: "44", value: "18" },
+  { label: "46", value: "19" },
+  { label: "48", value: "20" },
 ];
 
-export const genderMapping = {
+const genderMapping = {
   1: "Men",
   2: "Women",
 };
 
-export const categoryMapping = {
+const categoryMapping = {
   1: "Shirts",
   2: "Pants",
   3: "Jeans",
@@ -109,7 +111,7 @@ export const categoryMapping = {
   10: "Shoes",
 };
 
-export const categoryMappingMan = {
+const categoryMappingMan = {
   1: "Shirts",
   2: "Pants",
   3: "Jeans",
@@ -120,7 +122,7 @@ export const categoryMappingMan = {
   8: "Shoes",
 };
 
-export const shoesSizesMapping = {
+const shoesSizesMapping = {
   1: "35",
   2: "36",
   3: "37",
@@ -133,42 +135,44 @@ export const shoesSizesMapping = {
   10: "44",
   11: "45",
   12: "46",
-  13: "47",
-  14: "48",
-  15: "49",
-  16: "50",
 };
 
-export const storesMapping = {
+const storesMapping = {
   1: "Castro",
   2: "Renuar",
-  3: "Twentyfourseven",
+  3: "TwentyForSeven",
   4: "Hoodies",
   5: "Urbanica",
-  6: "Studiopasha",
-  7: "Golf",
+  6: "H&O",
+  7: "Tamnoon",
+  8: "Golf",
+  9: "FashionClub",
 };
 
-export const sizesMapping = {
+const sizesMapping = {
   1: "XS",
   2: "S",
   3: "M",
   4: "L",
   5: "XL",
   6: "XXL",
-  7: "XXXL",
-  8: "32",
-  9: "34",
-  10: "36",
-  11: "38",
-  12: "40",
-  13: "42",
-  14: "44",
-  15: "46",
-  16: "48",
+  7: "26",
+  8: "28",
+  9: "30",
+  10: "31",
+  11: "32",
+  12: "33",
+  13: "34",
+  14: "36",
+  15: "38",
+  16: "40",
+  17: "42",
+  18: "44",
+  19: "46",
+  20: "48",
 };
 
-export const colorMapping = {
+const colorMapping = {
   1: "Pink",
   2: "Red",
   3: "Burgundy",

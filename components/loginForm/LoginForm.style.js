@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   email: {
-    top: screenHeight * 0.25 + 150,
+    top: screenHeight * 0.425,
     height: 60,
     position: "absolute",
   },
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     left: screenWidth * 0.7 - 40,
   },
   password: {
-    top: screenHeight * 0.25 + 220,
+    top: screenHeight * 0.51,
     height: 60,
     position: "absolute",
   },
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   login1: {
     marginLeft: -83.5,
-    top: screenHeight * 0.25 + 400,
+    top: screenHeight * 0.72,
     width: 167,
     height: 48,
     left: "50%",
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
 
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 470,
+    top: screenHeight * 0.81,
     textAlign: "center",
     width: screenWidth,
     position: "absolute",
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   forgetPassword: {
-    top: screenHeight * 0.25 + 300,
+    top: screenHeight * 0.62,
     textAlign: "center",
     width: screenWidth,
     fontSize: screenHeight * 0.018,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
 
   errorMessage: {
-    top: screenHeight * 0.25 + 350,
+    top: screenHeight * 0.59 ,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",

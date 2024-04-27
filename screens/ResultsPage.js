@@ -1,5 +1,5 @@
-import * as React from "react";
-import { ScrollView, View, Dimensions } from "react-native";
+import React from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
 
 import Results from "../components/results/Results";
 import ToolBar from "../components/toolbar/ToolBar";
@@ -9,13 +9,32 @@ const screenHeight = window.height;
 
 const ResultsPage = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <View style={styles.container}>
+      <View style={styles.resultsContainer}>
         <Results />
+      </View>
+      <View style={styles.toolbarContainer}>
         <ToolBar />
-      </ScrollView>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,  // Make the container use full height
+    flexDirection: 'column',
+    backgroundColor: "#FBF9FC",
+
+     // Align children vertically
+  },
+  resultsContainer: {
+    flex: 1,  // Takes all available space pushing the toolbar to the bottom
+  },
+  toolbarContainer: {
+    height: 50, // Adjust according to the height of your toolbar
+    justifyContent: 'flex-end',
+  }
+});
 
 export default ResultsPage;
