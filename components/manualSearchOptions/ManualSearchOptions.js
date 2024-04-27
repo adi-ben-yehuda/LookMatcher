@@ -362,15 +362,9 @@ const Search = () => {
 
   if (loading) {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          backgroundColor: "#FBF9FC",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.load}>
         <ActivityIndicator size="large" color="#43118C" />
+        <Text style={{ color: '#43118C' }}>{"\n"} Loading...</Text>
       </View>
     );
   }
