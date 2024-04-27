@@ -4,6 +4,8 @@ import styles from "./Results.style";
 import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Results = () => {
   const route = useRoute();
@@ -14,7 +16,11 @@ const Results = () => {
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
+  const navigation = useNavigation();
 
+  const handleBackButtonPress = () => {
+    navigation.goBack();
+  };
   useEffect(() => {
     setResults(body);
   }, [body]);
@@ -27,8 +33,38 @@ const Results = () => {
     "Distance: far to near": require("../../assets/component-1661.png"),
   });
 
+  const renderHeader = () => (
+    <View>
+      <Text style={styles.headline}>Search Results</Text>
+      <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
+        <Image
+          style={styles.icon}
+          contentFit="cover"
+          source={require("../../assets/icons/prev.png")}
+        />
+      </TouchableOpacity>
+      <View
+        style={[styles.sort, styles.stateLayerFlexBox]}
+        onTouchEnd={handleSortByClick}
+      >
+        <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
+          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
+          <Image
+            style={styles.arrow}
+            contentFit="cover"
+            source={require("../../assets/icons/filter.png")}
+          />
+        </View>
+      </View>
+    </View>
+  );
+
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(wishlist.includes(item.id));
+
+    if (!item || item.id === "empty-item") {
+      return <View style={styles.emptyItem} />;
+    }
 
     const toggleFavorite = async (itemId) => {
       const isCurrentlyFavorite = isFavorite;
@@ -149,33 +185,49 @@ const Results = () => {
   // }, []);
 
   return (
-    <View style={[styles.results, styles.resultsLayout]}>
-      <Text style={styles.headline}>Button-down shirts</Text>
-
-      <View style={styles.container}>
+    <View style={styles.container}>
+      {!results.length > 0 && (
+        <View style={styles.noResultsContainer}>
+          <Text style={styles.noResults}>
+            No results found{"\n"}     search again
+          </Text>
+          <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
+            <Image
+              style={styles.icon}
+              contentFit="cover"
+              source={require("../../assets/icons/prev.png")}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+      {results.length > 0 && (
         <FlatList
-          data={Array.isArray(results) ? results : [results]}
-          renderItem={({ item }) => <ItemCard item={item} />}
+          data={
+            results.length % 2 === 0
+              ? results
+              : [...results, { id: "empty-item" }]
+          }
+          ListHeaderComponent={renderHeader}
+          renderItem={({ item, index, separators }) => {
+            if (item.id === "empty-item") {
+              return <View style={{ flex: 1 }} />;
+            } else {
+              const isLastItem =
+                index === results.length && results.length % 2 === 1;
+              return (
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <ItemCard item={item} />
+                  {isLastItem && <View style={{ flex: 0.5 }} />}
+                </View>
+              );
+            }
+          }}
           keyExtractor={(item) =>
             item.id ? item.id.toString() : Math.random().toString()
           }
           numColumns={2}
         />
-      </View>
-
-      <View
-        style={[styles.sort, styles.stateLayerFlexBox]}
-        onTouchEnd={handleSortByClick}
-      >
-        <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
-          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
-          <Image
-            style={styles.arrow}
-            contentFit="cover"
-            source={require("../../assets/icon.png")}
-          />
-        </View>
-      </View>
+      )}
 
       {isDropdownOpen && (
         <View style={styles.dropDownList}>
@@ -337,11 +389,11 @@ const Results = () => {
               </View>
             </View>
           </View>
-          <Image
+          {/* <Image
             style={styles.scrollBarIcon}
             contentFit="cover"
             source={require("../../assets/scroll-bar.png")}
-          />
+          /> */}
         </View>
       )}
     </View>

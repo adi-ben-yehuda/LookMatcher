@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { View, TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
 import styles from "./ManualSearchOptions.style";
 import { Dropdown } from "react-native-element-dropdown";
@@ -11,22 +7,22 @@ import { Dropdown } from "react-native-element-dropdown";
 import { LinearGradient } from "expo-linear-gradient";
 import BackButton from "../backButton/BackButton";
 import { useNavigation } from "@react-navigation/native";
-import {
-  colors,
-  gender,
-  sizesMapping,
-  colorMapping,
-  storesMapping,
-  shoesSizesMapping,
-  categoryMappingMan,
-  categoryMapping,
-  genderMapping,
-  sizes,
-  stores,
-  categoryMan,
-  category,
-  shoesSize,
-} from "./data";
+// import {
+//   colors,
+//   gender,
+//   sizesMapping,
+//   colorMapping,
+//   storesMapping,
+//   shoesSizesMapping,
+//   categoryMappingMan,
+//   categoryMapping,
+//   genderMapping,
+//   sizes,
+//   stores,
+//   categoryMan,
+//   category,
+//   shoesSize,
+// } from "./data";
 
 const colors = [
   { label: "Pink", value: "1", color: "#ff9ccc" },
@@ -88,16 +84,14 @@ const categoryMan = [
   { label: "Shoes", value: "8" },
 ];
 
-const stores = [
+export const stores = [
   { label: "Castro", value: "1" },
   { label: "Renuar", value: "2" },
-  { label: "TwentyForSeven", value: "3" },
+  { label: "Twentyfourseven", value: "3" },
   { label: "Hoodies", value: "4" },
   { label: "Urbanica", value: "5" },
-  { label: "H&O", value: "6" },
-  { label: "Tamnoon", value: "7" },
-  { label: "Golf", value: "8" },
-  { label: "FashionClub", value: "9" },
+  { label: "Studiopasha", value: "6" },
+  { label: "Golf", value: "7" },
 ];
 
 const sizes = [
@@ -170,13 +164,11 @@ const shoesSizesMapping = {
 const storesMapping = {
   1: "Castro",
   2: "Renuar",
-  3: "TwentyForSeven",
+  3: "Twentyfourseven",
   4: "Hoodies",
   5: "Urbanica",
-  6: "H&O",
-  7: "Tamnoon",
-  8: "Golf",
-  9: "FashionClub",
+  6: "Studiopasha",
+  7: "Golf",
 };
 
 const sizesMapping = {
@@ -218,9 +210,6 @@ const colorMapping = {
   13: "Green",
 };
 
-
-
-
 const Search = () => {
   const [selectedColor, setSelectedColor] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -237,11 +226,9 @@ const Search = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
 
-
-  const window = Dimensions.get("window");
-  const screenHeight = window.height;
+  // Add a state variable for loading
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-
 
   useEffect(() => {
     if (selectedCategory === "10" && selectedGender === "2") {
@@ -295,6 +282,7 @@ const Search = () => {
 
   const searchPress = async () => {
     setErrorMsg("");
+
     // Check if all required choices are selected
     if (
       selectedGender &&
@@ -336,9 +324,9 @@ const Search = () => {
         ),
         stores: selectedStores.map((store) => storesMapping[store]),
       };
-
+      setLoading(true);
       try {
-        const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
+        const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -359,6 +347,8 @@ const Search = () => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false); // Set loading to false when search is complete
       }
     } else {
       const errorMsg = "Please select all choices";
@@ -370,8 +360,23 @@ const Search = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          backgroundColor: "#FBF9FC",
+          alignItems: "center",
+        }}
+      >
+        <ActivityIndicator size="large" color="#43118C" />
+      </View>
+    );
+  }
+
   return (
-    <View >
+    <View>
       <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
       <View style={styles.container1}>
         <View style={styles.container}>
@@ -469,6 +474,11 @@ const Search = () => {
             )}
           />
         </View>
+        {/* {loading && (
+        <View style={[styles.loadingContainer, { flex: 1, backgroundColor: "#FBF9FC" , justifyContent: 'center', alignItems: 'center' }]}>
+          <ActivityIndicator size="large" color="#43118C" />
+        </View>
+      )} */}
       </View>
       <View style={styles.container4}>
         <View style={styles.container}>

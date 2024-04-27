@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     textAlign: "center",
   },
+
+ 
 });
 
 export default styles;
