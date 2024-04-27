@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     textTransform: "capitalize",
     fontWeight: "700",
-    color: Color.primary,
+    color: Color.darkPurple,
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 20,
     fontWeight: "bold",
-    
+
   },
 });
 

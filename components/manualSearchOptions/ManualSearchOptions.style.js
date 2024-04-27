@@ -71,10 +71,9 @@ const styles = StyleSheet.create({
     color: Color.darkPurple,
   },
   selectedTextStyle: {
-
     fontSize: 14,
     color: Color.darkPurple,
-    marginRight: 'auto', 
+    marginRight: "auto",
   },
   iconStyle: {
     width: 20,
@@ -134,8 +133,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
 
-
- buttonContainerSelected2: {
+  buttonContainerSelected2: {
     top: screenHeight * 0.88, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
@@ -192,7 +190,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
- 
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
+  },
 });
 
 export default styles;
