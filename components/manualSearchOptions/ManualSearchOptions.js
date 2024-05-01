@@ -326,7 +326,7 @@ const Search = () => {
       };
       setLoading(true);
       try {
-        const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+        const res = await fetch("http://localhost:3000/api/SearchResults", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -364,7 +364,7 @@ const Search = () => {
     return (
       <View style={styles.load}>
         <ActivityIndicator size="large" color="#43118C" />
-        <Text style={{ color: '#43118C' }}>{"\n"} Loading...</Text>
+        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
       </View>
     );
   }

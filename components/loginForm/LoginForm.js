@@ -7,8 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./LoginForm.style";
 import { useState, useRef, useContext } from "react";
 import UsersContext from "../../context/userContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginForm = () => {
   const navigation = useNavigation();
@@ -47,7 +46,7 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/Tokens", {
+      const res = await fetch("http://localhost:3000/api/Tokens", {
         method: "POST",
         headers: {
           Accept: "application/json",

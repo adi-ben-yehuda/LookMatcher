@@ -72,7 +72,7 @@ const Results = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+        const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -144,17 +144,14 @@ const Results = () => {
 
   const getWishlist = async () => {
     try {
-      const resWishlist = await fetch(
-        "http://192.168.56.1:3000/api/getWishlist",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-        }
-      );
+      const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      });
       if (resWishlist.ok) {
         console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
@@ -189,7 +186,7 @@ const Results = () => {
       {!results.length > 0 && (
         <View style={styles.noResultsContainer}>
           <Text style={styles.noResults}>
-            No results found{"\n"}     search again
+            No results found{"\n"} search again
           </Text>
           <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
             <Image
