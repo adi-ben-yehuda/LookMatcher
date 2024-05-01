@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Text, View, FlatList, TouchableOpacity } from "react-native";
+import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Wishlist.style";
-import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
 
 const Wishlist = () => {
@@ -113,14 +112,41 @@ const Wishlist = () => {
       <Text style={styles.headline}>Wishlist</Text>
 
       <View style={styles.container}>
+         {!results.length > 0 && (
+        <View style={styles.noResultsContainer}>
+          <Text style={styles.noResults}>
+            Nothing saved{"\n"}
+          </Text>
+
+        </View>
+      )}
+      {results.length > 0 && (
         <FlatList
-          data={Array.isArray(results) ? results : [results]}
-          renderItem={({ item }) => <ItemCard item={item} />}
+          data={
+            results.length % 2 === 0
+              ? results
+              : [...results, { id: "empty-item" }]
+          }
+          renderItem={({ item, index, separators }) => {
+            if (item.id === "empty-item") {
+              return <View style={{ flex: 1 }} />;
+            } else {
+              const isLastItem =
+                index === results.length && results.length % 2 === 1;
+              return (
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <ItemCard item={item} />
+                  {isLastItem && <View style={{ flex: 0.5 }} />}
+                </View>
+              );
+            }
+          }}
           keyExtractor={(item) =>
             item.id ? item.id.toString() : Math.random().toString()
           }
           numColumns={2}
         />
+      )}
       </View>
 
       <View style={styles.buttons}>

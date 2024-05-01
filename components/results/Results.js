@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Text, FlatList, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import { Text, FlatList, View, TouchableOpacity, ActivityIndicator, Image, useFocusEffect } from "react-native";
 import styles from "./Results.style";
-import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -9,8 +8,9 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const Results = () => {
   const route = useRoute();
-  const { body } = route.params || { body: {} };
+  const { search } = route.params || { body: {} };
 
+  const [loading, setLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [results, setResults] = useState([]);
@@ -22,8 +22,11 @@ const Results = () => {
     navigation.goBack();
   };
   useEffect(() => {
-    setResults(body);
-  }, [body]);
+    getResults()
+    console.log("in useeffect");
+  }, []);
+
+
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
@@ -72,7 +75,7 @@ const Results = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+        const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -89,6 +92,12 @@ const Results = () => {
         console.error(error);
       }
     };
+
+    // useFocusEffect(
+    //   useCallback(() => {
+    //     getWishlist();
+    //   }, [])
+    // );
 
     return (
       <View style={styles.cardContainer}>
@@ -142,10 +151,11 @@ const Results = () => {
     }
   };
 
+
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch(
-        "http://192.168.56.1:3000/api/getWishlist",
+        "http://localhost:3000/api/getWishlist",
         {
           method: "GET",
           headers: {
@@ -179,6 +189,45 @@ const Results = () => {
       console.error(error);
     }
   };
+
+
+  const getResults = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:3000/api/SearchResults", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(search),
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        setResults(body);
+      } else if (res.status === 409) {
+        // Handle conflict
+      } else if (res.status === 400) {
+        // Handle bad request
+      } else {
+        // Handle other errors
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false); // Set loading to false when search is complete
+    }
+  }
+
+  if (loading) {
+    return (
+      <View style={styles.load}>
+        <ActivityIndicator size="large" color="#43118C" />
+        <Text style={{ color: '#43118C' }}>{"\n"} Loading...</Text>
+      </View>
+    );
+  }
   //  getWishlist();
   // useEffect(() => {
   //   getWishlist();
@@ -189,7 +238,7 @@ const Results = () => {
       {!results.length > 0 && (
         <View style={styles.noResultsContainer}>
           <Text style={styles.noResults}>
-            No results found{"\n"}     search again
+            No results found{"\n"}     Search again
           </Text>
           <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
             <Image
@@ -259,7 +308,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -293,7 +342,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -322,7 +371,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")

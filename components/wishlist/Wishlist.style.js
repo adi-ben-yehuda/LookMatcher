@@ -50,13 +50,13 @@ const styles = StyleSheet.create({
   },
   makeMe: {
     right: screenWidth * 0.07,
-    position: "absolute",
+    // position: "absolute",
     bottom: screenHeight * 0.1,
     //top:screenHeight*1.03
   },
   makeYourself: {
     left: screenWidth * 0.07,
-    position: "absolute",
+    // position: "absolute",
     bottom: screenHeight * 0.1,
   },
 
@@ -126,6 +126,25 @@ const styles = StyleSheet.create({
   itemCompany: {
     fontSize: 14,
     color: "#666",
+  },
+
+  emptyItem: {
+    backgroundColor: "#FBF9FC",
+
+  },
+
+  noResultsContainer: {
+
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  noResults: {
+    top: screenHeight * 0.4,
+    color: 'red',
+    fontSize: 20,
+    fontWeight: "bold",
+
   },
 });
 
