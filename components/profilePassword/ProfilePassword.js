@@ -44,7 +44,7 @@ const ProfilePassword = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.56.1:3000/api/Users/password`, {
+      const res = await fetch(`http://localhost:3000/api/Users/password`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -58,7 +58,7 @@ const ProfilePassword = () => {
         setCurrPassword(currPassword);
         setNewPassword("");
         setConfirmPassword("");
-        setSuccessMessage("Password changed successfully!");      
+        setSuccessMessage("Password changed successfully!");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;

@@ -21,7 +21,7 @@ const Wishlist = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+        const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.56.1:3000/api/wishlistPage", {
+      const res = await fetch("http://localhost:3000/api/wishlistPage", {
         method: "GET",
         headers: {
           Accept: "application/json",

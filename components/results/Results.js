@@ -23,7 +23,6 @@ const Results = () => {
   };
   useEffect(() => {
     getResults()
-    console.log("in useeffect");
   }, []);
 
   useEffect(() => {
@@ -159,17 +158,14 @@ const Results = () => {
 
   const getWishlist = async () => {
     try {
-      const resWishlist = await fetch(
-        "http://localhost:3000/api/getWishlist",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-        }
-      );
+      const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      });
       if (resWishlist.ok) {
         console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
