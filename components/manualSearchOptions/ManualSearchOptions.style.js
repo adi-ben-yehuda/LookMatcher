@@ -189,13 +189,6 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     textAlign: "center",
   },
-
-  load: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#FBF9FC",
-    alignItems: "center",
-  },
 });
 
 export default styles;

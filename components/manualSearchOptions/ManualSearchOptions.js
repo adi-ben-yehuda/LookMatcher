@@ -312,32 +312,9 @@ const Search = () => {
         ),
         stores: selectedStores.map((store) => storesMapping[store]),
       };
-      setLoading(true);
-      try {
-        const res = await fetch("http://localhost:3000/api/SearchResults", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(search),
-        });
 
-        if (res.ok) {
-          const body = await res.json();
-          navigation.navigate("Results", { body });
-        } else if (res.status === 409) {
-          // Handle conflict
-        } else if (res.status === 400) {
-          // Handle bad request
-        } else {
-          // Handle other errors
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false); // Set loading to false when search is complete
-      }
+      navigation.navigate("Results", { search });
+
     } else {
       const errorMsg = "Please select all choices";
       setErrorMsg(errorMsg);
@@ -347,15 +324,6 @@ const Search = () => {
       console.log(errorMsg);
     }
   };
-
-  if (loading) {
-    return (
-      <View style={styles.load}>
-        <ActivityIndicator size="large" color="#43118C" />
-        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
-      </View>
-    );
-  }
 
   return (
     <View>

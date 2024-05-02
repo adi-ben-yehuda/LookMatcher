@@ -203,8 +203,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f0f0f0", //#fff
     marginTop: 10,
-    margin: 12,
+    margin: 15,
     padding: 16,
+    marginBottom: 25,
     borderRadius: 8,
     elevation: 2,
     position: "relative",
@@ -276,6 +277,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
 
   },
+  
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
+  },
+
+
 });
 
 export default styles;
