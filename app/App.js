@@ -26,13 +26,12 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="ManualSearch" component={ManualSearch} />
-
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="Results" component={Results} />
 
           <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
+          <Stack.Screen name="ManualSearch" component={ManualSearch} />
 
           <Stack.Screen name="TakePhoto" component={TakePhoto} />
           <Stack.Screen name="ItemPage" component={ItemPage} />

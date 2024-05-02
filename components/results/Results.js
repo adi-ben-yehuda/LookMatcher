@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Text, FlatList, View, TouchableOpacity, ActivityIndicator, Image, useFocusEffect } from "react-native";
+import { Text, FlatList, View, TouchableOpacity, ActivityIndicator, Image } from "react-native";
 import styles from "./Results.style";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 
 const Results = () => {
@@ -26,6 +26,11 @@ const Results = () => {
     console.log("in useeffect");
   }, []);
 
+  useEffect(() => {
+    if (results.length > 0) {
+      getWishlist();
+    }
+  }, [results]);
 
 
   // Maintain individual icon sources for each item
