@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Text, FlatList, View, TouchableOpacity, ActivityIndicator, Image } from "react-native";
+import {
+  Text,
+  FlatList,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+  Image,
+} from "react-native";
 import styles from "./Results.style";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const Results = () => {
   const route = useRoute();
@@ -21,8 +27,9 @@ const Results = () => {
   const handleBackButtonPress = () => {
     navigation.goBack();
   };
+
   useEffect(() => {
-    getResults()
+    getResults();
   }, []);
 
   useEffect(() => {
@@ -30,7 +37,6 @@ const Results = () => {
       getWishlist();
     }
   }, [results]);
-
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
@@ -155,7 +161,6 @@ const Results = () => {
     }
   };
 
-
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
@@ -191,7 +196,6 @@ const Results = () => {
     }
   };
 
-
   const getResults = async () => {
     setLoading(true);
     try {
@@ -219,27 +223,24 @@ const Results = () => {
     } finally {
       setLoading(false); // Set loading to false when search is complete
     }
-  }
+  };
 
   if (loading) {
     return (
       <View style={styles.load}>
         <ActivityIndicator size="large" color="#43118C" />
-        <Text style={{ color: '#43118C' }}>{"\n"} Loading...</Text>
+        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
       </View>
     );
   }
-  //  getWishlist();
-  // useEffect(() => {
-  //   getWishlist();
-  // }, []);
 
   return (
     <View style={styles.container}>
       {!results.length > 0 && (
         <View style={styles.noResultsContainer}>
           <Text style={styles.noResults}>
-            No results found{"\n"}     Search again
+            No matches found... yet!{"\n"} Keep looking for the {"\n"}perfect
+            match for you!
           </Text>
           <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
             <Image
@@ -309,7 +310,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -343,7 +344,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -372,7 +373,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
