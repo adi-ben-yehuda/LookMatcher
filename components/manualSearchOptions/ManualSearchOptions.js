@@ -46,7 +46,7 @@ const gender = [
 const category = [
   { label: "Button Shirts", value: "1" },
   { label: "Dresses", value: "2" },
-  { label: "Jackets and coats", value: "3" },
+  { label: "Jackets", value: "3" },
   { label: "Jeans", value: "4" },
   { label: "Pants", value: "5" },
   { label: "Shirts", value: "6" },
@@ -75,8 +75,8 @@ export const stores = [
   { label: "Golf", value: "2" },
   { label: "Hoodies", value: "3" },
   { label: "Renuar", value: "4" },
-  { label: "Studiopasha", value: "5" },
-  { label: "Twentyfourseven", value: "6" },
+  { label: "Studio Pasha", value: "5" },
+  { label: "Twenty Four Seven", value: "6" },
   { label: "Urbanica", value: "7" },
   { label: "Yanga", value: "8" },
 ];
@@ -222,11 +222,11 @@ const Search = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (selectedCategory === "6" && selectedGender === "2") {
+    if (selectedCategory === "7" && selectedGender === "2") {
       // The category is shoes and the gender is women
       setSelectedSize([]);
       setIsShoes(true);
-    } else if (selectedCategory === "5" && selectedGender === "1") {
+    } else if (selectedCategory === "6" && selectedGender === "1") {
       // The category is shoes and the gender is men
       setSelectedSize([]);
       setIsShoes(true);
