@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   stateLayer: {
     paddingVertical: screenHeight * 0.005,
   },
-  
+
   dropDownList: {
     top: screenHeight * 0.15,
     right: screenWidth * 0.2,
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
   },
 
   container: {
-   
     backgroundColor: "#FBF9FC",
     //marginTop: screenHeight * 0.035,
   },
@@ -256,36 +255,30 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     left: 10,
-    //padding: 5,
   },
 
   emptyItem: {
     backgroundColor: "#FBF9FC",
-
   },
 
   noResultsContainer: {
-
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   noResults: {
     top: screenHeight * 0.4,
-    color: 'red',
+    color: "black",
     fontSize: 20,
     fontWeight: "bold",
-
   },
-  
+
   load: {
     flex: 1,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
     alignItems: "center",
   },
-
-
 });
 
 export default styles;
