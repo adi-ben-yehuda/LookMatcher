@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
@@ -7,7 +7,9 @@ import {
   Dimensions,
   Text,
 } from "react-native";
+import { useRoute } from "@react-navigation/native";
 import styles from "./ItemImg.style";
+
 
 const imagePaths = [
   require("../../assets/icons/images/fffff.jpg"),
@@ -16,6 +18,10 @@ const imagePaths = [
 ];
 
 const ItemCard = () => {
+  const route = useRoute();
+  const { itemId } = route.params || { body: {} };
+  
+  const [itemDetails, setItemDetails] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrev = () => {
@@ -29,6 +35,38 @@ const ItemCard = () => {
     setCurrentImageIndex(newIndex);
   };
 
+  useEffect(() => {
+    getItemDetails();
+  }, []);
+
+
+  const getItemDetails = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/ItemDetalis", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({itemId}),
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        setItemDetails(body);
+        console.log("itemDetails", body);
+      } else if (res.status === 409) {
+        // Handle conflict
+      } else if (res.status === 400) {
+        // Handle bad request
+      } else {
+        // Handle other errors
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -40,13 +78,13 @@ const ItemCard = () => {
           />
         </View>
 
-        <TouchableOpacity style={[styles.back2]}>
+        {/* <TouchableOpacity style={[styles.back2]}>
           <Image
             style={[styles.back]}
             contentFit="cover"
             source={require("../../assets/icons/back2.png")}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={[styles.heart]}>
           <Image
@@ -74,19 +112,23 @@ const ItemCard = () => {
 
       <View>
         <View style={styles.itemName}>
-          <Text style={styles.itemNameText}>Your Item Name</Text>
+          <Text style={styles.itemNameText}>{itemDetails.name}</Text>
+        </View>
+
+        <View style={styles.itemStore}>
+          <Text style={styles.itemStoreText}>Store: {itemDetails.store}</Text>
         </View>
 
         <View style={styles.itemPrice}>
-          <Text style={styles.itemPriceText}>Price: ₪ 80</Text>
+          <Text style={styles.itemPriceText}>Price: ₪ {itemDetails.price}</Text>
         </View>
 
         <View style={styles.itemColor}>
-          <Text style={styles.itemColorText}>Color: Pink</Text>
+          <Text style={styles.itemColorText}>Color: {itemDetails.color}</Text>
         </View>
 
         <View style={styles.itemSize}>
-          <Text style={styles.itemSizeText}>Size: M</Text>
+          <Text style={styles.itemSizeText}>Size: {itemDetails.size}</Text>
         </View>
       </View>
     </View>

@@ -78,6 +78,11 @@ const Results = () => {
     if (!item || item.id === "empty-item") {
       return <View style={styles.emptyItem} />;
     }
+    const navigation = useNavigation(); // Using the useNavigation hook
+
+    const navigateToDetailPage = (itemId) => {
+      navigation.navigate('ItemPage', { itemId }); // Navigate and pass itemId
+    };
 
     const toggleFavorite = async (itemId) => {
       const isCurrentlyFavorite = isFavorite;
@@ -110,10 +115,13 @@ const Results = () => {
     // );
 
     return (
-      <View style={styles.cardContainer}>
+      <TouchableOpacity style={styles.cardContainer} onPress={() => navigateToDetailPage(item.id)}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
-          onPress={() => toggleFavorite(item.id)}
+          onPress={(e) => {
+            e.stopPropagation(); // Prevents the parent's onPress from firing when the favorite button is clicked
+            toggleFavorite(item.id);
+          }}
           style={styles.favoriteIcon}
         >
           <Image
@@ -128,7 +136,7 @@ const Results = () => {
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
         <Text style={styles.itemCompany}>{`Store: ${item.company}`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -211,6 +219,7 @@ const Results = () => {
       if (res.ok) {
         const body = await res.json();
         setResults(body);
+        console.log("results", results);
       } else if (res.status === 409) {
         // Handle conflict
       } else if (res.status === 400) {
@@ -310,7 +319,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -344,7 +353,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -373,7 +382,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
