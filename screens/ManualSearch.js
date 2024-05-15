@@ -23,10 +23,11 @@ const window = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#FBF9FC",
     flex: 1,
   },
   scrollviewContainer: {
-    height: screenHeight+35,
+    height: screenHeight+110,
     //paddingBottom: 150,
     flexGrow: 2
   },

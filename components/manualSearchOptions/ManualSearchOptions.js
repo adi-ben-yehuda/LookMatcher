@@ -1,47 +1,26 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { View, TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
 import styles from "./ManualSearchOptions.style";
 import { Dropdown } from "react-native-element-dropdown";
-// import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import BackButton from "../backButton/BackButton";
 import { useNavigation } from "@react-navigation/native";
-import {
-  colors,
-  gender,
-  sizesMapping,
-  colorMapping,
-  storesMapping,
-  shoesSizesMapping,
-  categoryMappingMan,
-  categoryMapping,
-  genderMapping,
-  sizes,
-  stores,
-  categoryMan,
-  category,
-  shoesSize,
-} from "./data";
 
 const colors = [
-  { label: "Pink", value: "1", color: "#ff9ccc" },
-  { label: "Red", value: "2", color: "#FF0000" },
-  { label: "Burgundy", value: "3", color: "#940202" },
+  { label: "Azure", value: "1", color: "#49e2ff" },
+  { label: "Black", value: "2", color: "#292929" },
+  { label: "Blue", value: "3", color: "#234da0" },
   { label: "Brown", value: "4", color: "#8f6038" },
-  { label: "Orange", value: "5", color: "#fa7e3c" },
-  { label: "Yellow", value: "6", color: "#fef200" },
-  { label: "White", value: "7", color: "#ffffff" },
-  { label: "Black", value: "8", color: "#292929" },
-  { label: "Purple", value: "9", color: "#9031b0" },
-  { label: "Blue", value: "10", color: "#234da0" },
-  { label: "Light Blue", value: "11", color: "#49e2ff" },
-  { label: "Gray", value: "12", color: "#999999" },
-  { label: "Green", value: "13", color: "#4a8157" },
+  { label: "Burgundy", value: "5", color: "#940202" },
+  { label: "Gray", value: "6", color: "#999999" },
+  { label: "Green", value: "7", color: "#4a8157" },
+  { label: "Orange", value: "8", color: "#fa7e3c" },
+  { label: "Pink", value: "9", color: "#ff9ccc" },
+  { label: "Purple", value: "10", color: "#9031b0" },
+  { label: "Red", value: "11", color: "#FF0000" },
+  { label: "White", value: "12", color: "#ffffff" },
+  { label: "Yellow", value: "13", color: "#fef200" },
 ];
 
 const shoesSize = [
@@ -65,39 +44,41 @@ const gender = [
 ];
 
 const category = [
-  { label: "Shirts", value: "1" },
-  { label: "Pants", value: "2" },
-  { label: "Jeans", value: "3" },
-  { label: "Shorts", value: "4" },
-  { label: "Dresses", value: "5" },
-  { label: "Skirts", value: "6" },
-  { label: "Sweaters", value: "7" },
-  { label: "Jackets and coats", value: "8" },
-  { label: "Sweatshirts", value: "9" },
-  { label: "Shoes", value: "10" },
+  { label: "Button Shirts", value: "1" },
+  { label: "Dresses", value: "2" },
+  { label: "Jackets", value: "3" },
+  { label: "Jeans", value: "4" },
+  { label: "Pants", value: "5" },
+  { label: "Shirts", value: "6" },
+  { label: "Shoes", value: "7" },
+  { label: "Shorts", value: "8" },
+  { label: "Skirts", value: "9" },
+  { label: "Suits", value: "10" },
+  { label: "Sweaters", value: "11" },
+  { label: "Sweatshirts", value: "12" },
 ];
 
 const categoryMan = [
-  { label: "Shirts", value: "1" },
-  { label: "Pants", value: "2" },
+  { label: "Button Shirts", value: "1" },
+  { label: "Jackets", value: "2" },
   { label: "Jeans", value: "3" },
-  { label: "Shorts", value: "4" },
-  { label: "Sweaters", value: "5" },
-  { label: "Jackets and coats", value: "6" },
-  { label: "Sweatshirts", value: "7" },
-  { label: "Shoes", value: "8" },
+  { label: "Pants", value: "4" },
+  { label: "Shirts", value: "5" },
+  { label: "Shoes", value: "6" },
+  { label: "Shorts", value: "7" },
+  { label: "Sweaters", value: "8" },
+  { label: "Sweatshirts", value: "9" },
 ];
 
-const stores = [
+export const stores = [
   { label: "Castro", value: "1" },
-  { label: "Renuar", value: "2" },
-  { label: "TwentyForSeven", value: "3" },
-  { label: "Hoodies", value: "4" },
-  { label: "Urbanica", value: "5" },
-  { label: "H&O", value: "6" },
-  { label: "Tamnoon", value: "7" },
-  { label: "Golf", value: "8" },
-  { label: "FashionClub", value: "9" },
+  { label: "Golf", value: "2" },
+  { label: "Hoodies", value: "3" },
+  { label: "Renuar", value: "4" },
+  { label: "Studio Pasha", value: "5" },
+  { label: "Twenty Four Seven", value: "6" },
+  { label: "Urbanica", value: "7" },
+  { label: "Yanga", value: "8" },
 ];
 
 const sizes = [
@@ -128,28 +109,31 @@ const genderMapping = {
   2: "Women",
 };
 
-const categoryMapping = {
-  1: "Shirts",
-  2: "Pants",
-  3: "Jeans",
-  4: "Shorts",
-  5: "Dresses",
-  6: "Skirts",
-  7: "Sweaters",
-  8: "Jackets and coats",
-  9: "Sweatshirts",
-  10: "Shoes",
+const categoryMappingWomen = {
+  1: "Buttonshirts",
+  2: "Dresses",
+  3: "Jackets",
+  4: "Jeans",
+  5: "Pants",
+  6: "Shirts",
+  7: "Shoes",
+  8: "Shorts",
+  9: "Skirts",
+  10: "Suits",
+  11: "Sweaters",
+  12: "Sweatshirts",
 };
 
-const categoryMappingMan = {
-  1: "Shirts",
-  2: "Pants",
+const categoryMappingMen = {
+  1: "Buttonshirts",
+  2: "Jackets",
   3: "Jeans",
-  4: "Shorts",
-  5: "Sweaters",
-  6: "Jackets and coats",
-  7: "Sweatshirts",
-  8: "Shoes",
+  4: "Pants",
+  5: "Shirts",
+  6: "Shoes",
+  7: "Shorts",
+  8: "Sweaters",
+  9: "Sweatshirts",
 };
 
 const shoesSizesMapping = {
@@ -169,14 +153,13 @@ const shoesSizesMapping = {
 
 const storesMapping = {
   1: "Castro",
-  2: "Renuar",
-  3: "TwentyForSeven",
-  4: "Hoodies",
-  5: "Urbanica",
-  6: "H&O",
-  7: "Tamnoon",
-  8: "Golf",
-  9: "FashionClub",
+  2: "Golf",
+  3: "Hoodies",
+  4: "Renuar",
+  5: "Studiopasha",
+  6: "Twentyfourseven",
+  7: "Urbanica",
+  8: "Yanga",
 };
 
 const sizesMapping = {
@@ -203,23 +186,20 @@ const sizesMapping = {
 };
 
 const colorMapping = {
-  1: "Pink",
-  2: "Red",
-  3: "Burgundy",
+  1: "Azure",
+  2: "Black",
+  3: "Blue",
   4: "Brown",
-  5: "Orange",
-  6: "Yellow",
-  7: "White",
-  8: "Black",
-  9: "Purple",
-  10: "Blue",
-  11: "Light Blue",
-  12: "Gray",
-  13: "Green",
+  5: "Burgundy",
+  6: "Gray",
+  7: "Green",
+  8: "Orange",
+  9: "Pink",
+  10: "Purple",
+  11: "Red",
+  12: "White",
+  13: "Yellow",
 };
-
-
-
 
 const Search = () => {
   const [selectedColor, setSelectedColor] = useState([]);
@@ -237,17 +217,17 @@ const Search = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [error, setError] = useState(false);
 
-
-  const window = Dimensions.get("window");
-  const screenHeight = window.height;
+  // Add a state variable for loading
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
-
   useEffect(() => {
-    if (selectedCategory === "10" && selectedGender === "2") {
+    if (selectedCategory === "7" && selectedGender === "2") {
+      // The category is shoes and the gender is women
       setSelectedSize([]);
       setIsShoes(true);
-    } else if (selectedCategory === "8" && selectedGender === "1") {
+    } else if (selectedCategory === "6" && selectedGender === "1") {
+      // The category is shoes and the gender is men
       setSelectedSize([]);
       setIsShoes(true);
     } else {
@@ -257,11 +237,12 @@ const Search = () => {
   }, [selectedCategory, selectedGender]);
 
   useEffect(() => {
-    // Update category options based on the selected gender
     if (selectedGender === "1") {
+      // The gender is men
       setSelectedCategory(null);
       setIsMen(true);
-    } else {
+    } else if (selectedGender === "2") {
+      // The gender is women
       setSelectedCategory(null);
       setIsMen(false);
     }
@@ -295,6 +276,7 @@ const Search = () => {
 
   const searchPress = async () => {
     setErrorMsg("");
+
     // Check if all required choices are selected
     if (
       selectedGender &&
@@ -315,21 +297,14 @@ const Search = () => {
       );
 
       const gender = genderMapping[selectedGender];
-      const selectedMap = isMen ? categoryMappingMan : categoryMapping;
+      const selectedMap = isMen ? categoryMappingMen : categoryMappingWomen;
       const category = selectedMap[selectedCategory];
-
-      console.log("shoes:", isShoes);
-      console.log("Selected Sizes for Current Category:", sizes);
-      console.log("Selected Stores:", stores);
-      console.log("Selected Colorssss:", colors);
-      console.log("Selected ggg:", gender);
-      console.log("Selected Category:", category);
 
       const search = {
         gender: genderMapping[selectedGender],
         category: isMen
-          ? categoryMappingMan[selectedCategory]
-          : categoryMapping[selectedCategory],
+          ? categoryMappingMen[selectedCategory]
+          : categoryMappingWomen[selectedCategory],
         colors: selectedColor.map((color) => colorMapping[color]),
         sizes: selectedSize.map((size) =>
           isShoes ? shoesSizesMapping[size] : sizesMapping[size]
@@ -337,29 +312,7 @@ const Search = () => {
         stores: selectedStores.map((store) => storesMapping[store]),
       };
 
-      try {
-        const res = await fetch("http://192.168.56.1:3000/api/SearchResults", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(search),
-        });
-
-        if (res.ok) {
-          const body = await res.json();
-          navigation.navigate("Results", { body });
-        } else if (res.status === 409) {
-          // Handle conflict
-        } else if (res.status === 400) {
-          // Handle bad request
-        } else {
-          // Handle other errors
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      navigation.navigate("Results", { search });
     } else {
       const errorMsg = "Please select all choices";
       setErrorMsg(errorMsg);
@@ -371,7 +324,7 @@ const Search = () => {
   };
 
   return (
-    <View >
+    <View>
       <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
       <View style={styles.container1}>
         <View style={styles.container}>

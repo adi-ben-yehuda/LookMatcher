@@ -1,23 +1,42 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Text, FlatList, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import {
+  Text,
+  FlatList,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+  Image,
+} from "react-native";
 import styles from "./Results.style";
-import { Image } from "expo-image";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const Results = () => {
   const route = useRoute();
-  const { body } = route.params || { body: {} };
+  const { search } = route.params || { body: {} };
 
+  const [loading, setLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
+  const navigation = useNavigation();
+
+  const handleBackButtonPress = () => {
+    navigation.goBack();
+  };
 
   useEffect(() => {
-    setResults(body);
-  }, [body]);
+    getResults();
+  }, []);
+
+  useEffect(() => {
+    if (results.length > 0) {
+      getWishlist();
+    }
+  }, [results]);
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
@@ -27,8 +46,43 @@ const Results = () => {
     "Distance: far to near": require("../../assets/component-1661.png"),
   });
 
+  const renderHeader = () => (
+    <View>
+      <Text style={styles.headline}>Search Results</Text>
+      <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
+        <Image
+          style={styles.icon}
+          contentFit="cover"
+          source={require("../../assets/icons/prev.png")}
+        />
+      </TouchableOpacity>
+      <View
+        style={[styles.sort, styles.stateLayerFlexBox]}
+        onTouchEnd={handleSortByClick}
+      >
+        <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
+          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
+          <Image
+            style={styles.arrow}
+            contentFit="cover"
+            source={require("../../assets/icons/filter.png")}
+          />
+        </View>
+      </View>
+    </View>
+  );
+
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(wishlist.includes(item.id));
+
+    if (!item || item.id === "empty-item") {
+      return <View style={styles.emptyItem} />;
+    }
+    const navigation = useNavigation(); // Using the useNavigation hook
+
+    const navigateToDetailPage = (itemId) => {
+      navigation.navigate('ItemPage', { itemId }); // Navigate and pass itemId
+    };
 
     const toggleFavorite = async (itemId) => {
       const isCurrentlyFavorite = isFavorite;
@@ -36,7 +90,7 @@ const Results = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch("http://192.168.56.1:3000/api/updateWishlist", {
+        const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,11 +108,20 @@ const Results = () => {
       }
     };
 
+    // useFocusEffect(
+    //   useCallback(() => {
+    //     getWishlist();
+    //   }, [])
+    // );
+
     return (
-      <View style={styles.cardContainer}>
+      <TouchableOpacity style={styles.cardContainer} onPress={() => navigateToDetailPage(item.id)}>
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
-          onPress={() => toggleFavorite(item.id)}
+          onPress={(e) => {
+            e.stopPropagation(); // Prevents the parent's onPress from firing when the favorite button is clicked
+            toggleFavorite(item.id);
+          }}
           style={styles.favoriteIcon}
         >
           <Image
@@ -73,7 +136,7 @@ const Results = () => {
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
         <Text style={styles.itemCompany}>{`Store: ${item.company}`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -108,17 +171,14 @@ const Results = () => {
 
   const getWishlist = async () => {
     try {
-      const resWishlist = await fetch(
-        "http://192.168.56.1:3000/api/getWishlist",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-        }
-      );
+      const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      });
       if (resWishlist.ok) {
         console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
@@ -143,39 +203,91 @@ const Results = () => {
       console.error(error);
     }
   };
-  //  getWishlist();
-  // useEffect(() => {
-  //   getWishlist();
-  // }, []);
+
+  const getResults = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:3000/api/SearchResults", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(search),
+      });
+
+      if (res.ok) {
+        const body = await res.json();
+        setResults(body);
+        console.log("results", results);
+      } else if (res.status === 409) {
+        // Handle conflict
+      } else if (res.status === 400) {
+        // Handle bad request
+      } else {
+        // Handle other errors
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false); // Set loading to false when search is complete
+    }
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.load}>
+        <ActivityIndicator size="large" color="#43118C" />
+        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={[styles.results, styles.resultsLayout]}>
-      <Text style={styles.headline}>Button-down shirts</Text>
-
-      <View style={styles.container}>
+    <View style={styles.container}>
+      {!results.length > 0 && (
+        <View style={styles.noResultsContainer}>
+          <Text style={styles.noResults}>
+            No matches found... yet!{"\n"} Keep looking for the {"\n"}perfect
+            match for you!
+          </Text>
+          <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
+            <Image
+              style={styles.icon}
+              contentFit="cover"
+              source={require("../../assets/icons/prev.png")}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+      {results.length > 0 && (
         <FlatList
-          data={Array.isArray(results) ? results : [results]}
-          renderItem={({ item }) => <ItemCard item={item} />}
+          data={
+            results.length % 2 === 0
+              ? results
+              : [...results, { id: "empty-item" }]
+          }
+          ListHeaderComponent={renderHeader}
+          renderItem={({ item, index, separators }) => {
+            if (item.id === "empty-item") {
+              return <View style={{ flex: 1 }} />;
+            } else {
+              const isLastItem =
+                index === results.length && results.length % 2 === 1;
+              return (
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <ItemCard item={item} />
+                  {isLastItem && <View style={{ flex: 0.5 }} />}
+                </View>
+              );
+            }
+          }}
           keyExtractor={(item) =>
             item.id ? item.id.toString() : Math.random().toString()
           }
           numColumns={2}
         />
-      </View>
-
-      <View
-        style={[styles.sort, styles.stateLayerFlexBox]}
-        onTouchEnd={handleSortByClick}
-      >
-        <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
-          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
-          <Image
-            style={styles.arrow}
-            contentFit="cover"
-            source={require("../../assets/icon.png")}
-          />
-        </View>
-      </View>
+      )}
 
       {isDropdownOpen && (
         <View style={styles.dropDownList}>
@@ -207,7 +319,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -241,7 +353,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -270,7 +382,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                  styles.buildingBlocksstateLayerDaItem,
+                styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
@@ -337,11 +449,11 @@ const Results = () => {
               </View>
             </View>
           </View>
-          <Image
+          {/* <Image
             style={styles.scrollBarIcon}
             contentFit="cover"
             source={require("../../assets/scroll-bar.png")}
-          />
+          /> */}
         </View>
       )}
     </View>

@@ -21,7 +21,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.56.1:3000/api/Users/:email", {
+      const res = await fetch("http://localhost:3000/api/Users/:email", {
         method: "get",
         headers: {
           authorization: "Bearer " + token,
@@ -75,7 +75,7 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.56.1:3000/api/Users/details`, {
+      const res = await fetch(`http://localhost:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",

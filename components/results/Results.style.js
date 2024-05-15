@@ -10,23 +10,23 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
   },
-  resultLayout: {
-    height: 270,
-    top: 178,
-    width: 157,
-    position: "absolute",
-  },
+  // resultLayout: {
+  //   height: 270,
+  //   top: 178,
+  //   width: 157,
+  //   position: "absolute",
+  // },
   headline: {
     marginLeft: "auto",
     marginRight: "auto",
-    top: screenHeight * 0.02,
-    fontSize: screenWidth * 0.05,
-    lineHeight: screenWidth * 0.05,
+    top: 0,
+    fontSize: screenWidth * 0.06,
+    lineHeight: screenWidth * 0.3,
     marginLeft: "auto",
     marginRight: "auto",
     textTransform: "capitalize",
     fontWeight: "700",
-    color: Color.primary,
+    color: Color.darkPurple,
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
@@ -38,12 +38,25 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 
+  sort: {
+    zIndex: 2,
+    top: screenHeight * 0.1,
+    right: 10,
+    borderRadius: 36,
+    borderStyle: "solid",
+    borderColor: "#2f085f",
+    borderWidth: 1,
+    position: "absolute",
+    overflow: "hidden",
+    flexDirection: "row",
+  },
+
   //sort
   stateLayerFlexBox: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    height: 32,
+    height: 30,
   },
 
   sortText: {
@@ -51,7 +64,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: "#1b1616",
     fontWeight: "500",
-    fontSize: screenWidth * 0.03,
+    fontSize: screenWidth * 0.027,
     textAlign: "center",
     left: 5,
     bottom: 1,
@@ -64,21 +77,9 @@ const styles = StyleSheet.create({
   stateLayer: {
     paddingVertical: screenHeight * 0.005,
   },
-  sort: {
-    zIndex: 2,
-    top: screenHeight * 0.045,
-    left: 20,
-    borderRadius: 36,
-    borderStyle: "solid",
-    borderColor: "#2f085f",
-    borderWidth: 1,
-    position: "absolute",
-    overflow: "hidden",
-    flexDirection: "row",
-  },
 
   dropDownList: {
-    top: screenHeight * 0.12,
+    top: screenHeight * 0.15,
     right: screenWidth * 0.2,
     borderRadius: 8,
     shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     width: screenWidth * 0.67,
     height: screenHeight * 0.2,
-    backgroundColor: Color.colorCardBackground,
+    backgroundColor: "#ffffff",
     position: "absolute",
     overflow: "hidden",
   },
@@ -194,17 +195,16 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "#fff",
-    marginTop: screenHeight * 0.035,
+    backgroundColor: "#FBF9FC",
+    //marginTop: screenHeight * 0.035,
   },
   cardContainer: {
     flex: 1,
     backgroundColor: "#f0f0f0", //#fff
     marginTop: 10,
-    margin: 12,
+    margin: 15,
     padding: 16,
+    marginBottom: 25,
     borderRadius: 8,
     elevation: 2,
     position: "relative",
@@ -214,10 +214,10 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 4,
     marginBottom: 8,
-    shadowColor: "#000",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
+    // shadowColor: "#000",
+    // shadowOffset: { width: 1, height: 1 },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 8,
     elevation: 5, // For Android
   },
   favoriteIcon: {
@@ -243,6 +243,41 @@ const styles = StyleSheet.create({
   itemCompany: {
     fontSize: 14,
     color: "#666",
+  },
+
+  icon: {
+    height: screenHeight * 0.045,
+    width: screenHeight * 0.045,
+    marginTop: screenHeight * 0.015,
+  },
+
+  back: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+  },
+
+  emptyItem: {
+    backgroundColor: "#FBF9FC",
+  },
+
+  noResultsContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  noResults: {
+    top: screenHeight * 0.4,
+    color: "black",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
   },
 });
 

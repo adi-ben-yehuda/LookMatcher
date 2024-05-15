@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: screenHeight * 0.07,
+
   },
   image: {
     width: "100%",
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
 
   heart: {
     right: screenWidth * 0.04,
-    top: screenWidth * 0.03,
+    top: screenWidth * 0.02,
     width: "30%",
     height: "30%",
     position: "absolute",
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   itemName: {
-    marginTop: screenHeight * 0.02,
+    marginTop: screenHeight * 0.04,
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.05,
@@ -101,13 +103,25 @@ const styles = StyleSheet.create({
   },
 
   itemNameText: {
-    fontSize: screenHeight * 0.04,
+    fontSize: screenHeight * 0.03,
+    marginRight: screenHeight * 0.03,
     fontWeight: "bold",
     color: "#333",
   },
 
+  itemStore: {
+    marginTop: screenHeight * 0.01,
+    marginLeft: screenHeight * 0.03,
+    width: screenWidth * 0.96,
+    height: screenHeight * 0.032,
+  },
+
+  itemStoreText: {
+    fontSize: screenHeight * 0.02,
+    color: "#626161",
+  },
+
   itemPrice: {
-    marginTop: screenHeight * 0.02,
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.032,
@@ -117,6 +131,7 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
+
 
   itemColor: {
     marginLeft: screenHeight * 0.03,
