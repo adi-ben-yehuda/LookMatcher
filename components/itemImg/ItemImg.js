@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import styles from "./ItemImg.style";
-
+import BackButton from "../backButton/BackButton";
 
 const imagePaths = [
   require("../../assets/icons/images/fffff.jpg"),
@@ -20,8 +20,17 @@ const imagePaths = [
 const ItemCard = () => {
   const route = useRoute();
   const { itemId } = route.params || { body: {} };
-  
-  const [itemDetails, setItemDetails] = useState([]);
+
+  const [itemDetails, setItemDetails] = useState({
+    id: "",
+    image: "",
+    price: null,
+    store: "",
+    name: "",
+    size: "",
+    color: "",
+    colors: [],
+  });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrev = () => {
@@ -39,22 +48,29 @@ const ItemCard = () => {
     getItemDetails();
   }, []);
 
+  useEffect(() => {}, [itemDetails]);
 
   const getItemDetails = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({itemId}),
+        body: JSON.stringify({ itemId }),
       });
 
       if (res.ok) {
         const body = await res.json();
         setItemDetails(body);
         console.log("itemDetails", body);
+        if (body.color && body.color.length > 0) {
+          console.log(
+            "Color URL from first item in array:",
+            itemDetails.colors[0]
+          );
+        }
       } else if (res.status === 409) {
         // Handle conflict
       } else if (res.status === 400) {
@@ -130,7 +146,24 @@ const ItemCard = () => {
         <View style={styles.itemSize}>
           <Text style={styles.itemSizeText}>Size: {itemDetails.size}</Text>
         </View>
+
+        <View style={styles.itemColor}>
+          <Text style={styles.itemSizeText}>
+            Available in Colors:
+            {"\n"}
+          </Text>
+          <View style={styles.colorsRow}>
+            {itemDetails.colors.map((colorUrl, index) => (
+              <Image
+                key={index}
+                source={{ uri: colorUrl }}
+                style={styles.colorImage}
+              />
+            ))}
+          </View>
+        </View>
       </View>
+      <BackButton></BackButton>
     </View>
   );
 };

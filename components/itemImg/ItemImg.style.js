@@ -154,6 +154,19 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
+
+
+  colorsRow: {
+    flexDirection: "row",
+    paddingVertical: 10,
+  },
+
+  colorImage: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
+  },
+
 });
 
 export default styles;
