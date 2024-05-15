@@ -6,6 +6,7 @@ import styles from "./RegisterForm.style";
 import { Color } from "../../styles/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useRef, useContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { UsersContext } from "../../context/userContext.js";
 
 function RegisterForm() {
@@ -75,7 +76,7 @@ function RegisterForm() {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/api/Users", {
+      const res = await fetch("http://192.168.1.109:3000/api/Users", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -85,11 +86,13 @@ function RegisterForm() {
       });
 
       if (res.ok) {
+        await AsyncStorage.setItem("userName", firstName); // Save user name locally
         setEmail("");
         setPassword("");
         setConfirmPassword("");
         setFirstName("");
         setLastName("");
+        
         navigation.navigate("Home");
       } else if (res.status === 409) {
         const body = await res.json();
