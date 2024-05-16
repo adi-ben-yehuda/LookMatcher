@@ -154,8 +154,15 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
-
-
+  
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
+    opacity: 0.5, // Adjust the opacity as needed
+  },
+  
   colorsRow: {
     flexDirection: "row",
     paddingVertical: 10,
@@ -166,7 +173,6 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 10,
   },
-
 });
 
 export default styles;
