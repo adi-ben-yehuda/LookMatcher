@@ -162,6 +162,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     opacity: 0.5, // Adjust the opacity as needed
   },
+  
+  colorsRow: {
+    flexDirection: "row",
+    paddingVertical: 10,
+  },
+
+  colorImage: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
+  },
 });
 
 export default styles;
