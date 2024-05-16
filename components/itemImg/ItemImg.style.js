@@ -154,6 +154,14 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
+  
+  load: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
+    opacity: 0.5, // Adjust the opacity as needed
+  },
 });
 
 export default styles;

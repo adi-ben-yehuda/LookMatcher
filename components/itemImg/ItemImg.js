@@ -4,6 +4,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
   Dimensions,
   Text,
 } from "react-native";
@@ -11,27 +12,28 @@ import { useRoute } from "@react-navigation/native";
 import styles from "./ItemImg.style";
 
 
-const imagePaths = [
-  require("../../assets/icons/images/fffff.jpg"),
-  require("../../assets/icons/images/item2.png"),
-  require("../../assets/icons/images/item3.png"),
-];
+// const imagePaths = [
+//   require("../../assets/icons/images/fffff.jpg"),
+//   require("../../assets/icons/images/item2.png"),
+//   require("../../assets/icons/images/item3.png"),
+// ];
 
 const ItemCard = () => {
   const route = useRoute();
   const { itemId } = route.params || { body: {} };
   
   const [itemDetails, setItemDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrev = () => {
     const newIndex =
-      (currentImageIndex - 1 + imagePaths.length) % imagePaths.length;
+      (currentImageIndex - 1 + itemDetails.images.length) % itemDetails.images.length;
     setCurrentImageIndex(newIndex);
   };
 
   const handleNext = () => {
-    const newIndex = (currentImageIndex + 1) % imagePaths.length;
+    const newIndex = (currentImageIndex + 1) % itemDetails.images.length;
     setCurrentImageIndex(newIndex);
   };
 
@@ -41,6 +43,8 @@ const ItemCard = () => {
 
 
   const getItemDetails = async () => {
+    setLoading(true);
+
     try {
       const res = await fetch("http://localhost:3000/api/ItemDetalis", {
         method: "POST",
@@ -64,15 +68,27 @@ const ItemCard = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false); // Set loading to false when search is complete
     }
   };
+
+  if (loading) {
+    return (
+      <View style={styles.load}>
+        <ActivityIndicator size="large" color="#43118C" />
+        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View>
         <View style={styles.card}>
           <Image
-            source={imagePaths[currentImageIndex]}
+            // source={imagePaths[currentImageIndex]}
+            source={{ uri: itemDetails.images?.[currentImageIndex] }}
             style={styles.image}
             resizeMode="contain" // Ensures the image fits within the container without being cropped
           />
