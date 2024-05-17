@@ -5,6 +5,7 @@ import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState, useEffect, useContext } from "react";
 import styles from "./ProfileDetails.style";
+
 import UsersContext from "../../context/userContext";
 
 const ProfileDetails = () => {
@@ -116,9 +117,7 @@ const ProfileDetails = () => {
 
   return (
     <View>
-      <View style={styles.title}>
-        <Text style={styles.titelText}>My Details</Text>
-      </View>
+     
 
       <View style={[styles.password, styles.firstNamePosition]}>
         <TextInput

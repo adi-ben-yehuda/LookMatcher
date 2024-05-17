@@ -43,21 +43,21 @@ const styles = StyleSheet.create({
   firstNamePosition: {
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
-    top: screenHeight * 0.17,
+    top: screenHeight * 0.05,
     position: "absolute",
   },
 
   lastNamePosition: {
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
-    top: screenHeight * 0.27,
+    top: screenHeight * 0.15,
     position: "absolute",
   },
 
   emailPosition: {
     width: screenWidth * 0.7,
     left: (screenWidth - screenWidth * 0.7) / 2,
-    top: screenHeight * 0.37,
+    top: screenHeight * 0.25,
     position: "absolute",
   },
 
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
 
   register1: {
-    top: screenHeight * 0.4,
+    top: screenHeight * 0.36,
     width: screenWidth * 0.3,
     height: 48,
     left: screenWidth * 0.35,
