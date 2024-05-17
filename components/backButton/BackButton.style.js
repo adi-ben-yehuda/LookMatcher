@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   icon: {
     height: screenHeight * 0.045,
     width: screenHeight * 0.045,
+    top: screenHeight *0.01,
     marginTop: screenHeight * 0.015,
   },
 });
