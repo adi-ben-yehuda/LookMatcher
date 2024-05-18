@@ -6,7 +6,6 @@ import { Dropdown } from "react-native-element-dropdown";
 import styles from "./SearchByPhoto.style";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import BackButton from "../backButton/BackButton";
 import * as ImagePicker from "expo-image-picker";
 
 const stores = [
@@ -91,7 +90,6 @@ const storesMapping = {
   9: "FashionClub",
 };
 
-
 const gender = [
   { label: "Men", value: "1" },
   { label: "Women", value: "2" },
@@ -101,7 +99,6 @@ const genderMapping = {
   1: "Men",
   2: "Women",
 };
-
 
 const SearchByPhoto = () => {
   const [selectedSize, setSelectedSize] = useState([]);
@@ -221,10 +218,11 @@ const SearchByPhoto = () => {
   return (
     <View style={styles.page}>
       <View>
-        <Text style={styles.title}>Spotted Item You Like?</Text>
+        <View style={styles.titleContainer}>
         <Text style={styles.title2}>
           Take a picture and explore similar finds
         </Text>
+        </View>
 
         <TouchableOpacity onPress={() => navigation.navigate("TakePhoto")}>
           <LinearGradient
@@ -395,8 +393,6 @@ const SearchByPhoto = () => {
           <Text style={styles.searchText}>{"Search"}</Text>
         </LinearGradient>
       </TouchableOpacity>
-
-      <BackButton />
     </View>
   );
 };

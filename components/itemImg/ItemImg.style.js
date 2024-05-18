@@ -154,13 +154,13 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
-  
+
   load: {
-    flex: 1,
+    //flex: 1,
+    top:0.4*screenHeight,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
     alignItems: "center",
-    opacity: 0.5, // Adjust the opacity as needed
   },
   
   colorsRow: {

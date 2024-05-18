@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   register: {
-    top: screenHeight * 0.3,
+    top: screenHeight * 0.15,
   },
   register1: {
-    top: screenHeight * 0.5,
+    top: screenHeight * 0.35,
   },
   search: {
     top: screenHeight * 0.1,

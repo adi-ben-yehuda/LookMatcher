@@ -15,14 +15,14 @@ const screenHeight = window.height;
 const screenWidth = window.width;
 const styles = StyleSheet.create({
     title: {
-        top: screenHeight * 0.001,
+        top: 0,
         width: screenWidth,
         justifyContent: "center",
         alignItems: "center",
       },
     
       titleText: {
-        fontSize: screenHeight * 0.04,
+        fontSize: screenHeight * 0.03,
         fontWeight: "bold",
         color: Color.darkPurple,
       },

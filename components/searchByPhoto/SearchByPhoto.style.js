@@ -12,33 +12,25 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 
-  title: {
-    top: screenHeight * 0.08,
-    color: Color.darkPurple,
-    width: screenWidth,
-    textAlign: "center",
-    position: "absolute",
-    fontWeight: "bold",
-    fontSize: screenHeight * 0.033,
-    fontWeight: "bold",
+  titleContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: screenHeight * 0.1,
+    width: "100%",
   },
-
   title2: {
     fontSize: screenHeight * 0.019,
     fontWeight: "bold",
     color: "#333",
-    top: screenHeight * 0.17,
-    width: screenWidth - screenWidth * 0.05,
-    height: screenHeight * 0.06,
-    left: screenWidth * 0.05,
-    right: screenWidth * 0.05,
+    textAlign: "center",
+    top: screenHeight * 0.01,
   },
 
   title3: {
     fontSize: screenHeight * 0.019,
     fontWeight: "bold",
     color: "#333",
-    top: screenHeight * 0.33,
+    top: screenHeight * 0.18,
     width: screenWidth - screenWidth * 0.05,
     height: screenHeight * 0.06,
     left: screenWidth * 0.05,
@@ -60,7 +52,7 @@ const styles = StyleSheet.create({
 
   recUpLeft: {
     backgroundColor: "transparent",
-    top: screenHeight * 0.15,
+    top: screenHeight * 0.03,
     height: screenHeight * 0.12,
     width: screenWidth * 0.33,
     borderRadius: Border.br_3xs,
@@ -72,7 +64,7 @@ const styles = StyleSheet.create({
 
   recUpRight: {
     backgroundColor: "transparent",
-    top: screenHeight * 0.15,
+    top: screenHeight * 0.03,
     height: screenHeight * 0.12,
     width: screenWidth * 0.33,
     borderRadius: Border.br_3xs,
@@ -126,7 +118,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 70,
     height: 70,
-    top: screenHeight * 0.3,
+    top: screenHeight * 0.16,
     left: screenWidth * 0.39,
     borderRadius: 8,
     marginBottom: 5,
@@ -158,18 +150,18 @@ const styles = StyleSheet.create({
   },
 
   container3: {
-    top: screenHeight * 0.285,
+    top: screenHeight * 0.15,
   },
 
   container4: {
-    top: screenHeight * 0.29,
+    top: screenHeight * 0.16,
   },
   container5: {
-    top: screenHeight * 0.305,
+    top: screenHeight * 0.17,
   },
 
   errorMessage: {
-    top: screenHeight * 0.3,
+    top: screenHeight * 0.17,
     fontSize: 25,
     alignItems: "center",
     justifyContent: "center",
@@ -259,7 +251,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainerSelected1: {
-    top: screenHeight * 0.94, // Updated value
+    top: screenHeight * 0.76, // Updated value
     position: "absolute",
     left: 0,
     right: 0,
@@ -268,7 +260,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainerSelected2: {
-    top: screenHeight * 0.96, // Updated value
+    top: screenHeight * 0.86, // Updated value
     left: 0,
     right: 0,
     alignItems: "center",
@@ -284,7 +276,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    top: screenHeight * 0.83, // Default value
+    top: screenHeight * 0.7, // Default value
     position: "absolute",
     left: 0,
     right: 0,

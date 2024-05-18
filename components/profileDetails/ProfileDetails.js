@@ -5,7 +5,6 @@ import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState, useEffect, useContext } from "react";
 import styles from "./ProfileDetails.style";
-
 import UsersContext from "../../context/userContext";
 
 const ProfileDetails = () => {
@@ -13,6 +12,7 @@ const ProfileDetails = () => {
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [detailsFetched, setDetailsFetched] = useState(false);
   const { token, user } = useContext(UsersContext);
   const [firstName, setFirstName] = useState("");
@@ -22,10 +22,10 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/Users/:email", {
+      const res = await fetch("http://localhost:3000/api/Change", {
         method: "get",
         headers: {
-          authorization: "Bearer " + token,
+          Authorization: "Bearer " + token,
         },
       });
 
@@ -67,6 +67,7 @@ const ProfileDetails = () => {
   const handleSavePress = async () => {
     setErrorMsg("");
     setSuccessMessage("");
+    setIsSuccessMessage(false);
 
     const user = {
       email: email,
@@ -89,6 +90,7 @@ const ProfileDetails = () => {
       if (res.ok) {
         setOldEmail(email);
         setSuccessMessage("Details updated successfully!");
+        setIsSuccessMessage(true);
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
@@ -164,15 +166,15 @@ const ProfileDetails = () => {
         />
       </View>
 
-      {successMessage && (
-        <View style={styles.successMessage}>
+      {isSuccessMessage && (
+        <View style={styles.successMessage1}>
           <Text style={styles.success}>{successMessage}</Text>
         </View>
       )}
 
       {error && (
         <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid {errorMsg}</Text>
+          <Text style={styles.error1}>Invalid {errorMsg}</Text>
         </View>
       )}
 
