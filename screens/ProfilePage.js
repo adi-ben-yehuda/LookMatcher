@@ -24,22 +24,21 @@ const styles = StyleSheet.create({
     flexGrow: 2,
   },
   first: {
-    height: screenHeight * 0.12,
-    borderColor: '#000', // Black border color
-    borderWidth: 0.2,      // Border width of 1
-    //padding: 10,         // Optional padding inside the border
-    alignItems: 'center', // Centers the child components horizontally
-    //justifyContent: 'space-between', // Distributes children evenly and aligns children along the main-axis
-    flexDirection: 'row', // Arranges children in a row
-    shadowColor: "#000",  // Shadow color
+    height: screenHeight * 0.1,
+    borderColor: '#000', 
+    borderWidth: 0.2,      
+    alignItems: 'center', 
+    
+    flexDirection: 'row', 
+    shadowColor: "#000",  
     shadowOffset: {
-      width: 0,           // Horizontal shadow offset
-      height: 2,          // Vertical shadow offset
+      width: 0,          
+      height: 2,        
     },
-    shadowOpacity: 0.25,  // Shadow opacity
-    shadowRadius: 3.84,   // Shadow blur radius
-    elevation: 5,         // Elevation for Android (adds shadow)
-    backgroundColor: '#FBF9FC', // Background color for contrast with shadow
+    shadowOpacity: 0.25,  
+    shadowRadius: 3.84,   
+    elevation: 5,         
+    backgroundColor: '#FBF9FC',
   },
 
 });

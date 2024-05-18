@@ -325,7 +325,7 @@ const Search = () => {
 
   return (
     <View>
-      <Text style={styles.title}> Search For An Item{"\n"}You Want</Text>
+      
       <View style={styles.container1}>
         <View style={styles.container}>
           <Dropdown
@@ -528,7 +528,7 @@ const Search = () => {
         </LinearGradient>
       </TouchableOpacity>
 
-      <BackButton />
+      
     </View>
   );
 };

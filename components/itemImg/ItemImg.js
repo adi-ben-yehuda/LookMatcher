@@ -91,9 +91,11 @@ const ItemCard = () => {
 
   if (loading) {
     return (
+      <View style={styles.container}>
       <View style={styles.load}>
         <ActivityIndicator size="large" color="#43118C" />
         <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
+      </View>
       </View>
     );
   }
@@ -163,23 +165,26 @@ const ItemCard = () => {
           <Text style={styles.itemSizeText}>Size: {itemDetails.size}</Text>
         </View>
 
-        <View style={styles.itemColor}>
-          <Text style={styles.itemSizeText}>
-            Available in Colors:
-            {"\n"}
-          </Text>
-          <View style={styles.colorsRow}>
-            {itemDetails.colors.map((colorUrl, index) => (
-              <Image
-                key={index}
-                source={{ uri: colorUrl }}
-                style={styles.colorImage}
-              />
-            ))}
-          </View>
-        </View>
+       
+          <View style={styles.itemColor}>
+            <Text style={styles.itemSizeText}>
+              Available in Colors:
+              {"\n"}
+            </Text>
+            </View>
+            {itemDetails.colors && itemDetails.colors.length > 0 && (
+            <View style={styles.colorsRow}>
+              {itemDetails.colors.map((colorUrl, index) => (
+                <Image
+                  key={index}
+                  source={{ uri: colorUrl }}
+                  style={styles.colorImage}
+                />
+              ))}
+            </View>
+        )}
       </View>
-      <BackButton></BackButton>
+      <BackButton />
     </View>
   );
 };

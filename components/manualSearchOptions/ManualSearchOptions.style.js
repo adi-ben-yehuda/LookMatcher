@@ -23,19 +23,19 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   container1: {
-    top: screenHeight * 0.205,
+    top: screenHeight * 0.05,
   },
   container2: {
-    top: screenHeight * 0.215,
+    top: screenHeight * 0.06,
   },
   container3: {
-    top: screenHeight * 0.225,
+    top: screenHeight * 0.07,
   },
   container4: {
-    top: screenHeight * 0.235,
+    top: screenHeight * 0.08,
   },
   container5: {
-    top: screenHeight * 0.245,
+    top: screenHeight * 0.09,
   },
 
   colorRectangle: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainerSelected2: {
-    top: screenHeight * 0.88, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.7, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainerSelected3: {
-    top: screenHeight * 0.93, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.77, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainerSelected4: {
-    top: screenHeight * 0.98, // Updated value when isStoreSelected is true
+    top: screenHeight * 0.82, // Updated value when isStoreSelected is true
     position: "absolute",
     left: 0,
     right: 0,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    top: screenHeight * 0.8, // Default value when isStoreSelected is false
+    top: screenHeight * 0.61, // Default value when isStoreSelected is false
     position: "absolute",
     left: 0,
     right: 0,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
 
   errorMessage: {
-    top: screenHeight * 0.248,
+    top: screenHeight * 0.08,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",

@@ -10,12 +10,14 @@ const styles = StyleSheet.create({
     left: 0,
     padding: 10,
     zIndex: 1,
+   
   },
   icon: {
     height: screenHeight * 0.045,
     width: screenHeight * 0.045,
-    top: screenHeight *0.01,
+    top: 0,
     marginTop: screenHeight * 0.015,
+    
   },
 });
 

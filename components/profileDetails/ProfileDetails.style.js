@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     color: Color.darkPurple,
   },
 
-  successMessage: {
+  successMessage1: {
     top: screenHeight * 0.38,
     fontSize: screenHeight * 0.02,
     alignItems: "center",
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  error: {
+  error1: {
     fontWeight: "bold",
     color: Color.red,
     fontSize: screenHeight * 0.02,
