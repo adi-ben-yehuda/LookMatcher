@@ -22,7 +22,8 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/Change", {
+      const res = await fetch("http://172.20.10.4:3000/api/Change", {
+        // const res = await fetch("http://localhost:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,
@@ -77,7 +78,8 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/api/Users/details`, {
+      const res = await fetch(`http://172.20.10.4:3000/api/Users/details`, {
+      // const res = await fetch(`http://localhost:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -20,8 +20,9 @@ const Wishlist = () => {
       setIsFavorite(!isFavorite);
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
-
-        const res = await fetch("http://localhost:3000/api/updateWishlist", {
+        
+        const res = await fetch("http://172.20.10.4:3000/api/updateWishlist", {
+        // const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +70,8 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/wishlistPage", {
+      const res = await fetch("http://172.20.10.4:3000/api/wishlistPage", {
+        // const res = await fetch("http://localhost:3000/api/wishlistPage", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -109,8 +111,7 @@ const Wishlist = () => {
 
   return (
     <View style={[styles.results, styles.resultsLayout]}>
-      <Text style={styles.headline}>Wishlist</Text>
-
+      
       <View style={styles.container}>
          {!results.length > 0 && (
         <View style={styles.noResultsContainer}>

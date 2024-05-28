@@ -207,7 +207,7 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+      const res = await fetch("http://172.20.10.4:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
