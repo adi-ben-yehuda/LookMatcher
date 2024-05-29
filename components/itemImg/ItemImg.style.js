@@ -165,7 +165,8 @@ const styles = StyleSheet.create({
   
   colorsRow: {
     flexDirection: "row",
-    paddingVertical: 10,
+    paddingVertical: 20,
+    marginLeft: screenHeight * 0.03,
   },
 
   colorImage: {
