@@ -11,16 +11,11 @@ import {
 import { useRoute } from "@react-navigation/native";
 import styles from "./ItemImg.style";
 import BackButton from "../backButton/BackButton";
-
-// const imagePaths = [
-//   require("../../assets/icons/images/fffff.jpg"),
-//   require("../../assets/icons/images/item2.png"),
-//   require("../../assets/icons/images/item3.png"),
-// ];
+import TitleComponent from "../title/title.js";
 
 const ItemCard = () => {
   const route = useRoute();
-  const { itemId } = route.params || { body: {} };  
+  const { itemId } = route.params || { body: {} };
   const [loading, setLoading] = useState(false);
   const [itemDetails, setItemDetails] = useState({
     id: "",
@@ -38,7 +33,8 @@ const ItemCard = () => {
 
   const handlePrev = () => {
     const newIndex =
-      (currentImageIndex - 1 + itemDetails.images.length) % itemDetails.images.length;
+      (currentImageIndex - 1 + itemDetails.images.length) %
+      itemDetails.images.length;
     setCurrentImageIndex(newIndex);
   };
 
@@ -52,6 +48,8 @@ const ItemCard = () => {
   }, []);
 
   useEffect(() => {}, [itemDetails]);
+
+  const isColorCode = (color) => /^#([0-9A-F]{3}){1,2}$/i.test(color);
 
   const getItemDetails = async () => {
     setLoading(true);
@@ -95,10 +93,10 @@ const ItemCard = () => {
   if (loading) {
     return (
       <View style={styles.container}>
-      <View style={styles.load}>
-        <ActivityIndicator size="large" color="#43118C" />
-        <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
-      </View>
+        <View style={styles.load}>
+          <ActivityIndicator size="large" color="#43118C" />
+          <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
+        </View>
       </View>
     );
   }
@@ -106,6 +104,12 @@ const ItemCard = () => {
   return (
     <View style={styles.container}>
       <View>
+      <View style={styles.first}>
+      <View style={styles.title}>
+            <Text style={styles.titleText}>{itemDetails.name}</Text>
+        </View>
+        </View>
+       
         <View style={styles.card}>
           <Image
             // source={imagePaths[currentImageIndex]}
@@ -123,13 +127,13 @@ const ItemCard = () => {
           />
         </TouchableOpacity> */}
 
-        <TouchableOpacity style={[styles.heart]}>
+        {/* <TouchableOpacity style={[styles.heart]}>
           <Image
             style={[styles.heart]}
             contentFit="cover"
             source={require("../../assets/icons/heart-bar.png")}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={handlePrev} style={styles.buttonPrev}>
           <Image
@@ -148,9 +152,9 @@ const ItemCard = () => {
       </View>
 
       <View>
-        <View style={styles.itemName}>
+        {/* <View style={styles.itemName}>
           <Text style={styles.itemNameText}>{itemDetails.name}</Text>
-        </View>
+        </View> */}
 
         <View style={styles.itemStore}>
           <Text style={styles.itemStoreText}>Store: {itemDetails.store}</Text>
@@ -168,24 +172,43 @@ const ItemCard = () => {
           <Text style={styles.itemSizeText}>Size: {itemDetails.size}</Text>
         </View>
 
-       
-          <View style={styles.itemColor}>
-            <Text style={styles.itemSizeText}>
-              Available in Colors:
-              {"\n"}
-            </Text>
-            </View>
-            {itemDetails.colors && itemDetails.colors.length > 0 && (
+        <View style={styles.itemColor}>
+          <Text style={styles.itemSizeText}>
+            Available in Colors:
+            {"\n"}
+          </Text>
+        </View>
+
+        {/* {itemDetails.colors &&
+          itemDetails.colors.length > 0 &&
+          itemDetails.store === "Golf" && (
             <View style={styles.colorsRow}>
-              {itemDetails.colors.map((colorUrl, index) => (
-                <Image
+              {itemDetails.colors.map((color, index) => (
+                <View
                   key={index}
-                  source={{ uri: colorUrl }}
-                  style={styles.colorImage}
+                  style={[styles.colorRectangle, { backgroundColor: color }]}
                 />
               ))}
             </View>
-        )}
+          )} */}
+        {itemDetails.colors && itemDetails.colors.length > 0 && (
+           <View style={styles.colorsRow}>
+        {itemDetails.colors.map((item, index) => (
+            isColorCode(item) ? (
+                <View
+                    key={index}
+                    style={[styles.colorRectangle, { backgroundColor: item }]}
+                />
+            ) : (
+                <Image
+                    key={index}
+                    source={{ uri: item }}
+                    style={styles.colorImage}
+                />
+            )
+        ))}
+    </View>
+)}
       </View>
       <BackButton />
     </View>

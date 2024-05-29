@@ -48,16 +48,17 @@ const Results = () => {
 
   const renderHeader = () => (
     <View>
-      <Text style={styles.headline}>Search Results</Text>
-      <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
+     
+      {/* <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
         <Image
           style={styles.icon}
           contentFit="cover"
           source={require("../../assets/icons/prev.png")}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <View style={styles.sortContainer}>
       <View
-        style={[styles.sort, styles.stateLayerFlexBox]}
+        style={[styles.sort, styles.stateLayerFlexBox,]}
         onTouchEnd={handleSortByClick}
       >
         <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
@@ -67,6 +68,7 @@ const Results = () => {
             contentFit="cover"
             source={require("../../assets/icons/filter.png")}
           />
+        </View>
         </View>
       </View>
     </View>
@@ -89,6 +91,7 @@ const Results = () => {
       setIsFavorite(!isFavorite);
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
+
 
         // const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
           const res = await fetch("http://localhost:3000/api/updateWishlist", {
@@ -173,6 +176,7 @@ const Results = () => {
 
   const getWishlist = async () => {
     try {
+
       // const resWishlist = await fetch("http://192.168.1.109:3000/api/getWishlist", {
         const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
   
