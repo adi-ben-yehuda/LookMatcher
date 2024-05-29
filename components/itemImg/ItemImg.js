@@ -32,6 +32,7 @@ const ItemCard = () => {
     color: "",
     colors: [],
     images: [],
+    url: ""
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -56,7 +57,9 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://172.20.10.4:3000/api/ItemDetalis", {
+      // const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
+        const res = await fetch("http://localhost:3000/api/ItemDetalis", {
+      // const res = await fetch("http://172.20.10.4:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
