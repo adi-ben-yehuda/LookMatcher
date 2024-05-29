@@ -92,7 +92,10 @@ const Results = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
-        const res = await fetch("http://172.20.10.4:3000/api/updateWishlist", {
+
+        // const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
+          const res = await fetch("http://localhost:3000/api/updateWishlist", {
+
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -173,8 +176,11 @@ const Results = () => {
 
   const getWishlist = async () => {
     try {
-      const resWishlist = await fetch("http://172.20.10.4:3000/api/getWishlist", {
-        method: "GET",
+
+      // const resWishlist = await fetch("http://192.168.1.109:3000/api/getWishlist", {
+        const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
+  
+      method: "GET",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -209,7 +215,9 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://172.20.10.4:3000/api/SearchResults", {
+      // const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+        const res = await fetch("http://localhost:3000/api/SearchResults", {
+      // const res = await fetch("http://172.20.10.4:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
