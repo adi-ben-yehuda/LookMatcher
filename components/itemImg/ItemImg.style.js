@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+import { Color } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -11,25 +12,26 @@ const styles = StyleSheet.create({
     height: screenHeight,
     backgroundColor: "#FBF9FC",
   },
+  
   card: {
-    elevation: 3,
     backgroundColor: "#FBF9FC",
-    shadowOffset: { width: 1, height: 1 },
-    shadowColor: "#333",
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    marginVertical: 6,
-    marginHorizontal: 12,
-    overflow: "hidden",
-    borderRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    marginVertical: 10,
+    marginHorizontal: 16,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: screenHeight * 0.07,
-
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
   },
   image: {
     width: "100%",
-    height: screenHeight * 0.6,
+    height: screenHeight * 0.4,
+    borderRadius: 10,
   },
 
   buttonPrev: {
@@ -90,33 +92,32 @@ const styles = StyleSheet.create({
   },
 
   itemName: {
-    marginTop: screenHeight * 0.04,
+    marginTop: 0,
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.05,
-  },
-
-  itemNameText: {
-    fontSize: screenHeight * 0.04,
-    fontWeight: "bold",
-    color: "#333",
-  },
-
-  itemNameText: {
+    justifyContent: 'center', // Center vertically
+    alignItems: 'center', // Center horizontally
+    marginTop: 10,
+},
+itemNameText: {
     fontSize: screenHeight * 0.03,
-    marginRight: screenHeight * 0.03,
-    fontWeight: "bold",
-    color: "#333",
-  },
+    fontWeight: 'bold',
+    color: Color.darkPurple,
+    textDecorationLine: 'underline',
+    textAlign: 'center', // Center the text
+},
 
   itemStore: {
     marginTop: screenHeight * 0.01,
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.032,
+    marginTop: 15,
   },
 
   itemStoreText: {
+    fontWeight: "bold",
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
@@ -128,10 +129,10 @@ const styles = StyleSheet.create({
   },
 
   itemPriceText: {
+    fontWeight: "bold",
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
-
 
   itemColor: {
     marginLeft: screenHeight * 0.03,
@@ -142,6 +143,7 @@ const styles = StyleSheet.create({
   itemColorText: {
     fontSize: screenHeight * 0.02,
     color: "#626161",
+    fontWeight: "bold",
   },
 
   itemSize: {
@@ -151,21 +153,24 @@ const styles = StyleSheet.create({
   },
 
   itemSizeText: {
+    fontWeight: "bold",
     fontSize: screenHeight * 0.02,
     color: "#626161",
   },
 
   load: {
     //flex: 1,
-    top:0.4*screenHeight,
+    top: 0.4 * screenHeight,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
     alignItems: "center",
   },
-  
+
   colorsRow: {
     flexDirection: "row",
-    paddingVertical: 20,
+    flexWrap: "wrap", // Allows wrapping to the next line
+    justifyContent: "flex-start",
+    paddingVertical: 10,
     marginLeft: screenHeight * 0.03,
   },
 
@@ -173,6 +178,44 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 10,
+    marginBottom: 10,
+  },
+
+  colorRectangle: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+
+  first: {
+    height: screenHeight * 0.1,
+    borderColor: "#000",
+    borderWidth: 0.2,
+    alignItems: "center",
+    justifyContent: "center", 
+    flexDirection: "column",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: "#FBF9FC",
+  },
+  title: {
+    width: screenWidth,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleText: {
+    fontSize: screenHeight * 0.02,
+    fontWeight: "bold",
+    color: Color.darkPurple, 
+    textAlign: "center", 
+    paddingHorizontal: 40,
   },
 });
 

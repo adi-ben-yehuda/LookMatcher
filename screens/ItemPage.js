@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 const ItemPage = () => {
   return (
     <View style={styles.home}>
+      
       <View>
         <ScrollView contentContainerStyle={styles.scrollviewContainer}>
           <ItemImg />

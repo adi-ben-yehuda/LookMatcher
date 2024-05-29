@@ -37,21 +37,29 @@ const styles = StyleSheet.create({
     height: 852,
     overflow: "hidden",
   },
+  sort1:{
+    height: screenHeight * 0.1,
+    width: screenWidth,
+    alignItems: "center",
+  },
 
+  sortContainer: {
+    marginVertical: 10,
+    alignItems: "center",
+  },
   sort: {
     zIndex: 2,
-    top: screenHeight * 0.1,
-    right: 10,
     borderRadius: 36,
     borderStyle: "solid",
     borderColor: "#2f085f",
     borderWidth: 1,
-    position: "absolute",
     overflow: "hidden",
     flexDirection: "row",
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    alignItems: "center",
+    justifyContent: "center",
   },
-
-  //sort
   stateLayerFlexBox: {
     justifyContent: "center",
     alignItems: "center",
@@ -279,6 +287,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBF9FC",
     alignItems: "center",
   },
+
 });
 
 export default styles;
