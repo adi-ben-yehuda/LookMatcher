@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.textInput,
     position: "absolute",
   },
+  
   iconPosition: {
     left: "86%",
     right: "6%",
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   alreadyAMemberContainer: {
-    top: screenHeight * 0.25 + 550,
+    top: screenHeight * 0.8,
     fontSize: screenHeight * 0.018,
     fontWeight: "600",
     textAlign: "center",
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   },
   register1: {
     marginLeft: -84.5,
-    top: screenHeight * 0.25 + 450,
+    top: screenHeight * 0.7 ,
     width: 167,
     height: 48,
     left: "50%",

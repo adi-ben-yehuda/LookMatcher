@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
@@ -50,7 +50,7 @@ const Reset2 = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.112:3000/api/resetPass", {
+      const res = await fetch("http://192.168.1.109:3000/api/resetPass", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -61,11 +61,13 @@ const Reset2 = () => {
 
       if (res.ok) {
         setSuccessMessage("Password reset successfully!");
+        Alert.alert("Success!", "Password reset");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to reset password");
       }
@@ -74,9 +76,7 @@ const Reset2 = () => {
     }
   };
 
-  const loginButtonStyle = error
-    ? [styles.login1, { marginTop: -20 }]
-    : styles.login1;
+
 
   const passBlur = () => {
     passInput.current && passInput.current.handleBlur();
@@ -150,14 +150,14 @@ const Reset2 = () => {
         />
       </View>
 
-      <View style={styles.errorMessage}>
+      {/* <View style={styles.errorMessage}>
         {error && <Text style={styles.error}>{errorMsg}</Text>}
         {successMessage && <Text style={styles.success}>{successMessage}</Text>}
-      </View>
+      </View> */}
 
       <TouchableOpacity onPress={handleResetPress}>
         <LinearGradient
-          style={loginButtonStyle}
+          style={styles.login1}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >

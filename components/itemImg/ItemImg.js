@@ -11,9 +11,12 @@ import {
 import { useRoute } from "@react-navigation/native";
 import styles from "./ItemImg.style";
 import BackButton from "../backButton/BackButton";
-import TitleComponent from "../title/title.js";
+import { Linking } from "react-native";
+import { Color } from "../../styles/GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const ItemCard = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const { itemId } = route.params || { body: {} };
   const [loading, setLoading] = useState(false);
@@ -27,7 +30,7 @@ const ItemCard = () => {
     color: "",
     colors: [],
     images: [],
-    url: ""
+    url: "",
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -55,9 +58,9 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      // const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
-        const res = await fetch("http://localhost:3000/api/ItemDetalis", {
-      // const res = await fetch("http://172.20.10.4:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
+        // const res = await fetch("http://localhost:3000/api/ItemDetalis", {
+        // const res = await fetch("http://172.20.10.4:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -104,12 +107,12 @@ const ItemCard = () => {
   return (
     <View style={styles.container}>
       <View>
-      <View style={styles.first}>
-      <View style={styles.title}>
+        <View style={styles.first}>
+          <View style={styles.title}>
             <Text style={styles.titleText}>{itemDetails.name}</Text>
+          </View>
         </View>
-        </View>
-       
+
         <View style={styles.card}>
           <Image
             // source={imagePaths[currentImageIndex]}
@@ -179,37 +182,49 @@ const ItemCard = () => {
           </Text>
         </View>
 
-        {/* {itemDetails.colors &&
-          itemDetails.colors.length > 0 &&
-          itemDetails.store === "Golf" && (
-            <View style={styles.colorsRow}>
-              {itemDetails.colors.map((color, index) => (
+        {itemDetails.colors && itemDetails.colors.length > 0 && (
+          <View style={styles.colorsRow}>
+            {itemDetails.colors.map((item, index) =>
+              isColorCode(item) ? (
                 <View
                   key={index}
-                  style={[styles.colorRectangle, { backgroundColor: color }]}
+                  style={[styles.colorRectangle, { backgroundColor: item }]}
                 />
-              ))}
-            </View>
-          )} */}
-        {itemDetails.colors && itemDetails.colors.length > 0 && (
-           <View style={styles.colorsRow}>
-        {itemDetails.colors.map((item, index) => (
-            isColorCode(item) ? (
-                <View
-                    key={index}
-                    style={[styles.colorRectangle, { backgroundColor: item }]}
-                />
-            ) : (
+              ) : (
                 <Image
-                    key={index}
-                    source={{ uri: item }}
-                    style={styles.colorImage}
+                  key={index}
+                  source={{ uri: item }}
+                  style={styles.colorImage}
                 />
-            )
-        ))}
-    </View>
-)}
+              )
+            )}
+          </View>
+        )}
       </View>
+      <View style={styles.iconRow}>
+      <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("map", { store: itemDetails.store })
+          }
+        >
+          <Image
+            source={require('../../assets/icons/loc2.png')} // Update the path to your icon
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+       
+      
+        <View style={styles.marginIcon}>
+        <TouchableOpacity onPress={() => Linking.openURL(itemDetails.url)}>
+          <Image
+            source={require('../../assets/icons/earth.png')} // Update the path to your icon
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        
+        </View>
+      
+    </View>
       <BackButton />
     </View>
   );

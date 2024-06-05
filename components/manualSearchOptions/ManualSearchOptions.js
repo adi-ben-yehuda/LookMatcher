@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import { View, TouchableOpacity, Text, ScrollView, Alert } from "react-native";
 import { MultiSelect } from "react-native-element-dropdown";
 import styles from "./ManualSearchOptions.style";
 import { Dropdown } from "react-native-element-dropdown";
@@ -314,18 +314,18 @@ const Search = () => {
 
       navigation.navigate("Results", { search });
     } else {
-      const errorMsg = "Please select all choices";
-      setErrorMsg(errorMsg);
-      setError(true);
-      console.log("Please select all choices before searching.");
-      console.log(error);
-      console.log(errorMsg);
+      Alert.alert(
+        "Error",
+        "Please select all choices before searching.",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
     }
   };
 
   return (
     <View>
-      
+      <ScrollView contentContainerStyle={styles.scrollviewContainer}>
       <View style={styles.container1}>
         <View style={styles.container}>
           <Dropdown
@@ -393,10 +393,7 @@ const Search = () => {
             search
             searchPlaceholder="Search..."
             onChange={(selectedItems) => {
-              // Check if the selected sizes do not exceed the limit
-              if (selectedItems.length <= 3) {
-                setSelectedColor(selectedItems);
-              }
+              setSelectedColor(selectedItems);
             }}
             renderItem={renderItemColor}
             renderSelectedItem={(item, unSelect) => (
@@ -438,10 +435,7 @@ const Search = () => {
             search
             searchPlaceholder="Search..."
             onChange={(selectedItems) => {
-              // Check if the selected sizes do not exceed the limit
-              if (selectedItems.length <= 3) {
-                setSelectedSize(selectedItems);
-              }
+              setSelectedSize(selectedItems);
             }}
             renderItem={renderItem}
             renderSelectedItem={(item, unSelect) => (
@@ -470,10 +464,7 @@ const Search = () => {
             search
             searchPlaceholder="Search..."
             onChange={(selectedItems) => {
-              // Check if the selected sizes do not exceed the limit
-              if (selectedItems.length <= 3) {
-                setSelectedStores(selectedItems);
-              }
+              setSelectedStores(selectedItems);
             }}
             renderItem={renderItem}
             renderSelectedItem={(item, unSelect) => (
@@ -487,48 +478,21 @@ const Search = () => {
         </View>
       </View>
 
-      {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>{errorMsg}</Text>
-        </View>
-      )}
 
-      <TouchableOpacity
-        onPress={searchPress}
-        style={[
-          styles.buttonContainer,
-          (isStoreSelected || isSizeSelected || isColorSelected) &&
-            styles.buttonContainerSelected2,
-          isColorSelected && isSizeSelected && styles.buttonContainerSelected3,
-          isStoreSelected && isSizeSelected && styles.buttonContainerSelected3,
-          isStoreSelected && isColorSelected && styles.buttonContainerSelected3,
-          isStoreSelected &&
-            isColorSelected &&
-            isSizeSelected &&
-            styles.buttonContainerSelected4,
-        ]}
-      >
-        <LinearGradient
-          style={[
-            styles.searchButton,
-            (isStoreSelected || isSizeSelected || isColorSelected) &&
-              styles.searchButton,
-            isColorSelected && isSizeSelected && styles.searchButton,
-            isStoreSelected && isSizeSelected && styles.searchButton,
-            isStoreSelected && isColorSelected && styles.searchButton,
-            isStoreSelected &&
-              isColorSelected &&
-              isSizeSelected &&
-              styles.searchButton,
-          ]}
-          locations={[0, 1]}
-          colors={["#29085f", "#b941d7"]}
-        >
-          <Text style={styles.searchText}>{"Search"}</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+</ScrollView>
 
-      
+<View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.searchButton} onPress={searchPress}>
+          <LinearGradient
+            style={styles.searchButton}
+            locations={[0, 1]}
+            colors={["#29085f", "#b941d7"]}
+          >
+            <Text style={styles.searchText}>Search</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+
     </View>
   );
 };

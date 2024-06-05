@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
@@ -69,6 +69,7 @@ const ProfilePassword = () => {
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to change password");
       }
@@ -135,13 +136,13 @@ const ProfilePassword = () => {
           <Text style={styles.success}>{successMessage}</Text>
         </View>
       )}
-
+{/* 
       {error && (
         <View style={styles.errorMessage1}>
           {console.log("errorMsg:", errorMsg)}
           <Text style={styles.error1}>Invalid: {errorMsg}</Text>
         </View>
-      )}
+      )} */}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient

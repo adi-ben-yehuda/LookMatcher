@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
@@ -48,7 +48,7 @@ const Reset = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.112:3000/api/email", {
+      const res = await fetch("http://192.168.1.109:3000/api/email", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -65,6 +65,7 @@ const Reset = () => {
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to find email");
       }
@@ -111,9 +112,9 @@ const Reset = () => {
         </View>
       </View>
 
-      <View style={styles.errorMessage}>
+      {/* <View style={styles.errorMessage}>
         {error && <Text style={styles.error}>Invalid: {errorMsg}</Text>}
-      </View>
+      </View> */}
 
       <TouchableOpacity onPress={handleEmailPress}>
         <LinearGradient
