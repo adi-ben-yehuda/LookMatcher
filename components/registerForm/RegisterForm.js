@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-paper";
 import styles from "./RegisterForm.style";
@@ -77,8 +77,8 @@ function RegisterForm() {
 
     try {
 
-      // const res = await fetch("http://192.168.1.109:3000/api/Users", {
-        const res = await fetch("http://localhost:3000/api/Users", {
+       const res = await fetch("http://192.168.1.109:3000/api/Users", {
+        //const res = await fetch("http://localhost:3000/api/Users", {
       // const res = await fetch("http://172.20.10.4:3000/api/Users", {
         method: "POST",
         headers: {
@@ -95,7 +95,6 @@ function RegisterForm() {
         setConfirmPassword("");
         setFirstName("");
         setLastName("");
-        
         navigation.navigate("Home");
       } else if (res.status === 409) {
         const body = await res.json();
@@ -107,6 +106,7 @@ function RegisterForm() {
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to add user");
       }
@@ -115,18 +115,18 @@ function RegisterForm() {
     }
   };
 
-  const registerButtonStyle = () => {
-    if (error) {
-      if (
-        errorList[errorList.length - 1] === " confirm password" &&
-        errorList.length >= 4
-      ) {
-        return [styles.register1, { marginTop: -40 }];
-      }
-      return [styles.register1, { marginTop: -20 }];
-    }
-    return styles.register1;
-  };
+  // const registerButtonStyle = () => {
+  //   if (error) {
+  //     if (
+  //       errorList[errorList.length - 1] === " confirm password" &&
+  //       errorList.length >= 4
+  //     ) {
+  //       return [styles.register1, { marginTop: -40 }];
+  //     }
+  //     return [styles.register1, { marginTop: -20 }];
+  //   }
+  //   return styles.register1;
+  // };
 
   const firsrtNameBlur = () => {
     firstNameInput.current && firstNameInput.current.handleBlur();
@@ -302,11 +302,11 @@ function RegisterForm() {
         </TouchableOpacity>
       </Text>
 
-      {error && (
+      {/* {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid: {errorMsg}</Text>
         </View>
-      )}
+      )} */}
       {/* {console.log('error', error)} */}
       {/* {!error && (
         <View style={styles.errorMessage}>
@@ -316,7 +316,7 @@ function RegisterForm() {
 
       <TouchableOpacity onPress={handleRegisterPress}>
         <LinearGradient
-          style={registerButtonStyle()}
+          style={styles.register1}
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >

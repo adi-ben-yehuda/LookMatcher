@@ -7,9 +7,9 @@ const screenWidth = window.width;
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#FBF9FC",
-    flex: 1,
-    overflow: "hidden",
+    //backgroundColor: "#FBF9FC",
+    //flex: 1,
+    //overflow: "hidden",
   },
 
   title: {
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 17,
     flexDirection: "row",
-    justifyContent: "flex-end", // Aligns children (text and rectangle) to the right
+    justifyContent: "flex-end", 
     alignItems: "center",
   },
   selectedStyle: {
@@ -125,69 +125,39 @@ const styles = StyleSheet.create({
     marginRight: "auto",
   },
 
+ 
+  containerButton: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+
+
+  buttonContainer: {
+    position: "absolute",
+    bottom: 30, 
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  searchButton: {
+    width: 140,
+    height: 42,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
   searchText: {
-    color: Color.white,
+    color: "#ffff",
     fontSize: 25,
     top: 6,
     textAlign: "center",
     textAlignVertical: "center",
   },
-
-  buttonContainerSelected2: {
-    top: screenHeight * 0.7, // Updated value when isStoreSelected is true
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  buttonContainerSelected3: {
-    top: screenHeight * 0.77, // Updated value when isStoreSelected is true
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  buttonContainerSelected4: {
-    top: screenHeight * 0.82, // Updated value when isStoreSelected is true
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  buttonContainer: {
-    top: screenHeight * 0.61, // Default value when isStoreSelected is false
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  searchButton: {
-    width: 140,
-    height: 42,
-    borderRadius: Border.br_3xs,
-    overflow: "hidden",
-  },
-
-  errorMessage: {
-    top: screenHeight * 0.08,
-    fontSize: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  error: {
-    fontWeight: "bold",
-    color: Color.red,
-    fontSize: screenHeight * 0.02,
-    width: screenWidth * 0.7,
-    textAlign: "center",
+  scrollviewContainer: {
+    flexGrow: 1,
+    paddingBottom: 200,
   },
 });
 

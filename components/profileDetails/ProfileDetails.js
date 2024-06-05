@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
@@ -93,6 +93,7 @@ const ProfileDetails = () => {
         setOldEmail(email);
         setSuccessMessage("Details updated successfully!");
         setIsSuccessMessage(true);
+        Alert.alert("Success!", "Details changed");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;
@@ -103,6 +104,7 @@ const ProfileDetails = () => {
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to update user");
       }
@@ -168,17 +170,17 @@ const ProfileDetails = () => {
         />
       </View>
 
-      {isSuccessMessage && (
+      {/* {isSuccessMessage && (
         <View style={styles.successMessage1}>
           <Text style={styles.success}>{successMessage}</Text>
         </View>
-      )}
+      )} */}
 
-      {error && (
+      {/* {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error1}>Invalid {errorMsg}</Text>
         </View>
-      )}
+      )} */}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient

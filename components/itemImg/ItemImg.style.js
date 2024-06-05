@@ -119,7 +119,7 @@ itemNameText: {
   itemStoreText: {
     fontWeight: "bold",
     fontSize: screenHeight * 0.02,
-    color: "#626161",
+    color: Color.black,
   },
 
   itemPrice: {
@@ -131,18 +131,19 @@ itemNameText: {
   itemPriceText: {
     fontWeight: "bold",
     fontSize: screenHeight * 0.02,
-    color: "#626161",
+    color: Color.black,
   },
 
   itemColor: {
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.032,
+    
   },
 
   itemColorText: {
     fontSize: screenHeight * 0.02,
-    color: "#626161",
+    color: Color.black,
     fontWeight: "bold",
   },
 
@@ -155,7 +156,7 @@ itemNameText: {
   itemSizeText: {
     fontWeight: "bold",
     fontSize: screenHeight * 0.02,
-    color: "#626161",
+    color: Color.black,
   },
 
   load: {
@@ -217,6 +218,20 @@ itemNameText: {
     textAlign: "center", 
     paddingHorizontal: 40,
   },
+  icon: {
+    width: 38, 
+    height: 38, 
+  },
+
+  iconRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: screenHeight * 0.02,
+    
+  },
+  marginIcon:{
+    marginHorizontal: 10,
+  }
 });
 
 export default styles;

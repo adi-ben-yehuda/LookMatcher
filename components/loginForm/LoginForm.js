@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image,Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
@@ -46,8 +46,8 @@ const LoginForm = () => {
     };
 
     try {
-      // const res = await fetch("http://192.168.1.109:3000/api/Tokens", {
-        const res = await fetch("http://localhost:3000/api/Tokens", {
+      const res = await fetch("http://192.168.1.109:3000/api/Tokens", {
+        // const res = await fetch("http://localhost:3000/api/Tokens", {
       //const res = await fetch("http://172.20.10.4:3000/api/Tokens", {
         method: "POST",
         headers: {
@@ -73,6 +73,7 @@ const LoginForm = () => {
         const errorMsg = body.error;
         setErrorMsg(errorMsg);
         setError(true);
+        Alert.alert("Error", errorMsg);
       } else {
         throw new Error("Failed to login");
       }
@@ -155,11 +156,11 @@ const LoginForm = () => {
       </View>
 
       {/* Show error message if error is true */}
-      {error && (
+      {/* {error && (
         <View style={styles.errorMessage}>
           <Text style={styles.error}>Invalid{errorMsg}</Text>
         </View>
-      )}
+      )} */}
 
       <TouchableOpacity onPress={handleLoginPress}>
         <LinearGradient
