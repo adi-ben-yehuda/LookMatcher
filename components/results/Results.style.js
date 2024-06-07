@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   dropDownList: {
-    top: screenHeight * 0.15,
+    top: screenHeight * 0.05,
     right: screenWidth * 0.2,
     borderRadius: 8,
     shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -109,20 +109,20 @@ const styles = StyleSheet.create({
     left: 1,
   },
   listItemlistItem2Densit4: {
-    top: screenHeight * 0.21,
+    top: screenHeight * 0.23,
     justifyContent: "center",
     alignItems: "center",
     left: 0,
   },
   listItemlistItem2Densit5: {
-    top: screenHeight * 0.261,
+    top: screenHeight * 0.295,
     justifyContent: "center",
     alignItems: "center",
     left: 0,
     height: screenHeight * 0.05,
   },
   listItemlistItem2Densit6: {
-    top: screenHeight * 0.313,
+    top: screenHeight * 0.36,
     justifyContent: "center",
     alignItems: "center",
     left: 0,

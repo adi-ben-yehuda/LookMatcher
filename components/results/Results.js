@@ -11,10 +11,17 @@ import styles from "./Results.style";
 import UsersContext from "../../context/userContext";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import {
+  calculateDistance,
+  fetchLocation,
+  findClosestStore,
+  fetchStores,
+} from "../distance/utils.js";
 
 const Results = () => {
   const route = useRoute();
   const { search } = route.params || { body: {} };
+  const { stores } = search || { stores: [] };
 
   const [loading, setLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -22,11 +29,6 @@ const Results = () => {
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
-  const navigation = useNavigation();
-
-  const handleBackButtonPress = () => {
-    navigation.goBack();
-  };
 
   useEffect(() => {
     getResults();
@@ -43,12 +45,10 @@ const Results = () => {
     "Price: low to high": require("../../assets/component-1661.png"),
     "Price: High To Low": require("../../assets/component-1661.png"),
     "Distance: near to far": require("../../assets/component-1661.png"),
-    "Distance: far to near": require("../../assets/component-1661.png"),
   });
 
   const renderHeader = () => (
     <View>
-     
       {/* <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
         <Image
           style={styles.icon}
@@ -57,18 +57,18 @@ const Results = () => {
         />
       </TouchableOpacity> */}
       <View style={styles.sortContainer}>
-      <View
-        style={[styles.sort, styles.stateLayerFlexBox,]}
-        onTouchEnd={handleSortByClick}
-      >
-        <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
-          <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
-          <Image
-            style={styles.arrow}
-            contentFit="cover"
-            source={require("../../assets/icons/filter.png")}
-          />
-        </View>
+        <View
+          style={[styles.sort, styles.stateLayerFlexBox]}
+          onTouchEnd={handleSortByClick}
+        >
+          <View style={[styles.stateLayer, styles.stateLayerFlexBox]}>
+            <Text style={styles.sortText}>{selectedItem || "Sort By"}</Text>
+            <Image
+              style={styles.arrow}
+              contentFit="cover"
+              source={require("../../assets/icons/filter.png")}
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -83,7 +83,7 @@ const Results = () => {
     const navigation = useNavigation(); // Using the useNavigation hook
 
     const navigateToDetailPage = (itemId) => {
-      navigation.navigate('ItemPage', { itemId }); // Navigate and pass itemId
+      navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
     };
 
     const toggleFavorite = async (itemId) => {
@@ -92,17 +92,19 @@ const Results = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
+        const res = await fetch(
+          "http://192.168.1.109:3000/api/updateWishlist",
+          {
+            // const res = await fetch("http://localhost:3000/api/updateWishlist", {
 
-        const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
-          // const res = await fetch("http://localhost:3000/api/updateWishlist", {
-
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({ itemId, action }),
-        });
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({ itemId, action }),
+          }
+        );
 
         if (res.ok) {
         } else {
@@ -120,7 +122,10 @@ const Results = () => {
     // );
 
     return (
-      <TouchableOpacity style={styles.cardContainer} onPress={() => navigateToDetailPage(item.id)}>
+      <TouchableOpacity
+        style={styles.cardContainer}
+        onPress={() => navigateToDetailPage(item.id)}
+      >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
           onPress={(e) => {
@@ -149,10 +154,9 @@ const Results = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleDropdownItemClick = (item) => {
+  const handleDropdownItemClick = async (item) => {
     setSelectedItem(item);
 
-    // Update the selected item's icon and reset others to the default
     setIconSources((prevIconSources) => {
       const updatedIconSources = {};
       for (const key in prevIconSources) {
@@ -166,27 +170,76 @@ const Results = () => {
 
     setIsDropdownOpen(false);
 
-    // Sort the results based on the selected item
     if (item === "Price: low to high") {
       setResults([...results].sort((a, b) => a.price - b.price));
     } else if (item === "Price: High To Low") {
       setResults([...results].sort((a, b) => b.price - a.price));
+    } else if (item === "Distance: near to far") {
+      // Fetch closest stores and sort them by distance
+      const { closestStores, userLocation } = await getClosestStores();
+
+      // Sort the closestStores by distance from the user's location
+      const sortedStores = closestStores.sort((a, b) => {
+        const distanceA = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          a.closestStore.latitude,
+          a.closestStore.longitude
+        );
+        const distanceB = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          b.closestStore.latitude,
+          b.closestStore.longitude
+        );
+        return distanceA - distanceB;
+      });
+
+      // Arrange items in results based on sorted stores
+      const sortedResults = [];
+      sortedStores.forEach(({ store }) => {
+        const storeItems = results.filter((item) => item.company === store);
+        sortedResults.push(...storeItems);
+      });
+
+      // Update the results state with sorted items
+      setResults(sortedResults);
     }
+  };
+
+  const getClosestStores = async () => {
+    const userLocation = await fetchLocation();
+    if (!userLocation) {
+      console.error("User location is not available");
+      return { closestStores: [], userLocation: null };
+    }
+
+    const closestStores = await Promise.all(
+      stores.map(async (store) => {
+        const storeData = await fetchStores(store); //fetch all addresses
+        const closestStore = findClosestStore(userLocation, storeData);
+        return { store, closestStore }; // Save original store and the closest address
+      })
+    );
+
+    return { closestStores, userLocation }; // array of closest stores and my location
   };
 
   const getWishlist = async () => {
     try {
+      const resWishlist = await fetch(
+        "http://192.168.1.109:3000/api/getWishlist",
+        {
+          // const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
 
-      const resWishlist = await fetch("http://192.168.1.109:3000/api/getWishlist", {
-        // const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
-  
-      method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      });
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+        }
+      );
       if (resWishlist.ok) {
         console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
@@ -216,8 +269,8 @@ const Results = () => {
     setLoading(true);
     try {
       // const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
-        // const res = await fetch("http://localhost:3000/api/SearchResults", {
-       const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+      // const res = await fetch("http://localhost:3000/api/SearchResults", {
+      const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -261,13 +314,6 @@ const Results = () => {
             No matches found... yet!{"\n"} Keep looking for the {"\n"}perfect
             match for you!
           </Text>
-          <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
-            <Image
-              style={styles.icon}
-              contentFit="cover"
-              source={require("../../assets/icons/prev.png")}
-            />
-          </TouchableOpacity>
         </View>
       )}
       {results.length > 0 && (
@@ -329,7 +375,7 @@ const Results = () => {
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
                 selectedItem === "Price: low to high" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
             >
@@ -358,12 +404,14 @@ const Results = () => {
                 <View style={[styles.divider, styles.dividerLayout]} />
               </View>
             </View>
+            
+            
             <View
               style={[
                 styles.listItemlistItem2Densit5,
                 styles.listLayout,
                 selectedItem === "HighTolow" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() => handleDropdownItemClick("Price: High To Low")}
             >
@@ -387,12 +435,14 @@ const Results = () => {
                 <View style={[styles.divider, styles.dividerLayout]} />
               </View>
             </View>
+
+
             <View
               style={[
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
                 selectedItem === "Distance: near to far" &&
-                styles.buildingBlocksstateLayerDaItem,
+                  styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
                 handleDropdownItemClick("Distance: near to far")
@@ -415,42 +465,7 @@ const Results = () => {
                 <View style={[styles.content, styles.contentFlexBox]}>
                   <Text style={[styles.headline4, styles.headlineTypo]}>
                     {" "}
-                    Distance: from near to far{" "}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.horizontalFlexBox}>
-                <View style={[styles.divider, styles.dividerLayout]} />
-              </View>
-            </View>
-            <View
-              style={[
-                styles.listItemlistItem2Densit7,
-                styles.listLayout,
-                selectedItem === "Distance: far to near" && styles.building,
-              ]}
-              onTouchEnd={() =>
-                handleDropdownItemClick("Distance: far to near")
-              }
-            >
-              <View style={[styles.buildingPosition]}>
-                <View
-                  style={[
-                    styles.buildingBlocksstateLayerDaItem,
-                    styles.buildingPosition,
-                  ]}
-                />
-              </View>
-              <View style={[styles.stateLayer1, styles.contentFlexBox]}>
-                <Image
-                  style={styles.iconLayout}
-                  contentFit="cover"
-                  source={iconSources["Distance: far to near"]}
-                />
-                <View style={[styles.content, styles.contentFlexBox]}>
-                  <Text style={[styles.headline4, styles.headlineTypo]}>
-                    {" "}
-                    Distance: from far to near{" "}
+                    Distance: near to far{" "}
                   </Text>
                 </View>
               </View>
@@ -459,11 +474,6 @@ const Results = () => {
               </View>
             </View>
           </View>
-          {/* <Image
-            style={styles.scrollBarIcon}
-            contentFit="cover"
-            source={require("../../assets/scroll-bar.png")}
-          /> */}
         </View>
       )}
     </View>
