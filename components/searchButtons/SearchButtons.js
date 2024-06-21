@@ -12,7 +12,7 @@ const SearchButtons = () => {
   };
 
   const imageSearchPress = () => {
-    navigation.navigate("SearchByPhoto");
+    navigation.navigate("Stores");
   };
 
   return (
@@ -24,7 +24,7 @@ const SearchButtons = () => {
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >
-          <Text style={styles.buttonSearch}>{"Manual\n search"}</Text>
+          <Text style={styles.buttonSearch}>{"Search\n items"}</Text>
         </LinearGradient>
       </TouchableOpacity>
 
@@ -34,7 +34,7 @@ const SearchButtons = () => {
           locations={[0, 1]}
           colors={["#29085f", "#b941d7"]}
         >
-          <Text style={styles.buttonSearch}>{"Search by\n image"}</Text>
+          <Text style={styles.buttonSearch}>{"Search\n stores"}</Text>
         </LinearGradient>
       </TouchableOpacity>
     </View>

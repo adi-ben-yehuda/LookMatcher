@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Dimensions, Text } from "react-native";
+import { View, Text } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useRoute } from "@react-navigation/native";
-import { calculateDistance, fetchLocation, findClosestStore, fetchStores } from "./utils"; // Import utility functions
-import { Color, Border } from "../../styles/GlobalStyles";
+import { fetchLocation, findClosestStore, fetchStores } from "./utils"; // Import utility functions
 import BackButton from "../backButton/BackButton";
+import styles from "./map.syle"; // Import the styles
 
 export default function MapPage() {
   const [location, setLocation] = useState(null);
@@ -41,6 +41,29 @@ export default function MapPage() {
     }
   }, [stores]);
 
+  const initialRegion = closestStore
+    ? {
+        latitude: closestStore.latitude,
+        longitude: closestStore.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
+    : {
+        latitude: 32.0853,
+        longitude: 34.7818,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      };
+
+  const region = closestStore
+    ? {
+        latitude: closestStore.latitude,
+        longitude: closestStore.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
+    : undefined;
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
@@ -48,22 +71,10 @@ export default function MapPage() {
       </View>
       <BackButton />
       <MapView
-        key={location ? `${location.latitude}-${location.longitude}` : "initialMap"}
+        key={closestStore ? `${closestStore.latitude}-${closestStore.longitude}` : "initialMap"}
         style={styles.map}
-        initialRegion={{
-          latitude: location ? location.latitude : 32.0853,
-          longitude: location ? location.longitude : 34.7818,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        region={
-          location && {
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }
-        }
+        initialRegion={initialRegion}
+        region={region}
       >
         {location && (
           <Marker
@@ -93,30 +104,3 @@ export default function MapPage() {
     </View>
   );
 }
-
-const window = Dimensions.get("window");
-const screenHeight = window.height;
-const screenWidth = window.width;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    width: "100%",
-    height: "85%",
-  },
-  title: {
-    top: 0 - 15,
-    width: screenWidth,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titleText: {
-    fontSize: screenHeight * 0.03,
-    fontWeight: "bold",
-    color: Color.darkPurple,
-  },
-});

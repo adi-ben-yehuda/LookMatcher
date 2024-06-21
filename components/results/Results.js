@@ -16,7 +16,7 @@ import {
   fetchLocation,
   findClosestStore,
   fetchStores,
-} from "../distance/utils.js";
+} from "../map/utils.js";
 
 const Results = () => {
   const route = useRoute();
