@@ -35,9 +35,9 @@ const WishlistPage = () => {
         <BackButton />
         <TitleComponent titleText="Wish List" />
         </View>
-      <ScrollView contentContainerStyle={{ minHeight: screenHeight * 1.3 }}>
+      
         <Wishlist />
-      </ScrollView>
+ 
       <View>
         <ToolBar />
       </View>

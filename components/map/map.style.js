@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleText: {
-    fontSize: screenHeight * 0.03,
+    fontSize: screenHeight * 0.029,
     fontWeight: "bold",
     color: Color.darkPurple,
   },

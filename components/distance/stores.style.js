@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { Color } from "../../styles/GlobalStyles";
-import styles from "./stores.js";
+
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
