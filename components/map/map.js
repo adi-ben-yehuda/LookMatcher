@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { View, Text, Linking } from "react-native";
+import MapView, { Marker, Callout } from "react-native-maps";
 import { useRoute } from "@react-navigation/native";
 import { fetchLocation, findClosestStore, fetchStores } from "./utils"; // Import utility functions
 import BackButton from "../backButton/BackButton";
-import styles from "./map.syle"; // Import the styles
+import styles from "./map.style"; // Import the styles
 
 export default function MapPage() {
   const [location, setLocation] = useState(null);
@@ -64,6 +64,11 @@ export default function MapPage() {
       }
     : undefined;
 
+  const openInWaze = (latitude, longitude) => {
+    const url = `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
+    Linking.openURL(url).catch(err => console.error("Error opening Waze:", err));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
@@ -94,11 +99,17 @@ export default function MapPage() {
               latitude: store.latitude,
               longitude: store.longitude,
             }}
-            title={store.address}
             pinColor={
               closestStore && closestStore._id === store._id ? "red" : "blue"
             }
-          />
+          >
+            <Callout onPress={() => openInWaze(store.latitude, store.longitude)}>
+              <View>
+                <Text>{store.address}</Text>
+                <Text>Open in Waze</Text>
+              </View>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
     </View>

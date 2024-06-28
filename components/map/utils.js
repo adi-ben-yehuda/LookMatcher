@@ -55,7 +55,7 @@ export const fetchStores = async (store) => {
   try {
     console.log("Fetching stores for:", store);
     const response = await fetch(
-      `http://172.20.10.4:3000/api/stores/${store}`
+      `http://192.168.1.109:3000/api/stores/${store}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch stores");

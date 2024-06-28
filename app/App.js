@@ -27,10 +27,13 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+        <Stack.Screen name="Login" component={Login} />
+       
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Stores" component={Stores} />
 
-          <Stack.Screen name="Login" component={Login} />
+        
          
           <Stack.Screen name="Results" component={Results} />
          <Stack.Screen name="map" component={Map} />
@@ -47,8 +50,8 @@ function App() {
           <Stack.Screen name="Home" component={Home} />
 
           <Stack.Screen name="Profile" component={Profile} />
-
           <Stack.Screen name="Wishlist" component={Wishlist} />
+         
         </Stack.Navigator>
       </NavigationContainer>
     </UsersProvider>

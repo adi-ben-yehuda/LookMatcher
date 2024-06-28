@@ -21,7 +21,7 @@ const Wishlist = () => {
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
         
-        const res = await fetch("http://172.20.10.4:3000/api/updateWishlist", {
+        const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
         // const res = await fetch("http://localhost:3000/api/updateWishlist", {
           method: "POST",
           headers: {
@@ -70,7 +70,7 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://172.20.10.4:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.1.109:3000/api/wishlistPage", {
         // const res = await fetch("http://localhost:3000/api/wishlistPage", {
         method: "GET",
         headers: {
@@ -150,7 +150,7 @@ const Wishlist = () => {
       )}
       </View>
 
-      <View style={styles.buttons}>
+      {/* <View style={styles.buttons}>
         <TouchableOpacity onPress={handleMakeMePress}>
           <LinearGradient
             style={[styles.makeMe, styles.makeLayout]}
@@ -177,7 +177,7 @@ const Wishlist = () => {
             </View>
           </LinearGradient>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
