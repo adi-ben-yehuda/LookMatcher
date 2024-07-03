@@ -50,7 +50,7 @@ const Reset2 = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/resetPass", {
+      const res = await fetch("http://192.168.233.245:3000/api/resetPass", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -75,8 +75,6 @@ const Reset2 = () => {
       console.error(error);
     }
   };
-
-
 
   const passBlur = () => {
     passInput.current && passInput.current.handleBlur();

@@ -20,16 +20,19 @@ const Wishlist = () => {
       setIsFavorite(!isFavorite);
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
-        
-        const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
-        // const res = await fetch("http://localhost:3000/api/updateWishlist", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({ itemId, action }),
-        });
+
+        const res = await fetch(
+          "http://192.168.233.245:3000/api/updateWishlist",
+          {
+            // const res = await fetch("http://localhost:3000/api/updateWishlist", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({ itemId, action }),
+          }
+        );
 
         if (res.ok) {
         } else {
@@ -70,7 +73,7 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.233.245:3000/api/wishlistPage", {
         // const res = await fetch("http://localhost:3000/api/wishlistPage", {
         method: "GET",
         headers: {
@@ -111,43 +114,39 @@ const Wishlist = () => {
 
   return (
     <View style={[styles.results, styles.resultsLayout]}>
-      
       <View style={styles.container}>
-         {!results.length > 0 && (
-        <View style={styles.noResultsContainer}>
-          <Text style={styles.noResults}>
-            Nothing saved{"\n"}
-          </Text>
-
-        </View>
-      )}
-      {results.length > 0 && (
-        <FlatList
-          data={
-            results.length % 2 === 0
-              ? results
-              : [...results, { id: "empty-item" }]
-          }
-          renderItem={({ item, index, separators }) => {
-            if (item.id === "empty-item") {
-              return <View style={{ flex: 1 }} />;
-            } else {
-              const isLastItem =
-                index === results.length && results.length % 2 === 1;
-              return (
-                <View style={{ flex: 1, flexDirection: "row" }}>
-                  <ItemCard item={item} />
-                  {isLastItem && <View style={{ flex: 0.5 }} />}
-                </View>
-              );
+        {!results.length > 0 && (
+          <View style={styles.noResultsContainer}>
+            <Text style={styles.noResults}>Nothing saved{"\n"}</Text>
+          </View>
+        )}
+        {results.length > 0 && (
+          <FlatList
+            data={
+              results.length % 2 === 0
+                ? results
+                : [...results, { id: "empty-item" }]
             }
-          }}
-          keyExtractor={(item) =>
-            item.id ? item.id.toString() : Math.random().toString()
-          }
-          numColumns={2}
-        />
-      )}
+            renderItem={({ item, index, separators }) => {
+              if (item.id === "empty-item") {
+                return <View style={{ flex: 1 }} />;
+              } else {
+                const isLastItem =
+                  index === results.length && results.length % 2 === 1;
+                return (
+                  <View style={{ flex: 1, flexDirection: "row" }}>
+                    <ItemCard item={item} />
+                    {isLastItem && <View style={{ flex: 0.5 }} />}
+                  </View>
+                );
+              }
+            }}
+            keyExtractor={(item) =>
+              item.id ? item.id.toString() : Math.random().toString()
+            }
+            numColumns={2}
+          />
+        )}
       </View>
 
       {/* <View style={styles.buttons}>

@@ -19,6 +19,12 @@ import ChangePass1 from "../screens/Reset1.js";
 import TakePhoto from "../components/uploadPhoto/takePhoto.js";
 import Map from "../components/map/map.js";
 import Stores from "../components/distance/stores.js";
+import { LogBox } from "react-native";
+
+// Ignore the specific warning about defaultProps in function components
+LogBox.ignoreLogs([
+  "Warning: TextInputComponent: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.",
+]);
 
 const Stack = createStackNavigator();
 
@@ -27,18 +33,14 @@ function App() {
     <UsersProvider>
       <NavigationContainer independent={true}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={Login} />
 
-        <Stack.Screen name="Login" component={Login} />
-       
-        <Stack.Screen name="Search" component={Search} />
-        <Stack.Screen name="Stores" component={Stores} />
+          <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="Stores" component={Stores} />
 
-        
-         
           <Stack.Screen name="Results" component={Results} />
-         <Stack.Screen name="map" component={Map} />
-        
-        
+          <Stack.Screen name="map" component={Map} />
+
           <Stack.Screen name="ManualSearch" component={ManualSearch} />
 
           <Stack.Screen name="TakePhoto" component={TakePhoto} />
@@ -51,7 +53,6 @@ function App() {
 
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Wishlist" component={Wishlist} />
-         
         </Stack.Navigator>
       </NavigationContainer>
     </UsersProvider>

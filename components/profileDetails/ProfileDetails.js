@@ -22,7 +22,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/Change", {
+      const res = await fetch("http://192.168.233.245:3000/api/Change", {
         // const res = await fetch("http://localhost:3000/api/Change", {
         method: "get",
         headers: {
@@ -78,8 +78,8 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.1.109:3000/api/Users/details`, {
-      // const res = await fetch(`http://localhost:3000/api/Users/details`, {
+      const res = await fetch(`http://192.168.233.245:3000/api/Users/details`, {
+        // const res = await fetch(`http://localhost:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -123,8 +123,6 @@ const ProfileDetails = () => {
 
   return (
     <View>
-     
-
       <View style={[styles.password, styles.firstNamePosition]}>
         <TextInput
           style={styles.newData}

@@ -1,17 +1,11 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Color, Border } from "../../styles/GlobalStyles";
+import { Color } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({
-  page: {
-    //backgroundColor: "#FBF9FC",
-    //flex: 1,
-    //overflow: "hidden",
-  },
-
   title: {
     top: screenHeight * 0.07,
     fontSize: screenHeight * 0.07,
@@ -52,7 +46,6 @@ const styles = StyleSheet.create({
     borderColor: Color.darkPurple,
     borderWidth: 1.5,
     height: 50,
-    //backgroundColor: "#f0f0f0",
     backgroundColor: Color.white,
     borderRadius: 12,
     padding: 12,
@@ -88,7 +81,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 17,
     flexDirection: "row",
-    justifyContent: "flex-end", 
+    justifyContent: "flex-end",
     alignItems: "center",
   },
   selectedStyle: {
@@ -115,7 +108,6 @@ const styles = StyleSheet.create({
   textSelectedStyle: {
     marginRight: 5,
     fontSize: 16,
-    //fontWeight: "bold",
     color: Color.darkPurple,
   },
 
@@ -125,7 +117,6 @@ const styles = StyleSheet.create({
     marginRight: "auto",
   },
 
- 
   containerButton: {
     position: "absolute",
     bottom: 0,
@@ -133,10 +124,9 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
-
   buttonContainer: {
     position: "absolute",
-    bottom: 30, 
+    bottom: 30,
     left: 0,
     right: 0,
     alignItems: "center",

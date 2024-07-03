@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
-  StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  Dimensions,
   Text,
+  Linking,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./ItemImg.style";
 import BackButton from "../backButton/BackButton";
-import { Linking } from "react-native";
-import { Color } from "../../styles/GlobalStyles";
-import { useNavigation } from "@react-navigation/native";
 
 const ItemCard = () => {
   const navigation = useNavigation();
@@ -58,9 +55,9 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.233.245:3000/api/ItemDetalis", {
         // const res = await fetch("http://localhost:3000/api/ItemDetalis", {
-        // const res = await fetch("http://172.20.10.4:3000/api/ItemDetalis", {
+        // const res = await fetch("http://172.18.54.23:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -115,7 +112,6 @@ const ItemCard = () => {
 
         <View style={styles.card}>
           <Image
-            // source={imagePaths[currentImageIndex]}
             source={{ uri: itemDetails.images?.[currentImageIndex] }}
             style={styles.image}
             resizeMode="contain" // Ensures the image fits within the container without being cropped
@@ -155,10 +151,6 @@ const ItemCard = () => {
       </View>
 
       <View>
-        {/* <View style={styles.itemName}>
-          <Text style={styles.itemNameText}>{itemDetails.name}</Text>
-        </View> */}
-
         <View style={styles.itemStore}>
           <Text style={styles.itemStoreText}>Store: {itemDetails.store}</Text>
         </View>
@@ -202,29 +194,26 @@ const ItemCard = () => {
         )}
       </View>
       <View style={styles.iconRow}>
-      <TouchableOpacity
+        <TouchableOpacity
           onPress={() =>
             navigation.navigate("map", { store: itemDetails.store })
           }
         >
           <Image
-            source={require('../../assets/icons/loc2.png')} // Update the path to your icon
+            source={require("../../assets/icons/loc2.png")} // Update the path to your icon
             style={styles.icon}
           />
         </TouchableOpacity>
-       
-      
+
         <View style={styles.marginIcon}>
-        <TouchableOpacity onPress={() => Linking.openURL(itemDetails.url)}>
-          <Image
-            source={require('../../assets/icons/earth.png')} // Update the path to your icon
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-        
+          <TouchableOpacity onPress={() => Linking.openURL(itemDetails.url)}>
+            <Image
+              source={require("../../assets/icons/earth.png")} // Update the path to your icon
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
-      
-    </View>
+      </View>
       <BackButton />
     </View>
   );

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     height: screenHeight,
     backgroundColor: "#FBF9FC",
   },
-  
+
   card: {
     backgroundColor: "#FBF9FC",
     shadowOffset: { width: 0, height: 2 },
@@ -96,17 +96,17 @@ const styles = StyleSheet.create({
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.05,
-    justifyContent: 'center', // Center vertically
-    alignItems: 'center', // Center horizontally
+    justifyContent: "center", // Center vertically
+    alignItems: "center", // Center horizontally
     marginTop: 10,
-},
-itemNameText: {
+  },
+  itemNameText: {
     fontSize: screenHeight * 0.03,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Color.darkPurple,
-    textDecorationLine: 'underline',
-    textAlign: 'center', // Center the text
-},
+    textDecorationLine: "underline",
+    textAlign: "center", // Center the text
+  },
 
   itemStore: {
     marginTop: screenHeight * 0.01,
@@ -138,7 +138,6 @@ itemNameText: {
     marginLeft: screenHeight * 0.03,
     width: screenWidth * 0.96,
     height: screenHeight * 0.032,
-    
   },
 
   itemColorText: {
@@ -194,7 +193,7 @@ itemNameText: {
     borderColor: "#000",
     borderWidth: 0.2,
     alignItems: "center",
-    justifyContent: "center", 
+    justifyContent: "center",
     flexDirection: "column",
     shadowColor: "#000",
     shadowOffset: {
@@ -214,24 +213,23 @@ itemNameText: {
   titleText: {
     fontSize: screenHeight * 0.02,
     fontWeight: "bold",
-    color: Color.darkPurple, 
-    textAlign: "center", 
+    color: Color.darkPurple,
+    textAlign: "center",
     paddingHorizontal: 40,
   },
   icon: {
-    width: 38, 
-    height: 38, 
+    width: 38,
+    height: 38,
   },
 
   iconRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginLeft: screenHeight * 0.02,
-    
   },
-  marginIcon:{
+  marginIcon: {
     marginHorizontal: 10,
-  }
+  },
 });
 
 export default styles;

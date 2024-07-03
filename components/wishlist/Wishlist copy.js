@@ -1,5 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { Text, View, FlatList, TouchableOpacity, Image, Dimensions, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/Ionicons";
 import UsersContext from "../../context/userContext";
@@ -32,15 +40,18 @@ const Wishlist = () => {
       setIsFavorite(!isFavorite);
       try {
         const action = isCurrentlyFavorite ? "remove" : "add";
-        
-        const res = await fetch("http://192.168.1.109:3000/api/updateWishlist", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({ itemId, action }),
-        });
+
+        const res = await fetch(
+          "http://192.168.233.245:3000/api/updateWishlist",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({ itemId, action }),
+          }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to update wishlist");
@@ -75,7 +86,7 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.233.245:3000/api/wishlistPage", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -104,14 +115,15 @@ const Wishlist = () => {
       <View style={styles.container}>
         {!results.length > 0 && (
           <View style={styles.noResultsContainer}>
-            <Text style={styles.noResults}>
-              Nothing saved{"\n"}
-            </Text>
+            <Text style={styles.noResults}>Nothing saved{"\n"}</Text>
           </View>
         )}
         {results.length > 0 && (
           <View style={styles.horizontalListContainer}>
-            <TouchableOpacity onPress={scrollToStart} style={styles.scrollButton}>
+            <TouchableOpacity
+              onPress={scrollToStart}
+              style={styles.scrollButton}
+            >
               <Icon name="arrow-back" style={styles.scrollButtonText} />
             </TouchableOpacity>
             <FlatList
@@ -124,16 +136,17 @@ const Wishlist = () => {
               contentContainerStyle={styles.flatListContentContainer}
             />
             <TouchableOpacity onPress={scrollToEnd} style={styles.scrollButton}>
-              <Icon name="arrow-forward" size={24} style={styles.scrollButtonText} />
+              <Icon
+                name="arrow-forward"
+                size={24}
+                style={styles.scrollButtonText}
+              />
             </TouchableOpacity>
           </View>
-
-          
         )}
       </View>
     </View>
   );
 };
-
 
 export default Wishlist;

@@ -4,7 +4,6 @@ import { MultiSelect } from "react-native-element-dropdown";
 import styles from "./ManualSearchOptions.style";
 import { Dropdown } from "react-native-element-dropdown";
 import { LinearGradient } from "expo-linear-gradient";
-import BackButton from "../backButton/BackButton";
 import { useNavigation } from "@react-navigation/native";
 
 const colors = [
@@ -215,10 +214,7 @@ const Search = () => {
   const [isSizeSelected, setIsSizeSelected] = useState(false);
   const [isColorSelected, setIsColorSelected] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [error, setError] = useState(false);
 
-  // Add a state variable for loading
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -285,21 +281,6 @@ const Search = () => {
       selectedSize.length > 0 &&
       selectedStores.length > 0
     ) {
-      const selectedMapping = isShoes ? shoesSizesMapping : sizesMapping;
-
-      const sizes = selectedSize.map((sizeValue) => selectedMapping[sizeValue]);
-
-      const stores = selectedStores.map(
-        (storeValue) => storesMapping[storeValue]
-      );
-      const colors = selectedColor.map(
-        (colorValue) => colorMapping[colorValue]
-      );
-
-      const gender = genderMapping[selectedGender];
-      const selectedMap = isMen ? categoryMappingMen : categoryMappingWomen;
-      const category = selectedMap[selectedCategory];
-
       const search = {
         gender: genderMapping[selectedGender],
         category: isMen
@@ -326,162 +307,160 @@ const Search = () => {
   return (
     <View>
       <ScrollView contentContainerStyle={styles.scrollviewContainer}>
-      <View style={styles.container1}>
-        <View style={styles.container}>
-          <Dropdown
-            style={[styles.dropdown, isFocus1 && { borderColor: "#43118C" }]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={gender}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus1 ? "Gender" : "..."}
-            searchPlaceholder="Search..."
-            value={selectedGender}
-            onFocus={() => setIsFocus1(true)}
-            onBlur={() => setIsFocus1(false)}
-            onChange={(item) => {
-              setSelectedGender(item.value);
-              setIsFocus1(false);
-            }}
-          />
+        <View style={styles.container1}>
+          <View style={styles.container}>
+            <Dropdown
+              style={[styles.dropdown, isFocus1 && { borderColor: "#43118C" }]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={gender}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus1 ? "Gender" : "..."}
+              searchPlaceholder="Search..."
+              value={selectedGender}
+              onFocus={() => setIsFocus1(true)}
+              onBlur={() => setIsFocus1(false)}
+              onChange={(item) => {
+                setSelectedGender(item.value);
+                setIsFocus1(false);
+              }}
+            />
+          </View>
         </View>
-      </View>
 
-      <View style={styles.container2}>
-        <View style={styles.container}>
-          <Dropdown
-            style={[styles.dropdown, isFocus2 && { borderColor: "#43118C" }]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={isMen ? categoryMan : category}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus2 ? "Category" : "..."}
-            searchPlaceholder="Search..."
-            value={selectedCategory}
-            onFocus={() => setIsFocus2(true)}
-            onBlur={() => setIsFocus2(false)}
-            onChange={(item) => {
-              setSelectedCategory(item.value);
-              setIsFocus2(false);
-            }}
-          />
+        <View style={styles.container2}>
+          <View style={styles.container}>
+            <Dropdown
+              style={[styles.dropdown, isFocus2 && { borderColor: "#43118C" }]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={isMen ? categoryMan : category}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus2 ? "Category" : "..."}
+              searchPlaceholder="Search..."
+              value={selectedCategory}
+              onFocus={() => setIsFocus2(true)}
+              onBlur={() => setIsFocus2(false)}
+              onChange={(item) => {
+                setSelectedCategory(item.value);
+                setIsFocus2(false);
+              }}
+            />
+          </View>
         </View>
-      </View>
 
-      <View style={styles.container3}>
-        <View style={styles.container}>
-          <MultiSelect
-            style={styles.dropdown}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            data={colors}
-            labelField="label"
-            valueField="value"
-            placeholder="Color"
-            value={selectedColor}
-            search
-            searchPlaceholder="Search..."
-            onChange={(selectedItems) => {
-              setSelectedColor(selectedItems);
-            }}
-            renderItem={renderItemColor}
-            renderSelectedItem={(item, unSelect) => (
-              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                <View
-                  style={[
-                    styles.selectedStyle,
-                    { borderColor: item.color, borderWidth: 1.8 },
-                  ]}
-                >
-                  <Text
+        <View style={styles.container3}>
+          <View style={styles.container}>
+            <MultiSelect
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              data={colors}
+              labelField="label"
+              valueField="value"
+              placeholder="Color"
+              value={selectedColor}
+              search
+              searchPlaceholder="Search..."
+              onChange={(selectedItems) => {
+                setSelectedColor(selectedItems);
+              }}
+              renderItem={renderItemColor}
+              renderSelectedItem={(item, unSelect) => (
+                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                  <View
                     style={[
-                      styles.textSelectedStyle,
-                      {
-                        color: item.label === "White" ? "black" : item.color,
-                      },
+                      styles.selectedStyle,
+                      { borderColor: item.color, borderWidth: 1.8 },
                     ]}
                   >
-                    {item.label}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+                    <Text
+                      style={[
+                        styles.textSelectedStyle,
+                        {
+                          color: item.label === "White" ? "black" : item.color,
+                        },
+                      ]}
+                    >
+                      {item.label}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
-      </View>
-      <View style={styles.container4}>
-        <View style={styles.container}>
-          <MultiSelect
-            style={styles.dropdown}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            data={isShoes ? shoesSize : sizes}
-            labelField="label"
-            valueField="value"
-            placeholder="Size"
-            value={selectedSize}
-            search
-            searchPlaceholder="Search..."
-            onChange={(selectedItems) => {
-              setSelectedSize(selectedItems);
-            }}
-            renderItem={renderItem}
-            renderSelectedItem={(item, unSelect) => (
-              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                <View style={styles.selectedStyle}>
-                  <Text style={styles.textSelectedStyle}>{item.label}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+        <View style={styles.container4}>
+          <View style={styles.container}>
+            <MultiSelect
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              data={isShoes ? shoesSize : sizes}
+              labelField="label"
+              valueField="value"
+              placeholder="Size"
+              value={selectedSize}
+              search
+              searchPlaceholder="Search..."
+              onChange={(selectedItems) => {
+                setSelectedSize(selectedItems);
+              }}
+              renderItem={renderItem}
+              renderSelectedItem={(item, unSelect) => (
+                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                  <View style={styles.selectedStyle}>
+                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
-      </View>
 
-      <View style={styles.container5}>
-        <View style={styles.container}>
-          <MultiSelect
-            style={styles.dropdown}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            data={stores}
-            labelField="label"
-            valueField="value"
-            placeholder="Store"
-            value={selectedStores}
-            search
-            searchPlaceholder="Search..."
-            onChange={(selectedItems) => {
-              setSelectedStores(selectedItems);
-            }}
-            renderItem={renderItem}
-            renderSelectedItem={(item, unSelect) => (
-              <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                <View style={styles.selectedStyle}>
-                  <Text style={styles.textSelectedStyle}>{item.label}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
+        <View style={styles.container5}>
+          <View style={styles.container}>
+            <MultiSelect
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              data={stores}
+              labelField="label"
+              valueField="value"
+              placeholder="Store"
+              value={selectedStores}
+              search
+              searchPlaceholder="Search..."
+              onChange={(selectedItems) => {
+                setSelectedStores(selectedItems);
+              }}
+              renderItem={renderItem}
+              renderSelectedItem={(item, unSelect) => (
+                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                  <View style={styles.selectedStyle}>
+                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
 
-
-</ScrollView>
-
-<View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.searchButton} onPress={searchPress}>
           <LinearGradient
             style={styles.searchButton}
@@ -492,7 +471,6 @@ const Search = () => {
           </LinearGradient>
         </TouchableOpacity>
       </View>
-
     </View>
   );
 };
