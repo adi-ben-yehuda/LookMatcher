@@ -133,11 +133,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   noResults: {
-    top: screenHeight * 0.4,
+    top: screenHeight * 0.25,
     color: 'red',
     fontSize: 20,
     fontWeight: "bold",
   },
+
+  load: {
+    //flex: 1,
+    top: 0.4 * screenHeight,
+    justifyContent: "center",
+    backgroundColor: "#FBF9FC",
+    alignItems: "center",
+  },
+  container2: {
+    width: screenWidth,
+    height: screenHeight,
+    backgroundColor: "#FBF9FC",
+  },
+
 });
 
 export default styles;

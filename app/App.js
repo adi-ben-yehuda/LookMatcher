@@ -16,9 +16,11 @@ import ItemPage from "../screens/ItemPage";
 import Wishlist from "../screens/WishlistPage";
 import ChangePass2 from "../screens/Reset2.js";
 import ChangePass1 from "../screens/Reset1.js";
-import TakePhoto from "../components/uploadPhoto/takePhoto.js";
 import Map from "../components/map/map.js";
+import Recommend from "../screens/Recommend.js";
 import Stores from "../components/distance/stores.js";
+
+
 
 const Stack = createStackNavigator();
 
@@ -33,7 +35,7 @@ function App() {
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Stores" component={Stores} />
 
-        
+        <Stack.Screen name="Recommend" component={Recommend} />
          
           <Stack.Screen name="Results" component={Results} />
          <Stack.Screen name="map" component={Map} />
@@ -41,7 +43,6 @@ function App() {
         
           <Stack.Screen name="ManualSearch" component={ManualSearch} />
 
-          <Stack.Screen name="TakePhoto" component={TakePhoto} />
           <Stack.Screen name="ItemPage" component={ItemPage} />
 
           <Stack.Screen name="Register" component={Register} />

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   text: {
     marginTop: screenHeight * 0.01,
     color: Color.white,
-    fontSize: screenWidth * 0.07,
+    fontSize: screenWidth * 0.06,
   },
 
   image4Icon: {

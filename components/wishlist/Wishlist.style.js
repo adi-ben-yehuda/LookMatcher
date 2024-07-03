@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   noResults: {
-    top: screenHeight * 0.4,
+    top: screenHeight * 0.25,
     color: 'red',
     fontSize: 20,
     fontWeight: "bold",
