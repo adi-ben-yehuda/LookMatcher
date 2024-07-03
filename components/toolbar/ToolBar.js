@@ -23,7 +23,7 @@ const ToolBar = () => {
   };
 
   const handleOutfitPress = () => {
-    navigation.navigate("");
+    navigation.navigate("Recommend");
   };
 
   return (

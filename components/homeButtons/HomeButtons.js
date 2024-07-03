@@ -19,7 +19,7 @@ function HomeButtons() {
   };
 
   const handleOutfitPress = () => {
-    navigation.navigate("");
+    navigation.navigate("Recommend");
   };
 
   return (
@@ -62,7 +62,9 @@ function HomeButtons() {
             style={styles.iconsButtons}
             source={require("../../assets/icons/outline--shirt.png")}
           />
-          <Text style={styles.text}>Outfits</Text>
+          <Text style={{ fontSize: 18, color: "#ffffff", paddingTop: 10 }}>
+            You Might Like
+          </Text>
         </LinearGradient>
       </TouchableOpacity>
 
