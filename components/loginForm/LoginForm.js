@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image,Alert } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import { TextInput } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
@@ -46,9 +46,9 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/Tokens", {
+      const res = await fetch("http://192.168.233.245:3000/api/Tokens", {
         // const res = await fetch("http://localhost:3000/api/Tokens", {
-      //const res = await fetch("http://172.20.10.4:3000/api/Tokens", {
+        //const res = await fetch("http://172.18.54.23:3000/api/Tokens", {
         method: "POST",
         headers: {
           Accept: "application/json",

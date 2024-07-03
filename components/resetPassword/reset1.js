@@ -48,7 +48,7 @@ const Reset = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/email", {
+      const res = await fetch("http://192.168.233.245:3000/api/email", {
         method: "POST",
         headers: {
           Accept: "application/json",

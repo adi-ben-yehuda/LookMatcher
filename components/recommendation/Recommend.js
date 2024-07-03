@@ -1,5 +1,12 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { Text, View, FlatList, TouchableOpacity, Image, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import UsersContext from "../../context/userContext";
 import styles from "./Recommend.style";
@@ -90,12 +97,12 @@ const Recommendation = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    triggerPythonScript(); 
+    triggerPythonScript();
   }, []);
 
   if (loading) {
@@ -115,7 +122,9 @@ const Recommendation = () => {
         {!results.length > 0 && (
           <View style={styles.noResultsContainer}>
             <Text style={styles.noResults}>No Suggestions{"\n"}</Text>
-            <Text style={styles.noResults}>Add items to your wishlist first{"\n"}</Text>
+            <Text style={styles.noResults}>
+              Add items to your wishlist first{"\n"}
+            </Text>
           </View>
         )}
         {results.length > 0 && (

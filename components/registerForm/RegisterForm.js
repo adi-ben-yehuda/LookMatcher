@@ -76,10 +76,9 @@ function RegisterForm() {
     };
 
     try {
-
-       const res = await fetch("http://192.168.1.109:3000/api/Users", {
+      const res = await fetch("http://192.168.233.245:3000/api/Users", {
         //const res = await fetch("http://localhost:3000/api/Users", {
-      // const res = await fetch("http://172.20.10.4:3000/api/Users", {
+        // const res = await fetch("http://172.18.54.23:3000/api/Users", {
         method: "POST",
         headers: {
           Accept: "application/json",
