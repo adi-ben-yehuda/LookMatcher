@@ -2,7 +2,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { UsersProvider } from "../context/userContext.js";
-import { Linking } from "react-native";
 
 import Register from "../screens/Register";
 import Login from "../screens/Login";
