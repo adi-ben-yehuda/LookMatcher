@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#fff",
-    marginTop: screenHeight * 0.035,
+    marginTop: screenHeight * 0.025,
   },
   cardContainer: {
     backgroundColor: "#f0f0f0", //#fff

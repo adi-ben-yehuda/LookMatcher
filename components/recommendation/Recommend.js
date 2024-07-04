@@ -10,13 +10,19 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import UsersContext from "../../context/userContext";
 import styles from "./Recommend.style";
+import { useNavigation } from "@react-navigation/native";
+
 
 const Recommendation = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
   const { token } = useContext(UsersContext);
   const flatListRef = useRef(null);
-
+  const navigation = useNavigation();
+  const navigateToDetailPage = (itemId) => {
+    console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
+    navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
+};
   const scrollToStart = () => {
     flatListRef.current.scrollToOffset({ offset: 0, animated: true });
   };
@@ -28,52 +34,55 @@ const Recommendation = () => {
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(true);
 
-    // const toggleFavorite = async (itemId) => {
-    //   const isCurrentlyFavorite = isFavorite;
-    //   setIsFavorite(!isFavorite);
-    //   try {
-    //     const action = isCurrentlyFavorite ? "remove" : "add";
+    const toggleFavorite = async (itemId) => {
+      const isCurrentlyFavorite = isFavorite;
+      setIsFavorite(!isFavorite);
+      try {
+        const action = isCurrentlyFavorite ? "add" : "remove";
+        console.log(item._id);
+        const res = await fetch(
+          "http://192.168.1.109:3000/api/updateWishlist",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({ itemId, action }),
+          }
+        );
 
-    //     const res = await fetch(
-    //       "http://192.168.1.109:3000/api/updateWishlist",
-    //       {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           authorization: "Bearer " + token,
-    //         },
-    //         body: JSON.stringify({ itemId, action }),
-    //       }
-    //     );
-
-    //     if (!res.ok) {
-    //       throw new Error("Failed to update wishlist");
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
+        if (!res.ok) {
+          throw new Error("Failed to update wishlist");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     return (
-      <View style={styles.cardContainer}>
+      <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => navigateToDetailPage(item.id)}
+    >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
-        {/* <TouchableOpacity
-          onPress={() => toggleFavorite(item.id)}
+        <TouchableOpacity
+          onPress={() => toggleFavorite(item._id)}
           style={styles.favoriteIcon}
         >
           <Image
             source={
               isFavorite
-                ? require("../../assets/favorite-light1.png")
-                : require("../../assets/favorite-light2.png")
+                ? require("../../assets/favorite-light2.png")
+                : require("../../assets/favorite-light1.png")
             }
             style={styles.favoriteImage}
           />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
         <Text style={styles.itemCompany}>{`Company: ${item.store}`}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

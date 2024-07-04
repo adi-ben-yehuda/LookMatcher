@@ -93,9 +93,10 @@ const Results = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          "http://192.168.233.245:3000/api/updateWishlist",
+          
+          "http://192.168.1.109:3000/api/updateWishlist",
           {
-            // const res = await fetch("http://localhost:3000/api/updateWishlist", {
+            // const res = await fetch("http://192.168.233.245:3000/api/updateWishlist", {
 
             method: "POST",
             headers: {
@@ -228,10 +229,10 @@ const Results = () => {
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch(
-        "http://192.168.233.245:3000/api/getWishlist",
+        "http://192.168.1.109:3000/api/getWishlist",
         {
-          // const resWishlist = await fetch("http://localhost:3000/api/getWishlist", {
-
+          // const resWishlist = await fetch("http://192.168.233.245:3000/api/getWishlist", {
+           
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -268,9 +269,10 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
+      
       // const res = await fetch("http://192.168.233.245:3000/api/SearchResults", {
-      // const res = await fetch("http://localhost:3000/api/SearchResults", {
-      const res = await fetch("http://192.168.233.245:3000/api/SearchResults", {
+      // const res = await fetch("http://192.168.233.245:3000/api/SearchResults", {
+      const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",

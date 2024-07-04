@@ -3,14 +3,18 @@ import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Wishlist.style";
 import UsersContext from "../../context/userContext";
+import { useNavigation } from "@react-navigation/native";
 
 const Wishlist = () => {
   const [results, setResults] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
 
-  const handleMakeMePress = () => {};
-  const handleMakeYourselfPress = () => {};
+  const navigation = useNavigation();
+  const navigateToDetailPage = (itemId) => {
+    console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
+    navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
+};
 
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(true);
@@ -22,9 +26,10 @@ const Wishlist = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          "http://192.168.233.245:3000/api/updateWishlist",
+          
+          "http://192.168.1.109:3000/api/updateWishlist",
           {
-            // const res = await fetch("http://localhost:3000/api/updateWishlist", {
+            // const res = await fetch("http://192.168.233.245:3000/api/updateWishlist", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -43,13 +48,13 @@ const Wishlist = () => {
       }
     };
 
-    console.log("item", item);
-    console.log("item", item.price);
-    console.log("item", item.company);
-    console.log("item", item.image);
+  
 
     return (
-      <View style={styles.cardContainer}>
+      <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => navigateToDetailPage(item.id)}
+    >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
           onPress={() => toggleFavorite(item.id)}
@@ -67,14 +72,15 @@ const Wishlist = () => {
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
         <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
-      </View>
+        </TouchableOpacity>
+
     );
   };
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.233.245:3000/api/wishlistPage", {
-        // const res = await fetch("http://localhost:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.1.109:3000/api/wishlistPage", {
+        // const res = await fetch("http://192.168.233.245:3000/api/wishlistPage", {
         method: "GET",
         headers: {
           Accept: "application/json",
