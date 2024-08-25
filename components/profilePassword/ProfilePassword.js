@@ -44,18 +44,15 @@ const ProfilePassword = () => {
     };
 
     try {
-      const res = await fetch(
-        `http://192.168.233.245:3000/api/Users/password`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify(user),
-        }
-      );
+      const res = await fetch(`http://192.168.1.245:3000/api/Users/password`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(user),
+      });
 
       if (res.ok) {
         setCurrPassword(currPassword);

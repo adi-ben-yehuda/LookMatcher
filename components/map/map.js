@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Linking } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useRoute } from "@react-navigation/native";
-import { fetchLocation, findClosestStore, fetchStores } from "./utils"; // Import utility functions
+import { fetchLocation, findClosestStore, fetchStores } from "./utils";
 import BackButton from "../backButton/BackButton";
-import styles from "./map.style"; // Import the styles
+import styles from "./map.style";
 
 export default function MapPage() {
   const [location, setLocation] = useState(null);
@@ -66,17 +66,30 @@ export default function MapPage() {
 
   const openInWaze = (latitude, longitude) => {
     const url = `https://waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
-    Linking.openURL(url).catch(err => console.error("Error opening Waze:", err));
+    Linking.openURL(url).catch((err) =>
+      console.error("Error opening Waze:", err)
+    );
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.titleText}>{store} shops</Text>
+        <Text style={styles.titleText}>
+          {store === "Twentyfourseven"
+            ? "Twenty Four Seven"
+            : store === "Studiopasha"
+            ? "Studio Pasha"
+            : store}{" "}
+          stores
+        </Text>
       </View>
       <BackButton />
       <MapView
-        key={closestStore ? `${closestStore.latitude}-${closestStore.longitude}` : "initialMap"}
+        key={
+          closestStore
+            ? `${closestStore.latitude}-${closestStore.longitude}`
+            : "initialMap"
+        }
         style={styles.map}
         initialRegion={initialRegion}
         region={region}
@@ -103,7 +116,9 @@ export default function MapPage() {
               closestStore && closestStore._id === store._id ? "red" : "blue"
             }
           >
-            <Callout onPress={() => openInWaze(store.latitude, store.longitude)}>
+            <Callout
+              onPress={() => openInWaze(store.latitude, store.longitude)}
+            >
               <View>
                 <Text>{store.address}</Text>
                 <Text>Open in Waze</Text>

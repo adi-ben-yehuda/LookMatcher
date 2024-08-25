@@ -219,9 +219,9 @@ const SearchByPhoto = () => {
     <View style={styles.page}>
       <View>
         <View style={styles.titleContainer}>
-        <Text style={styles.title2}>
-          Take a picture and explore similar finds
-        </Text>
+          <Text style={styles.title2}>
+            Take a picture and explore similar finds
+          </Text>
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate("TakePhoto")}>

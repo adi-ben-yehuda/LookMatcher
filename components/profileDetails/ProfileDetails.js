@@ -22,8 +22,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.233.245:3000/api/Change", {
-        // const res = await fetch("http://localhost:3000/api/Change", {
+      const res = await fetch("http://192.168.1.245:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,
@@ -78,8 +77,7 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.233.245:3000/api/Users/details`, {
-        // const res = await fetch(`http://localhost:3000/api/Users/details`, {
+      const res = await fetch(`http://192.168.1.245:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -167,18 +165,6 @@ const ProfileDetails = () => {
           source={require("../../assets/email.png")}
         />
       </View>
-
-      {/* {isSuccessMessage && (
-        <View style={styles.successMessage1}>
-          <Text style={styles.success}>{successMessage}</Text>
-        </View>
-      )} */}
-
-      {/* {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error1}>Invalid {errorMsg}</Text>
-        </View>
-      )} */}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient

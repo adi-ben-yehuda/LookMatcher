@@ -12,9 +12,9 @@ const Wishlist = () => {
 
   const navigation = useNavigation();
   const navigateToDetailPage = (itemId) => {
-    console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
+    // console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
     navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
-};
+  };
 
   const ItemCard = ({ item }) => {
     const [isFavorite, setIsFavorite] = useState(true);
@@ -26,10 +26,9 @@ const Wishlist = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          
-          "http://192.168.1.109:3000/api/updateWishlist",
+          "http://192.168.1.245:3000/api/updateWishlist",
           {
-            // const res = await fetch("http://192.168.233.245:3000/api/updateWishlist", {
+            // const res = await fetch("http://192.168.1.245:3000/api/updateWishlist", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -48,13 +47,11 @@ const Wishlist = () => {
       }
     };
 
-  
-
     return (
       <TouchableOpacity
-      style={styles.cardContainer}
-      onPress={() => navigateToDetailPage(item.id)}
-    >
+        style={styles.cardContainer}
+        onPress={() => navigateToDetailPage(item.id)}
+      >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
           onPress={() => toggleFavorite(item.id)}
@@ -72,15 +69,14 @@ const Wishlist = () => {
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
         <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
-        </TouchableOpacity>
-
+      </TouchableOpacity>
     );
   };
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/wishlistPage", {
-        // const res = await fetch("http://192.168.233.245:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.1.245:3000/api/wishlistPage", {
+        // const res = await fetch("http://192.168.1.245:3000/api/wishlistPage", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -93,7 +89,7 @@ const Wishlist = () => {
         const body = await res.json();
         setResults(body.items);
 
-        console.log("in wish list page ", results);
+        // console.log("in wish list page ", results);
       }
       // else if (res.status === 409) {
       //   const body = await res.json();

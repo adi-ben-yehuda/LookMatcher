@@ -53,9 +53,8 @@ export const findClosestStore = (userLocation, stores) => {
 
 export const fetchStores = async (store) => {
   try {
-    console.log("Fetching stores for:", store);
     const response = await fetch(
-      `http://192.168.233.245:3000/api/stores/${store}`
+      `http://192.168.1.245:3000/api/stores/${store}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch stores");
