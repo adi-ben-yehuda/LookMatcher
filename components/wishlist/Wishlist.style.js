@@ -23,43 +23,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
 
-  //buttons
-  makeLayout: {
-    backgroundColor: "transparent",
-    height: screenHeight * 0.085,
-    width: screenWidth * 0.4,
-    borderRadius: Border.br_3xs,
-    //top: screenHeight * 0.75,
-    position: "absolute",
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  makeAnContainer: {
-    fontSize: screenHeight * 0.022,
-    color: Color.white,
-    textAlign: "center",
-  },
-  makeAnOutfitWrapper: {
-    width: screenWidth * 0.3,
-    height: screenWidth * 0.08,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  makeMe: {
-    right: screenWidth * 0.07,
-    position: "absolute",
-    bottom: screenHeight * 0.1,
-    //top:screenHeight*1.03
-  },
-  makeYourself: {
-    left: screenWidth * 0.07,
-    // position: "absolute",
-    bottom: screenHeight * 0.1,
-  },
-
   headline: {
     marginLeft: "auto",
     marginRight: "auto",
@@ -103,7 +66,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.25,
     shadowRadius: 8,
-    elevation: 5, // For Android
+    elevation: 5, 
   },
   favoriteIcon: {
     position: "absolute",
@@ -132,7 +95,6 @@ const styles = StyleSheet.create({
 
   emptyItem: {
     backgroundColor: "#FBF9FC",
-
   },
 
   noResultsContainer: {

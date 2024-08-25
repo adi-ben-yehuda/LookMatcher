@@ -4,8 +4,6 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  TouchableOpacity,
-  Text,
 } from "react-native";
 import ManualSearchOptions, {
   searchPress,
@@ -13,7 +11,6 @@ import ManualSearchOptions, {
 import Tool from "../components/toolbar/ToolBar";
 import BackButton from "../components/backButton/BackButton";
 import TitleComponent from "../components/title/title.js";
-import { LinearGradient } from "expo-linear-gradient";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;

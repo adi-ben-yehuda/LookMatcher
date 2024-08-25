@@ -22,7 +22,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/Change", {
+      const res = await fetch("http://192.168.0.169:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,
@@ -110,14 +110,6 @@ const ProfileDetails = () => {
       console.error(error);
     }
   };
-
-  // Show all errors separated by a comma
-  // const renderList = errorList.map((item, index) => (
-  //   <Text key={index} style={styles.error}>
-  //     {item}
-  //     {index !== errorList.length - 1 && ","}
-  //   </Text>
-  // ));
 
   return (
     <View>

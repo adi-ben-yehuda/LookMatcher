@@ -13,18 +13,12 @@ const LoginForm = () => {
   const navigation = useNavigation();
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [token, setToken] = useState("");
   const { setToken, setUser } = useContext(UsersContext);
-
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
-
-  // States for checking the errors
   const [error, setError] = useState(false);
-  const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleEmail = (text) => {
@@ -46,7 +40,7 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/Tokens", {
+      const res = await fetch("http://192.168.0.169:3000/api/Tokens", {
         // const res = await fetch("http://localhost:3000/api/Tokens", {
         //const res = await fetch("http://192.168.1.245:3000/api/Tokens", {
         method: "POST",
@@ -59,14 +53,11 @@ const LoginForm = () => {
 
       if (res.ok) {
         const body = await res.json();
-        console.log(body);
         const token = body.token;
         setToken(token);
-        console.log("TOKEN LOGIN", token);
         setEmail("");
         setPassword("");
-        await AsyncStorage.setItem("userName", body.name); // Save user name locally
-        //await AsyncStorage.setItem("userToken", token); // Save token locally
+        await AsyncStorage.setItem("userName", body.name);
         navigation.navigate("Home", { name: body.name });
       } else if (res.status === 404) {
         const body = await res.json();
@@ -154,13 +145,6 @@ const LoginForm = () => {
           source={require("../../assets/lock.png")}
         />
       </View>
-
-      {/* Show error message if error is true */}
-      {/* {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid{errorMsg}</Text>
-        </View>
-      )} */}
 
       <TouchableOpacity onPress={handleLoginPress}>
         <LinearGradient

@@ -1,4 +1,4 @@
-import { Color, FontSize, Border, Padding } from "../../styles/GlobalStyles";
+import { Color, Padding } from "../../styles/GlobalStyles";
 import { StyleSheet, Dimensions } from "react-native";
 
 const window = Dimensions.get("window");
@@ -10,12 +10,6 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
   },
-  // resultLayout: {
-  //   height: 270,
-  //   top: 178,
-  //   width: 157,
-  //   position: "absolute",
-  // },
   headline: {
     marginLeft: "auto",
     marginRight: "auto",
@@ -204,11 +198,10 @@ const styles = StyleSheet.create({
 
   container: {
     backgroundColor: "#FBF9FC",
-    //marginTop: screenHeight * 0.035,
   },
   cardContainer: {
     flex: 1,
-    backgroundColor: "#f0f0f0", //#fff
+    backgroundColor: "#f0f0f0",
     marginTop: 10,
     margin: 15,
     padding: 16,
@@ -222,11 +215,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 4,
     marginBottom: 8,
-    // shadowColor: "#000",
-    // shadowOffset: { width: 1, height: 1 },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 8,
-    elevation: 5, // For Android
+    elevation: 5, 
   },
   favoriteIcon: {
     position: "absolute",

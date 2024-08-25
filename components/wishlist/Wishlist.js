@@ -1,19 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import styles from "./Wishlist.style";
 import UsersContext from "../../context/userContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Wishlist = () => {
   const [results, setResults] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  // const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
 
   const navigation = useNavigation();
   const navigateToDetailPage = (itemId) => {
-    // console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
-    navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
+    navigation.navigate("ItemPage", { itemId });
   };
 
   const ItemCard = ({ item }) => {
@@ -26,7 +24,7 @@ const Wishlist = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          "http://192.168.1.245:3000/api/updateWishlist",
+          "http://192.168.0.169:3000/api/updateWishlist",
           {
             // const res = await fetch("http://192.168.1.245:3000/api/updateWishlist", {
             method: "POST",
@@ -38,8 +36,7 @@ const Wishlist = () => {
           }
         );
 
-        if (res.ok) {
-        } else {
+        if (!res.ok) {
           throw new Error("Failed to update wishlist");
         }
       } catch (error) {
@@ -75,7 +72,7 @@ const Wishlist = () => {
 
   const getResults = async () => {
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/wishlistPage", {
+      const res = await fetch("http://192.168.0.169:3000/api/wishlistPage", {
         // const res = await fetch("http://192.168.1.245:3000/api/wishlistPage", {
         method: "GET",
         headers: {
@@ -88,20 +85,7 @@ const Wishlist = () => {
       if (res.ok) {
         const body = await res.json();
         setResults(body.items);
-
-        // console.log("in wish list page ", results);
       }
-      // else if (res.status === 409) {
-      //   const body = await res.json();
-      //   const errorMsg = body.error;
-      //   setErrorMsg(errorMsg);
-      //   setError(true);
-      // } else if (res.status === 400) {
-      //   const body = await res.json();
-      //   const errorMsg = body.error;
-      //   setErrorMsg(errorMsg);
-      //   setError(true);
-      // }
       else {
         throw new Error("error");
       }
@@ -150,35 +134,6 @@ const Wishlist = () => {
           />
         )}
       </View>
-
-      {/* <View style={styles.buttons}>
-        <TouchableOpacity onPress={handleMakeMePress}>
-          <LinearGradient
-            style={[styles.makeMe, styles.makeLayout]}
-            locations={[0, 1]}
-            colors={["#29085f", "#b941d7"]}
-          >
-            <View style={[styles.makeAnOutfitWrapper, styles.makePosition]}>
-              <Text style={[styles.makeAnContainer, styles.makePosition]}>
-                {"Make me\nan outfit"}
-              </Text>
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleMakeYourselfPress}>
-          <LinearGradient
-            style={[styles.makeYourself, styles.makeLayout]}
-            locations={[0, 1]}
-            colors={["#29085f", "#b941d7"]}
-          >
-            <View style={[styles.makeAnOutfitWrapper, styles.makePosition]}>
-              <Text style={[styles.makeAnContainer, styles.makePosition]}>
-                Make yourself an outfit
-              </Text>
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 };

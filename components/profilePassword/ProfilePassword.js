@@ -136,13 +136,6 @@ const ProfilePassword = () => {
           <Text style={styles.success}>{successMessage}</Text>
         </View>
       )}
-      {/* 
-      {error && (
-        <View style={styles.errorMessage1}>
-          {console.log("errorMsg:", errorMsg)}
-          <Text style={styles.error1}>Invalid: {errorMsg}</Text>
-        </View>
-      )} */}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient

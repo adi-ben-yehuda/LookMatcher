@@ -87,7 +87,7 @@ const Recommendation = () => {
 
   const triggerPythonScript = async () => {
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
+      const res = await fetch("http://192.168.0.169:3000/api/recommendations", {
         method: "GET",
         headers: {
           Accept: "application/json",
