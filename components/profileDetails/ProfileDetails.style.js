@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "#fff",
     width: "100%",
-    alignItems: "flex-start",
     justifyContent: "center",
   },
 
@@ -130,7 +129,7 @@ const styles = StyleSheet.create({
   },
 
   register2: {
-    fontSize: 11,
+    fontSize: 16,
     color: Color.white,
     width: 100,
     textAlign: "center", // Center the text horizontally
@@ -146,7 +145,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "transparent",
     overflow: "hidden",
-    alignItems: "flex-start",
     justifyContent: "center",
     borderRadius: Border.br_3xs,
   },

@@ -148,11 +148,6 @@ const Reset2 = () => {
         />
       </View>
 
-      {/* <View style={styles.errorMessage}>
-        {error && <Text style={styles.error}>{errorMsg}</Text>}
-        {successMessage && <Text style={styles.success}>{successMessage}</Text>}
-      </View> */}
-
       <TouchableOpacity onPress={handleResetPress}>
         <LinearGradient
           style={styles.login1}

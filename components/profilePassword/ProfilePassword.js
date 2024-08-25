@@ -61,12 +61,12 @@ const ProfilePassword = () => {
         setSuccessMessage("Password changed successfully!");
       } else if (res.status === 409) {
         const body = await res.json();
-        const errorMsg = body.error;
+        const errorMsg = "There is an error in:" + body.error;
         setErrorMsg(errorMsg);
         setError(true);
       } else if (res.status === 400) {
         const body = await res.json();
-        const errorMsg = body.error;
+        const errorMsg = "There is an error in: " + body.error;
         setErrorMsg(errorMsg);
         setError(true);
         Alert.alert("Error", errorMsg);
@@ -136,13 +136,6 @@ const ProfilePassword = () => {
           <Text style={styles.success}>{successMessage}</Text>
         </View>
       )}
-      {/* 
-      {error && (
-        <View style={styles.errorMessage1}>
-          {console.log("errorMsg:", errorMsg)}
-          <Text style={styles.error1}>Invalid: {errorMsg}</Text>
-        </View>
-      )} */}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient
