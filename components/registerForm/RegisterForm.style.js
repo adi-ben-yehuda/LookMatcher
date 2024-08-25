@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.textInput,
     position: "absolute",
   },
-  
+
   iconPosition: {
     left: "86%",
     right: "6%",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   },
   register1: {
     marginLeft: -84.5,
-    top: screenHeight * 0.7 ,
+    top: screenHeight * 0.7,
     width: 167,
     height: 48,
     left: "50%",

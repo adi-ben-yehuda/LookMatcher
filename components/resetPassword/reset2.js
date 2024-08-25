@@ -50,7 +50,7 @@ const Reset2 = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.233.245:3000/api/resetPass", {
+      const res = await fetch("http://192.168.1.245:3000/api/resetPass", {
         method: "POST",
         headers: {
           Accept: "application/json",

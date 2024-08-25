@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Text,
   FlatList,
@@ -42,20 +42,13 @@ const Results = () => {
 
   // Maintain individual icon sources for each item
   const [iconSources, setIconSources] = useState({
-    "Price: low to high": require("../../assets/component-1661.png"),
+    "Price: Low To High": require("../../assets/component-1661.png"),
     "Price: High To Low": require("../../assets/component-1661.png"),
-    "Distance: near to far": require("../../assets/component-1661.png"),
+    "Distance: Near To Far": require("../../assets/component-1661.png"),
   });
 
   const renderHeader = () => (
     <View>
-      {/* <TouchableOpacity style={styles.back} onPress={handleBackButtonPress}>
-        <Image
-          style={styles.icon}
-          contentFit="cover"
-          source={require("../../assets/icons/prev.png")}
-        />
-      </TouchableOpacity> */}
       <View style={styles.sortContainer}>
         <View
           style={[styles.sort, styles.stateLayerFlexBox]}
@@ -80,10 +73,10 @@ const Results = () => {
     if (!item || item.id === "empty-item") {
       return <View style={styles.emptyItem} />;
     }
-    const navigation = useNavigation(); // Using the useNavigation hook
+    const navigation = useNavigation();
 
     const navigateToDetailPage = (itemId) => {
-      navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
+      navigation.navigate("ItemPage", { itemId });
     };
 
     const toggleFavorite = async (itemId) => {
@@ -93,11 +86,8 @@ const Results = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          
-          "http://192.168.1.109:3000/api/updateWishlist",
+          "http://192.168.1.245:3000/api/updateWishlist",
           {
-            // const res = await fetch("http://192.168.233.245:3000/api/updateWishlist", {
-
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -115,12 +105,6 @@ const Results = () => {
         console.error(error);
       }
     };
-
-    // useFocusEffect(
-    //   useCallback(() => {
-    //     getWishlist();
-    //   }, [])
-    // );
 
     return (
       <TouchableOpacity
@@ -146,7 +130,15 @@ const Results = () => {
         </TouchableOpacity>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
-        <Text style={styles.itemCompany}>{`Store: ${item.company}`}</Text>
+        <Text style={styles.itemCompany}>
+          {`Store: ${
+            item.company === "Twentyfourseven"
+              ? "Twenty Four Seven"
+              : item.company === "Studiopasha"
+              ? "Studio Pasha"
+              : item.company
+          }`}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -171,11 +163,11 @@ const Results = () => {
 
     setIsDropdownOpen(false);
 
-    if (item === "Price: low to high") {
+    if (item === "Price: Low To High") {
       setResults([...results].sort((a, b) => a.price - b.price));
     } else if (item === "Price: High To Low") {
       setResults([...results].sort((a, b) => b.price - a.price));
-    } else if (item === "Distance: near to far") {
+    } else if (item === "Distance: Near To Far") {
       // Fetch closest stores and sort them by distance
       const { closestStores, userLocation } = await getClosestStores();
 
@@ -217,7 +209,7 @@ const Results = () => {
 
     const closestStores = await Promise.all(
       stores.map(async (store) => {
-        const storeData = await fetchStores(store); //fetch all addresses
+        const storeData = await fetchStores(store);
         const closestStore = findClosestStore(userLocation, storeData);
         return { store, closestStore }; // Save original store and the closest address
       })
@@ -229,10 +221,8 @@ const Results = () => {
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch(
-        "http://192.168.1.109:3000/api/getWishlist",
+        "http://192.168.1.245:3000/api/getWishlist",
         {
-          // const resWishlist = await fetch("http://192.168.233.245:3000/api/getWishlist", {
-           
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -242,10 +232,8 @@ const Results = () => {
         }
       );
       if (resWishlist.ok) {
-        console.log("resWishlist.ok");
         const bodyWishlist = await resWishlist.json();
         setWishlist(bodyWishlist.wishlist);
-        console.log(wishlist);
       }
       // else if (res.status === 409) {
       //   const body = await res.json();
@@ -269,10 +257,7 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
-      
-      // const res = await fetch("http://192.168.233.245:3000/api/SearchResults", {
-      // const res = await fetch("http://192.168.233.245:3000/api/SearchResults", {
-      const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+      const res = await fetch("http://192.168.1.245:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -284,7 +269,6 @@ const Results = () => {
       if (res.ok) {
         const body = await res.json();
         setResults(body);
-        console.log("results", results);
       } else if (res.status === 409) {
         // Handle conflict
       } else if (res.status === 400) {
@@ -376,10 +360,10 @@ const Results = () => {
               style={[
                 styles.listItemlistItem2Densit4,
                 styles.listLayout,
-                selectedItem === "Price: low to high" &&
+                selectedItem === "Price: Low To High" &&
                   styles.buildingBlocksstateLayerDaItem,
               ]}
-              onTouchEnd={() => handleDropdownItemClick("Price: low to high")}
+              onTouchEnd={() => handleDropdownItemClick("Price: Low To High")}
             >
               <View style={[styles.buildingPosition]}>
                 <View
@@ -393,7 +377,7 @@ const Results = () => {
                 <Image
                   style={styles.iconLayout}
                   contentFit="cover"
-                  source={iconSources["Price: low to high"]}
+                  source={iconSources["Price: Low To High"]}
                 />
                 <View style={[styles.content, styles.contentFlexBox]}>
                   <Text style={[styles.headline4, styles.headlineTypo]}>
@@ -441,11 +425,11 @@ const Results = () => {
               style={[
                 styles.listItemlistItem2Densit6,
                 styles.listLayout,
-                selectedItem === "Distance: near to far" &&
+                selectedItem === "Distance: Near To Far" &&
                   styles.buildingBlocksstateLayerDaItem,
               ]}
               onTouchEnd={() =>
-                handleDropdownItemClick("Distance: near to far")
+                handleDropdownItemClick("Distance: Near To Far")
               }
             >
               <View style={[styles.buildingPosition]}>
@@ -460,12 +444,12 @@ const Results = () => {
                 <Image
                   style={styles.iconLayout}
                   contentFit="cover"
-                  source={iconSources["Distance: near to far"]}
+                  source={iconSources["Distance: Near To Far"]}
                 />
                 <View style={[styles.content, styles.contentFlexBox]}>
                   <Text style={[styles.headline4, styles.headlineTypo]}>
                     {" "}
-                    Distance: near to far{" "}
+                    Distance: from near to far{" "}
                   </Text>
                 </View>
               </View>

@@ -12,22 +12,22 @@ const styles = StyleSheet.create({
   },
 
   horizontalListContainer: {
-    top: screenHeight*0.1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    top: screenHeight * 0.1,
+    flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: -10, // Adjust this value to bring items closer to the edge
   },
   scrollButton: {
     width: 30,
     height: 30,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 5,
   },
   scrollButtonText: {
-    color: 'black',
+    color: "black",
     fontSize: 18,
   },
   flatListContentContainer: {
@@ -90,11 +90,11 @@ const styles = StyleSheet.create({
     color: "#666",
   },
   buttons: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
   makeLayout: {
     backgroundColor: "transparent",
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
     bottom: screenHeight * 0.1,
   },
   noResultsContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   noResults: {
     top: screenHeight * 0.25,
-    color: 'red',
+    color: "red",
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
     height: screenHeight,
     backgroundColor: "#FBF9FC",
   },
-
 });
 
 export default styles;

@@ -1,10 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from "react-native";
 import { Color } from "../../styles/GlobalStyles";
-
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
-const screenWidth = window.width;
 
 const styles = StyleSheet.create({
   container: {
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBF9FC",
   },
   titleText: {
-    fontSize: screenHeight * 0.025,
+    fontSize: screenHeight * 0.03,
     fontWeight: "bold",
     color: Color.darkPurple,
     textAlign: "center",
@@ -38,14 +36,29 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     flex: 1,
     justifyContent: "space-between",
-    paddingVertical: 20,
+    paddingVertical: 40,
   },
+  // buttonContainer: {
+  //   width: "100%",
+  //   backgroundColor: "#ffffff",
+  //   borderRadius: 10,
+  //   borderWidth: 1.5,
+  //   borderColor: "#dddddd",
+  //   shadowColor: "#000",
+  //   shadowOffset: { width: 0, height: 2 },
+  //   shadowOpacity: 0.2,
+  //   shadowRadius: 5,
+  //   elevation: 3,
+  //   paddingVertical: 10,
+  //   paddingHorizontal: 20,
+  //   marginVertical: 5,
+  // },
+
   buttonContainer: {
-    width: "100%",
+    width: "90%",
     backgroundColor: "#ffffff",
     borderRadius: 10,
     borderWidth: 1.5,
-    borderColor: "#dddddd",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -53,7 +66,12 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    marginVertical: 5,
+    marginLeft: "5%",
+    borderColor: Color.darkPurple,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: Color.darkPurple,
   },
 });
 

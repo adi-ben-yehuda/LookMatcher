@@ -12,7 +12,6 @@ import UsersContext from "../../context/userContext";
 import styles from "./Recommend.style";
 import { useNavigation } from "@react-navigation/native";
 
-
 const Recommendation = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
@@ -22,7 +21,7 @@ const Recommendation = () => {
   const navigateToDetailPage = (itemId) => {
     console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
     navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
-};
+  };
   const scrollToStart = () => {
     flatListRef.current.scrollToOffset({ offset: 0, animated: true });
   };
@@ -41,7 +40,7 @@ const Recommendation = () => {
         const action = isCurrentlyFavorite ? "add" : "remove";
         console.log(item._id);
         const res = await fetch(
-          "http://192.168.1.109:3000/api/updateWishlist",
+          "http://192.168.1.245:3000/api/updateWishlist",
           {
             method: "POST",
             headers: {
@@ -62,9 +61,9 @@ const Recommendation = () => {
 
     return (
       <TouchableOpacity
-      style={styles.cardContainer}
-      onPress={() => navigateToDetailPage(item.id)}
-    >
+        style={styles.cardContainer}
+        onPress={() => navigateToDetailPage(item.id)}
+      >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
           onPress={() => toggleFavorite(item._id)}
@@ -88,7 +87,7 @@ const Recommendation = () => {
 
   const triggerPythonScript = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/recommendations", {
+      const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
         method: "GET",
         headers: {
           Accept: "application/json",

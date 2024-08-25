@@ -55,9 +55,8 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      
-      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
-        // const res = await fetch("http://192.168.233.245:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
+        // const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
         // const res = await fetch("http://172.18.54.23:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
@@ -70,13 +69,13 @@ const ItemCard = () => {
       if (res.ok) {
         const body = await res.json();
         setItemDetails(body);
-        console.log("itemDetails", body);
-        if (body.color && body.color.length > 0) {
-          console.log(
-            "Color URL from first item in array:",
-            itemDetails.colors[0]
-          );
-        }
+        // console.log("itemDetails", body);
+        // if (body.color && body.color.length > 0) {
+        //   console.log(
+        //     "Color URL from first item in array:",
+        //     itemDetails.colors[0]
+        //   );
+        // }
       } else if (res.status === 409) {
         // Handle conflict
       } else if (res.status === 400) {
@@ -153,7 +152,14 @@ const ItemCard = () => {
 
       <View>
         <View style={styles.itemStore}>
-          <Text style={styles.itemStoreText}>Store: {itemDetails.store}</Text>
+          <Text style={styles.itemStoreText}>
+            Store:{" "}
+            {itemDetails.store === "Twentyfourseven"
+              ? "Twenty Four Seven"
+              : itemDetails.store === "Studiopasha"
+              ? "Studio Pasha"
+              : itemDetails.store}
+          </Text>
         </View>
 
         <View style={styles.itemPrice}>

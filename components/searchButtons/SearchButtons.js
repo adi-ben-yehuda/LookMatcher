@@ -17,7 +17,6 @@ const SearchButtons = () => {
 
   return (
     <View style={[styles.searchPage]}>
-
       <TouchableOpacity onPress={manualSearchPress}>
         <LinearGradient
           style={[styles.register, styles.registerLayout]}
