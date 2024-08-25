@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./reset1.style";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 
 const Reset = () => {
   const navigation = useNavigation();
@@ -18,7 +18,6 @@ const Reset = () => {
 
   // States for checking the errors
   const [error, setError] = useState(false);
-  const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleEmail = (text) => {
@@ -111,10 +110,6 @@ const Reset = () => {
           />
         </View>
       </View>
-
-      {/* <View style={styles.errorMessage}>
-        {error && <Text style={styles.error}>Invalid: {errorMsg}</Text>}
-      </View> */}
 
       <TouchableOpacity onPress={handleEmailPress}>
         <LinearGradient

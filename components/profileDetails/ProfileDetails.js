@@ -111,14 +111,6 @@ const ProfileDetails = () => {
     }
   };
 
-  // Show all errors separated by a comma
-  // const renderList = errorList.map((item, index) => (
-  //   <Text key={index} style={styles.error}>
-  //     {item}
-  //     {index !== errorList.length - 1 && ","}
-  //   </Text>
-  // ));
-
   return (
     <View>
       <View style={[styles.password, styles.firstNamePosition]}>

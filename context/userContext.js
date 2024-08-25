@@ -1,20 +1,18 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 const UsersContext = createContext({
   addUser: () => {},
   userExists: () => {},
   myProfile: () => {},
   profile: {},
-  token: '',
-  getToken: () => { },
-  setToken: () => { },
- 
-
+  token: "",
+  getToken: () => {},
+  setToken: () => {},
 });
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
   const [profile, setProfile] = useState({
     email: "",
     password: "",
@@ -22,18 +20,10 @@ export const UsersProvider = ({ children }) => {
     firstName: "",
   });
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const date = new Date();
-  //     setCurrentTime(date.toLocaleString());
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
   const getToken = (email) => {
     const user = users.find((item) => item.email === email);
     return user.token;
-}
+  };
 
   const addUser = (user) => {
     setUsers([...users, user]);
@@ -56,7 +46,6 @@ export const UsersProvider = ({ children }) => {
   return (
     <UsersContext.Provider
       value={{
-       
         token,
         addUser,
         userExists,
@@ -64,7 +53,6 @@ export const UsersProvider = ({ children }) => {
         profile,
         getToken,
         setToken,
-     
       }}
     >
       {children}
