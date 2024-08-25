@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ScrollView, View, Dimensions, StyleSheet } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import TitleComponent from "../components/title/title.js";
 import Wishlist from "../components/wishlist/Wishlist";
 import ToolBar from "../components/toolbar/ToolBar";

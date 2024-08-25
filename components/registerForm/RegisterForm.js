@@ -7,30 +7,21 @@ import { Color } from "../../styles/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useRef, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { UsersContext } from "../../context/userContext.js";
 
 function RegisterForm() {
-  // const { addUser } = useContext(UsersContext);
-
   const navigation = useNavigation();
-
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
   const confirmPasswordInput = useRef(null);
   const firstNameInput = useRef(null);
   const lastNameInput = useRef(null);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
-  // States for checking the errors
   const [error, setError] = useState(false);
-  const [errorList, setErrorList] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
-
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
   const [confirmPasswordPlaceholder, setConfirmPasswordPlaceholder] =
@@ -76,7 +67,7 @@ function RegisterForm() {
     };
 
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/Users", {
+      const res = await fetch("http://192.168.0.169:3000/api/Users", {
         //const res = await fetch("http://localhost:3000/api/Users", {
         // const res = await fetch("http://172.18.54.23:3000/api/Users", {
         method: "POST",
@@ -88,7 +79,7 @@ function RegisterForm() {
       });
 
       if (res.ok) {
-        await AsyncStorage.setItem("userName", firstName); // Save user name locally
+        await AsyncStorage.setItem("userName", firstName);
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -113,19 +104,6 @@ function RegisterForm() {
       console.error(error);
     }
   };
-
-  // const registerButtonStyle = () => {
-  //   if (error) {
-  //     if (
-  //       errorList[errorList.length - 1] === " confirm password" &&
-  //       errorList.length >= 4
-  //     ) {
-  //       return [styles.register1, { marginTop: -40 }];
-  //     }
-  //     return [styles.register1, { marginTop: -20 }];
-  //   }
-  //   return styles.register1;
-  // };
 
   const firsrtNameBlur = () => {
     firstNameInput.current && firstNameInput.current.handleBlur();
@@ -300,18 +278,6 @@ function RegisterForm() {
           <Text style={styles.logIn}>Log In</Text>
         </TouchableOpacity>
       </Text>
-
-      {/* {error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Invalid: {errorMsg}</Text>
-        </View>
-      )} */}
-      {/* {console.log('error', error)} */}
-      {/* {!error && (
-        <View style={styles.errorMessage}>
-          <Text style={styles.error}>Details updated successfuly</Text>
-        </View>
-      )} */}
 
       <TouchableOpacity onPress={handleRegisterPress}>
         <LinearGradient

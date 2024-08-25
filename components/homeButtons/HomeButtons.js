@@ -81,10 +81,6 @@ function HomeButtons() {
           <Text style={styles.text}>Profile</Text>
         </LinearGradient>
       </TouchableOpacity>
-
-      {/* <View
-        style={[styles.icons, styles.iconsShadowBox, { marginBottom: 20 }]}
-      ></View> */}
     </View>
   );
 }

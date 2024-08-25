@@ -22,7 +22,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/Change", {
+      const res = await fetch("http://192.168.0.169:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,

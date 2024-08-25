@@ -22,7 +22,6 @@ const Results = () => {
   const route = useRoute();
   const { search } = route.params || { body: {} };
   const { stores } = search || { stores: [] };
-
   const [loading, setLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -86,7 +85,7 @@ const Results = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          "http://192.168.1.245:3000/api/updateWishlist",
+          "http://192.168.0.169:3000/api/updateWishlist",
           {
             method: "POST",
             headers: {
@@ -97,8 +96,7 @@ const Results = () => {
           }
         );
 
-        if (res.ok) {
-        } else {
+        if (!res.ok) {
           throw new Error("Failed to update wishlist");
         }
       } catch (error) {
@@ -114,7 +112,7 @@ const Results = () => {
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <TouchableOpacity
           onPress={(e) => {
-            e.stopPropagation(); // Prevents the parent's onPress from firing when the favorite button is clicked
+            e.stopPropagation();
             toggleFavorite(item.id);
           }}
           style={styles.favoriteIcon}
@@ -221,7 +219,7 @@ const Results = () => {
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch(
-        "http://192.168.1.245:3000/api/getWishlist",
+        "http://192.168.0.169:3000/api/getWishlist",
         {
           method: "GET",
           headers: {
@@ -235,17 +233,6 @@ const Results = () => {
         const bodyWishlist = await resWishlist.json();
         setWishlist(bodyWishlist.wishlist);
       }
-      // else if (res.status === 409) {
-      //   const body = await res.json();
-      //   const errorMsg = body.error;
-      //   setErrorMsg(errorMsg);
-      //   setError(true);
-      // } else if (res.status === 400) {
-      //   const body = await res.json();
-      //   const errorMsg = body.error;
-      //   setErrorMsg(errorMsg);
-      //   setError(true);
-      // }
       else {
         throw new Error("error");
       }
@@ -257,7 +244,7 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/SearchResults", {
+      const res = await fetch("http://192.168.0.169:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -269,17 +256,11 @@ const Results = () => {
       if (res.ok) {
         const body = await res.json();
         setResults(body);
-      } else if (res.status === 409) {
-        // Handle conflict
-      } else if (res.status === 400) {
-        // Handle bad request
-      } else {
-        // Handle other errors
       }
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); // Set loading to false when search is complete
+      setLoading(false); 
     }
   };
 

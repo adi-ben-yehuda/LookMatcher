@@ -1,12 +1,17 @@
 import { View, Image, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import styles from "./BackButton.style";
 
 function BackButton() {
   const navigation = useNavigation();
+  const route = useRoute(); 
 
   const handleBackButtonPress = () => {
-    navigation.goBack();
+    if (route.name === 'Wishlist') { // Check if the current route is 'Wishlist'
+      navigation.navigate('Home'); 
+    } else {
+      navigation.goBack();
+    }
   };
 
   return (

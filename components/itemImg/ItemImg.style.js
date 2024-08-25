@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
 
   colorsRow: {
     flexDirection: "row",
-    flexWrap: "wrap", // Allows wrapping to the next line
+    flexWrap: "wrap", 
     justifyContent: "flex-start",
     paddingVertical: 10,
     marginLeft: screenHeight * 0.03,
