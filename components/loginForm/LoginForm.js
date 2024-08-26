@@ -15,7 +15,7 @@ const LoginForm = () => {
   const passwordInput = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken, setUser } = useContext(UsersContext);
+  const { setToken } = useContext(UsersContext);
   const [emailPlaceholder, setEmailPlaceholder] = useState("Email");
   const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
   const [error, setError] = useState(false);
@@ -40,7 +40,7 @@ const LoginForm = () => {
     };
 
     try {
-      const res = await fetch("http://192.168.0.169:3000/api/Tokens", {
+      const res = await fetch("http://192.168.1.109:3000/api/Tokens", {
         // const res = await fetch("http://localhost:3000/api/Tokens", {
         //const res = await fetch("http://192.168.1.245:3000/api/Tokens", {
         method: "POST",
