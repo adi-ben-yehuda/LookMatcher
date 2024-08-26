@@ -55,7 +55,7 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://192.168.0.169:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
         // const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
         // const res = await fetch("http://172.18.54.23:3000/api/ItemDetalis", {
         method: "POST",

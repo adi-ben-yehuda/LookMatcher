@@ -85,7 +85,7 @@ const Results = () => {
         const action = isCurrentlyFavorite ? "remove" : "add";
 
         const res = await fetch(
-          "http://192.168.1.109:3000/api/updateWishlist",
+          "http://192.168.1.245:3000/api/updateWishlist",
           {
             method: "POST",
             headers: {
@@ -219,7 +219,7 @@ const Results = () => {
   const getWishlist = async () => {
     try {
       const resWishlist = await fetch(
-        "http://192.168.1.109:3000/api/getWishlist",
+        "http://192.168.1.245:3000/api/getWishlist",
         {
           method: "GET",
           headers: {
@@ -232,8 +232,7 @@ const Results = () => {
       if (resWishlist.ok) {
         const bodyWishlist = await resWishlist.json();
         setWishlist(bodyWishlist.wishlist);
-      }
-      else {
+      } else {
         throw new Error("error");
       }
     } catch (error) {
@@ -244,7 +243,7 @@ const Results = () => {
   const getResults = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/SearchResults", {
+      const res = await fetch("http://192.168.1.245:3000/api/SearchResults", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -260,7 +259,7 @@ const Results = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
