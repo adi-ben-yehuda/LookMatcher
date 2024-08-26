@@ -1,21 +1,25 @@
 import { View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
+import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect
 import styles from "./HelloHome.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HelloHome() {
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    const loadUserData = async () => {
-      const storedName = await AsyncStorage.getItem("userName");
-      if (storedName) {
-        setName(storedName);
-      }
-    };
+  const loadUserData = async () => {
+    const storedName = await AsyncStorage.getItem("userName");
+    if (storedName) {
+      setName(storedName);
+    }
+  };
 
-    loadUserData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      // Re-fetch the name from AsyncStorage whenever the screen is focused
+      loadUserData();
+    }, [])
+  );
 
   return (
     <View style={styles.home}>

@@ -6,6 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState, useEffect, useContext } from "react";
 import styles from "./ProfileDetails.style";
 import UsersContext from "../../context/userContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileDetails = () => {
   // States for checking the errors
@@ -14,7 +15,7 @@ const ProfileDetails = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [isSuccessMessage, setIsSuccessMessage] = useState(false);
   const [detailsFetched, setDetailsFetched] = useState(false);
-  const { token, user } = useContext(UsersContext);
+  const { token } = useContext(UsersContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.0.169:3000/api/Change", {
+      const res = await fetch("http://192.168.1.109:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,
@@ -77,7 +78,7 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.1.245:3000/api/Users/details`, {
+      const res = await fetch(`http://192.168.1.109:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -92,6 +93,8 @@ const ProfileDetails = () => {
         setSuccessMessage("Details updated successfully!");
         setIsSuccessMessage(true);
         Alert.alert("Success!", "Details changed");
+        await AsyncStorage.setItem("userName", firstName); 
+
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;

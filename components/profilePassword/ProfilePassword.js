@@ -44,7 +44,7 @@ const ProfilePassword = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.1.245:3000/api/Users/password`, {
+      const res = await fetch(`http://192.168.1.109:3000/api/Users/password`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -59,6 +59,7 @@ const ProfilePassword = () => {
         setNewPassword("");
         setConfirmPassword("");
         setSuccessMessage("Password changed successfully!");
+        Alert.alert("Success!", "Password changed");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = "There is an error in:" + body.error;
@@ -130,12 +131,6 @@ const ProfilePassword = () => {
           source={require("../../assets/chield-check.png")}
         />
       </View>
-
-      {successMessage && (
-        <View style={styles.successMessage}>
-          <Text style={styles.success}>{successMessage}</Text>
-        </View>
-      )}
 
       <TouchableOpacity onPress={handleSavePress}>
         <LinearGradient
