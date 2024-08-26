@@ -23,7 +23,7 @@ const ProfileDetails = () => {
 
   const getDetails = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/Change", {
+      const res = await fetch("http://192.168.1.245:3000/api/Change", {
         method: "get",
         headers: {
           Authorization: "Bearer " + token,
@@ -78,7 +78,7 @@ const ProfileDetails = () => {
     };
 
     try {
-      const res = await fetch(`http://192.168.1.109:3000/api/Users/details`, {
+      const res = await fetch(`http://192.168.1.245:3000/api/Users/details`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -93,8 +93,7 @@ const ProfileDetails = () => {
         setSuccessMessage("Details updated successfully!");
         setIsSuccessMessage(true);
         Alert.alert("Success!", "Details changed");
-        await AsyncStorage.setItem("userName", firstName); 
-
+        await AsyncStorage.setItem("userName", firstName);
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;

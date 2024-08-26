@@ -40,7 +40,7 @@ const Recommendation = () => {
         const action = isCurrentlyFavorite ? "add" : "remove";
         console.log(item._id);
         const res = await fetch(
-          "http://192.168.1.109:3000/api/updateWishlist",
+          "http://192.168.1.245:3000/api/updateWishlist",
           {
             method: "POST",
             headers: {
@@ -87,7 +87,7 @@ const Recommendation = () => {
 
   const triggerPythonScript = async () => {
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/recommendations", {
+      const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
         method: "GET",
         headers: {
           Accept: "application/json",
