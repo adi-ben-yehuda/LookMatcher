@@ -19,7 +19,6 @@ const Recommendation = () => {
   const flatListRef = useRef(null);
   const navigation = useNavigation();
   const navigateToDetailPage = (itemId) => {
-    console.log("Navigating to ItemPage with itemId:", itemId); // Print itemId
     navigation.navigate("ItemPage", { itemId }); // Navigate and pass itemId
   };
   const scrollToStart = () => {
@@ -30,64 +29,26 @@ const Recommendation = () => {
     flatListRef.current.scrollToEnd({ animated: true });
   };
 
-  const ItemCard = ({ item }) => {
-    const [isFavorite, setIsFavorite] = useState(true);
-
-    const toggleFavorite = async (itemId) => {
-      const isCurrentlyFavorite = isFavorite;
-      setIsFavorite(!isFavorite);
-      try {
-        const action = isCurrentlyFavorite ? "add" : "remove";
-        console.log(item._id);
-        const res = await fetch(
-          "http://192.168.1.245:3000/api/updateWishlist",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: "Bearer " + token,
-            },
-            body: JSON.stringify({ itemId, action }),
-          }
-        );
-
-        if (!res.ok) {
-          throw new Error("Failed to update wishlist");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
+  const ItemCard = ({ item }) => {  
     return (
       <TouchableOpacity
         style={styles.cardContainer}
-        onPress={() => navigateToDetailPage(item.id)}
+        onPress={() => navigateToDetailPage(item._id)}
       >
         <Image source={{ uri: item.image }} style={styles.itemImage} />
-        <TouchableOpacity
-          onPress={() => toggleFavorite(item._id)}
-          style={styles.favoriteIcon}
-        >
-          <Image
-            source={
-              isFavorite
-                ? require("../../assets/favorite-light2.png")
-                : require("../../assets/favorite-light1.png")
-            }
-            style={styles.favoriteImage}
-          />
-        </TouchableOpacity>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
-        <Text style={styles.itemCompany}>{`Company: ${item.store}`}</Text>
+        <Text style={styles.itemCompany}>{`Company: ${item.store.name}`}</Text> 
       </TouchableOpacity>
     );
   };
-
+  
+  
   const triggerPythonScript = async () => {
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
+      // const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
+        const res = await fetch("http://192.168.0.169:3000/api/recommendations", {
+
         method: "GET",
         headers: {
           Accept: "application/json",

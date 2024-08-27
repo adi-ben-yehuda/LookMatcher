@@ -76,12 +76,8 @@ const ItemCard = () => {
         //     itemDetails.colors[0]
         //   );
         // }
-      } else if (res.status === 409) {
-        // Handle conflict
-      } else if (res.status === 400) {
-        // Handle bad request
-      } else {
-        // Handle other errors
+      }if (!res.ok) {
+        throw new Error("Failed to get item details");
       }
     } catch (error) {
       console.error(error);
