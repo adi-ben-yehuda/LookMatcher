@@ -29,7 +29,7 @@ const Recommendation = () => {
     flatListRef.current.scrollToEnd({ animated: true });
   };
 
-  const ItemCard = ({ item }) => {  
+  const ItemCard = ({ item }) => {
     return (
       <TouchableOpacity
         style={styles.cardContainer}
@@ -38,17 +38,24 @@ const Recommendation = () => {
         <Image source={{ uri: item.image }} style={styles.itemImage} />
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
-        <Text style={styles.itemCompany}>{`Company: ${item.store.name}`}</Text> 
+        <Text style={styles.itemCompany}>
+          {" "}
+          {`Company: ${
+            item.store.name === "Studiopasha"
+              ? "Studio Pasha"
+              : item.store.name === "Twentyfourseven"
+              ? "Twenty Four Seven"
+              : item.store.name
+          }`}
+        </Text>
       </TouchableOpacity>
     );
   };
-  
-  
+
   const triggerPythonScript = async () => {
     try {
       // const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
-        const res = await fetch("http://192.168.0.169:3000/api/recommendations", {
-
+      const res = await fetch("http://192.168.1.245:3000/api/recommendations", {
         method: "GET",
         headers: {
           Accept: "application/json",

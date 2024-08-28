@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 
   horizontalListContainer: {
-    top: screenHeight * 0.1,
+    top: screenHeight * 0.07,
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: -10, // Adjust this value to bring items closer to the edge
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.6, // Adjust width as needed
   },
   itemImage: {
-    height: screenHeight * 0.2 + screenWidth * 0.18,
+    height: screenHeight * 0.32 + screenWidth * 0.2,
     resizeMode: "cover",
     borderRadius: 4,
     marginBottom: 8,
