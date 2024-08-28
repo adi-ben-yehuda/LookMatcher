@@ -5,7 +5,7 @@ import { TextInput } from "react-native-paper";
 import styles from "./RegisterForm.style";
 import { Color } from "../../styles/GlobalStyles";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function RegisterForm() {
@@ -190,7 +190,7 @@ function RegisterForm() {
           placeholder={lastNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={lastName} // Set the value prop
+          value={lastName}
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleLastName}
@@ -211,7 +211,7 @@ function RegisterForm() {
           placeholder={emailPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={email} // Set the value prop
+          value={email}
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleEmail}
@@ -235,7 +235,7 @@ function RegisterForm() {
           placeholder={passwordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={password} // Set the value prop
+          value={password}
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handlePassword}
@@ -257,7 +257,7 @@ function RegisterForm() {
           placeholder={confirmPasswordPlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={confirmPassword} // Set the value prop
+          value={confirmPassword}
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleConfirmPassword}

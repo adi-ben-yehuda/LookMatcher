@@ -90,9 +90,8 @@ const Recommendation = () => {
       <View style={styles.container}>
         {!results.length > 0 && (
           <View style={styles.noResultsContainer}>
-            <Text style={styles.noResults}>No Suggestions{"\n"}</Text>
             <Text style={styles.noResults}>
-              Add items to your wishlist first{"\n"}
+              Add your favorites to get{"\n"}personalized suggestions!{"\n"}
             </Text>
           </View>
         )}

@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-
-
   container: {
     flex: 1,
     padding: 0,
@@ -66,7 +64,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.25,
     shadowRadius: 8,
-    elevation: 5, 
+    elevation: 5,
   },
   favoriteIcon: {
     position: "absolute",
@@ -98,17 +96,15 @@ const styles = StyleSheet.create({
   },
 
   noResultsContainer: {
-
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   noResults: {
     top: screenHeight * 0.25,
-    color: 'red',
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-
+    textAlign: "center",
   },
 });
 

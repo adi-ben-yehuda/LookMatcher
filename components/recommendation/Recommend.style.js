@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Color, FontSize, Border } from "../../styles/GlobalStyles";
+import { Color, Border } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginTop: screenHeight * 0.025,
   },
   cardContainer: {
-    backgroundColor: "#f0f0f0", //#fff
+    backgroundColor: "#f0f0f0",
     margin: 10,
     padding: 16,
     borderRadius: 8,
@@ -134,13 +134,12 @@ const styles = StyleSheet.create({
   },
   noResults: {
     top: screenHeight * 0.25,
-    color: "red",
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
+    textAlign: "center",
   },
 
   load: {
-    //flex: 1,
     top: 0.4 * screenHeight,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
