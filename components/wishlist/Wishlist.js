@@ -6,7 +6,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const Wishlist = () => {
   const [results, setResults] = useState([]);
-  // const [wishlist, setWishlist] = useState([]);
   const { token, user } = useContext(UsersContext);
 
   const navigation = useNavigation();
@@ -102,7 +101,9 @@ const Wishlist = () => {
       <View style={styles.container}>
         {!results.length > 0 && (
           <View style={styles.noResultsContainer}>
-            <Text style={styles.noResults}>Nothing saved{"\n"}</Text>
+            <Text style={styles.noResults}>
+              Empty wishlist?{"\n"}Let's change that! Start adding!{"\n"}
+            </Text>
           </View>
         )}
         {results.length > 0 && (
