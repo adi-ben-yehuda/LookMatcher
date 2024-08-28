@@ -41,8 +41,8 @@ const LoginForm = () => {
 
     try {
       // const res = await fetch("http://192.168.1.245:3000/api/Tokens", {
-        // const res = await fetch("http://localhost:3000/api/Tokens", {
-        const res = await fetch("http://192.168.0.169:3000/api/Tokens", {
+      // const res = await fetch("http://localhost:3000/api/Tokens", {
+      const res = await fetch("http://192.168.1.245:3000/api/Tokens", {
         method: "POST",
         headers: {
           Accept: "application/json",
