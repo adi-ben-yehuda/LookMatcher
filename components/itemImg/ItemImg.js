@@ -55,9 +55,7 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
-        // const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
-        // const res = await fetch("http://172.18.54.23:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -89,6 +87,7 @@ const ItemCard = () => {
   if (loading) {
     return (
       <View style={styles.container}>
+        <BackButton></BackButton>
         <View style={styles.load}>
           <ActivityIndicator size="large" color="#43118C" />
           <Text style={{ color: "#43118C" }}>{"\n"} Loading...</Text>
