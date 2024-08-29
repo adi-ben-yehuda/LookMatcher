@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
 
   load: {
-    top: 0.4 * screenHeight,
+    top: 0.3 * screenHeight,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
     alignItems: "center",
