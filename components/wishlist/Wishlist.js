@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import styles from "./Wishlist.style";
 import UsersContext from "../../context/userContext";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 const Wishlist = () => {
   const [results, setResults] = useState([]);
@@ -63,7 +63,13 @@ const Wishlist = () => {
         </TouchableOpacity>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.itemPrice}>{`Price: ${item.price} ₪`}</Text>
-        <Text style={styles.itemCompany}>{`Company: ${item.company}`}</Text>
+        <Text style={styles.itemCompany}>{`Company: ${
+          item.company === "Twentyfourseven"
+            ? "Twenty Four Seven"
+            : item.company === "Studiopasha"
+            ? "Studio Pasha"
+            : item.company
+        }`}</Text>
       </TouchableOpacity>
     );
   };
@@ -90,9 +96,11 @@ const Wishlist = () => {
     }
   };
 
-  useEffect(() => {
-    getResults();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getResults();
+    }, [])
+  );
 
   return (
     <View style={[styles.results, styles.resultsLayout]}>

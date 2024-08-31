@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Color, FontSize, Border } from "../../styles/GlobalStyles";
+import { Color, Border } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
 const screenHeight = window.height;
@@ -7,7 +7,6 @@ const screenWidth = window.width;
 
 const styles = StyleSheet.create({
   title: {
-    //flex: 1,
     top: screenHeight * 0.1,
     justifyContent: "center",
     alignItems: "center",
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: screenHeight * 0.06,
     fontWeight: "bold",
     color: Color.white,
-    textAlign: "center", // Align the text in the center
+    textAlign: "center",
   },
 
   title2: {
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
 
   titelText2: {
     fontSize: screenHeight * 0.024,
-    //fontWeight: "bold",
     color: Color.darkPurple,
   },
 
