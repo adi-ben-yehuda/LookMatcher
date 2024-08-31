@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   },
   scrollviewContainer: {
     height: screenHeight + 100,
-    //paddingBottom: 150,
     flexGrow: 2,
   },
 });
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
 const ItemPage = () => {
   return (
     <View style={styles.home}>
-      
       <View>
         <ScrollView contentContainerStyle={styles.scrollviewContainer}>
           <ItemImg />

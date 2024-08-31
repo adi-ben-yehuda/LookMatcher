@@ -2,7 +2,6 @@ import { StyleSheet, Dimensions } from "react-native";
 import { Border } from "../../styles/GlobalStyles";
 
 const window = Dimensions.get("window");
-const screenHeight = window.height;
 const screenWidth = window.width;
 
 const styles = StyleSheet.create({

@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
-import ManualSearchOptions, {
-  searchPress,
-} from "../components/manualSearchOptions/ManualSearchOptions"; // Updated import
+import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
+import ManualSearchOptions from "../components/manualSearchOptions/ManualSearchOptions";
 import Tool from "../components/toolbar/ToolBar";
 import BackButton from "../components/backButton/BackButton";
 import TitleComponent from "../components/title/title.js";

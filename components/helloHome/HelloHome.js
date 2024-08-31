@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useFocusEffect } from "@react-navigation/native"; // Import useFocusEffect
+import { useFocusEffect } from "@react-navigation/native";
 import styles from "./HelloHome.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

@@ -55,7 +55,7 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -67,14 +67,8 @@ const ItemCard = () => {
       if (res.ok) {
         const body = await res.json();
         setItemDetails(body);
-        // console.log("itemDetails", body);
-        // if (body.color && body.color.length > 0) {
-        //   console.log(
-        //     "Color URL from first item in array:",
-        //     itemDetails.colors[0]
-        //   );
-        // }
-      }if (!res.ok) {
+      }
+      if (!res.ok) {
         throw new Error("Failed to get item details");
       }
     } catch (error) {
@@ -112,22 +106,6 @@ const ItemCard = () => {
             resizeMode="contain" // Ensures the image fits within the container without being cropped
           />
         </View>
-
-        {/* <TouchableOpacity style={[styles.back2]}>
-          <Image
-            style={[styles.back]}
-            contentFit="cover"
-            source={require("../../assets/icons/back2.png")}
-          />
-        </TouchableOpacity> */}
-
-        {/* <TouchableOpacity style={[styles.heart]}>
-          <Image
-            style={[styles.heart]}
-            contentFit="cover"
-            source={require("../../assets/icons/heart-bar.png")}
-          />
-        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={handlePrev} style={styles.buttonPrev}>
           <Image

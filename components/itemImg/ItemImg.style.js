@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
   },
 
   load: {
-    //flex: 1,
     top: 0.4 * screenHeight,
     justifyContent: "center",
     backgroundColor: "#FBF9FC",
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
 
   colorsRow: {
     flexDirection: "row",
-    flexWrap: "wrap", 
+    flexWrap: "wrap",
     justifyContent: "flex-start",
     paddingVertical: 10,
     marginLeft: screenHeight * 0.03,

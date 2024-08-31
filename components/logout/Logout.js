@@ -1,8 +1,7 @@
 import { View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./Logout.style";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function LogOut() {
   const navigation = useNavigation();

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
   },
-  cover:{
+  cover: {
     backgroundColor: "#FBF9FC",
     width: screenWidth,
   },

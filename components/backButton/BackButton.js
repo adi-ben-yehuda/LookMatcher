@@ -4,11 +4,12 @@ import styles from "./BackButton.style";
 
 function BackButton() {
   const navigation = useNavigation();
-  const route = useRoute(); 
+  const route = useRoute();
 
   const handleBackButtonPress = () => {
-    if (route.name === 'Wishlist') { // Check if the current route is 'Wishlist'
-      navigation.navigate('Home'); 
+    if (route.name === "Wishlist") {
+      // Check if the current route is 'Wishlist'
+      navigation.navigate("Home");
     } else {
       navigation.goBack();
     }

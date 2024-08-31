@@ -67,9 +67,7 @@ function RegisterForm() {
     };
 
     try {
-      const res = await fetch("http://192.168.1.109:3000/api/Users", {
-        //const res = await fetch("http://localhost:3000/api/Users", {
-        // const res = await fetch("http://172.18.54.23:3000/api/Users", {
+      const res = await fetch("http://192.168.1.245:3000/api/Users", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -169,7 +167,7 @@ function RegisterForm() {
           placeholder={firstNamePlaceholder}
           style={styles.childPosition}
           mode="outlined"
-          value={firstName} // Set the value prop
+          value={firstName}
           theme={{ colors: { background: Color.white } }}
           placeholderTextColor={Color.gray}
           onChangeText={handleFirstName}
