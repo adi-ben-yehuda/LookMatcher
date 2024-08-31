@@ -53,7 +53,7 @@ Before installing this project, you need to install on your computer:
 
 Then open a terminal and clone the project:
 ```
-https://github.com/adi-ben-yehuda/LookMatcher.git
+git clone https://github.com/adi-ben-yehuda/LookMatcher.git
 ```
 
 To run the application, write: 
