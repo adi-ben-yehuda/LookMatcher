@@ -31,8 +31,6 @@ const styles = StyleSheet.create({
     flex: 1, // Make the container use full height
     flexDirection: "column",
     backgroundColor: "#FBF9FC",
-
-    // Align children vertically
   },
   resultsContainer: {
     flex: 1, // Takes all available space pushing the toolbar to the bottom

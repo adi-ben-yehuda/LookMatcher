@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     height: 852,
     overflow: "hidden",
   },
-  sort1:{
+  sort1: {
     height: screenHeight * 0.1,
     width: screenWidth,
     alignItems: "center",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 4,
     marginBottom: 8,
-    elevation: 5, 
+    elevation: 5,
   },
   favoriteIcon: {
     position: "absolute",
@@ -276,7 +276,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBF9FC",
     alignItems: "center",
   },
-
 });
 
 export default styles;

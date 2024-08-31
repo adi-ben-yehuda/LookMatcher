@@ -14,9 +14,8 @@ const styles = StyleSheet.create({
     marginLeft: screenWidth * -0.3,
     left: "50%",
     position: "absolute",
-    justifyContent: 'center',
-    alignItems: 'center', 
-   
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonSearch: {
     color: Color.white,

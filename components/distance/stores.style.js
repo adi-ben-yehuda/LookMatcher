@@ -38,21 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 40,
   },
-  // buttonContainer: {
-  //   width: "100%",
-  //   backgroundColor: "#ffffff",
-  //   borderRadius: 10,
-  //   borderWidth: 1.5,
-  //   borderColor: "#dddddd",
-  //   shadowColor: "#000",
-  //   shadowOffset: { width: 0, height: 2 },
-  //   shadowOpacity: 0.2,
-  //   shadowRadius: 5,
-  //   elevation: 3,
-  //   paddingVertical: 10,
-  //   paddingHorizontal: 20,
-  //   marginVertical: 5,
-  // },
 
   buttonContainer: {
     width: "90%",

@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  View,
-  Button,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, SafeAreaView, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Color } from "../../styles/GlobalStyles";
 import BackButton from "../backButton/BackButton";
 import styles from "./stores.style";
 
@@ -41,65 +34,6 @@ const Stores = () => {
       <View style={styles.first}>
         <Text style={styles.titleText}>Choose a store</Text>
       </View>
-
-      {/* <View style={styles.buttonWrapper}>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Castro"
-            onPress={() => handlePress("Castro")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Golf"
-            onPress={() => handlePress("Golf")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Hoodies"
-            onPress={() => handlePress("Hoodies")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Renuar"
-            onPress={() => handlePress("Renuar")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Studio Pasha"
-            onPress={() => handlePress("Studio Pasha")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Twenty Four Seven"
-            onPress={() => handlePress("Twenty Four Seven")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Urbanica"
-            onPress={() => handlePress("Urbanica")}
-            color={Color.darkPurple}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="Yanga"
-            onPress={() => handlePress("Yanga")}
-            color={Color.darkPurple}
-          />
-        </View>
-      </View> */}
 
       <View style={styles.buttonWrapper}>
         {renderButton("Castro")}

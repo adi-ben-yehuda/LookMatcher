@@ -1,4 +1,4 @@
-import { Color, FontSize, Border } from "../../styles/GlobalStyles";
+import { Color } from "../../styles/GlobalStyles";
 import { StyleSheet, Dimensions } from "react-native";
 
 const window = Dimensions.get("window");
@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 0,
+    paddingBottom: 20,
     backgroundColor: "#fff",
     marginTop: 5,
   },
   cardContainer: {
     flex: 1,
-    backgroundColor: "#f0f0f0", //#fff
+    backgroundColor: "#f0f0f0",
     marginTop: 10,
     margin: 12,
     padding: 16,

@@ -20,27 +20,25 @@ const styles = StyleSheet.create({
   },
   scrollviewContainer: {
     height: screenHeight + 35,
-    //paddingBottom: 150,
     flexGrow: 2,
   },
   first: {
     height: screenHeight * 0.1,
-    borderColor: '#000', 
-    borderWidth: 0.2,      
-    alignItems: 'center', 
-    
-    flexDirection: 'row', 
-    shadowColor: "#000",  
-    shadowOffset: {
-      width: 0,          
-      height: 2,        
-    },
-    shadowOpacity: 0.25,  
-    shadowRadius: 3.84,   
-    elevation: 5,         
-    backgroundColor: '#FBF9FC',
-  },
+    borderColor: "#000",
+    borderWidth: 0.2,
+    alignItems: "center",
 
+    flexDirection: "row",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    backgroundColor: "#FBF9FC",
+  },
 });
 
 const Profile = () => {
@@ -48,8 +46,8 @@ const Profile = () => {
     <View style={styles.home}>
       <View>
         <View style={styles.first}>
-        <BackButton />
-        <TitleComponent titleText="My Details" />
+          <BackButton />
+          <TitleComponent titleText="My Details" />
         </View>
         <ScrollView contentContainerStyle={styles.scrollviewContainer}>
           <ProfileDetails />

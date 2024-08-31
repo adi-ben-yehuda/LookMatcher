@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
 
   errorMessage: {
-    top: screenHeight * 0.59 ,
+    top: screenHeight * 0.59,
     fontSize: 16,
     alignItems: "center",
     justifyContent: "center",
