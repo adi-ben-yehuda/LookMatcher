@@ -55,6 +55,11 @@ Then open a terminal and clone the project:
 ```
 git clone https://github.com/adi-ben-yehuda/LookMatcher.git
 ```
+Before running this project, you need to install this Node.js libraries:
+
+```
+npm install react @react-navigation/native @react-navigation/stack react-native expo-router @react-native-async-storage/async-storage expo-linear-gradient react-native-paper react-native-element-dropdown react-native-maps utils expo-location react-native-vector-icons/Ionicons
+```
 
 To run the application, write: 
 ```
