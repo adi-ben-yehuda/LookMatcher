@@ -67,7 +67,7 @@ function RegisterForm() {
     };
 
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/Users", {
+      const res = await fetch("http://192.168.1.109:3000/api/Users", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -83,7 +83,7 @@ function RegisterForm() {
         setConfirmPassword("");
         setFirstName("");
         setLastName("");
-        navigation.navigate("Home");
+        navigation.navigate("Login");
       } else if (res.status === 409) {
         const body = await res.json();
         const errorMsg = body.error;

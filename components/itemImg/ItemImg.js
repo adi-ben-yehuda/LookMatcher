@@ -55,7 +55,7 @@ const ItemCard = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://192.168.1.245:3000/api/ItemDetalis", {
+      const res = await fetch("http://192.168.1.109:3000/api/ItemDetalis", {
         method: "POST",
         headers: {
           Accept: "application/json",
